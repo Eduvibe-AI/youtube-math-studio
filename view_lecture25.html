@@ -1,0 +1,246 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 25 (RECURRENCE RELATIONS BIG 4 & ALPHA)     -->
+    <!-- ============================================================== -->
+    <div id="lecture25View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제25강 · 수능 수학 I 수열 점화식 실전 마스터
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          점화식 25분 아작내기 (등차·등비 Big 4 &amp; 응용 6대 점화식)
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "수열의 귀납적 정의(점화식) 단원에서 더 이상 길을 잃지 마라!"<br>
+          고교 수학에 등장하는 모든 점화식을 완벽하게 장악하는 10대 계통도:<br>
+          <strong>기본 점화식 Big 4(등차·등비·계차·계비) · 특성방정식 $\alpha$ 변환 테크닉 · 3항간 계차등비형 및 역수치환꼴</strong>을 실시간 수열 시뮬레이터로 정복합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 고교 수열 점화식 4대 기본형 &amp; 핵심 해법 매트릭스
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">Big 1: 등차수열형</div>
+            <div style="color: #facc15; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$a_{n+1} - a_n = d$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$a_n = a_1 + (n-1)d$</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">Big 2: 등비수열형</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$\frac{a_{n+1}}{a_n} = r$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$a_n = a_1 \cdot r^{n-1}$</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">Big 3: 계차수열형</div>
+            <div style="color: #f43f5e; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$a_{n+1} = a_n + f(n)$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$a_n = a_1 + \sum_{k=1}^{n-1} f(k)$ (변변더하기)</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">응용 1: 알파(α) 변환형</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$a_{n+1} = p a_n + q$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$a_n - \alpha = (a_1 - \alpha)p^{n-1}$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 25 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL25_1" onclick="switchL25Tab(1)">
+          <span>⚡ 동적 점화식 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL25_2" onclick="switchL25Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL25_3" onclick="switchL25Tab(3)">
+          <span>📐 수학적 원리 &amp; 점화식 10대 계통도</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL25_4" onclick="switchL25Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL25_5" onclick="switchL25Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL25_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec25" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 점화식 유형을 선택하고 초항 $a_1$과 계수를 조정해 수열의 거동과 일반항을 실시간 확인하세요.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 점화식 유형 선택 (Recurrence Pattern)
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL25_mode1" onclick="setL25Mode(1)">
+                  <span>1. 응용 1: $a_{n+1} = p a_n + q$ (알파 변환형)</span>
+                  <span class="p-sub">특성근 $\alpha = \frac{q}{1-p}$을 중심으로 한 등비 치환</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL25_mode2" onclick="setL25Mode(2)">
+                  <span>2. Big 3: $a_{n+1} = a_n + k \cdot n$ (계차수열형)</span>
+                  <span class="p-sub">축차대입과 시그마 변변 더하기 $\sum k$</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL25_mode3" onclick="setL25Mode(3)">
+                  <span>3. Big 4: $a_{n+1} = \frac{n}{n+1} a_n$ (계비수열형)</span>
+                  <span class="p-sub">망원소거법(Telescoping) 변변 곱하기</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL25_mode4" onclick="setL25Mode(4)">
+                  <span>4. Big 1 &amp; 2: 기본 등차($+d$) / 등비($\times r$)</span>
+                  <span class="p-sub">일정한 차이와 비율의 기본 모델</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">수열 파라미터 조절</span>
+              </div>
+              <div class="slider-row">
+                <label>초항 $a_1$:</label>
+                <input type="range" id="slL25_a1" min="-10" max="20" step="1" value="1" oninput="updateL25()">
+                <span class="slider-val" id="valL25_a1">1</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>계수 $p$ (공비/배수):</label>
+                <input type="range" id="slL25_p" min="-2.0" max="3.0" step="0.1" value="2.0" oninput="updateL25()">
+                <span class="slider-val" id="valL25_p">2.0</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>상수항 $q$:</label>
+                <input type="range" id="slL25_q" min="-10" max="10" step="1" value="3" oninput="updateL25()">
+                <span class="slider-val" id="valL25_q">3</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 일반항 &amp; 항 값 계산 (Live Generator)
+              </div>
+              <div id="statL25_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 점화식: <strong style="color: #38bdf8;">$a_{n+1} = 2.0 a_n + 3$</strong></div>
+                <div>• 특성근: <strong style="color: #34d399;">$\alpha = -3.00$</strong></div>
+                <div>• 일반항: <strong style="color: #facc15;">$a_n = 4 \cdot 2^{n-1} - 3$</strong></div>
+                <div>• $a_1 \sim a_6$: <strong style="color: #f43f5e;">1, 5, 13, 29, 61, 125</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL25_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:20] 수열의 표현법: 일반항 vs 귀납적 정의</div>
+              <img src="captures_v25/01_seq_expression.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_seq">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">수열을 직접 n으로 표현하는 일반항과, 이웃한 두 항의 관계식으로 정의하는 점화식의 개념 차이를 비교합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:40] 등차수열과 등비수열의 기본 점화식</div>
+              <img src="captures_v25/02_ap_gp_basic.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_ap_gp">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">공차 d와 공비 r을 나타내는 2항간, 3항간(등차중항/등비중항)의 표준 점화식을 정리합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [03:00] 점화식 Big 4 개괄</div>
+              <img src="captures_v25/03_big4_overview.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_big4">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">고교 수학의 근간을 이루는 4대 기본 점화식(등차, 등비, 계차, 계비)의 체계를 한눈에 정립합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [05:30] Big 3: $a_{n+1} = a_n + f(n)$ 변변 더하기</div>
+              <img src="captures_v25/04_big3_difference.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_big3">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">축차대입법으로 1부터 n-1까지 나열한 후 변변 더하여 시그마 공식을 유도하는 과정을 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [08:20] Big 4: $a_{n+1} = f(n) a_n$ 변변 곱하기</div>
+              <img src="captures_v25/05_big4_ratio.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_big4">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">연속 곱셈을 통해 대각선으로 상쇄 소거되는 계비수열의 일반항 유도법을 시연합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [11:40] 응용 1: $a_{n+1} = p a_n + q$ (알파 테크닉)</div>
+              <img src="captures_v25/06_alpha_technique.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_alpha">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">특성근 α를 이용해 등차도 등비도 아닌 식을 순수한 등비수열로 치환 변환하는 핵심 원리를 전수합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [15:00] 응용 2: 계수의 합이 0인 3항간 점화식</div>
+              <img src="captures_v25/07_three_term_linear.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_three_term">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">p + q + r = 0 조건에서 계차수열이 등비수열을 이루는 기하학적 메커니즘을 밝힙니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [18:20] 응용 3: 분수형 점화식과 역수 치환</div>
+              <img src="captures_v25/08_fractional_inverse.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_fractional">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">분모와 분자를 뒤집어 b_n = 1/a_n으로 치환하면 친숙한 등차/알파형으로 귀결됨을 보입니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [21:40] 응용 4 &amp; 5: 지수형 및 로그 치환형 점화식</div>
+              <img src="captures_v25/09_exp_log_transformation.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_exp_log">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">지수로 나누거나 로그를 취해 곱셈 점화식을 덧셈 점화식으로 단순화하는 기교를 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [24:30] 점화식 10대 마스터 맵 총정리</div>
+              <img src="captures_v25/10_master_summary.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_summary">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">수능 시험장에 들어갈 때 반드시 머릿속에 담아가야 할 점화식 의사결정 트리를 최종 정리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL25_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 수열 점화식 10대 계통도</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 알파(α) 특성방정식의 대수학적 원리</strong></p>
+            <p>점화식 $a_{n+1} = p a_n + q$ ($p \neq 1$)에서 양변에 상수 $\alpha$를 빼어 등비수열 형태로 변형하고자 합니다:</p>
+            $$a_{n+1} - \alpha = p(a_n - \alpha) = p a_n - p\alpha$$
+            $$a_{n+1} = p a_n + (1-p)\alpha$$
+            <p>기존 식의 상수항 $q$와 일치해야 하므로:</p>
+            $$(1-p)\alpha = q \implies \alpha = \frac{q}{1-p}$$
+            <p>새로운 수열 $b_n = a_n - \alpha$는 초항이 $b_1 = a_1 - \alpha$이고 공비가 $p$인 등비수열이 되므로:</p>
+            $$b_n = (a_1 - \alpha) p^{n-1} \implies a_n = (a_1 - \alpha) p^{n-1} + \alpha$$
+
+            <p style="margin-top: 15px;"><strong>2. 3항간 점화식 $p a_{n+2} + q a_{n+1} + r a_n = 0$ ($p+q+r=0$)</strong></p>
+            <p>$q = -(p+r)$을 대입하면 $p(a_{n+2} - a_{n+1}) = r(a_{n+1} - a_n)$이 되어, 계차수열 $b_n = a_{n+1} - a_n$이 공비 $\frac{r}{p}$인 등비수열이 됩니다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL25_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode25()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre25" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_25__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL25_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video25.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/OP2qIiPfKJo" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (매스프레소)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

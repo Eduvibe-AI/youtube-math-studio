@@ -1,0 +1,227 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 29 (LIMIT PROPERTIES TRUTH TESTING)        -->
+    <!-- ============================================================== -->
+    <div id="lecture29View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제29강 · 수능 수학 II 함수의 극한 킬러 실전 비기
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          함수의 극한의 성질 진위판단 (반례 없는 치환법)
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "시험장에서 반례 떠올리려다 시간 날리지 마라!"<br>
+          합답형(ㄱ, ㄴ, ㄷ) 문제의 참/거짓을 3초 만에 꿰뚫어 보는 단 1가지 필연적 해법:<br>
+          <strong>수렴하는 덩어리를 $h(x)$로 치환하는 법칙 · 사칙연산 분배 가능 조건 · 분모가 0이 되는 치명적 함정 필터링</strong>을 동적 진위판정 시뮬레이터로 정복합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 함수의 극한 진위판단 3단계 의사결정 알고리즘
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1단계: 수렴 덩어리 치환</div>
+            <div style="color: #facc15; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$f(x)+g(x) = h(x)$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$\lim h(x)$는 확실한 수렴값</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2단계: 대상 함수 표현</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$g(x) = h(x) - f(x)$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">수렴 함수들의 연산으로 재구성</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3단계: 분모 0 필터링</div>
+            <div style="color: #f43f5e; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">분모 $\neq 0$ 확인</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">0이 될 수 있으면 즉시 거짓!</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">판정 결과 도출</div>
+            <div style="color: #34d399; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">3초 만에 합답형 완료</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">반례 없이 완벽한 수학적 증명</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 29 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL29_1" onclick="switchL29Tab(1)">
+          <span>⚡ 극한 진위판단 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL29_2" onclick="switchL29Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL29_3" onclick="switchL29Tab(3)">
+          <span>📐 수학적 원리 &amp; 치환 증명법</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL29_4" onclick="switchL29Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL29_5" onclick="switchL29Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL29_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec29" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 대표 합답형 명제를 선택하면 치환 대수식과 참/거짓 판정 논리가 다이어그램으로 나타납니다.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 평가원 대표 합답형 명제 선택 (Proposition)
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL29_case1" onclick="setL29Case(1)">
+                  <span>ㄱ. $\lim f$ 와 $\lim (f+g)$ 가 수렴 $\implies \lim g$ 수렴</span>
+                  <span class="p-sub">$g = h - f \implies$ 수렴 $-$ 수렴 $\implies$ [참]</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL29_case2" onclick="setL29Case(2)">
+                  <span>ㄴ. $\lim f$ 와 $\lim (f \cdot g)$ 가 수렴 $\implies \lim g$ 수렴</span>
+                  <span class="p-sub">$g = \frac{k}{f}$ 이나 $\lim f = 0$ 가능 $\implies$ [거짓]</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL29_case3" onclick="setL29Case(3)">
+                  <span>ㄷ. $\lim f$ 와 $\lim \frac{g}{f}$ 가 수렴 $\implies \lim g$ 수렴</span>
+                  <span class="p-sub">$g = f \cdot \frac{g}{f} \implies$ 수렴 $\times$ 수렴 $\implies$ [참]</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL29_case4" onclick="setL29Case(4)">
+                  <span>ㄹ. $\lim (f+g)$ 와 $\lim (f-g)$ 가 수렴 $\implies \lim f$ 수렴</span>
+                  <span class="p-sub">$f = \frac{h+k}{2} \implies$ 수렴 연산 $\implies$ [참]</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 판정 리포트 (Live Verdict)
+              </div>
+              <div id="statL29_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 명제: <strong style="color: #38bdf8;">$\lim f$ 와 $\lim(f+g)$ 수렴 $\implies \lim g$ 수렴</strong></div>
+                <div>• 치환: <strong style="color: #facc15;">$f(x) + g(x) = h(x) \implies g(x) = h(x) - f(x)$</strong></div>
+                <div>• 판정: <strong style="color: #34d399; font-size: 1.05rem;">✔ 참 (True)</strong></div>
+                <div>• 근거: <strong style="color: #94a3b8;">수렴하는 두 함수의 뺄셈이므로 무조건 수렴</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL29_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:20] 합답형 문제의 어려움과 반례의 한계</div>
+              <img src="captures_v29/01_limit_properties_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">시험장에서 반례를 떠올리려다 시간만 낭비하는 기존 학습법의 한계를 지적합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:10] 함수의 극한 기본 성질의 전제 조건</div>
+              <img src="captures_v29/02_basic_arithmetic_rule.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_rule">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">두 함수가 모두 수렴할 때만 사칙연산 기호가 안으로 들어갈 수 있다는 대전제를 확인합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [02:20] 나눗셈의 치명적 함정: 분모는 0이 아니어야 한다</div>
+              <img src="captures_v29/03_denominator_nonzero_caution.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_denom">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">나눗셈에서 분모의 극한값이 0이 될 수 있는 가능성이 존재하는 순간 거짓이 됨을 강조합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [03:30] 반례 없는 마법의 무기: 치환법 h(x)의 도입</div>
+              <img src="captures_v29/04_substitution_method_core.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_sub">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">수렴한다고 주어진 복잡한 덩어리 식 전체를 하나의 새로운 함수 h(x)로 치환하는 발상을 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [04:40] 실전 예제 1: $\lim f$ 와 $\lim (f+g)$ 가 수렴할 때</div>
+              <img src="captures_v29/05_example1_f_plus_g_converge.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_ex1">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">g(x) = h(x) - f(x)로 표현되므로 수렴 - 수렴 = 수렴 (참!)임을 명쾌하게 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [05:50] 실전 예제 2: $\lim f$ 와 $\lim (fg)$ 가 수렴할 때</div>
+              <img src="captures_v29/06_example2_f_times_g_caution.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_ex2">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">g(x) = k(x)/f(x)로 분모에 f(x)가 들어가므로 lim f(x)=0일 가능성 때문에 거짓임을 보입니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [07:00] 실전 예제 3: 분수형 극한 $\lim \frac{g}{f}$ 가 수렴할 때</div>
+              <img src="captures_v29/07_example3_fraction_numerator.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_ex3">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">역수를 취하거나 곱할 때 분모의 0 수렴 가능성 유무를 1초 만에 걸러내는 필터링 기법을 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [08:10] 실전 예제 4: 대소 관계와 샌드위치 정리</div>
+              <img src="captures_v29/08_composite_limit_pitfall.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_ex4">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">부등식에서 극한을 취할 때 등호가 붙는 원리와 수렴값의 일치 여부를 점검합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [09:20] 평가원 기출 ㄱ, ㄴ, ㄷ 30초 컷 시연</div>
+              <img src="captures_v29/09_real_exam_three_second_solution.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_csat">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">수능 평가원 실제 기출문제를 치환법 하나만으로 암산으로 완벽하게 해결합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [10:20] 진위판정 의사결정 순서도 총정리</div>
+              <img src="captures_v29/10_truth_test_flowchart.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_summary">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">시험장에서 써먹는 3단계 알고리즘: 치환 -> 표현 -> 분모 점검을 마스터합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL29_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 치환 증명법</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 교과서 함수의 극한 기본 성질 (사칙연산 법칙)</strong></p>
+            $$\lim_{x \to a} f(x) = \alpha, \quad \lim_{x \to a} g(x) = \beta \quad (\alpha, \beta \text{는 실수})$$
+            <p>일 때 다음이 성립합니다:</p>
+            <ul>
+              <li>$\lim [f(x) \pm g(x)] = \alpha \pm \beta$</li>
+              <li>$\lim [f(x) g(x)] = \alpha \beta$</li>
+              <li>$\lim \frac{f(x)}{g(x)} = \frac{\alpha}{\beta} \quad (\mathbf{\beta \neq 0})$</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>2. 치환법의 절대성 증명</strong></p>
+            <p>$\lim f(x) = \alpha$, $\lim [f(x)+g(x)] = \gamma$일 때, $f(x)+g(x) = h(x)$라 두면 $\lim h(x) = \gamma$입니다.</p>
+            <p>우리가 구하고자 하는 함수 $g(x) = h(x) - f(x)$이므로:</p>
+            $$\lim g(x) = \lim [h(x) - f(x)] = \lim h(x) - \lim f(x) = \gamma - \alpha$$
+            <p>두 수렴하는 함수의 차는 항상 수렴하므로 <strong>명제는 100% 참</strong>이 됩니다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL29_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode29()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre29" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_29__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL29_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video29.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/hXRGKmErfoY" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (사오수학)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

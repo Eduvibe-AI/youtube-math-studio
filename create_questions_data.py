@@ -1,0 +1,803 @@
+import json
+
+def build_data():
+    questions = []
+
+    # 1. ORIGINAL 24 QUESTIONS
+    orig = [
+      {
+        "category": "original", "page": "56", "num": "Q.229", "type": "선다형", "score": "3점", "badge": "대변평행", "badgeClass": "badge-blue", "formula": "F8",
+        "title": "대각선과 엇각의 합",
+        "text": "오른쪽 그림과 같은 평행사변형 $ABCD$에서 $\\angle ABD=36^\\circ$, $\\angle DAC=49^\\circ$일 때, $\\angle x + \\angle y$의 크기는?",
+        "choices": ["① 91°", "② 92°", "③ 93°", "④ 94°", "⑤ 95°"],
+        "ans": "⑤ 95°",
+        "slow": "답지 풀이: $AD \\parallel BC$이므로 $\\angle ACB=\\angle DAC=49^\\circ$ (엇각), $AB \\parallel DC$이므로 $\\angle BDC=\\angle ABD=36^\\circ$ (엇각). $\\triangle BCD$에서 $\\angle x + (49^\\circ + \\angle y) + 36^\\circ = 180^\\circ \\implies \\angle x+\\angle y = 95^\\circ$.",
+        "fast": "3초 컷 공식: 평행선 사이에서 두 대각선에 의해 나뉜 각들의 합은 삼각형 내각합 $180^\\circ$에서 엇각 2개를 뺀 값과 즉시 같다!<br><div class='formula-highlight'>$\\angle x + \\angle y = 180^\\circ - (36^\\circ + 49^\\circ) = 95^\\circ$</div>",
+        "note": "대변이 평행하므로 대각선을 기준으로 만들어지는 모든 맞은편 각은 엇각으로 그대로 복사됩니다. 전체 $180^\\circ$에서 주어진 각 2개만 바로 빼면 끝!",
+        "svg": """<svg viewBox="0 0 280 140" width="260" height="130">
+          <polygon points="50,110 90,30 240,30 200,110" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="50,110 240,30" stroke="#f43f5e" stroke-dasharray="3,3" stroke-width="1.5"/>
+          <line points="90,30 200,110" stroke="#fbbf24" stroke-dasharray="3,3" stroke-width="1.5"/>
+          <text x="40" y="125" fill="#94a3b8" font-size="12">B</text>
+          <text x="80" y="25" fill="#94a3b8" font-size="12">A</text>
+          <text x="245" y="25" fill="#94a3b8" font-size="12">D</text>
+          <text x="205" y="125" fill="#94a3b8" font-size="12">C</text>
+          <text x="65" y="95" fill="#34d399" font-size="11">36°</text>
+          <text x="210" y="50" fill="#34d399" font-size="11">49°</text>
+          <text x="85" y="105" fill="#f43f5e" font-size="11">x</text>
+          <text x="180" y="95" fill="#f43f5e" font-size="11">y</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "56", "num": "Q.230", "type": "선다형", "score": "3점", "badge": "증명빈칸", "badgeClass": "badge-purple", "formula": "F8",
+        "title": "두 쌍의 대각 크기 증명 빈칸",
+        "text": "다음은 '평행사변형의 두 쌍의 대각의 크기는 각각 같다'를 증명하는 과정이다. ㈎~㈒에 알맞은 것으로 옳지 않은 것은?",
+        "choices": ["① ㈎ $\\angle CAD$", "② ㈏ 동위각", "③ ㈐ $\\angle BCD$", "④ ㈑ 동위각", "⑤ ㈒ $\\angle D$"],
+        "ans": "② ㈏ 동위각 (정답: 엇각)",
+        "slow": "답지 풀이: $\\angle ACB=\\angle CAD$ (엇각), $\\angle BAC=\\angle DCA$ (엇각)이므로 $\\angle BAD = \\angle BCD$. 또 $BC$ 연장선 위 점 $E$에 대해 $\\angle B=\\angle DCE$ (동위각), $\\angle D = \\angle DCE$ (엇각). 따라서 ㈏는 동위각이 아니라 엇각이어야 한다.",
+        "fast": "3초 컷 공식: 평행선 사이에 가로지르는 대각선이 만드는 각은 무조건 Z자 모양의 '엇각'! 대각선을 긋고 각이 같다고 하는 자리는 100% '엇각'이므로 ㈏에 동위각이라고 쓴 ②번이 보자마자 정답!",
+        "note": "평행사변형 성질 증명에서 대각선에 의해 나뉘는 각은 99.9% '엇각'입니다. 동위각은 오직 '변의 연장선'을 그었을 때만 나타납니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="40,100 220,30" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="180,100 250,100" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <text x="30" y="115" fill="#94a3b8" font-size="12">B</text>
+          <text x="75" y="22" fill="#94a3b8" font-size="12">A</text>
+          <text x="225" y="22" fill="#94a3b8" font-size="12">D</text>
+          <text x="175" y="115" fill="#94a3b8" font-size="12">C</text>
+          <text x="255" y="105" fill="#fbbf24" font-size="12">E</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "56", "num": "Q.231", "type": "선다형", "score": "3점", "badge": "대변길이", "badgeClass": "badge-blue", "formula": "F8",
+        "title": "대변 길이와 대각선 절반",
+        "text": "오른쪽 그림과 같은 평행사변형 $ABCD$에서 두 대각선의 교점을 $O$라 할 때, $AD=x+3, BC=2x-4, BD=3x-1$이다. $BO$의 길이는?",
+        "choices": ["① 8", "② 9", "③ 10", "④ 11", "⑤ 12"],
+        "ans": "③ 10",
+        "slow": "답지 풀이: $AD=BC$이므로 $x+3=2x-4 \\implies x=7$. 따라서 $BD = 3(7)-1=20$. 두 대각선은 서로 이등분하므로 $BO = \\frac{1}{2}BD = 10$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>대변 일치: $x + 3 = 2x - 4 \\implies x = 7$<br>$BO = \\frac{BD}{2} = \\frac{3(7) - 1}{2} = \\frac{20}{2} = 10$</div>",
+        "note": "평행사변형에서 마주보는 변은 무조건 같다! $x$를 구한 즉시 대각선 공식 $BO = \\frac{1}{2}BD$에 대입하면 끝.",
+        "svg": """<svg viewBox="0 0 260 130" width="240" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="40,100 220,30" stroke="#fbbf24" stroke-width="1.5"/>
+          <line points="80,30 180,100" stroke="#fbbf24" stroke-width="1.5"/>
+          <circle cx="130" cy="65" r="3" fill="#f43f5e"/>
+          <text x="135" y="65" fill="#f43f5e" font-size="11">O</text>
+          <text x="140" y="24" fill="#38bdf8" font-size="11">x+3</text>
+          <text x="100" y="115" fill="#38bdf8" font-size="11">2x-4</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "56", "num": "Q.232", "type": "선다형", "score": "4점", "badge": "중점관통", "badgeClass": "badge-purple", "formula": "F7",
+        "title": "중점 관통선 모래시계 절반 공식",
+        "text": "평행사변형 $ABCD$에서 $CD$의 중점을 $E$라 하고 $AE$의 연장선과 $BC$의 연장선의 교점을 $F$라 하자. $AB=5\\text{ cm}, BF=12\\text{ cm}$일 때, $AD$의 길이는?",
+        "choices": ["① 6 cm", "② 7 cm", "③ 8 cm", "④ 9 cm", "⑤ 10 cm"],
+        "ans": "① 6 cm",
+        "slow": "답지 풀이: $\\triangle AED$와 $\\triangle FEC$에서 $DE=CE$, $\\angle ADE=\\angle FCE$ (엇각), $\\angle AED=\\angle FEC$ (맞꼭지각) $\\implies \\triangle AED \\equiv \\triangle FEC$ (ASA 합동). 따라서 $AD=FC$. 또한 $AD=BC$이므로 $BC=FC$. 따라서 $AD = \\frac{1}{2}BF = 6\\text{ cm}$.",
+        "fast": "3초 컷 공식: 평행사변형의 한 변 중점을 뚫고 나간 직선은 무조건 **1:1 모래시계 합동**을 만든다!<br><div class='formula-highlight'>$AD = BC = CF = \\frac{1}{2} BF = \\frac{12}{2} = 6\\text{ cm}$</div>",
+        "note": "시험에 $AB=5\\text{ cm}$라는 조건이 주어져 낚시를 유도하지만, $BF$의 정확히 절반이라는 원리만 알면 $AB$는 쳐다보지도 않고 1초 만에 6cm를 찍을 수 있습니다.",
+        "svg": """<svg viewBox="0 0 280 140" width="260" height="130">
+          <polygon points="40,100 80,30 180,30 140,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 240,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="140,100 240,100" stroke="#94a3b8" stroke-dasharray="3,3"/>
+          <text x="30" y="115" fill="#94a3b8" font-size="12">B</text>
+          <text x="75" y="22" fill="#94a3b8" font-size="12">A</text>
+          <text x="180" y="22" fill="#94a3b8" font-size="12">D</text>
+          <text x="135" y="115" fill="#94a3b8" font-size="12">C</text>
+          <text x="245" y="110" fill="#fbbf24" font-size="12">F</text>
+          <circle cx="160" cy="65" r="3" fill="#34d399"/>
+          <text x="165" y="65" fill="#34d399" font-size="11">E</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "56", "num": "Q.233", "type": "선다형", "score": "4점", "badge": "비율각도", "badgeClass": "badge-blue", "formula": "F1",
+        "title": "내각 비율과 이등변 밑각 공식",
+        "text": "평행사변형 $ABCD$에서 $\\angle A : \\angle B = 5:4$이고 $DC=DE$일 때, $\\angle BCE$의 크기는?",
+        "choices": ["① 40°", "② 45°", "③ 50°", "④ 55°", "⑤ 60°"],
+        "ans": "③ 50°",
+        "slow": "답지 풀이: $\\angle A+\\angle B=180^\\circ$이므로 $\\angle B = 180^\\circ \\times \\frac{4}{9} = 80^\\circ$. 대각이므로 $\\angle D = 80^\\circ$. $\\triangle DEC$에서 $DC=DE$이므로 밑각 $\\angle DEC = \\frac{180^\\circ-80^\\circ}{2} = 50^\\circ$. $AD \\parallel BC$이므로 엇각 $\\angle BCE = \\angle DEC = 50^\\circ$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$\\angle D = \\angle B = 180^\\circ \\times \\frac{4}{5+4} = 80^\\circ$<br>$\\angle BCE = \\text{밑각 } \\angle DEC = \\frac{180^\\circ - 80^\\circ}{2} = 50^\\circ$</div>",
+        "note": "평행선 사이의 엇각 관계이므로 $\\angle BCE$는 항상 이등변삼각형 $\\triangle DEC$의 '밑각'과 같습니다. 꼭지각 $\\angle D$만 비례배분으로 구하면 암산 완료!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="180,100 160,30" stroke="#f43f5e" stroke-width="1.5"/>
+          <text x="30" y="115" fill="#94a3b8" font-size="12">B</text>
+          <text x="75" y="22" fill="#94a3b8" font-size="12">A</text>
+          <text x="225" y="22" fill="#94a3b8" font-size="12">D</text>
+          <text x="185" y="115" fill="#94a3b8" font-size="12">C</text>
+          <text x="155" y="22" fill="#fbbf24" font-size="12">E</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "56", "num": "Q.234", "type": "선다형", "score": "4점", "badge": "각의이등분", "badgeClass": "badge-amber", "formula": "F1",
+        "title": "각의 이등분선과 이웃각 공식",
+        "text": "평행사변형 $ABCD$에서 $\\angle B$의 이등분선이 $AD$와 만나는 점을 $E$라 하자. $\\angle AEB=48^\\circ$일 때, $\\angle C$의 크기는?",
+        "choices": ["① 76°", "② 78°", "③ 80°", "④ 82°", "⑤ 84°"],
+        "ans": "⑤ 84°",
+        "slow": "답지 풀이: $AD \\parallel BC$이므로 $\\angle EBC=\\angle AEB=48^\\circ$ (엇각). 따라서 $\\angle ABC = 2\\angle EBC = 96^\\circ$. 이웃하는 두 각의 합은 $180^\\circ$이므로 $\\angle C = 180^\\circ - 96^\\circ = 84^\\circ$.",
+        "fast": "3초 컷 공식: 이등분선 엇각 성질에 의해 $\\angle B = 2\\theta$!<br><div class='formula-highlight'>$\\angle C = 180^\\circ - 2\\theta = 180^\\circ - 2(48^\\circ) = 180^\\circ - 96^\\circ = 84^\\circ$</div>",
+        "note": "어떤 각도가 주어져도 이웃각은 무조건 $180^\\circ - 2\\theta$입니다. 3초 만에 뺄셈 한 번으로 끝냅니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="40,100 150,30" stroke="#34d399" stroke-width="2"/>
+          <text x="30" y="115" fill="#94a3b8" font-size="12">B</text>
+          <text x="75" y="22" fill="#94a3b8" font-size="12">A</text>
+          <text x="225" y="22" fill="#94a3b8" font-size="12">D</text>
+          <text x="185" y="115" fill="#94a3b8" font-size="12">C</text>
+          <text x="150" y="22" fill="#34d399" font-size="12">E</text>
+          <text x="135" y="48" fill="#fbbf24" font-size="11">48°</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "56", "num": "Q.235", "type": "선다형", "score": "3점", "badge": "대각선둘레", "badgeClass": "badge-blue", "formula": "F8",
+        "title": "삼각형 둘레 대각선 절반 공식",
+        "text": "평행사변형 $ABCD$에서 두 대각선의 교점을 $O$라 하자. $AB=12\\text{ cm}, AO=5\\text{ cm}, BD=18\\text{ cm}$일 때, $\\triangle OCD$의 둘레의 길이는?",
+        "choices": ["① 24 cm", "② 25 cm", "③ 26 cm", "④ 27 cm", "⑤ 28 cm"],
+        "ans": "③ 26 cm",
+        "slow": "답지 풀이: $OC=AO=5$, $CD=AB=12$, $DO=\\frac{1}{2}BD=9$. 따라서 둘레 $= 5 + 12 + 9 = 26\\text{ cm}$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$\\text{둘레 } = AB + AO + \\frac{1}{2}BD = 12 + 5 + 9 = 26\\text{ cm}$</div>",
+        "note": "대변은 같고 두 대각선은 서로를 반토막냅니다. 세 수 $(12, 5, 9)$를 더하면 3초 완료!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="40,100 220,30" stroke="#fbbf24" stroke-width="1.5"/>
+          <line points="80,30 180,100" stroke="#fbbf24" stroke-width="1.5"/>
+          <polygon points="130,65 220,30 180,100" fill="rgba(251,191,36,0.15)"/>
+          <circle cx="130" cy="65" r="3" fill="#f43f5e"/>
+          <text x="130" y="60" fill="#f43f5e" font-size="11">O</text>
+        </svg>"""
+      },
+
+      # PAGE 57
+      {
+        "category": "original", "page": "57", "num": "Q.236", "type": "선다형", "score": "4점", "badge": "조건판별", "badgeClass": "badge-purple", "formula": "F8",
+        "title": "평행사변형 결정 조건 오답 판별",
+        "text": "다음 중 $\\square ABCD$가 평행사변형이 되지 않는 것은? (단, $O$는 두 대각선의 교점)",
+        "choices": ["① $AB=BC=8, CD=DA=9$", "② $\\angle A=\\angle C=40^\\circ, \\angle B=\\angle D=140^\\circ$", "③ $AD \\parallel BC, AD=BC=10$", "④ $AO=CO=4, BO=DO=5$", "⑤ $\\angle B=120^\\circ, \\angle C=60^\\circ, AB=DC=7$"],
+        "ans": "① $AB=BC=8, CD=DA=9$",
+        "slow": "답지 풀이: ①은 이웃하는 두 변의 길이가 같은 것으로 평행사변형이 아니다 (연꼴). ② 두 쌍의 대각 같음, ③ 한 쌍이 평행하고 길이 같음, ④ 대각선 이등분, ⑤ $\\angle B+\\angle C=180^\\circ \\implies AB \\parallel DC$이고 $AB=DC=7$이므로 한 쌍이 평행하고 길이 같음.",
+        "fast": "3초 컷 공식: 평행사변형은 **'마주보는 대변'**이 같아야 한다! $AB$의 대변은 $CD$인데, 인접한 $BC$와 길이가 같다는 ①번은 평행사변형이 아니라 **연꼴(Kite)**이다. 즉시 ①번 아웃!",
+        "note": "⑤번 선지는 $\\angle B+\\angle C=180^\\circ$로 평행선을 숨겨놓은 전형적인 킬러 낚시입니다. 한 쌍 평행 + 그 길이 같음이 성립하므로 참입니다!",
+        "svg": """<svg viewBox="0 0 240 120" width="220" height="110">
+          <polygon points="120,20 180,60 120,100 60,60" fill="none" stroke="#f43f5e" stroke-width="2"/>
+          <text x="120" y="15" fill="#f43f5e" font-size="11">연꼴 (Kite)</text>
+          <text x="80" y="40" fill="#94a3b8" font-size="11">8</text>
+          <text x="160" y="40" fill="#94a3b8" font-size="11">8</text>
+          <text x="80" y="85" fill="#94a3b8" font-size="11">9</text>
+          <text x="160" y="85" fill="#94a3b8" font-size="11">9</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "57", "num": "Q.237", "type": "선다형", "score": "3점", "badge": "최빈출", "badgeClass": "badge-red", "formula": "F8",
+        "title": "평행조건 미지수 $x+y$ 합",
+        "text": "평행사변형 $\\square ABCD$에서 $AB=6\\text{ cm}, \\angle B=70^\\circ, \\angle ACB=45^\\circ$일 때, 평행사변형이 되도록 하는 $x, y$에 대해 $x+y$의 값은?",
+        "choices": ["① 61", "② 66", "③ 71", "④ 76", "⑤ 81"],
+        "ans": "③ 71",
+        "slow": "답지 풀이: $\\triangle ABC$에서 $\\angle BAC = 180^\\circ - (70^\\circ+45^\\circ) = 65^\\circ$. $AB \\parallel DC$이어야 하므로 엇각 $x = \\angle BAC = 65$. 또 대변 $y = AB = 6$. 따라서 $x+y = 65+6 = 71$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$y = 6$, $x = 180^\\circ - (70^\\circ + 45^\\circ) = 65^\\circ$<br>$x + y = 65 + 6 = 71$</div>",
+        "note": "대변 $DC=AB$이므로 $y$는 보조선도 없이 6이고, $x$는 삼각형 내각의 합으로 바로 구합니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="40,100 220,30" stroke="#f43f5e" stroke-width="1.5"/>
+          <text x="25" y="65" fill="#38bdf8" font-size="11">6cm</text>
+          <text x="210" y="70" fill="#34d399" font-size="11">y cm</text>
+          <text x="50" y="95" fill="#fbbf24" font-size="11">70°</text>
+          <text x="145" y="95" fill="#fbbf24" font-size="11">45°</text>
+          <text x="185" y="45" fill="#f43f5e" font-size="11">x°</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "57", "num": "Q.238", "type": "선다형", "score": "3점", "badge": "중점연결", "badgeClass": "badge-purple", "formula": "F8",
+        "title": "대각선 중점 사각형 조건",
+        "text": "평행사변형 $ABCD$의 두 대각선 교점 $O$에 대해 $AO, BO, CO, DO$의 중점을 각각 $E, F, G, H$라 할 때, $\\square EFGH$가 평행사변형임을 증명하는 조건은?",
+        "choices": ["① 두 쌍의 대변이 각각 평행하다", "② 두 쌍의 대변의 길이가 각각 같다", "③ 두 쌍의 대각의 크기가 각각 같다", "④ 두 대각선이 서로 다른 것을 이등분한다", "⑤ 한 쌍의 대변이 평행하고 그 길이가 같다"],
+        "ans": "④ 두 대각선이 서로 다른 것을 이등분한다",
+        "slow": "답지 풀이: $AO=CO, BO=DO$이므로 $EO=\\frac{1}{2}AO=\\frac{1}{2}CO=GO$, $FO=\\frac{1}{2}BO=\\frac{1}{2}DO=HO$. 두 대각선이 서로 다른 것을 이등분하므로 평행사변형이다.",
+        "fast": "3초 컷 공식: '대각선의 중점'들을 이었다면 사용된 원리는 100% **[두 대각선이 서로 다른 것을 이등분한다]**! 고민할 필요 없이 ④번 직행!",
+        "note": "변의 중점을 연결하면 '한 쌍이 평행하고 길이가 같다' 또는 '두 쌍 대변 평행'이 쓰이고, 대각선 분할점을 연결하면 '대각선 이등분'이 쓰입니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="30,100 70,30 230,30 190,100" fill="none" stroke="#64748b" stroke-width="1.5"/>
+          <line points="30,100 230,30" stroke="#64748b" stroke-dasharray="2,2"/>
+          <line points="70,30 190,100" stroke="#64748b" stroke-dasharray="2,2"/>
+          <polygon points="80,65 130,47 180,65 130,83" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="2"/>
+          <circle cx="130" cy="65" r="3" fill="#fbbf24"/>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "57", "num": "Q.239", "type": "선다형", "score": "4점", "badge": "대칭도형", "badgeClass": "badge-blue", "formula": "F8",
+        "title": "대각선 등거리 점으로 만든 사각형",
+        "text": "평행사변형 $ABCD$에서 $BD$ 위에 $BE=DF$가 되도록 $E, F$를 잡았다. $\\angle EAO=38^\\circ, \\angle ECO=32^\\circ$일 때, 옳지 않은 것은?",
+        "choices": ["① $EO=FO$", "② $AE=CE$", "③ $\\angle ACF=38^\\circ$", "④ $\\angle FAC=32^\\circ$", "⑤ $\\angle AFC=110^\\circ$"],
+        "ans": "② $AE=CE$",
+        "slow": "답지 풀이: $EO = BO-BE = DO-DF = FO$, $AO=CO$이므로 $\\square AECF$는 평행사변형이다. 따라서 대변 $AE=CF$이지 이웃하는 두 변 $AE=CE$가 항상 성립하는 것은 아니다(마름모여야 가능).",
+        "fast": "3초 컷 공식: $\\square AECF$는 '평행사변형'이지 마름모가 아니다! 평행사변형에서는 **대변($AE=FC$)**이 같지, **이웃변($AE=CE$)**이 같을 수는 없다. ②번 즉시 정답!",
+        "note": "평행사변형의 대칭 구조에서 내부 사각형 $\\square AECF$도 평행사변형이 됩니다. $AE=CE$처럼 이웃변이 같다는 보기는 99% 오답 선지입니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#64748b" stroke-width="1.5"/>
+          <line points="40,100 220,30" stroke="#64748b" stroke-dasharray="2,2"/>
+          <polygon points="100,75 80,30 160,55 180,100" fill="rgba(192,132,252,0.2)" stroke="#c084fc" stroke-width="2"/>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "57", "num": "Q.240", "type": "선다형", "score": "4점", "badge": "최빈출", "badgeClass": "badge-red", "formula": "F8",
+        "title": "중점 연결 내부 각도 외각 공식",
+        "text": "평행사변형 $ABCD$에서 $AD, BC$의 중점을 각각 $E, F$라 하자. $\\angle EDF=42^\\circ, \\angle ECF=65^\\circ$일 때, $\\angle EGF$의 크기는?",
+        "choices": ["① 103°", "② 105°", "③ 107°", "④ 110°", "⑤ 113°"],
+        "ans": "③ 107°",
+        "slow": "답지 풀이: $\\square AFCE$와 $\\square EBFD$가 평행사변형이므로 대변 평행에 의해 $\\square GFHE$도 평행사변형이다. $AD \\parallel BC$에서 $\\angle HFC = \\angle HDE = 42^\\circ$ (엇각). $\\triangle HFC$의 외각 성질에 의해 $\\angle EHF = 42^\\circ + 65^\\circ = 107^\\circ$. 대각이므로 $\\angle EGF = \\angle EHF = 107^\\circ$.",
+        "fast": "3초 컷 공식: 내부 교차 사각형 $\\square GFHE$는 평행사변형이며, 마주보는 각은 외각의 합과 정확히 일치한다!<br><div class='formula-highlight'>$\\angle EGF = \\angle EDF + \\angle ECF = 42^\\circ + 65^\\circ = 107^\\circ$</div>",
+        "note": "중점 연결 교차각 문제는 두 주어진 각의 단순 덧셈($\\alpha + \\beta$)으로 단 1초 만에 풀립니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+          <line points="150,30 40,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="150,30 180,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="80,30 110,100" stroke="#34d399" stroke-width="1.5"/>
+          <line points="220,30 110,100" stroke="#34d399" stroke-width="1.5"/>
+          <text x="145" y="22" fill="#f43f5e" font-size="11">E</text>
+          <text x="105" y="115" fill="#34d399" font-size="11">F</text>
+          <text x="120" y="70" fill="#fbbf24" font-size="12">G</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "57", "num": "Q.241", "type": "선다형", "score": "6점", "badge": "격자넓이", "badgeClass": "badge-purple", "formula": "F6",
+        "title": "대변 중점 1/4 격자 넓이 공식",
+        "text": "평행사변형 $ABCD$에서 $AB, CD$의 중점을 각각 $E, F$라 하고, $BD$와 $EC, AF$의 교점을 각각 $G, H$라 하자. $\\square ABCD=60\\text{ cm}^2$일 때, $\\square AEGH$의 넓이는?",
+        "choices": ["① 12 cm²", "② 13 cm²", "③ 14 cm²", "④ 15 cm²", "⑤ 16 cm²"],
+        "ans": "④ 15 cm²",
+        "slow": "답지 풀이: $AC$를 긋고 대각선 교점 $O$를 잡으면 $\\triangle AOH \\equiv \\triangle COG$ (ASA 합동). 따라서 $\\square AEGH = \\triangle AOH + \\square AEGO = \\triangle COG + \\square AEGO = \\triangle AEC = \\frac{1}{2}\\triangle ABC = \\frac{1}{4}\\square ABCD = \\frac{1}{4} \\times 60 = 15\\text{ cm}^2$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$\\text{Area}(\\square AEGH) = \\frac{1}{4} \\times \\text{Area}(\\square ABCD) = \\frac{60}{4} = 15\\text{ cm}^2$</div>",
+        "note": "평행사변형 대변 중점과 대각선이 만드는 중앙 사각형 영역은 전체 사각형의 정확히 1/4($25\\%$)입니다. 6점짜리 고난도 문제지만 나눗셈 4 한 번으로 끝납니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+          <line points="40,100 220,30" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <line points="60,65 180,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="80,30 200,65" stroke="#f43f5e" stroke-width="1.5"/>
+          <polygon points="80,30 60,65 110,75 130,47" fill="rgba(244,63,94,0.3)" stroke="#f43f5e" stroke-width="1.5"/>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "57", "num": "Q.242", "type": "선다형", "score": "5점", "badge": "각의이등분", "badgeClass": "badge-amber", "formula": "F1",
+        "title": "양 끝 각 이등분선 차이 공식",
+        "text": "평행사변형 $ABCD$에서 $\\angle A, \\angle D$의 이등분선이 $BC$와 만나는 점을 각각 $E, F$라 하자. $\\angle B=68^\\circ$일 때, $\\angle x - \\angle y$의 크기는?",
+        "choices": ["① 12°", "② 13°", "③ 14°", "④ 15°", "⑤ 16°"],
+        "ans": "① 12°",
+        "slow": "답지 풀이: $\\angle B+\\angle C=180^\\circ \\implies \\angle y = 180^\\circ - 68^\\circ = 112^\\circ$. $\\angle BAD = \\angle C = 112^\\circ \\implies \\angle DAE = 56^\\circ$. 엇각에 의해 $\\angle BEA=56^\\circ \\implies \\angle x = 180^\\circ - 56^\\circ = 124^\\circ$. 따라서 $\\angle x - \\angle y = 124^\\circ - 112^\\circ = 12^\\circ$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$\\angle y = 180^\\circ - 68^\\circ = 112^\\circ$<br>$\\angle x = 180^\\circ - \\frac{112^\\circ}{2} = 124^\\circ$<br>$\\angle x - \\angle y = 124^\\circ - 112^\\circ = 12^\\circ$</div>",
+        "note": "이등분선이 만드는 외각 $x$는 $180^\\circ - \\frac{y}{2}$이므로, $\\angle x - \\angle y = 180^\\circ - \\frac{3}{2}\\angle y = 180^\\circ - 168^\\circ = 12^\\circ$ 로 일반화됩니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 140,100" stroke="#fbbf24" stroke-width="1.5"/>
+          <line points="220,30 110,100" stroke="#34d399" stroke-width="1.5"/>
+          <text x="35" y="95" fill="#38bdf8" font-size="11">68°</text>
+          <text x="135" y="115" fill="#fbbf24" font-size="11">x</text>
+          <text x="185" y="115" fill="#34d399" font-size="11">y</text>
+        </svg>"""
+      },
+
+      # PAGE 58
+      {
+        "category": "original", "page": "58", "num": "Q.243", "type": "단답형", "score": "4점", "badge": "종이접기", "badgeClass": "badge-red", "formula": "F3",
+        "title": "접은 각과 연장선 외각 방정식",
+        "text": "평행사변형 모양의 종이 $ABCD$를 꼭짓점 $C$가 $E$에 오도록 대각선 $BD$를 접는 선으로 접었다. $BA$ 연장선과 $DE$ 연장선의 교점을 $F$라 하면 $\\angle F=86^\\circ$일 때, $\\angle x$의 크기는?",
+        "choices": [],
+        "ans": "47°",
+        "slow": "답지 풀이: $\\angle FDB = \\angle CDB = \\angle x$ (접은 각), $\\angle FBD = \\angle CDB = \\angle x$ (엇각). 따라서 $\\triangle FBD$는 이등변삼각형이므로 $86^\\circ + 2\\angle x = 180^\\circ \\implies 2\\angle x = 94^\\circ \\implies \\angle x = 47^\\circ$.",
+        "fast": "3초 컷 공식: 종이를 대각선으로 접어 생긴 삼각형은 무조건 **이등변삼각형($FB = FD$)**이다!<br><div class='formula-highlight'>$2x + 86^\\circ = 180^\\circ \\implies x = \\frac{180^\\circ - 86^\\circ}{2} = 47^\\circ$</div>",
+        "note": "접은 각 = 원래 각 = 엇각의 삼위일체 원리! 무조건 $2x + \\text{꼭지각} = 180^\\circ$로 즉각 암산 가능합니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#64748b" stroke-dasharray="2,2"/>
+          <line points="40,100 220,30" stroke="#f43f5e" stroke-width="2"/>
+          <line points="20,10 40,100" stroke="#38bdf8" stroke-width="1.5"/>
+          <line points="20,10 220,30" stroke="#38bdf8" stroke-width="1.5"/>
+          <text x="15" y="10" fill="#fbbf24" font-size="11">F(86°)</text>
+          <text x="190" y="45" fill="#f43f5e" font-size="11">x</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "58", "num": "Q.244", "type": "단답형", "score": "3점", "badge": "둘레비례", "badgeClass": "badge-blue", "formula": "F8",
+        "title": "둘레와 비례배분",
+        "text": "평행사변형 $ABCD$의 둘레의 길이가 $40\\text{ cm}$이고 $AB:BC=2:3$일 때, $AD$의 길이를 구하시오.",
+        "choices": [],
+        "ans": "12 cm",
+        "slow": "답지 풀이: $2(AB+BC)=40 \\implies AB+BC=20$. $AB:BC=2:3$이므로 $BC = 20 \\times \\frac{3}{2+3} = 12\\text{ cm}$. $AD=BC=12\\text{ cm}$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$AD = BC = \\frac{\\text{둘레}}{2} \\times \\frac{3}{2+3} = 20 \\times \\frac{3}{5} = 12\\text{ cm}$</div>",
+        "note": "둘레의 절반($20\\text{ cm}$)에 비율 $3/5$만 곱하면 끝납니다.",
+        "svg": """<svg viewBox="0 0 240 110" width="220" height="100">
+          <polygon points="30,85 70,25 210,25 170,85" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <text x="35" y="55" fill="#fbbf24" font-size="11">2k</text>
+          <text x="110" y="100" fill="#fbbf24" font-size="11">3k</text>
+          <text x="110" y="20" fill="#34d399" font-size="11">AD = ?</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "58", "num": "Q.245", "type": "단답형", "score": "4점", "badge": "최빈출", "badgeClass": "badge-red", "formula": "F2",
+        "title": "이등분선 직교와 반각 정리",
+        "text": "평행사변형 $ABCD$에서 $AP$는 $\\angle A$의 이등분선이고 $\\angle APB=90^\\circ$이다. $\\angle D=74^\\circ$일 때, $\\angle PBC$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "37°",
+        "slow": "답지 풀이: $\\angle BAD+\\angle D=180^\\circ \\implies \\angle BAD = 106^\\circ \\implies \\angle BAP = 53^\\circ$. $\\triangle ABP$에서 $\\angle ABP = 180^\\circ - (90^\\circ+53^\\circ) = 37^\\circ$. $\\angle ABC = \\angle D = 74^\\circ$이므로 $\\angle PBC = 74^\\circ - 37^\\circ = 37^\\circ$.",
+        "fast": "3초 컷 공식: 이웃한 두 각의 이등분선은 항상 $90^\\circ$로 만난다! 따라서 $AP$가 이등분선이고 교각이 $90^\\circ$라면, $BP$ 역시 자동으로 **$\\angle B$의 이등분선**이다!<br><div class='formula-highlight'>$\\angle PBC = \\frac{\\angle B}{2} = \\frac{\\angle D}{2} = \\frac{74^\\circ}{2} = 37^\\circ$</div>",
+        "note": "교재 답지처럼 $106^\\circ \\to 53^\\circ \\to 37^\\circ$를 거치지 않고, $\\angle D$를 바로 2로 나누면 1초 컷입니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 95,75" stroke="#f43f5e" stroke-width="2"/>
+          <line points="40,100 95,75" stroke="#34d399" stroke-width="2"/>
+          <circle cx="95" cy="75" r="3" fill="#fbbf24"/>
+          <text x="100" y="70" fill="#fbbf24" font-size="11">P (90°)</text>
+          <text x="225" y="30" fill="#94a3b8" font-size="11">74°</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "58", "num": "Q.246", "type": "단답형", "score": "5점", "badge": "정다각형접기", "badgeClass": "badge-purple", "formula": "F3",
+        "title": "접힌 정오각형과 대칭각",
+        "text": "평행사변형 모양의 종이 $ABCD$를 $C$가 $A$에 오도록 접었더니 정오각형 $ABEFG$가 만들어졌다. 이때 $\\angle x$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "36°",
+        "slow": "답지 풀이: 정오각형 한 내각 = $108^\\circ \\implies \\angle B=108^\\circ$. $\\angle BAF = 180^\\circ - 108^\\circ = 72^\\circ$. $\\triangle BAE$에서 $BA=BE$ (정오각형)이므로 $\\angle BAE = \\frac{180^\\circ-108^\\circ}{2} = 36^\\circ$. 따라서 $\\angle x = \\angle BAF - \\angle BAE = 72^\\circ - 36^\\circ = 36^\\circ$.",
+        "fast": "3초 컷 공식: 정오각형 변의 길이가 같으므로 $\\triangle BAE$는 $BA=BE$인 이등변삼각형이며, $AF \\parallel BE$이므로 $\\angle x$는 엇각에 의해 밑각과 같다!<br><div class='formula-highlight'>$\\angle x = \\frac{180^\\circ - 108^\\circ}{2} = 36^\\circ$</div>",
+        "note": "정오각형 내각 $108^\\circ$만 알면 이등변 밑각 공식 한 줄로 끝납니다.",
+        "svg": """<svg viewBox="0 0 280 140" width="260" height="130">
+          <polygon points="60,110 30,50 90,20 160,40 130,110" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="2"/>
+          <text x="20" y="45" fill="#38bdf8" font-size="11">A</text>
+          <text x="50" y="125" fill="#38bdf8" font-size="11">B</text>
+          <text x="130" y="125" fill="#38bdf8" font-size="11">E</text>
+          <text x="165" y="40" fill="#38bdf8" font-size="11">F</text>
+          <text x="90" y="15" fill="#38bdf8" font-size="11">G</text>
+          <text x="55" y="45" fill="#fbbf24" font-size="11">x</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "58", "num": "Q.247", "type": "단답형", "score": "6점", "badge": "직각외심", "badgeClass": "badge-red", "formula": "F4",
+        "title": "수선과 대각선 교점의 외심 정리",
+        "text": "평행사변형 $ABCD$에서 두 대각선의 교점을 $O$라 하고, $A$에서 $BC$에 내린 수선의 발을 $H$라 하자. $\\angle DAC=40^\\circ$일 때, $\\angle HOC$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "100°",
+        "slow": "답지 풀이: $\\angle BCA = \\angle DAC = 40^\\circ$ (엇각). 평행사변형에서 $AO=CO$이므로 $O$는 직각삼각형 $AHC$의 빗변의 중점, 즉 외심이다! 따라서 $OH=OC \\implies \\triangle OHC$는 이등변삼각형. $\\angle OHC = \\angle OCH = 40^\\circ \\implies \\angle HOC = 180^\\circ - 80^\\circ = 100^\\circ$.",
+        "fast": "3초 컷 공식: 평행사변형 대각선 교점 $O$는 직각삼각형 $\\triangle AHC$의 빗변 중점 = **외심**!<br><div class='formula-highlight'>$OH = OC \\implies \\angle HOC = 180^\\circ - 2 \\times 40^\\circ = 100^\\circ$</div>",
+        "note": "평행사변형에 수선이 나오고 대각선 교점이 등장하면 100% '직각삼각형 빗변 중점 = 외심'을 묻는 문제입니다. $180^\\circ - 2\\theta$로 3초 컷!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 180,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="80,30 80,100" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <line points="130,65 80,100" stroke="#fbbf24" stroke-width="1.5"/>
+          <circle cx="130" cy="65" r="3" fill="#f43f5e"/>
+          <text x="135" y="60" fill="#f43f5e" font-size="11">O</text>
+          <text x="80" y="115" fill="#94a3b8" font-size="11">H</text>
+          <text x="150" y="85" fill="#fbbf24" font-size="11">?</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "58", "num": "Q.248", "type": "단답형", "score": "6점", "badge": "넓이방정식", "badgeClass": "badge-purple", "formula": "F5",
+        "title": "내부 점과 밑변 공유 삼각형 넓이",
+        "text": "평행사변형 $ABCD$ 내부의 점 $P$에 대해 $AP$ 연장선과 $BC$ 교점을 $Q$라 하자. $2\\triangle PDA = \\triangle PQD$이고 $\\triangle PBC=24\\text{ cm}^2$일 때, $\\square ABCD$의 넓이를 구하시오.",
+        "choices": [],
+        "ans": "72 cm²",
+        "slow": "답지 풀이: $\\triangle AQD = \\frac{1}{2}\\square ABCD$. $\\triangle PDA = x$라 하면 $\\triangle PQD = 2x$이므로 $\\triangle AQD = 3x$. 또한 $\\triangle PBC + \\triangle PDA = \\frac{1}{2}\\square ABCD$이므로 $3x = 24 + x \\implies 2x = 24 \\implies x = 12$. 따라서 $\\square ABCD = 2(24+12) = 72\\text{ cm}^2$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$S_{AQD} = (1+2)x = 3x = \\frac{1}{2}\\square$<br>$S_{PBC} + S_{PDA} = 24 + x = \\frac{1}{2}\\square$<br>$3x = 24 + x \\implies x = 12 \\implies \\square ABCD = 2(36) = 72\\text{ cm}^2$</div>",
+        "note": "밑변 $AD$를 공유하는 삼각형 $\\triangle AQD$는 점 $Q$의 위치에 상관없이 무조건 평행사변형 넓이의 절반($\\frac{1}{2}$)입니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 150,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="220,30 115,65" stroke="#fbbf24" stroke-dasharray="2,2"/>
+          <circle cx="115" cy="65" r="3" fill="#34d399"/>
+          <text x="105" y="60" fill="#34d399" font-size="11">P</text>
+          <text x="150" y="115" fill="#f43f5e" font-size="11">Q</text>
+        </svg>"""
+      },
+
+      # PAGE 59
+      {
+        "category": "original", "page": "59", "num": "Q.249", "type": "서술형", "score": "4점", "badge": "방정식대각", "badgeClass": "badge-blue", "formula": "F8",
+        "title": "대변 방정식과 대각의 곱 $xy$",
+        "text": "평행사변형 $ABCD$에서 $\\angle DAC=63^\\circ, \\angle ACD=57^\\circ$, $AD=2x+5, BC=4x-3, \\angle B=y^\\circ$일 때, $xy$의 값을 구하시오.",
+        "choices": [],
+        "ans": "240",
+        "slow": "답지 풀이: 1단계: $AD=BC \\implies 2x+5=4x-3 \\implies x=4$. 2단계: $\\triangle ACD$에서 $\\angle D = 180^\\circ - (63^\\circ+57^\\circ) = 60^\\circ$. $\\angle B=\\angle D=60^\\circ \\implies y=60$. 3단계: $xy = 4 \\times 60 = 240$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$4x - 2x = 5 + 3 \\implies x = 4$<br>$y = 180^\\circ - (63^\\circ + 57^\\circ) = 60^\\circ$<br>$xy = 4 \\times 60 = 240$</div>",
+        "note": "대변 길이 같음과 대각 크기 같음의 가장 기본적인 평행사변형 정의 문제입니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 180,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <text x="130" y="24" fill="#38bdf8" font-size="11">2x+5</text>
+          <text x="100" y="115" fill="#38bdf8" font-size="11">4x-3</text>
+          <text x="35" y="95" fill="#fbbf24" font-size="11">y°</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "59", "num": "Q.250", "type": "서술형", "score": "5점", "badge": "정삼각형", "badgeClass": "badge-amber", "formula": "F1",
+        "title": "이등분선과 정삼각형 둘레 공식",
+        "text": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $BC$와 만나는 점을 $E$라 하자. $AB=8\\text{ cm}, EC=2\\text{ cm}, \\angle C=120^\\circ$일 때, $\\square AECD$의 둘레의 길이를 구하시오.",
+        "choices": [],
+        "ans": "28 cm",
+        "slow": "답지 풀이: 1단계: $\\angle B = 180^\\circ - 120^\\circ = 60^\\circ$. $\\angle A = 120^\\circ$ 이등분하므로 $\\angle BAE=60^\\circ$. 엇각 $\\angle AEB=60^\\circ$. 따라서 $\\triangle ABE$는 정삼각형. 2단계: $AE=AB=8, BE=8 \\implies AD=BC=8+2=10, CD=8$. 둘레 $= 8 + 2 + 8 + 10 = 28\\text{ cm}$.",
+        "fast": "3초 컷 공식: 이웃각이 $60^\\circ, 120^\\circ$이고 이등분선이 나오면 잘려나간 $\\triangle ABE$는 **무조건 정삼각형**이다!<br><div class='formula-highlight'>$AE = 8, \\; EC = 2, \\; CD = 8, \\; AD = 8 + 2 = 10$<br>$\\text{둘레} = 8 + 2 + 8 + 10 = 28\\text{ cm}$</div>",
+        "note": "사다리꼴 $\\square AECD$의 변들은 $AE=c, EC=d, CD=c, AD=c+d$ 로 일반화되며, 둘레 $= 3c + 2d = 3(8) + 2(2) = 28\\text{ cm}$ 로 2초 만에 계산됩니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,30 120,100" stroke="#f43f5e" stroke-width="2"/>
+          <polygon points="80,30 120,100 180,100 220,30" fill="rgba(244,63,94,0.15)"/>
+          <text x="35" y="65" fill="#38bdf8" font-size="11">8</text>
+          <text x="145" y="115" fill="#fbbf24" font-size="11">2</text>
+          <text x="185" y="90" fill="#94a3b8" font-size="11">120°</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "59", "num": "Q.251", "type": "서술형", "score": "4점", "badge": "수선평행", "badgeClass": "badge-purple", "formula": "F8",
+        "title": "대각선 수선 대칭각 공식",
+        "text": "평행사변형 $ABCD$의 두 꼭짓점 $B, D$에서 대각선 $AC$에 내린 수선의 발을 각각 $E, F$라 하자. $\\angle DEF=55^\\circ$일 때, $\\angle EBF$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "35°",
+        "slow": "답지 풀이: 1단계: $\\triangle ABE \\equiv \\triangle CDF$ (RHA 합동)이므로 $BE=DF$. 또 $\\angle BEF=\\angle DFE$ (엇각)이므로 $BE \\parallel DF$. 따라서 $\\square EBFD$는 평행사변형이다. 2단계: $\\triangle DEF$에서 $\\angle EDF = 180^\\circ - (90^\\circ+55^\\circ) = 35^\\circ$. 평행사변형 대각이므로 $\\angle EBF = \\angle EDF = 35^\\circ$.",
+        "fast": "3초 컷 공식: 대각선에 내린 두 수선으로 만든 사각형 $\\square EBFD$는 **무조건 평행사변형**이다!<br><div class='formula-highlight'>$\\angle EBF = \\angle EDF = 90^\\circ - 55^\\circ = 35^\\circ$</div>",
+        "note": "복잡한 RHA 합동 증명 없이, 직각삼각형의 여각($90^\\circ - \\theta$) 하나로 바로 답이 나옵니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#64748b" stroke-width="1.5"/>
+          <line points="40,100 220,30" stroke="#64748b" stroke-dasharray="2,2"/>
+          <line points="40,100 120,68" stroke="#38bdf8" stroke-width="2"/>
+          <line points="220,30 140,62" stroke="#38bdf8" stroke-width="2"/>
+          <polygon points="120,68 40,100 140,62 220,30" fill="rgba(56,189,248,0.15)"/>
+          <text x="125" y="80" fill="#fbbf24" font-size="11">55°</text>
+        </svg>"""
+      },
+      {
+        "category": "original", "page": "59", "num": "Q.252", "type": "서술형", "score": "6점", "badge": "최고난도", "badgeClass": "badge-red", "formula": "F7",
+        "title": "중점 관통선 1/2 절반 길이 공식",
+        "text": "평행사변형 $ABCD$에서 점 $O$는 $AC$의 중점, $F$는 $AD$와 $OE$의 교점이다. $CO=DE, AB=14\\text{ cm}, \\angle B=60^\\circ, \\angle CAD=50^\\circ, \\angle EDC=110^\\circ$일 때, $EF$의 길이를 구하시오.",
+        "choices": [],
+        "ans": "7 cm",
+        "slow": "답지 풀이: 1단계: $\\angle ADC = \\angle B = 60^\\circ \\implies \\angle EDA = 110^\\circ - 60^\\circ = 50^\\circ$. 엇각 $\\angle EDA=\\angle CAD=50^\\circ$이므로 $ED \\parallel AC$. 따라서 한 쌍의 대변이 평행하고 길이가 같으므로 $\\square EOCD$는 평행사변형! 2단계: $EO = CD = AB = 14\\text{ cm}$. 3단계: $\\triangle DEF \\equiv \\triangle AOF$ (ASA 합동) $\\implies EF = OF = \\frac{1}{2}EO = 7\\text{ cm}$.",
+        "fast": "3초 컷 공식: <br><div class='formula-highlight'>$\\square EOCD$는 평행사변형 $\\implies EO = AB = 14\\text{ cm}$<br>$F$는 대각선 $EO$의 중점이므로: $EF = \\frac{1}{2} EO = \\frac{14}{2} = 7\\text{ cm}$</div>",
+        "note": "시험에 각도가 3개나 나와서 학생들을 당황하게 하지만, $EO=AB=14$를 찾고 $F$가 중점이라는 것만 알면 무조건 '주어진 변의 정확히 절반'($14/2=7$)이 답입니다!",
+        "svg": """<svg viewBox="0 0 280 140" width="260" height="130">
+          <polygon points="40,110 80,40 220,40 180,110" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <line points="80,40 180,110" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <line points="130,75 190,10" stroke="#f43f5e" stroke-width="2"/>
+          <text x="125" y="90" fill="#94a3b8" font-size="11">O</text>
+          <text x="195" y="15" fill="#f43f5e" font-size="11">E</text>
+          <text x="165" y="35" fill="#34d399" font-size="11">F</text>
+          <text x="35" y="75" fill="#38bdf8" font-size="11">14cm</text>
+        </svg>"""
+      }
+    ]
+
+    questions.extend(orig)
+
+    # 2. TWIN SIMILAR PROBLEMS (6 PROBLEMS)
+    twins = [
+      {
+        "category": "twin", "page": "56", "pageBadge": "유사·쌍둥이", "num": "T.234-S", "type": "선다형", "score": "4점", "badge": "쌍둥이", "badgeClass": "badge-green", "formula": "F1", "cardClass": "twin",
+        "title": "[234번 쌍둥이] 각의 이등분선과 이웃각 고속 계산",
+        "text": "오른쪽 그림과 같은 평행사변형 $ABCD$에서 $\\angle B$의 이등분선이 $AD$와 만나는 점을 $E$라 하자. $\\angle AEB=52^\\circ$일 때, $\\angle C$의 크기는?",
+        "choices": ["① 72°", "② 74°", "③ 76°", "④ 78°", "⑤ 80°"],
+        "ans": "③ 76°",
+        "slow": "답지 풀이: $AD \\parallel BC$이므로 $\\angle EBC = \\angle AEB = 52^\\circ$ (엇각). $\\angle ABC = 2 \\times 52^\\circ = 104^\\circ$. 평행사변형에서 $\\angle B + \\angle C = 180^\\circ$이므로 $\\angle C = 180^\\circ - 104^\\circ = 76^\\circ$.",
+        "fast": "3초 컷 공식: [공식 1: 엇각+이등분선]<br><div class='formula-highlight'>$\\angle C = 180^\\circ - 2\\theta = 180^\\circ - 2(52^\\circ) = 180^\\circ - 104^\\circ = 76^\\circ$</div>",
+        "note": "234번의 $\\theta=48^\\circ$ 대신 $\\theta=52^\\circ$로 출제된 완벽한 쌍둥이 문제입니다. 2초 만에 $180 - 104 = 76$ 완료!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#10b981" stroke-width="2"/>
+          <line points="40,100 150,30" stroke="#34d399" stroke-width="2"/>
+          <text x="30" y="115" fill="#94a3b8" font-size="12">B</text>
+          <text x="75" y="22" fill="#94a3b8" font-size="12">A</text>
+          <text x="225" y="22" fill="#94a3b8" font-size="12">D</text>
+          <text x="185" y="115" fill="#94a3b8" font-size="12">C</text>
+          <text x="150" y="22" fill="#34d399" font-size="12">E</text>
+          <text x="135" y="48" fill="#fbbf24" font-size="11">52°</text>
+        </svg>"""
+      },
+      {
+        "category": "twin", "page": "58", "pageBadge": "유사·쌍둥이", "num": "T.245-S", "type": "단답형", "score": "4점", "badge": "쌍둥이", "badgeClass": "badge-green", "formula": "F2", "cardClass": "twin",
+        "title": "[245번 쌍둥이] 이등분선 직교와 반각 정리",
+        "text": "평행사변형 $ABCD$에서 $AP$는 $\\angle A$의 이등분선이고 $\\angle APB=90^\\circ$이다. $\\angle D=64^\\circ$일 때, $\\angle PBC$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "32°",
+        "slow": "답지 풀이: $\\angle BAD = 180^\\circ - 64^\\circ = 116^\\circ \\implies \\angle BAP = 58^\\circ$. $\\triangle ABP$에서 $\\angle ABP = 180^\\circ - (90^\\circ+58^\\circ) = 32^\\circ$. 대각이므로 $\\angle B = \\angle D = 64^\\circ \\implies \\angle PBC = 64^\\circ - 32^\\circ = 32^\\circ$.",
+        "fast": "3초 컷 공식: [공식 2: 직교 역성질]<br><div class='formula-highlight'>$BP$는 자동으로 $\\angle B$의 이등분선!<br>$\\angle PBC = \\frac{\\angle D}{2} = \\frac{64^\\circ}{2} = 32^\\circ$</div>",
+        "note": "각의 이등분선과 $90^\\circ$가 보이면 반대편 선분도 무조건 이등분선입니다. $\\angle D$를 바로 2로 나누면 1초 컷!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#10b981" stroke-width="2"/>
+          <line points="80,30 95,75" stroke="#f43f5e" stroke-width="2"/>
+          <line points="40,100 95,75" stroke="#34d399" stroke-width="2"/>
+          <circle cx="95" cy="75" r="3" fill="#fbbf24"/>
+          <text x="100" y="70" fill="#fbbf24" font-size="11">P (90°)</text>
+          <text x="225" y="30" fill="#94a3b8" font-size="11">64°</text>
+        </svg>"""
+      },
+      {
+        "category": "twin", "page": "58", "pageBadge": "유사·쌍둥이", "num": "T.243-S", "type": "단답형", "score": "4점", "badge": "쌍둥이", "badgeClass": "badge-green", "formula": "F3", "cardClass": "twin",
+        "title": "[243번 쌍둥이] 대각선 종이접기 외각 방정식",
+        "text": "평행사변형 종이 $ABCD$를 대각선 $BD$로 접었을 때, $BA$ 연장선과 $DE$ 연장선의 교점을 $F$라 하자. $\\angle F=74^\\circ$일 때, $\\angle x$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "53°",
+        "slow": "답지 풀이: 접은 각과 엇각이 같으므로 $\\triangle FBD$는 $FB=FD$인 이등변삼각형. 따라서 $74^\\circ + 2\\angle x = 180^\\circ \\implies 2\\angle x = 106^\\circ \\implies \\angle x = 53^\\circ$.",
+        "fast": "3초 컷 공식: [공식 3: 종이접기 이등변삼각형]<br><div class='formula-highlight'>$2x + \\angle F = 180^\\circ \\implies x = \\frac{180^\\circ - 74^\\circ}{2} = 53^\\circ$</div>",
+        "note": "243번($86^\\circ$)의 쌍둥이 버전($74^\\circ$)입니다. 뺄셈 후 2로 나누면 즉시 해결!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#64748b" stroke-dasharray="2,2"/>
+          <line points="40,100 220,30" stroke="#f43f5e" stroke-width="2"/>
+          <line points="20,10 40,100" stroke="#10b981" stroke-width="1.5"/>
+          <line points="20,10 220,30" stroke="#10b981" stroke-width="1.5"/>
+          <text x="15" y="10" fill="#fbbf24" font-size="11">F(74°)</text>
+          <text x="190" y="45" fill="#f43f5e" font-size="11">x</text>
+        </svg>"""
+      },
+      {
+        "category": "twin", "page": "58", "pageBadge": "유사·쌍둥이", "num": "T.247-S", "type": "단답형", "score": "5점", "badge": "쌍둥이", "badgeClass": "badge-green", "formula": "F4", "cardClass": "twin",
+        "title": "[247번 쌍둥이] 대각선 교점 외심 원리",
+        "text": "평행사변형 $ABCD$에서 두 대각선의 교점을 $O$라 하고, 꼭짓점 $A$에서 $BC$에 내린 수선의 발을 $H$라 하자. $\\angle DAC=35^\\circ$일 때, $\\angle HOC$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "110°",
+        "slow": "답지 풀이: $\\angle BCA = \\angle DAC = 35^\\circ$ (엇각). $O$는 직각삼각형 $AHC$의 빗변 중점이므로 외심 $\\implies OH = OC$. 따라서 $\\triangle OHC$는 밑각이 $35^\\circ$인 이등변삼각형이므로 $\\angle HOC = 180^\\circ - 2(35^\\circ) = 110^\\circ$.",
+        "fast": "3초 컷 공식: [공식 4: 외심 정리]<br><div class='formula-highlight'>$\\angle HOC = 180^\\circ - 2\\theta = 180^\\circ - 2(35^\\circ) = 110^\\circ$</div>",
+        "note": "어떤 각도 $\\theta$가 주어져도 $\\angle HOC = 180^\\circ - 2\\theta$ 공식 하나로 절대 틀리지 않습니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#10b981" stroke-width="2"/>
+          <line points="80,30 180,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="80,30 80,100" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <line points="130,65 80,100" stroke="#fbbf24" stroke-width="1.5"/>
+          <circle cx="130" cy="65" r="3" fill="#f43f5e"/>
+          <text x="135" y="60" fill="#f43f5e" font-size="11">O</text>
+          <text x="80" y="115" fill="#94a3b8" font-size="11">H</text>
+        </svg>"""
+      },
+      {
+        "category": "twin", "page": "58", "pageBadge": "유사·쌍둥이", "num": "T.248-S", "type": "단답형", "score": "5점", "badge": "쌍둥이", "badgeClass": "badge-green", "formula": "F5", "cardClass": "twin",
+        "title": "[248번 쌍둥이] 내부점과 밑변 공유 삼각형 넓이",
+        "text": "평행사변형 $ABCD$ 내부의 점 $P$에 대하여 $AP$ 연장선과 $BC$ 교점을 $Q$라 하자. $3\\triangle PDA = \\triangle PQD$이고 $\\triangle PBC=30\\text{ cm}^2$일 때, $\\square ABCD$의 넓이를 구하시오.",
+        "choices": [],
+        "ans": "80 cm²",
+        "slow": "답지 풀이: $\\triangle PDA = x$라 두면 $\\triangle PQD = 3x \\implies \\triangle AQD = 4x = \\frac{1}{2}\\square$. 마주보는 합 $\\triangle PBC + \\triangle PDA = 30 + x = \\frac{1}{2}\\square$. 따라서 $4x = 30 + x \\implies 3x = 30 \\implies x = 10$. $\\square ABCD = 2(30+10) = 80\\text{ cm}^2$.",
+        "fast": "3초 컷 공식: [공식 5: 밑변 공유식]<br><div class='formula-highlight'>$(1+3)x = 30 + x \\implies 3x = 30 \\implies x = 10$<br>$\\square ABCD = 2 \\times (30 + 10) = 80\\text{ cm}^2$</div>",
+        "note": "비율이 $1:2$에서 $1:3$으로 바뀌었지만, $3x = S_{PBC}$라는 불변의 구조로 즉시 80cm²가 나옵니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#10b981" stroke-width="2"/>
+          <line points="80,30 150,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="220,30 115,65" stroke="#fbbf24" stroke-dasharray="2,2"/>
+          <circle cx="115" cy="65" r="3" fill="#34d399"/>
+        </svg>"""
+      },
+      {
+        "category": "twin", "page": "57", "pageBadge": "유사·쌍둥이", "num": "T.241-S", "type": "선다형", "score": "5점", "badge": "쌍둥이", "badgeClass": "badge-green", "formula": "F6", "cardClass": "twin",
+        "title": "[241번 쌍둥이] 대변 중점 연결 1/4 격자 넓이",
+        "text": "평행사변형 $ABCD$에서 $AB, CD$의 중점을 각각 $E, F$라 하고, $BD$와 $EC, AF$의 교점을 각각 $G, H$라 하자. $\\square ABCD$의 넓이가 $76\\text{ cm}^2$일 때, $\\square AEGH$의 넓이는?",
+        "choices": ["① 17 cm²", "② 18 cm²", "③ 19 cm²", "④ 20 cm²", "⑤ 21 cm²"],
+        "ans": "③ 19 cm²",
+        "slow": "답지 풀이: $\\triangle AOH \\equiv \\triangle COG$ 합동 증명 후 $\\square AEGH = \\triangle AEC = \\frac{1}{4}\\square ABCD = \\frac{76}{4} = 19\\text{ cm}^2$.",
+        "fast": "3초 컷 공식: [공식 6: 1/4 격자 공식]<br><div class='formula-highlight'>$\\square AEGH = \\frac{1}{4} \\times 76 = 19\\text{ cm}^2$</div>",
+        "note": "전체 넓이를 4로 나누면 끝납니다. 3초도 아까운 1초 컷 문제!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#10b981" stroke-width="1.5"/>
+          <line points="40,100 220,30" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <polygon points="80,30 60,65 110,75 130,47" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="1.5"/>
+        </svg>"""
+      }
+    ]
+
+    questions.extend(twins)
+
+    # 3. VARIATION PROBLEMS (6 PROBLEMS)
+    vars_list = [
+      {
+        "category": "variation", "page": "56", "pageBadge": "실전변형", "num": "V.01", "type": "단답형", "score": "5점", "badge": "실전변형", "badgeClass": "badge-amber", "formula": "F1", "cardClass": "variation",
+        "title": "[변형 01] 양쪽 내각 이등분선 겹침 선분 $EF$ 길이",
+        "text": "평행사변형 $ABCD$에서 $AB=7\\text{ cm}, BC=12\\text{ cm}$이다. $\\angle B$의 이등분선과 $\\angle C$의 이등분선이 $AD$와 만나는 점을 각각 $E, F$라 할 때, 선분 $EF$의 길이를 구하시오.",
+        "choices": [],
+        "ans": "2 cm",
+        "slow": "답지 풀이: $\\angle B$의 이등분선에 의해 $\\triangle ABE$는 $AB=AE=7$인 이등변. $\\angle C$의 이등분선에 의해 $\\triangle DCF$는 $CD=DF=7$인 이등변. 선분 $AD=12$ 위에서 $AE=7, DF=7$이므로 겹치는 구간 $EF = AE + DF - AD = 7 + 7 - 12 = 2\\text{ cm}$.",
+        "fast": "3초 컷 공식: [이등분선 겹침 공식]<br><div class='formula-highlight'>$EF = 2 \\times AB - BC = 2(7) - 12 = 2\\text{ cm}$</div>",
+        "note": "양쪽 꼭짓점에서 대변으로 이등분선을 쏘면 두 이등변삼각형이 겹칩니다. 무조건 $2 \\times (\\text{짧은 변}) - (\\text{긴 변})$이 겹치는 길이입니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="30,100 70,30 230,30 190,100" fill="none" stroke="#f97316" stroke-width="2"/>
+          <line points="30,100 160,30" stroke="#38bdf8" stroke-width="2"/>
+          <line points="190,100 100,30" stroke="#f43f5e" stroke-width="2"/>
+          <rect x="100" y="27" width="60" height="6" fill="#fbbf24"/>
+          <text x="65" y="22" fill="#94a3b8" font-size="11">A</text>
+          <text x="235" y="22" fill="#94a3b8" font-size="11">D</text>
+          <text x="95" y="22" fill="#f43f5e" font-size="11">F</text>
+          <text x="160" y="22" fill="#38bdf8" font-size="11">E</text>
+        </svg>"""
+      },
+      {
+        "category": "variation", "page": "57", "pageBadge": "실전변형", "num": "V.02", "type": "단답형", "score": "5점", "badge": "실전변형", "badgeClass": "badge-amber", "formula": "F2", "cardClass": "variation",
+        "title": "[변형 02] 네 내각 이등분선 사각형의 대각선 길이",
+        "text": "평행사변형 $ABCD$에서 $AB=8\\text{ cm}, BC=14\\text{ cm}$이다. 네 내각의 이등분선의 교점으로 만들어지는 사각형 $EFGH$의 대각선의 길이를 구하시오.",
+        "choices": [],
+        "ans": "6 cm",
+        "slow": "답지 풀이: 이웃한 내각의 합이 $180^\\circ$이므로 이등분선끼리는 모두 $90^\\circ$로 만난다. 따라서 사각형 $EFGH$는 네 내각이 모두 직각인 직사각형이다. 직사각형의 대각선 길이는 두 평행선 사이의 거리차와 같으므로 $BC - AB = 14 - 8 = 6\\text{ cm}$.",
+        "fast": "3초 컷 공식: [이등분선 직사각형 대각선 절대 공식]<br><div class='formula-highlight'>$\\text{대각선 길이} = |BC - AB| = 14 - 8 = 6\\text{ cm}$</div>",
+        "note": "내신 시험에서 단골 출제되는 최고난도 빈출입니다. 복잡한 직각삼각형 합동 증명 필요 없이 '두 이웃변의 차($b - a$)'가 무조건 대각선 길이입니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="30,100 70,30 230,30 190,100" fill="none" stroke="#f97316" stroke-width="1.5"/>
+          <rect x="110" y="55" width="40" height="20" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="2"/>
+          <line points="110,55 150,75" stroke="#fbbf24" stroke-width="2"/>
+          <text x="125" y="70" fill="#fbbf24" font-size="11">d = ?</text>
+        </svg>"""
+      },
+      {
+        "category": "variation", "page": "56", "pageBadge": "실전변형", "num": "V.03", "type": "단답형", "score": "5점", "badge": "실전변형", "badgeClass": "badge-amber", "formula": "F7", "cardClass": "variation",
+        "title": "[변형 03] 관통선 분할비 $1:2$ 닮음 변형",
+        "text": "평행사변형 $ABCD$에서 $CD$ 위의 점 $E$가 $CE:ED=1:2$이다. $AE$의 연장선과 $BC$의 연장선의 교점을 $F$라 하자. $AD=15\\text{ cm}$일 때, 선분 $CF$의 길이를 구하시오.",
+        "choices": [],
+        "ans": "7.5 cm (또는 15/2 cm)",
+        "slow": "답지 풀이: $\\triangle ADE \\sim \\triangle FCE$ (AA 닮음). 닮음비는 $DE:CE = 2:1$. 따라서 $AD : CF = 2 : 1 \\implies 15 : CF = 2 : 1 \\implies CF = \\frac{15}{2} = 7.5\\text{ cm}$.",
+        "fast": "3초 컷 공식: [모래시계 닮음비 공식]<br><div class='formula-highlight'>$CF = AD \\times \\frac{CE}{ED} = 15 \\times \\frac{1}{2} = 7.5\\text{ cm}$</div>",
+        "note": "본책 232번은 중점($1:1$)이었지만, 내신 변형에서는 $1:2$나 $2:3$으로 출제됩니다. $CF = AD \\times (\\text{비율})$로 2초 만에 계산!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="30,95 70,30 180,30 140,95" fill="none" stroke="#f97316" stroke-width="2"/>
+          <line points="70,30 230,95" stroke="#38bdf8" stroke-width="2"/>
+          <line points="140,95 230,95" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <circle cx="153" cy="73" r="3" fill="#fbbf24"/>
+          <text x="157" y="73" fill="#fbbf24" font-size="11">E(2:1)</text>
+          <text x="180" y="110" fill="#38bdf8" font-size="11">CF = ?</text>
+        </svg>"""
+      },
+      {
+        "category": "variation", "page": "58", "pageBadge": "실전변형", "num": "V.04", "type": "단답형", "score": "5점", "badge": "실전변형", "badgeClass": "badge-amber", "formula": "F4", "cardClass": "variation",
+        "title": "[변형 04] 외심의 중심각-원주각 2배 공식 변형",
+        "text": "평행사변형 $ABCD$에서 대각선 교점 $O$, $A$에서 $BC$에 내린 수선의 발 $H$. $\\angle DAC=28^\\circ$일 때, $\\angle AOH$의 크기를 구하시오.",
+        "choices": [],
+        "ans": "56°",
+        "slow": "답지 풀이: $\\angle ACH = \\angle DAC = 28^\\circ$ (엇각). $O$는 직각삼각형 $AHC$의 외심이므로 $OA=OC=OH$. $\\triangle OHC$에서 $\\angle OHC = 28^\\circ \\implies \\angle HOC = 180^\\circ - 56^\\circ = 124^\\circ$. 따라서 평각에서 $\\angle AOH = 180^\\circ - 124^\\circ = 56^\\circ$.",
+        "fast": "3초 컷 공식: [외심 중심각 = 2 × 원주각]<br><div class='formula-highlight'>$\\angle AOH = 2 \\times \\angle ACH = 2 \\times 28^\\circ = 56^\\circ$</div>",
+        "note": "247번은 이등변 꼭지각 $\\angle HOC$를 물었지만, 변형 문제에서는 그 이웃각 $\\angle AOH$를 묻습니다. 이것은 정확히 외심의 **[중심각 $= 2\\theta$]** 공식입니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#f97316" stroke-width="2"/>
+          <line points="80,30 180,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <line points="80,30 80,100" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <line points="130,65 80,100" stroke="#fbbf24" stroke-width="1.5"/>
+          <text x="110" y="55" fill="#38bdf8" font-size="11">AOH=?</text>
+        </svg>"""
+      },
+      {
+        "category": "variation", "page": "58", "pageBadge": "실전변형", "num": "V.05", "type": "단답형", "score": "5점", "badge": "실전변형", "badgeClass": "badge-amber", "formula": "F5", "cardClass": "variation",
+        "title": "[변형 05] 내부점 4분할 넓이 역추적 합",
+        "text": "평행사변형 $ABCD$의 넓이가 $90\\text{ cm}^2$이다. 내부의 점 $P$에 대하여 $\\triangle PAB : \\triangle PCD = 2:3$이고 $\\triangle PBC=25\\text{ cm}^2$일 때, $\\triangle PDA + \\triangle PAB$의 넓이의 합을 구하시오.",
+        "choices": [],
+        "ans": "38 cm²",
+        "slow": "답지 풀이: $S_{PAB} + S_{PCD} = \\frac{1}{2}(90) = 45$. 비례배분에 의해 $S_{PAB} = 45 \\times \\frac{2}{5} = 18\\text{ cm}^2$. 또한 $S_{PDA} + S_{PBC} = 45$이므로 $S_{PDA} = 45 - 25 = 20\\text{ cm}^2$. 따라서 합은 $20 + 18 = 38\\text{ cm}^2$.",
+        "fast": "3초 컷 공식: [공식 5: 마주보는 합 = 절반]<br><div class='formula-highlight'>$S_{PAB} = 45 \\times \\frac{2}{5} = 18\\text{ cm}^2$<br>$S_{PDA} = 45 - 25 = 20\\text{ cm}^2$<br>$\\text{합} = 18 + 20 = 38\\text{ cm}^2$</div>",
+        "note": "좌우의 합도 45, 상하의 합도 45! 분할 성질만 알면 암산으로 38cm²가 튀어나옵니다.",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#f97316" stroke-width="2"/>
+          <circle cx="120" cy="70" r="3" fill="#f43f5e"/>
+          <text x="125" y="65" fill="#f43f5e" font-size="11">P</text>
+        </svg>"""
+      },
+      {
+        "category": "variation", "page": "58", "pageBadge": "실전변형", "num": "V.06", "type": "단답형", "score": "5점", "badge": "실전변형", "badgeClass": "badge-amber", "formula": "F3", "cardClass": "variation",
+        "title": "[변형 06] 접은 종이 겹친 삼각형의 둘레 불변",
+        "text": "직사각형 모양의 종이 $ABCD$를 대각선 $BD$를 접는 선으로 접었을 때, $AD$와 $BC'$의 교점을 $P$라 하자. $AB=6\\text{ cm}, BC=8\\text{ cm}, BD=10\\text{ cm}$일 때, $\\triangle ABP$의 둘레의 길이를 구하시오.",
+        "choices": [],
+        "ans": "14 cm",
+        "slow": "답지 풀이: 접은 각과 엇각에 의해 $\\triangle PBD$는 $PB=PD$인 이등변삼각형이다. 따라서 $\\triangle ABP$의 둘레 $= AB + AP + PB = AB + (AP + PD) = AB + AD = 6 + 8 = 14\\text{ cm}$.",
+        "fast": "3초 컷 공식: [종이접기 둘레 불변 치트키]<br><div class='formula-highlight'>$\\text{둘레}(\\triangle ABP) = AB + AD = 6 + 8 = 14\\text{ cm}$</div>",
+        "note": "$PB=PD$이므로 $AP+PB = AD$로 자동 흡수됩니다! 점 $P$의 위치를 방정식으로 구할 필요 없이 $AB+AD$ 가로+세로 합으로 1초 컷!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 40,30 200,30 200,100" fill="none" stroke="#64748b" stroke-dasharray="2,2"/>
+          <line points="40,100 200,30" stroke="#f97316" stroke-width="2"/>
+          <polygon points="40,100 40,30 120,30" fill="rgba(249,115,22,0.2)" stroke="#f97316" stroke-width="1.5"/>
+          <text x="120" y="25" fill="#38bdf8" font-size="11">P</text>
+        </svg>"""
+      }
+    ]
+
+    questions.extend(vars_list)
+
+    # 4. ADVANCED & APPLIED KILLER PROBLEMS (6 PROBLEMS)
+    adv_list = [
+      {
+        "category": "advanced", "page": "59", "pageBadge": "1등급심화", "num": "A.01", "type": "단답형", "score": "6점", "badge": "1등급킬러", "badgeClass": "badge-red", "formula": "F5", "cardClass": "advanced",
+        "title": "[1등급 킬러] 무게중심 8분할 오각형 넓이",
+        "text": "평행사변형 $ABCD$에서 $BC, CD$의 중점을 각각 $M, N$이라 하고, $AM, AN$이 대각선 $BD$와 만나는 점을 각각 $P, Q$라 하자. $\\square ABCD$의 넓이가 $72\\text{ cm}^2$일 때, 오각형 $APMNC$의 넓이를 구하시오.",
+        "choices": [],
+        "ans": "30 cm²",
+        "slow": "답지 풀이: $AC$를 긋고 대각선 교점을 $O$라 하면 $P, Q$는 각각 $\\triangle ABC, \\triangle ACD$의 무게중심이다. $\\triangle APM = \\frac{1}{12}\\square, \\triangle AQN = \\frac{1}{12}\\square$. 전체 육각형/오각형 분할 계산... $\\square AMCN = \\frac{1}{2}\\square$. $\\triangle APQ = \\frac{1}{12}\\square$. 따라서 오각형 $APMNC = \\frac{1}{2}\\square - \\frac{1}{12}\\square = \\frac{5}{12}\\square = \\frac{5}{12} \\times 72 = 30\\text{ cm}^2$.",
+        "fast": "3초 컷 공식: [평행사변형 무게중심 오각형 5/12 공식]<br><div class='formula-highlight'>$\\text{Area} = \\frac{5}{12} \\times \\text{Area}(\\square ABCD) = \\frac{5}{12} \\times 72 = 30\\text{ cm}^2$</div>",
+        "note": "중점 2개와 대각선이 만드는 중앙 오각형의 넓이는 어떤 평행사변형이든 정확히 전체의 5/12입니다. 특목고/경시 기출 1초 킬러 공식!",
+        "svg": """<svg viewBox="0 0 280 140" width="260" height="130">
+          <polygon points="40,110 80,30 240,30 200,110" fill="none" stroke="#ec4899" stroke-width="2"/>
+          <line points="80,30 120,110" stroke="#8b5cf6" stroke-width="1.5"/>
+          <line points="80,30 220,70" stroke="#8b5cf6" stroke-width="1.5"/>
+          <line points="40,110 240,30" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <polygon points="80,30 100,83 120,110 200,110 220,70 173,53" fill="rgba(236,72,153,0.25)"/>
+        </svg>"""
+      },
+      {
+        "category": "advanced", "page": "57", "pageBadge": "1등급심화", "num": "A.02", "type": "단답형", "score": "6점", "badge": "1등급킬러", "badgeClass": "badge-red", "formula": "F5", "cardClass": "advanced",
+        "title": "[1등급 킬러] 마름모 내부점과 4개 변 수선 거리 합",
+        "text": "한 변의 길이가 $10\\text{ cm}$이고 두 대각선의 길이가 $12\\text{ cm}, 16\\text{ cm}$인 마름모 $ABCD$의 내부에 점 $P$가 있다. 점 $P$에서 마름모의 네 변에 내린 수선의 길이의 합을 구하시오.",
+        "choices": [],
+        "ans": "19.2 cm",
+        "slow": "답지 풀이: 점 $P$에서 네 변까지의 거리를 각각 $h_1, h_2, h_3, h_4$라 하면, $P$와 네 꼭짓점을 연결한 4개의 삼각형 넓이의 합은 마름모 전체의 넓이와 같다. $\\frac{1}{2} \\times 10 \\times (h_1+h_2+h_3+h_4) = \\frac{1}{2} \\times 12 \\times 16 = 96$. 따라서 $5 \\times (\\text{합}) = 96 \\implies \\text{합} = \\frac{96}{5} = 19.2\\text{ cm}$.",
+        "fast": "3초 컷 공식: [마름모 수선 거리 합 = 높이의 2배]<br><div class='formula-highlight'>$\\text{거리의 합} = 2h = \\frac{2 \\times \\text{넓이}}{\\text{한 변}} = \\frac{2 \\times 96}{10} = 19.2\\text{ cm}$</div>",
+        "note": "점 $P$의 위치가 어디든 상관없이 네 변에 이르는 거리의 합은 평행한 두 대변 사이의 거리 2개의 합($2h$)으로 일정합니다!",
+        "svg": """<svg viewBox="0 0 260 140" width="240" height="130">
+          <polygon points="130,20 210,70 130,120 50,70" fill="none" stroke="#ec4899" stroke-width="2"/>
+          <line points="130,20 130,120" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <line points="50,70 210,70" stroke="#94a3b8" stroke-dasharray="2,2"/>
+          <circle cx="110" cy="80" r="3" fill="#fbbf24"/>
+          <text x="115" y="80" fill="#fbbf24" font-size="11">P</text>
+        </svg>"""
+      },
+      {
+        "category": "advanced", "page": "59", "pageBadge": "1등급심화", "num": "A.03", "type": "서술형", "score": "6점", "badge": "1등급킬러", "badgeClass": "badge-red", "formula": "F5", "cardClass": "advanced",
+        "title": "[1등급 킬러] 평행선 등적변형 경계선 직선화",
+        "text": "1학년과 2학년 구역이 꺾인 선 $A-B-C$로 나뉘어 있을 때, 두 구역의 넓이를 변화시키지 않고 점 $A$를 지나는 새로운 직선 경계선을 만드는 작도 원리를 서술하시오.",
+        "choices": [],
+        "ans": "선분 AC를 긋고, 점 B를 지나며 AC에 평행한 직선이 경계선 변과 만나는 점을 D라 할 때 선분 AD를 긋는다.",
+        "slow": "답지 풀이: 두 점 $A, C$를 잇는 선분 $AC$를 긋는다. 점 $B$를 지나고 선분 $AC$에 평행한 직선을 그어 밑변과 만나는 점을 $D$라 한다. 이때 $AC \\parallel BD$이므로 밑변이 $AC$로 공통인 두 삼각형 $\\triangle ABC$와 $\\triangle ADC$의 넓이는 같다. 공통부분을 제외하면 넓이의 변화가 없으므로 새로운 직선 경계선은 $AD$이다.",
+        "fast": "3초 컷 공식: [평행선 등적변형 원리]<br><div class='formula-highlight'>$AC \\parallel BD \\implies \\text{Area}(\\triangle ABC) = \\text{Area}(\\triangle ADC)$</div>",
+        "note": "교과서 및 서술형 평가 1순위 문제입니다. 핵심 키워드인 **'선분 AC에 평행한 직선'**과 **'등적변형'**을 쓰면 만점!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <line points="30,100 250,100" stroke="#64748b" stroke-width="2"/>
+          <polyline points="70,30 110,70 160,100" fill="none" stroke="#f43f5e" stroke-width="2"/>
+          <line points="70,30 160,100" stroke="#38bdf8" stroke-dasharray="2,2"/>
+          <line points="70,30 200,100" stroke="#34d399" stroke-width="2.5"/>
+          <text x="65" y="22" fill="#38bdf8" font-size="12">A</text>
+          <text x="110" y="65" fill="#f43f5e" font-size="12">B</text>
+          <text x="160" y="115" fill="#94a3b8" font-size="12">C</text>
+          <text x="200" y="115" fill="#34d399" font-size="12">D</text>
+        </svg>"""
+      },
+      {
+        "category": "advanced", "page": "57", "pageBadge": "1등급심화", "num": "A.04", "type": "선다형", "score": "6점", "badge": "1등급킬러", "badgeClass": "badge-red", "formula": "F2", "cardClass": "advanced",
+        "title": "[1등급 킬러] 내각 이등분선과 외각 이등분선의 위치 관계",
+        "text": "평행사변형 $ABCD$에서 $\\angle A$의 내각의 이등분선과 $\\angle B$의 외각의 이등분선이 이루는 위치 관계는?",
+        "choices": ["① 수직으로 만난다 (90°)", "② 서로 평행하다", "③ 45°로 만난다", "④ 60°로 만난다", "⑤ 일치한다"],
+        "ans": "② 서로 평행하다",
+        "slow": "답지 풀이: 평행사변형에서 동위각 성질에 의해 $\\angle A = \\text{외각 } \\angle B'$이다. $\\angle A$의 내각 이등분각은 $\\frac{1}{2}\\angle A$, $\\angle B$의 외각 이등분각은 $\\frac{1}{2}(\\text{외각 } \\angle B') = \\frac{1}{2}\\angle A$. 따라서 동위각의 크기가 같으므로 두 직선은 영원히 만나지 않고 서로 평행하다.",
+        "fast": "3초 컷 공식: [내각+외각 이등분선 평행 정리]<br><div class='formula-highlight'>$\\text{내각 } \\angle A = \\text{외각 } \\angle B \\implies \\text{반각 } \\frac{1}{2}\\angle A = \\frac{1}{2}(\\text{외각 } \\angle B) \\implies \\text{평행 (Parallel)}$</div>",
+        "note": "이웃한 내각끼리 이등분하면 $90^\\circ$ 직교, 한쪽 내각과 다른 쪽 외각을 이등분하면 무조건 **평행**합니다!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#ec4899" stroke-width="1.5"/>
+          <line points="80,30 170,120" stroke="#38bdf8" stroke-width="2"/>
+          <line points="40,100 130,190" stroke="#f43f5e" stroke-width="2"/>
+          <text x="140" y="70" fill="#38bdf8" font-size="11">내각 이등분선</text>
+          <text x="30" y="125" fill="#f43f5e" font-size="11">외각 이등분선</text>
+        </svg>"""
+      },
+      {
+        "category": "advanced", "page": "57", "pageBadge": "1등급심화", "num": "A.05", "type": "단답형", "score": "6점", "badge": "1등급킬러", "badgeClass": "badge-red", "formula": "F6", "cardClass": "advanced",
+        "title": "[1등급 킬러] $1:2$ 분할선 교차 삼각형 넓이비",
+        "text": "평행사변형 $ABCD$에서 $AD$의 삼등분점 중 $A$에 가까운 점을 $E$, $BC$의 중점을 $F$라 하자. $BE$와 $AF$의 교점을 $P$라 할 때, $\\triangle ABP$의 넓이는 $\\square ABCD$ 넓이의 몇 배인가?",
+        "choices": [],
+        "ans": "1/10배",
+        "slow": "답지 풀이: $AE = \\frac{1}{3}AD, BF = \\frac{1}{2}BC = \\frac{1}{2}AD$. $AE \\parallel BF$이므로 $\\triangle AEP \\sim \\triangle FBP$ (AA 닮음). 닮음비는 $AE : BF = \\frac{1}{3} : \\frac{1}{2} = 2 : 3$. 따라서 $AP : PF = 2 : 3$. $\\triangle ABF = \\frac{1}{2} \\times \\frac{1}{2}\\square = \\frac{1}{4}\\square ABCD$. 따라서 $\\triangle ABP = \\frac{2}{2+3}\\triangle ABF = \\frac{2}{5} \\times \\frac{1}{4}\\square = \\frac{1}{10}\\square ABCD$.",
+        "fast": "3초 컷 공식: [모래시계 밑변비 넓이 공식]<br><div class='formula-highlight'>$\\text{비율} = \\frac{AE}{AE+BF} \\times \\text{Area}(\\triangle ABF) = \\frac{2}{2+3} \\times \\frac{1}{4} = \\frac{1}{10}$</div>",
+        "note": "상하 평행선 분할비($2:3$)로 모래시계 분할점을 잡고, 삼각형 넓이의 $2/5$를 취하면 3초 만에 1/10 완성!",
+        "svg": """<svg viewBox="0 0 280 130" width="260" height="120">
+          <polygon points="40,100 80,30 220,30 180,100" fill="none" stroke="#ec4899" stroke-width="2"/>
+          <line points="40,100 126,30" stroke="#38bdf8" stroke-width="1.5"/>
+          <line points="80,30 110,100" stroke="#f43f5e" stroke-width="1.5"/>
+          <circle cx="95" cy="65" r="3" fill="#fbbf24"/>
+          <text x="100" y="65" fill="#fbbf24" font-size="11">P</text>
+        </svg>"""
+      },
+      {
+        "category": "advanced", "page": "59", "pageBadge": "1등급심화", "num": "A.06", "type": "선다형", "score": "6점", "badge": "1등급킬러", "badgeClass": "badge-red", "formula": "F1", "cardClass": "advanced",
+        "title": "[1등급 킬러] 외부 정삼각형 융합 정삼각형 정리",
+        "text": "평행사변형 $ABCD$의 두 변 $AB, AD$를 한 변으로 하는 정삼각형 $ABE, ADF$를 평행사변형의 외부에 그릴 때, $\\triangle EFC$는 항상 어떤 삼각형인가?",
+        "choices": ["① 직각이등변삼각형", "② 정삼각형", "③ 일반 이등변삼각형", "④ 둔각삼각형", "⑤ 직각삼각형"],
+        "ans": "② 정삼각형",
+        "slow": "답지 풀이: $\\angle B = \\angle D = \\theta$라 하면 $\\angle A = 180^\\circ - \\theta$. $\\triangle EBC$에서 $EB=AB, BC=AD, \\angle EBC = 60^\\circ + \\theta$. $\\triangle FDC$에서 $FD=AD, DC=AB, \\angle FDC = 60^\\circ + \\theta$. $\\triangle EAF$에서 $\\angle EAF = 360^\\circ - 60^\\circ - 60^\\circ - (180^\\circ - \\theta) = 60^\\circ + \\theta$. 따라서 세 삼각형은 모두 두 변과 끼인각이 같아 SAS 합동이다! 그러므로 대응변 $EC = FC = EF$가 되어 $\\triangle EFC$는 항상 정삼각형이다.",
+        "fast": "3초 컷 공식: [정삼각형 3중 합동 정리]<br><div class='formula-highlight'>$\\triangle EBC \\equiv \\triangle FDC \\equiv \\triangle EAF$ (SAS 합동)<br>$\\implies EC = FC = EF \\implies \\text{100% 정삼각형!}$</div>",
+        "note": "평행사변형 외부에 정삼각형을 붙여 만든 $\\triangle EFC$는 항상 정삼각형이 되는 기하학의 불변 정리입니다. 망설임 없이 ②번 찍기!",
+        "svg": """<svg viewBox="0 0 280 150" width="260" height="140">
+          <polygon points="70,110 110,50 210,50 170,110" fill="none" stroke="#ec4899" stroke-width="1.5"/>
+          <polygon points="70,110 110,50 35,60" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="1.5"/>
+          <polygon points="110,50 210,50 160,5" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="1.5"/>
+          <polygon points="35,60 160,5 170,110" fill="rgba(236,72,153,0.3)" stroke="#f43f5e" stroke-width="2"/>
+          <text x="25" y="60" fill="#38bdf8" font-size="11">E</text>
+          <text x="160" y="0" fill="#38bdf8" font-size="11">F</text>
+          <text x="175" y="125" fill="#f43f5e" font-size="11">C</text>
+        </svg>"""
+      }
+    ]
+
+    questions.extend(adv_list)
+
+    js_code = "const allQuestions = " + json.dumps(questions, ensure_ascii=False, indent=2) + ";\n"
+    with open('rpm_questions_data.js', 'w', encoding='utf-8') as f:
+        f.write(js_code)
+    print(f"Successfully generated rpm_questions_data.js with {len(questions)} questions.")
+
+if __name__ == '__main__':
+    build_data()

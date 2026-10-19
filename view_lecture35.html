@@ -1,0 +1,137 @@
+    <!-- ==================== LECTURE 35 VIEW ==================== -->
+    <div id="lecture35View" class="lecture-view-container" style="display: none;">
+      <!-- Title & Hero Banner -->
+      <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #06b6d4;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <span class="badge-pill" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: rgba(6, 182, 212, 0.4);">
+            기하 & 미적분 · 원의 성질
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.85rem;">⚡ 수능 삼각함수 도형 및 미적분 기하의 꽃</span>
+        </div>
+        <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          제35강 · 원의 성질 핵심 정리 · 원주각과 접현각
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          "9분 만에 정리하는 원의 모든 것!" 같은 호에 대한 원주각의 불변성, 중심각과의 $1:2$ 관계, 지름에 대한 원주각 $90^\circ$, 그리고 원에 내접하는 사각형의 대각의 합 $180^\circ$ 성질을 실시간 인터랙티브 시뮬레이터로 체화합니다.
+        </p>
+      </div>
+
+      <!-- Simulator Section -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin: 0 0 4px 0;">
+              🧪 원주각 & 중심각 인터랙티브 탐구기
+            </h3>
+            <p style="color: var(--text-dim); font-size: 0.84rem; margin: 0;">
+              원 위의 점 $P$를 슬라이더로 회전시켜도 원주각의 크기가 일정하게 유지됨을 확인하고, 지름 모드로 $90^\circ$ 직각 성질을 검증하세요.
+            </p>
+          </div>
+          <button id="btnL35Diam" onclick="toggleL35Diameter()" style="padding: 7px 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #cbd5e1; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: 0.2s;">
+            지름 모드 OFF (일반 호)
+          </button>
+        </div>
+
+        <!-- Controls Row -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 20px; align-items: center;">
+          <span style="font-size: 0.88rem; color: #f43f5e; font-weight: 700;">점 P의 원주 상 위치 회전:</span>
+          <input type="range" min="0.3" max="2.8" step="0.05" value="1.3" oninput="updateL35AngP(this.value)" style="flex: 1; accent-color: #f43f5e;">
+          <span id="lblL35AngP" style="font-size: 0.95rem; color: #fff; font-weight: 800; min-width: 45px;">74°</span>
+        </div>
+
+        <!-- Canvas -->
+        <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080d17;">
+          <canvas id="cvsLec35" style="width: 100%; display: block;"></canvas>
+        </div>
+
+        <!-- Live Math Stats Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 16px;">
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fda4af; font-weight: 700; text-transform: uppercase;">원주각 (∠APB)</div>
+            <div id="statL35Inscribed" style="font-size: 1.15rem; font-weight: 800; color: #f43f5e; margin-top: 4px;">∠APB = 48.7°</div>
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fde047; font-weight: 700; text-transform: uppercase;">중심각 (∠AOB)</div>
+            <div id="statL35Central" style="font-size: 1.15rem; font-weight: 800; color: #fbbf24; margin-top: 4px;">∠AOB = 97.4°</div>
+          </div>
+          <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #7dd3fc; font-weight: 700; text-transform: uppercase;">기하학적 법칙 검증</div>
+            <div id="statL35Relation" style="font-size: 0.95rem; font-weight: 800; color: #38bdf8; margin-top: 6px;">
+              원주각 = 중심각 × 1/2
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyframe Captures Gallery -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px;">
+          📸 핵심 강의 칠판 필기 캡처 (8단계)
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/01_frame_1326.jpg" alt="원의 중심과 현의 수직이등분선" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">01. 현의 수직이등분선과 중심</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/02_frame_3317.jpg" alt="원의 접선과 반지름의 수직성" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">02. 원의 접선과 반지름 (90° 수직)</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/03_frame_5307.jpg" alt="원주각과 중심각의 성질" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">03. 원주각 = 중심각 × 1/2</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/04_frame_7298.jpg" alt="반원에 대한 원주각 90도" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">04. 지름에 대한 원주각 = 90°</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/05_frame_9289.jpg" alt="원 내접사각형 대각의 합 180도" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">05. 원 내접사각형 대각의 합 = 180°</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/06_frame_11279.jpg" alt="접선과 현이 이루는 각(접현각)" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">06. 접선과 현이 이루는 접현각</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/07_frame_13270.jpg" alt="방멱정리 (원과 비례)" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">07. 원과 비례 (방멱정리 PA·PB = PC·PD)</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v35/08_frame_15261.jpg" alt="수능 삼각함수 도형 실전 연계" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">08. 사인·코사인법칙 결합 수능 기출</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manim Code Box -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0;">
+            🎬 Manim 수학 애니메이션 코드 (Python)
+          </h3>
+          <button onclick="copyCode('manimCodeLec35')" style="padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.8rem; cursor: pointer;">
+            코드 복사
+          </button>
+        </div>
+        <pre style="background: #080d17; padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); overflow-x: auto; font-size: 0.84rem; color: #93c5fd; max-height: 280px;"><code id="manimCodeLec35">__MANIM_CODE_35__</code></pre>
+      </div>
+
+      <!-- Video Stream & External Link -->
+      <div class="glass-card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px;">
+          📺 강의 영상 스트림
+        </h3>
+        <div style="border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); max-width: 720px; margin: 0 auto 16px;">
+          <video controls preload="metadata" style="width: 100%; display: block;">
+            <source src="lecture_video35.mp4" type="video/mp4">
+            브라우저가 비디오 재생을 지원하지 않습니다.
+          </video>
+        </div>
+        <div style="text-align: center;">
+          <a href="https://youtu.be/blXSMMZ9Sak" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.88rem; text-decoration: none;">
+            🌐 YouTube에서 원본 영상 보기
+          </a>
+        </div>
+      </div>
+    </div>

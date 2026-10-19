@@ -1,0 +1,139 @@
+    <!-- ==================== LECTURE 34 VIEW ==================== -->
+    <div id="lecture34View" class="lecture-view-container" style="display: none;">
+      <!-- Title & Hero Banner -->
+      <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #a855f7;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <span class="badge-pill" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border-color: rgba(168, 85, 247, 0.4);">
+            기하 & 미적분 · 중학도형 총정리
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.85rem;">⚡ 수능 삼각함수 도형 및 미적분 필수 기본기</span>
+        </div>
+        <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          제34강 · 중학도형 핵심 총정리 · 각의 이등분선과 닮음
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          고교 수학 1등급을 가르는 중학 기하의 핵심! 삼각형의 내각의 이등분선 정리 $AB : AC = BD : CD$, 무게중심의 $2:1$ 분할과 6등분 면적, 외심과 내심의 핵심 성질을 직관적인 기하 시뮬레이터로 완벽 복습합니다.
+        </p>
+      </div>
+
+      <!-- Simulator Section -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin: 0 0 4px 0;">
+              🧪 각의 이등분선 정리 & 동적 삼각형 인터랙티브 검증기
+            </h3>
+            <p style="color: var(--text-dim); font-size: 0.84rem; margin: 0;">
+              꼭짓점 $A$의 위치를 자유롭게 이동시켜도 $AB:AC = BD:CD$ 비율이 항상 완벽히 일치함을 확인하세요.
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls Row -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 240px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #fbbf24; font-weight: 700;">꼭짓점 A 가로 위치 (X):</span>
+            <input type="range" min="150" max="450" step="5" value="240" oninput="updateL34Ax(this.value)" style="flex: 1; accent-color: #fbbf24;">
+            <span id="lblL34Ax" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 35px;">240</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 240px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 700;">꼭짓점 A 높이 (Y):</span>
+            <input type="range" min="50" max="220" step="5" value="100" oninput="updateL34Ay(this.value)" style="flex: 1; accent-color: #38bdf8;">
+            <span id="lblL34Ay" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 35px;">100</span>
+          </div>
+        </div>
+
+        <!-- Canvas -->
+        <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080d17;">
+          <canvas id="cvsLec34" style="width: 100%; display: block;"></canvas>
+        </div>
+
+        <!-- Live Math Stats Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px;">
+          <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #7dd3fc; font-weight: 700; text-transform: uppercase;">두 변의 길이비 (AB / AC)</div>
+            <div id="statL34AB_AC" style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-top: 4px;">AB/AC = 0.750</div>
+          </div>
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fda4af; font-weight: 700; text-transform: uppercase;">밑변의 분할비 (BD / CD)</div>
+            <div id="statL34BD_CD" style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-top: 4px;">BD/CD = 0.750</div>
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fde047; font-weight: 700; text-transform: uppercase;">기하학적 항등식 판정</div>
+            <div id="statL34Equal" style="font-size: 0.95rem; font-weight: 800; color: #fbbf24; margin-top: 4px;">비율 완벽 일치</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyframe Captures Gallery -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px;">
+          📸 핵심 강의 칠판 필기 캡처 (8단계)
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/01_mid_geom_1801.jpg" alt="이등변삼각형의 성질" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">01. 이등변삼각형의 수직이등분선</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/02_mid_geom_4503.jpg" alt="내각의 이등분선 정리" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">02. 내각의 이등분선 AB:AC = BD:CD</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/03_mid_geom_7205.jpg" alt="외각의 이등분선 정리" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">03. 외각의 이등분선 분할비</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/04_mid_geom_9907.jpg" alt="삼각형의 무게중심" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">04. 무게중심 2:1 내분과 6등분 넓이</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/05_mid_geom_12609.jpg" alt="외심과 내심의 정의" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">05. 외심(수직이등분선)과 내심(각이등분선)</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/06_mid_geom_15311.jpg" alt="직각삼각형의 외심" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">06. 직각삼각형 빗변의 중점 = 외심</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/07_mid_geom_18013.jpg" alt="닮음비와 넓이비" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">07. 닮음비 m:n과 넓이비 m^2:n^2</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v34/08_mid_geom_20715.jpg" alt="수능 기하 적용 마스터" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">08. 수능 삼각함수 도형 기출 적용</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manim Code Box -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0;">
+            🎬 Manim 수학 애니메이션 코드 (Python)
+          </h3>
+          <button onclick="copyCode('manimCodeLec34')" style="padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.8rem; cursor: pointer;">
+            코드 복사
+          </button>
+        </div>
+        <pre style="background: #080d17; padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); overflow-x: auto; font-size: 0.84rem; color: #93c5fd; max-height: 280px;"><code id="manimCodeLec34">__MANIM_CODE_34__</code></pre>
+      </div>
+
+      <!-- Video Stream & External Link -->
+      <div class="glass-card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px;">
+          📺 강의 영상 스트림
+        </h3>
+        <div style="border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); max-width: 720px; margin: 0 auto 16px;">
+          <video controls preload="metadata" style="width: 100%; display: block;">
+            <source src="lecture_video34.mp4" type="video/mp4">
+            브라우저가 비디오 재생을 지원하지 않습니다.
+          </video>
+        </div>
+        <div style="text-align: center;">
+          <a href="https://youtu.be/UU60Klvyl3g" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.88rem; text-decoration: none;">
+            🌐 YouTube에서 원본 영상 보기
+          </a>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,247 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 21 (TRIG RATIO RELATIONS: 8-BOX MATRIX)     -->
+    <!-- ============================================================== -->
+    <div id="lecture21View">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제21강 · 다정수학 (수능 수학 I 킬러 실전 비기)
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          삼각함수에서도 “비율관계”를 사용하는 방법 (8칸 박스와 $1:2$ 분할의 마법)
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "삼차함수에만 비율관계가 있는 게 아니다! 삼각함수 1주기(8칸 박스) 안에도 완벽한 황금 비율이 존재한다!"<br>
+          수능 평가원 킬러 삼각방정식을 3초 만에 암산하는 3대 절대 법칙:<br>
+          <strong>높이 절반($y=1/2$) 가로 $1:2$ 분할($x=\pi/6$) · 높이 $\frac{\sqrt{3}}{2}$ 가로 $2:1$ 분할($x=\pi/3$) · 높이 $\frac{\sqrt{2}}{2}$ 정중앙($x=\pi/4$)</strong>을 실시간 인터랙티브 시뮬레이터로 완벽 체득합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 삼각함수 8칸 박스 1사분면 황금 비율관계 매트릭스
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1. 높이 절반 $y = 1/2$</div>
+            <div style="color: #facc15; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$x = \pi/6$ ($1:2$ 내분)</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">1사분면 길이의 정확한 $1/3$ 지점</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2. 높이 $y = \sqrt{2}/2$</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$x = \pi/4$ ($1:1$ 정중앙)</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">1사분면 가로 길이의 완벽한 이등분점</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3. 높이 $y = \sqrt{3}/2$</div>
+            <div style="color: #f43f5e; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$x = \pi/3$ ($2:1$ 내분)</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">1사분면 길이의 $2/3$ 지점 극대 근접</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">4. 최댓값 $y = 1$</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$x = \pi/2$ (접선 기울기 0)</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">좌우 선대칭 축이자 극대 꼭짓점</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 21 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL21_1" onclick="switchL21Tab(1)">
+          <span>⚡ 인터랙티브 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL21_2" onclick="switchL21Tab(2)">
+          <span>📸 9단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL21_3" onclick="switchL21Tab(3)">
+          <span>📐 수학적 원리 &amp; 8칸 공식</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL21_4" onclick="switchL21Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL21_5" onclick="switchL21Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL21_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec21" width="600" height="380"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 캔버스 위를 마우스로 올리거나 드래그하여 각도와 높이 비율을 실시간 관찰하세요.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 황금 분할 높이 타겟팅 (Target Levels)
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL21_tgt_half" onclick="setL21Target(0.5)">
+                  <span>$y = 1/2$ (절반 높이)</span>
+                  <span class="p-sub">★ $x=\pi/6$ ($1:2$ 분할)</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL21_tgt_sq2" onclick="setL21Target(Math.SQRT1_2)">
+                  <span>$y = \sqrt{2}/2 \approx 0.707$</span>
+                  <span class="p-sub">$x=\pi/4$ ($1:1$ 정중앙)</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL21_tgt_sq3" onclick="setL21Target(Math.sqrt(3)/2)">
+                  <span>$y = \sqrt{3}/2 \approx 0.866$</span>
+                  <span class="p-sub">$x=\pi/3$ ($2:1$ 분할)</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL21_tgt_all" onclick="setL21Target('all')">
+                  <span>전체 특수각 동시 표시</span>
+                  <span class="p-sub">8칸 박스 전체 오버레이</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">진폭 및 주기 조절</span>
+              </div>
+              <div class="slider-row">
+                <label>진폭 $A$:</label>
+                <input type="range" id="slL21_amp" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updateL21()">
+                <span class="slider-val" id="valL21_amp">1.0</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>주기 배수 $\omega$:</label>
+                <input type="range" id="slL21_freq" min="0.5" max="2.0" step="0.25" value="1.0" oninput="updateL21()">
+                <span class="slider-val" id="valL21_freq">1.0</span>
+              </div>
+              <div style="margin-top: 12px; display: flex; gap: 10px;">
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: #cbd5e1; cursor: pointer;">
+                  <input type="checkbox" id="chkL21_grid" checked onchange="updateL21()">
+                  8칸 박스 격자 표시
+                </label>
+                <label style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: #cbd5e1; cursor: pointer;">
+                  <input type="checkbox" id="chkL21_ratio" checked onchange="updateL21()">
+                  $1:2$ 비율 브래킷 표시
+                </label>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 분석 데이터 (Live Measurement)
+              </div>
+              <div id="statL21_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 1사분면 폭 ($T/4$): <strong style="color: #38bdf8;">$\pi/2 \approx 1.571$</strong></div>
+                <div>• $y = 0.5$ 도달 지점: <strong style="color: #f43f5e;">$x = \pi/6 \approx 0.524$</strong></div>
+                <div>• 가로 구간 분할 비율: <strong style="color: #facc15;">1.00 : 2.00 (1 : 2 정밀 일치)</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL21_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 9단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:25] 인트로: "삼각함수에서도 비율관계를 쓸 수 있다?!"</div>
+              <img src="captures_v21/01_intro_ratio_concept.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">삼차함수에만 있는 줄 알았던 비율관계가 수능 킬러 삼각함수 그래프에도 동일하게 적용됨을 밝힙니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:50] 삼차함수 vs 삼각함수 비율 비교</div>
+              <img src="captures_v21/02_cubic_vs_trig_ratio.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_compare">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">삼차함수의 극값-변곡점 $1:1:1$ 분할과 삼각함수의 4분주기 분할 구조를 직관적으로 비교합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [04:00] 8칸 박스법의 표준화</div>
+              <img src="captures_v21/03_eight_box_division.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_eight_box">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">진폭 $A$와 주기 $T$에 의해 결정되는 가로 4등분, 세로 2등분의 직사각형 8칸 박스를 작도합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [06:30] 특수각과 높이의 비례 관계</div>
+              <img src="captures_v21/04_ratio_special_angles.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_special_angles">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">$\sin 30^\circ = 1/2$, $\sin 45^\circ = \sqrt{2}/2$, $\sin 60^\circ = \sqrt{3}/2$가 박스 내에서 어떻게 가로 길이를 분할하는지 시각화합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [09:00] 높이 절반의 $1:2$ 분할 법칙 (핵심)</div>
+              <img src="captures_v21/05_half_height_one_third.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_half_height">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">높이가 절반($y=1/2$)일 때 가로축은 정확히 $1/3$과 $2/3$로 쪼개지는 $1:2$ 비율이 성립함을 엄밀히 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [11:30] 변곡접선과 대칭축의 역할</div>
+              <img src="captures_v21/06_symmetry_inflection_tangent.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_symmetry">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">중심선과의 교점(변곡점)과 극대/극소(대칭축)를 기준으로 한 좌우 대칭성을 공식화합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [14:00] 실전 문제 속도전 풀이</div>
+              <img src="captures_v21/07_exam_speed_solving.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_speed_solving">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">실제 모의고사 기출문제에서 방정식을 세우지 않고 8칸 박스 눈금만으로 근을 암산하는 시연을 보입니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [16:30] 수능 킬러 복합 문항 적용</div>
+              <img src="captures_v21/08_csat_killer_application.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_killer_app">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">주기 $\omega$와 평행이동이 섞인 고난도 4점 문항에서 비율관계를 통해 미지수를 일거에 소거합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [19:10] 삼각함수 비율관계 최종 정리</div>
+              <img src="captures_v21/09_final_ratio_formula.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_final_formula">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">3등분점($1/2, \sqrt{3}/2$)과 2등분점($\sqrt{2}/2$)을 외우는 암기법을 정리하며 강의를 마무리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL21_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 8칸 황금 비율 유도</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 삼각함수 1주기의 8칸 분할 구조</strong></p>
+            <p>$y = A \sin(\omega x) + B$의 기본 주기 $T = \frac{2\pi}{\omega}$는 $x$축 방향으로 $4$등분되어 각 구간의 길이는 $\frac{T}{4}$가 됩니다. 진폭 $A$에 의해 세로 방향으로 $2$등분되므로, 전체 1주기는 $4 \times 2 = 8$칸의 직사각형 매트릭스로 분할됩니다.</p>
+            
+            <p style="margin-top: 15px;"><strong>2. 높이 절반($y = A/2$)의 $1 : 2$ 가로 분할 증명</strong></p>
+            <p>원점 $(0,0)$에서 극대점 $(\pi/2, 1)$까지의 1사분면 구간에서:</p>
+            $$\sin x = \frac{1}{2} \iff x = \frac{\pi}{6} = \frac{1}{3} \times \frac{\pi}{2}$$
+            <p>따라서 원점부터 $x = \pi/6$까지의 거리는 $1$단위이고, $x = \pi/6$부터 대칭축 $x = \pi/2$까지의 거리는:</p>
+            $$\frac{\pi}{2} - \frac{\pi}{6} = \frac{2\pi}{6} = \frac{\pi}{3} = 2\text{단위}$$
+            <p>즉, <strong>가로 길이가 정확히 $1 : 2$로 내분</strong>됩니다!</p>
+
+            <p style="margin-top: 15px;"><strong>3. 높이 $\frac{\sqrt{3}}{2}$의 $2 : 1$ 가로 분할 증명</strong></p>
+            $$\sin x = \frac{\sqrt{3}}{2} \iff x = \frac{\pi}{3} = \frac{2}{3} \times \frac{\pi}{2}$$
+            <p>원점에서 $2$단위, 극대점까지 $1$단위이므로 $2 : 1$ 내분이 성립합니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL21_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode21()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre21" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_21__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL21_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video21.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/F_I1QJPWol8" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (다정수학)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,235 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 24 (TOP-TIER THINKING: SINE & COSINE RULES) -->
+    <!-- ============================================================== -->
+    <div id="lecture24View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제24강 · 사오수학 (수능 수학 I 킬러 실전 비기)
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          도형 문제를 풀 때 최상위권들이 '반드시' 하는 생각 (사인·코사인법칙의 필연성)
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "삼각함수 도형 문제만 나오면 우왕좌왕 헤매다 계산 실수로 무너지지 마라!"<br>
+          2024학년도 수능 13번을 통해 밝히는 1등급 최상위권의 단 1가지 필연적 사고 알고리즘:<br>
+          <strong>공통선분(Common Segment) 미지수 우선 법칙 · 비(非)끼인각 코사인 2차 방정식과 인수분해 설계 · 사인법칙과 외접원 연결</strong>을 실시간 동적 기하 시뮬레이터로 마스터합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 수능 삼각함수 도형 킬러 3대 필연적 결정 매트릭스
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1. 미지수 선택의 필연성</div>
+            <div style="color: #facc15; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">공통선분 $x$ 우선 원칙</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">두 삼각형을 연결하므로 정보량 2배</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2. 비끼인각 코사인 법칙</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$x^2 - 3x - 4 = 0$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">평가원 출제 원리상 100% 인수분해</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3. 공통변 결정 $\implies x = 4$</div>
+            <div style="color: #f43f5e; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">도미노 연쇄 해결</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">인접 삼각형 정보가 한 번에 해금</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">4. 사인법칙 연결 고리</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$\frac{a}{\sin A} = 2R$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">각도 환산 없이 대변 길이비로 즉시 답 도출</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 24 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL24_1" onclick="switchL24Tab(1)">
+          <span>⚡ 동적 기하 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL24_2" onclick="switchL24Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL24_3" onclick="switchL24Tab(3)">
+          <span>📐 수학적 원리 &amp; 수능 13번 풀이</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL24_4" onclick="switchL24Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL24_5" onclick="switchL24Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL24_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec24" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 모드 버튼을 클릭해 1등급 최상위권의 필연적 시선과 비끼인각 코사인 2차 방정식을 검증하세요.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 최상위권의 사고 판단 모드 (Decision Mode)
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL24_mode1" onclick="setL24Mode(1)">
+                  <span>1. 1등급의 선택: 공통선분 $x$ 미지수 지정</span>
+                  <span class="p-sub">코사인 법칙 $\implies x^2 - 3x - 4 = 0 \implies x = 4$ 확정</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL24_mode2" onclick="setL24Mode(2)">
+                  <span>2. 중하위권의 실수: 각 $\beta$ 미지수 지정의 함정</span>
+                  <span class="p-sub">인접 삼각형과 연결되지 않아 계산 불능 및 시간 낭비</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL24_mode3" onclick="setL24Mode(3)">
+                  <span>3. 사인법칙 결합 및 외접원($2R$) 연계</span>
+                  <span class="p-sub">외접원 반지름과 대변 길이비로 $\sin \alpha$ 최종 완성</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">도형 파라미터 조절</span>
+              </div>
+              <div class="slider-row">
+                <label>기준 각도 $\angle B$:</label>
+                <input type="range" id="slL24_angle" min="40" max="80" step="1" value="60" oninput="updateL24()">
+                <span class="slider-val" id="valL24_angle">60°</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>변 $c = \overline{AB}$:</label>
+                <input type="range" id="slL24_ab" min="2.0" max="4.5" step="0.1" value="3.0" oninput="updateL24()">
+                <span class="slider-val" id="valL24_ab">3.0</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 수식 분석 (Live Audit)
+              </div>
+              <div id="statL24_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 코사인 2차 방정식: <strong style="color: #38bdf8;">$x^2 - 3.0x - 4.0 = 0$</strong></div>
+                <div>• 공통선분 해: <strong style="color: #34d399;">$x = 4.00$</strong> (음수해 $-1$ 제외)</div>
+                <div>• $\triangle ABC$ 넓이 $S_1 = $ <strong style="color: #f43f5e;">$3\sqrt{3} \approx 5.196$</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL24_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:30] 인트로: 2024학년도 수능 13번 도형 문제와 1등급의 시선</div>
+              <img src="captures_v24/01_intro_csat13_analysis.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">학생들이 시험장에서 가장 흠칫하는 삼각함수 활용 킬러 문항을 소개하고, 1등급 학생들의 생각 차이를 밝힙니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:30] 문제 조건 정리와 주어진 도형 분석</div>
+              <img src="captures_v24/02_problem_setup_diagram.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_setup">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">주어진 길이(3, √13), 특수각 π/3, 넓이 비율 조건 및 구하고자 하는 각 α를 도형에 명확히 표기합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [02:40] 코사인 법칙을 '왜' 쓰는가? (기계적 적용 vs 필연적 이유)</div>
+              <img src="captures_v24/03_why_cosine_rule.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_why_cosine">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">"각이 주어졌다고 무조건 코사인 법칙을 쓰는 것이 아니다!" 세 변과 한 각의 4요소 중 3요소가 채워졌는지를 점검하는 필연적 이유를 제시합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [03:50] 넓이 $S_1$ 표현의 2가지 갈림길 (선분 변 vs 각 β)</div>
+              <img src="captures_v24/04_s1_two_choices_ac_vs_beta.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_two_choices">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">S1을 표현할 때 공통선분을 미지수로 둘지, 각을 미지수로 둘지 선택의 갈림길을 짚어냅니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [05:10] 공통선분의 중요성과 정보 결합</div>
+              <img src="captures_v24/05_common_chord_information.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_common_chord">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">공통선분은 2개 이상의 삼각형에 동시에 공유되므로, 이를 확정하면 인접 삼각형의 미지수가 도미노처럼 풀림을 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [06:20] 비(非)끼인각 코사인법칙과 2차 방정식 유도</div>
+              <img src="captures_v24/06_non_included_angle_quadratic.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_quadratic">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">비끼인각 코사인법칙으로부터 x^2 - 3x - 4 = 0이라는 깔끔한 2차 방정식을 도출합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [07:30] 인수분해를 통한 선분 길이 확정</div>
+              <img src="captures_v24/07_factoring_to_find_length.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_factoring">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">(x - 4)(x + 1) = 0 으로부터 공통선분의 길이가 x = 4로 명쾌하게 확정됩니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [08:30] 사인법칙과 외접원 반지름(2R)의 연결 고리</div>
+              <img src="captures_v24/08_sine_rule_circumcircle_link.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_sine_rule">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">사인법칙을 결합하여 각의 크기를 몰라도 대변과 비율 관계만으로 각을 치환하는 테크닉을 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [09:30] sin α와 최종 답 도출 과정</div>
+              <img src="captures_v24/09_final_ratio_answer.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_final_answer">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">넓이 비율과 사인법칙을 결합하여 평가원 정답을 실수 없이 완벽하게 계산합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [10:20] 1등급의 도형 문제 해결 1가지 필연적 사고 알고리즘 요약</div>
+              <img src="captures_v24/10_top_tier_thinking_process.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_summary">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">"선택지가 많을수록 정보량이 많은 미지수를 선택하라!"는 1등급의 황금 규칙을 마스터 카드로 최종 정리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL24_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 2024 수능 13번 완전 해설</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 비(非)끼인각에서의 코사인 법칙 2차 방정식 유도</strong></p>
+            <p>삼각형 $ABC$에서 $\overline{AB} = 3$, $\overline{AC} = \sqrt{13}$, $\angle B = \frac{\pi}{3}$가 주어졌을 때, 마주보는 대변에 대해 코사인 법칙을 적용하면:</p>
+            $$\overline{AC}^2 = \overline{AB}^2 + \overline{BC}^2 - 2 \cdot \overline{AB} \cdot \overline{BC} \cdot \cos B$$
+            $$13 = 3^2 + x^2 - 2 \cdot 3 \cdot x \cdot \cos\left(\frac{\pi}{3}\right)$$
+            $$13 = 9 + x^2 - 3x \iff x^2 - 3x - 4 = 0$$
+            $$(x - 4)(x + 1) = 0 \implies x = 4 \quad (\because x > 0)$$
+            <p>따라서 <strong>공통선분 $\overline{BC}$의 길이는 정확히 $4$</strong>가 됩니다!</p>
+
+            <p style="margin-top: 15px;"><strong>2. 왜 각 $\beta$ 대신 변 $x$를 미지수로 두어야 하는가?</strong></p>
+            <p>만약 넓이를 $S_1 = \frac{1}{2} \cdot 3 \cdot \sqrt{13} \cdot \sin \beta$로 표현하면, $\beta$는 삼각형 $ABC$ 내부에만 갇혀 있어 인접 삼각형 $ACD$와의 어떠한 기하학적 연결 고리도 형성하지 못합니다. 반면 공통변 $\overline{BC}$를 구하면 전체 사각형의 외접원 및 $S_2$의 넓이와 직결되어 문제가 한 번에 해결됩니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL24_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode24()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre24" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_24__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL24_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video24.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/M6ngQiHlH2M" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (사오수학)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

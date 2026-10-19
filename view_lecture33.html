@@ -1,0 +1,155 @@
+    <!-- ==================== LECTURE 33 VIEW ==================== -->
+    <div id="lecture33View" class="lecture-view-container" style="display: none;">
+      <!-- Title & Hero Banner -->
+      <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #fb923c;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <span class="badge-pill" style="background: rgba(251, 146, 60, 0.2); color: #fb923c; border-color: rgba(251, 146, 60, 0.4);">
+            수학 II · 다항함수의 적분법 & 정적분의 활용
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.85rem;">⚡ 수능 수학 킬러 개념 통찰</span>
+        </div>
+        <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          제33강 · 정적분의 본질 · 넓이 vs 함숫값의 이중성
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          "적분을 넓이로만 본다? 당신은 하수입니다." 정적분 $\int_a^x f(t)dt$를 피적분함수의 <strong>부호 있는 넓이(Signed Area)</strong>와 
+          원함수 $g(x)$의 <strong>함숫값 높이 변화량 $g(x) - g(a)$</strong>이라는 두 가지 시각으로 자유자재로 넘나들며 해석하는 평가원 킬러 정복의 열쇠입니다.
+        </p>
+      </div>
+
+      <!-- Simulator Section -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin: 0 0 4px 0;">
+              🧪 피적분함수 넓이 ↔ 원함수 높이 상하 연동 시뮬레이터
+            </h3>
+            <p style="color: var(--text-dim); font-size: 0.84rem; margin: 0;">
+              상한선 $x$를 움직여 $x$축 아래 영역으로 진입할 때 정적분 값이 왜 감소하는지, $g(x)$의 극대/극소와 어떻게 연동되는지 직관적으로 확인하세요.
+            </p>
+          </div>
+          <!-- Presets -->
+          <div style="display: flex; gap: 8px;">
+            <button onclick="setL33Preset(2.0)" style="padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.82rem; cursor: pointer;">
+              x=2.0 (증가 중)
+            </button>
+            <button onclick="setL33Preset(3.0)" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #38bdf8; background: rgba(56,189,248,0.2); color: #38bdf8; font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+              x=3.0 (극댓값 피크)
+            </button>
+            <button onclick="setL33Preset(5.0)" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #fb7185; background: rgba(244,63,94,0.2); color: #fb7185; font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+              x=5.0 (상쇄 0점)
+            </button>
+          </div>
+        </div>
+
+        <!-- Slider Row -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 20px; align-items: center;">
+          <span style="font-size: 0.88rem; color: #fbbf24; font-weight: 700;">적분 상한 x 조절:</span>
+          <input id="sliderL33X" type="range" min="1.0" max="5.2" step="0.05" value="3.0" oninput="updateL33X(this.value)" style="flex: 1; accent-color: #fbbf24;">
+          <span id="lblL33X" style="font-size: 0.95rem; color: #fff; font-weight: 800; min-width: 45px;">3.00</span>
+        </div>
+
+        <!-- Canvas -->
+        <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080d17;">
+          <canvas id="cvsLec33" style="width: 100%; display: block;"></canvas>
+        </div>
+
+        <!-- Real-time Comparison Metrics -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-top: 16px;">
+          <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.75rem; color: #7dd3fc; font-weight: 700; text-transform: uppercase;">정적분 값 (Signed Area = g(x))</div>
+            <div id="statL33Signed" style="font-size: 1.25rem; font-weight: 800; color: #38bdf8; margin-top: 4px;">+2.00</div>
+          </div>
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.75rem; color: #fda4af; font-weight: 700; text-transform: uppercase;">순수 기하학적 넓이 (∫|f(t)|dt)</div>
+            <div id="statL33Geom" style="font-size: 1.25rem; font-weight: 800; color: #fb7185; margin-top: 4px;">2.00</div>
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.75rem; color: #fde047; font-weight: 700; text-transform: uppercase;">도함수 g'(x) = f(x) 증감 상태</div>
+            <div id="statL33Deriv" style="font-size: 0.95rem; font-weight: 800; color: #fbbf24; margin-top: 6px;">
+              f(3) ≈ 0 (극댓값 도달)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyframe Captures Gallery -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px;">
+          📸 핵심 강의 칠판 필기 캡처 (10단계)
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/01_frame_966.jpg" alt="적분을 넓이로만 보는 고정관념 타파" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">01. 정적분의 하수적 관점 탈피</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/02_frame_2175.jpg" alt="주인공의 분리: f(t) vs F(x)" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">02. 두 주인공의 분리 (넓이 vs 함숫값)</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/03_frame_3383.jpg" alt="정적분으로 정의된 함수의 미분" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">03. g'(x) = f(x) 도함수의 직관적 해석</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/04_frame_4592.jpg" alt="부호 변화와 극점의 형성" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">04. f(t)의 부호 변화와 원함수의 극점</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/05_frame_5800.jpg" alt="3차함수 삼차곡선 두 영역의 넓이비" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">05. 3차함수 두 영역 넓이와 높이차</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/06_frame_7009.jpg" alt="절댓값 미분가능성과의 연계" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">06. |g(x) - k| 절댓값 미분가능성 킬러</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/07_frame_8217.jpg" alt="수능 기출 실전 문항 1차 분석" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">07. 평가원 기출 킬러 실전 적용</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/08_frame_9426.jpg" alt="암산 수준의 개형 추론 테크닉" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">08. 그래프 개형만으로 정답 도출</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/09_frame_10634.jpg" alt="계산 지옥 탈출과 검산" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">09. 적분 계산 노가다 방지 및 검산</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v33/10_frame_11480.jpg" alt="수능 1등급 적분 마인드셋 완성" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">10. 수능 1등급 적분 마인드셋 완성</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manim Code Box -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0;">
+            🎬 Manim 수학 애니메이션 코드 (Python)
+          </h3>
+          <button onclick="copyCode('manimCodeLec33')" style="padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.8rem; cursor: pointer;">
+            코드 복사
+          </button>
+        </div>
+        <pre style="background: #080d17; padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); overflow-x: auto; font-size: 0.84rem; color: #93c5fd; max-height: 280px;"><code id="manimCodeLec33">__MANIM_CODE_33__</code></pre>
+      </div>
+
+      <!-- Video Stream & External Link -->
+      <div class="glass-card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px;">
+          📺 강의 영상 스트림
+        </h3>
+        <div style="border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); max-width: 720px; margin: 0 auto 16px;">
+          <video controls preload="metadata" style="width: 100%; display: block;">
+            <source src="lecture_video33.mp4" type="video/mp4">
+            브라우저가 비디오 재생을 지원하지 않습니다.
+          </video>
+        </div>
+        <div style="text-align: center;">
+          <a href="https://youtu.be/ihZz5SwynTM" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.88rem; text-decoration: none;">
+            🌐 YouTube에서 원본 영상 보기
+          </a>
+        </div>
+      </div>
+    </div>

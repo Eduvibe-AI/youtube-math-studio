@@ -1,0 +1,220 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 30 (LAW OF COSINES LAB)                    -->
+    <!-- ============================================================== -->
+    <div id="lecture30View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제30강 · 수능 수학 I 삼각함수 활용 핵심 마스터
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          삼각함수 활용 · 코사인법칙의 원리와 기하학적 직관
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "도형 문제에서 코사인법칙은 도대체 '언제' 쓰는가?"<br>
+          피타고라스 정리를 일반 삼각형으로 확장한 수능 삼각함수 기하의 불변의 원리:<br>
+          <strong>두 변과 끼인각(SAS) 대변 공식 · 세 변의 길이(SSS) 각도 변형 공식 · 예각·둔각 삼각형 판별법</strong>을 실시간 동적 기하 캔버스로 체득합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 코사인법칙 2대 표준 공식 &amp; 사용 결정 매트릭스
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1. 길이 산출형 (표준형)</div>
+            <div style="color: #facc15; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$a^2 = b^2 + c^2 - 2bc \cos A$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">두 변과 끼인각(SAS) 주어졌을 때</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2. 각도 산출형 (변형형)</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$\cos A = \frac{b^2 + c^2 - a^2}{2bc}$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">세 변의 길이(SSS) 주어졌을 때</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3. 예각·둔각 판정법</div>
+            <div style="color: #f43f5e; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$a^2 \lessgtr b^2 + c^2$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$\cos A$의 부호($+$, $0$, $-$)로 즉시 판별</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">4. 피타고라스 정리의 확장</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$A = 90^\circ \implies \cos A = 0$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">직각삼각형의 완전한 일반화</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 30 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL30_1" onclick="switchL30Tab(1)">
+          <span>⚡ 코사인법칙 기하 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL30_2" onclick="switchL30Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL30_3" onclick="switchL30Tab(3)">
+          <span>📐 수학적 원리 &amp; 수선의 발 유도</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL30_4" onclick="switchL30Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL30_5" onclick="switchL30Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL30_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec30" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 슬라이더로 두 변 $b, c$와 끼인각 $A$를 조절하면 대변 $a$와 코사인법칙 계산이 실시간 업데이트됩니다.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 삼각형 파라미터 조절 (SAS Controller)
+              </div>
+              <div class="slider-row">
+                <label>끼인각 $\angle A$:</label>
+                <input type="range" id="slL30_angle" min="20" max="150" step="1" value="60" oninput="updateL30()">
+                <span class="slider-val" id="valL30_angle">60°</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>변 $b = \overline{AC}$:</label>
+                <input type="range" id="slL30_b" min="2.0" max="6.0" step="0.1" value="4.0" oninput="updateL30()">
+                <span class="slider-val" id="valL30_b">4.0</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>변 $c = \overline{AB}$:</label>
+                <input type="range" id="slL30_c" min="2.0" max="6.0" step="0.1" value="5.0" oninput="updateL30()">
+                <span class="slider-val" id="valL30_c">5.0</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 코사인법칙 계산 (Live Computation)
+              </div>
+              <div id="statL30_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 코사인값: <strong style="color: #38bdf8;">$\cos 60^\circ = 0.500$</strong></div>
+                <div>• 대변 계산: <strong style="color: #facc15;">$a^2 = 4^2 + 5^2 - 2(4)(5)(0.5) = 21$</strong></div>
+                <div>• 대변 길이: <strong style="color: #34d399; font-size: 1.05rem;">$a = \sqrt{21} \approx 4.58$</strong></div>
+                <div>• 삼각형 형태: <strong style="color: #38bdf8;">예각삼각형 (Acute)</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL30_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:20] 코사인법칙의 소개와 중요성</div>
+              <img src="captures_v30/01_cosine_rule_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">피타고라스 정리를 일반적인 모든 삼각형으로 확장한 코사인법칙의 기하학적 위상을 소개합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:10] 코사인법칙을 '언제' 쓰는가? 3대 조건</div>
+              <img src="captures_v30/02_when_to_use_cosine_rule.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_when">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">주어진 조건(SAS, SSS, 비끼인각)을 보고 연필을 들기 전 코사인법칙을 확신하는 시선을 제시합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [02:20] 직각삼각형 분할을 통한 코사인법칙 유도</div>
+              <img src="captures_v30/03_standard_formula_derivation.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_derivation">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">꼭짓점에서 수선의 발을 내려 피타고라스 정리를 적용해 공식을 유도합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [03:40] 두 변과 끼인각(SAS) 적용 실전 예제</div>
+              <img src="captures_v30/04_sas_case_example.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_sas">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">b=5, c=8, A=60도일 때 대변 a의 길이를 10초 만에 계산하는 표준 풀이를 시연합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [05:00] 세 변의 길이(SSS)로 각도 구하기 (변형 공식)</div>
+              <img src="captures_v30/05_sss_case_cos_formula.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_sss">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">세 변의 길이로부터 cos A를 구하고 이를 통해 넓이까지 확장합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [06:20] 코사인 부호를 통한 삼각형 형태 판별</div>
+              <img src="captures_v30/06_triangle_obtuse_acute_test.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_test">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">cos A > 0이면 예각, cos A = 0이면 직각, cos A < 0이면 둔각이 되는 판별법을 정리합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [07:30] 사인법칙 vs 코사인법칙 선택 기준 가이드</div>
+              <img src="captures_v30/07_sine_vs_cosine_decision.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_compare">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">외접원이나 마주보는 한 쌍이 있으면 사인법칙, 끼인각이나 세 변이 있으면 코사인법칙을 쓰는 구분 기준을 제시합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [08:40] 수능·내신 기출 도형 복합 응용</div>
+              <img src="captures_v30/08_csat_applied_problem.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_applied">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">사각형이나 원에 내접하는 복합 다각형에서 보조선을 그어 코사인법칙을 연쇄 적용하는 비기를 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [09:40] 계산 실수 방지 및 특수각 단축 팁</div>
+              <img src="captures_v30/09_calculation_shortcut_tip.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_tips">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">둔각 코사인 부호 실수를 원천 차단하는 계산 팁을 전수합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [10:20] 코사인법칙 올인원 요약</div>
+              <img src="captures_v30/10_cosine_rule_master_summary.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_summary">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">시험장에서 즉각 적용할 수 있는 코사인법칙 공식을 마스터 카드로 최종 정리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL30_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 수선의 발 유도</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 직각삼각형 분할을 통한 대수적 유도</strong></p>
+            <p>삼각형 $ABC$의 꼭짓점 $C$에서 대변 $AB$에 내린 수선의 발을 $H$라 하면:</p>
+            $$CH = b \sin A, \quad AH = b \cos A, \quad BH = c - b \cos A$$
+            <p>직각삼각형 $BCH$에 피타고라스 정리를 적용하면:</p>
+            $$a^2 = CH^2 + BH^2 = (b \sin A)^2 + (c - b \cos A)^2$$
+            $$a^2 = b^2 \sin^2 A + c^2 - 2bc \cos A + b^2 \cos^2 A$$
+            $$a^2 = b^2 (\sin^2 A + \cos^2 A) + c^2 - 2bc \cos A$$
+            $$\therefore a^2 = b^2 + c^2 - 2bc \cos A$$
+            <p>$\sin^2 A + \cos^2 A = 1$에 의해 아름답게 증명됩니다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL30_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode30()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre30" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_30__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL30_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video30.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/Z-uQkyyWUAQ" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (사오수학)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

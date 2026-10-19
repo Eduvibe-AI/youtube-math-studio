@@ -1,0 +1,16 @@
+# Large media files (exceeding GitHub 100MB limit)
+*.mp4
+*.webm
+*.m4a
+*.mov
+*.avi
+
+# Python cache & temp files
+__pycache__/
+*.pyc
+*.pyo
+temp_*/
+
+# OS generated
+Thumbs.db
+.DS_Store

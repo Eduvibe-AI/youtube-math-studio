@@ -1,0 +1,195 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 31 (EXP & LOG FAST CONCEPT SUMMARY)        -->
+    <!-- ============================================================== -->
+    <div id="lecture31View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제31강 · 수능 수학 I 지수·로그 파이널 퀵 요약
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          지수함수와 로그함수 (수능 직전 초스피드 개념 총정리)
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "수능 시험장 30초 전, 지수와 로그의 핵심 거동을 완벽히 정리한다!"<br>
+          밑의 범위에 따른 그래프의 우상향/우하향 방향과 직선 $y=x$ 역함수 대칭:<br>
+          <strong>밑 $a > 1$ (증가) vs $0 < a < 1$ (감소) · 점근선($y=0$ vs $x=0$)과 반드시 지나는 정점 · 평행이동 공식</strong>을 실시간 동적 대칭 시뮬레이터로 점검합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 지수함수 vs 로그함수 4대 불변의 대칭 규칙
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1. 역함수 대칭</div>
+            <div style="color: #facc15; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$y = x$ 대칭</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$(x, y) \leftrightarrow (y, x)$ 완벽 포개어짐</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2. 정점 (Fixed Point)</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$(0, 1) \leftrightarrow (1, 0)$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">밑 $a$에 관계없이 항상 통과</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3. 점근선 (Asymptote)</div>
+            <div style="color: #f43f5e; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$y = 0 \leftrightarrow x = 0$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">수평 점근선 vs 수직 점근선</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">4. 증가·감소 방향</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$a > 1$ vs $0 < a < 1$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">우상향 증가 vs 우하향 감소</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 31 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL31_1" onclick="switchL31Tab(1)">
+          <span>⚡ 지수·로그 동적 대칭기</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL31_2" onclick="switchL31Tab(2)">
+          <span>📸 5단계 쇼츠 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL31_3" onclick="switchL31Tab(3)">
+          <span>📐 수학적 원리 &amp; 수능 체크표</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL31_4" onclick="switchL31Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL31_5" onclick="switchL31Tab(5)">
+          <span>📺 원본 쇼츠 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL31_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec31" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 밑 $a$를 바꾸면 지수함수(청색)와 로그함수(황색)가 $y=x$를 축으로 대칭 회전하는 모습을 실시간 관찰하세요.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 밑 $a$ 프리셋 선택 (Base Selector)
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL31_b1" onclick="setL31Base(2.0)">a = 2.0 (증가)</button>
+                <button type="button" class="preset-btn" id="btnL31_b2" onclick="setL31Base(3.0)">a = 3.0 (급격한 증가)</button>
+                <button type="button" class="preset-btn" id="btnL31_b3" onclick="setL31Base(0.5)">a = 0.5 (감소)</button>
+                <button type="button" class="preset-btn" id="btnL31_b4" onclick="setL31Base(0.33)">a = 1/3 (급격한 감소)</button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">기준 $x$ 좌표 추적</span>
+              </div>
+              <div class="slider-row">
+                <label>추적 좌표 $x$:</label>
+                <input type="range" id="slL31_x" min="0.2" max="3.0" step="0.1" value="1.5" oninput="updateL31()">
+                <span class="slider-val" id="valL31_x">1.5</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 역함수 대칭점 좌표 (Dual Coordinates)
+              </div>
+              <div id="statL31_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 지수 점: <strong style="color: #38bdf8;">$(1.50, 2.83)$</strong></div>
+                <div>• 대칭 점: <strong style="color: #facc15;">$(2.83, 1.50)$ (로그 곡선 위)</strong></div>
+                <div>• 성질: <strong style="color: #34d399;">$y = x$ 기준 수직이등분선 보존</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL31_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 5단계 쇼츠 캡처 &amp; 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [02초] 인트로: 수능 직전 지수·로그함수 퀵 체크</div>
+              <img src="captures_v31/01_exp_log_concept_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">시험 전 반드시 머릿속에 각인해야 할 지수함수와 로그함수의 기본형을 소개합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [06초] 밑 $a$에 따른 그래프 개형 (증가 vs 감소)</div>
+              <img src="captures_v31/02_base_cases_increase_decrease.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_base">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">밑이 1보다 크면 증가함수, 0과 1 사이이면 감소함수가 되는 거동을 시각화합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [11초] 점근선과 반드시 지나는 정점의 위치</div>
+              <img src="captures_v31/03_asymptotes_and_fixed_points.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_points">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">지수함수의 수평 점근선(y=0)과 로그함수의 수직 점근선(x=0)을 대조합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [16초] 직선 $y = x$에 대한 역함수 대칭</div>
+              <img src="captures_v31/04_inverse_symmetry_y_equals_x.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_sym">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">두 함수가 y=x를 접는 선으로 하여 완전히 포개어지는 역함수 성질을 확인합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [21초] 수능 시험장 30초 체크포인트</div>
+              <img src="captures_v31/05_final_exam_checklist.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_check">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">평행이동 y = a^{x-p}+q 에서의 점근선 y=q 결정 공식으로 최종 마무리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL31_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 수능 체크표</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 역함수 대칭과 평행이동</strong></p>
+            <p>$y = a^x \iff x = \log_a y$ 이므로 $x$와 $y$를 바꾸면 $y = \log_a x$가 됩니다.</p>
+            <p>따라서 두 함수의 그래프는 직선 $y = x$에 대하여 완벽한 선대칭을 이룹니다.</p>
+            <p style="margin-top: 15px;"><strong>2. 평행이동 시 점근선의 이동</strong></p>
+            <ul>
+              <li>지수함수 $y = a^{x-p} + q \implies$ <strong>점근선 $y = q$</strong></li>
+              <li>로그함수 $y = \log_a(x-p) + q \implies$ <strong>점근선 $x = p$</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL31_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode31()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre31" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_31__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL31_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 쇼츠 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 400px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video31.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtube.com/shorts/fYaT7Lk1FjQ" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 쇼츠 보기 (MK.K 수능 수학)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

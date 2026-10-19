@@ -1,0 +1,10 @@
+import json, sys
+sys.stdout.reconfigure(encoding='utf-8')
+data = json.load(open('video_info_video10.json', encoding='utf-8'))
+print('ID:', data.get('id'))
+print('Title:', data.get('title'))
+print('Channel:', data.get('channel') or data.get('uploader'))
+print('Duration:', data.get('duration_string'), f"({data.get('duration')}s)")
+print('Description:', (data.get('description') or '')[:300])
+print('Automatic captions keys:', list(data.get('automatic_captions', {}).keys())[:10])
+print('Subtitles keys:', list(data.get('subtitles', {}).keys()))

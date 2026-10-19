@@ -1,0 +1,142 @@
+    <!-- ==================== LECTURE 37 VIEW ==================== -->
+    <div id="lecture37View" class="lecture-view-container" style="display: none;">
+      <!-- Title & Hero Banner -->
+      <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #f59e0b;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <span class="badge-pill" style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4);">
+            수학 II · 도함수의 활용 & 삼차함수 그래프
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.85rem;">⚡ 수능 14번·22번 킬러 30초 컷 필수 체화</span>
+        </div>
+        <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          제37강 · 삼차함수 비율관계와 극대·극소 높이차 공식
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+          "제발 이것만이라도 체화하고 수능 보세요!" 3차함수의 완벽한 점대칭성과 $1:1:1:1$ 4등분 박스 비율 관계, 그리고 
+          극대점과 극소점의 높이차 공식 <strong>$H = \frac{|a|}{2} L^3$</strong>을 통해 미분 계산 없이 그래프 개형만으로 킬러 합답형(ㄱ, ㄴ, ㄷ)을 정복합니다.
+        </p>
+      </div>
+
+      <!-- Simulator Section -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin: 0 0 4px 0;">
+              🧪 3차함수 1:1:1:1 비율 박스 & 높이차 실시간 시뮬레이터
+            </h3>
+            <p style="color: var(--text-dim); font-size: 0.84rem; margin: 0;">
+              극대·극소 간격 $L$과 최고차항 계수 $a$를 조절하여 $1:1:1:1$ 박스 및 높이차 $H = \frac{|a|}{2}L^3$ 공식이 실시간으로 동기화됨을 확인하세요.
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls Row -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 240px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #fbbf24; font-weight: 700;">극대·극소 간격 L:</span>
+            <input type="range" min="1.0" max="3.0" step="0.1" value="2.0" oninput="updateL37L(this.value)" style="flex: 1; accent-color: #fbbf24;">
+            <span id="lblL37L" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 35px;">2.00</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 240px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 700;">최고차항 계수 a:</span>
+            <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updateL37A(this.value)" style="flex: 1; accent-color: #38bdf8;">
+            <span id="lblL37A" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 35px;">1.00</span>
+          </div>
+        </div>
+
+        <!-- Canvas -->
+        <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080d17;">
+          <canvas id="cvsLec37" style="width: 100%; display: block;"></canvas>
+        </div>
+
+        <!-- Live Math Stats Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px;">
+          <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #7dd3fc; font-weight: 700; text-transform: uppercase;">극대·극소 가로 간격 L</div>
+            <div id="statL37L" style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-top: 4px;">간격 L = 2.00</div>
+          </div>
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fda4af; font-weight: 700; text-transform: uppercase;">극대·극소 세로 높이차 H</div>
+            <div id="statL37H" style="font-size: 1.05rem; font-weight: 800; color: #f43f5e; margin-top: 4px;">높이차 H = 4.00</div>
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fde047; font-weight: 700; text-transform: uppercase;">공식 검증 항등식</div>
+            <div id="statL37Formula" style="font-size: 0.95rem; font-weight: 800; color: #fbbf24; margin-top: 4px;">
+              H = (|1.0|/2) × 2.00³ = 4.00
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyframe Captures Gallery -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px;">
+          📸 핵심 강의 칠판 필기 캡처 (8단계)
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/01_frame_4473.jpg" alt="3차함수 비율관계 필수 체화 인트로" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">01. 수능 전 반드시 체화할 3차함수 비율</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/02_frame_11184.jpg" alt="1:1:1:1 4등분 박스 모델링" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">02. 1:1:1:1 균등 4등분 박스 원리</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/03_frame_17894.jpg" alt="극대·극소 높이차 공식 유도" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">03. 높이차 H = (|a|/2)·L^3 공식 도출</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/04_frame_24605.jpg" alt="평가원 기출 합답형 문제 적용" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">04. 수능 기출 ㄱ, ㄴ, ㄷ 선지 실전 분석</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/05_frame_31315.jpg" alt="변곡점 접선과의 1:루트3 비율" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">05. 변곡점 통과 직선과의 1:√3 비율</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/06_frame_38026.jpg" alt="미분 방정식 전개 없는 직관 풀이" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">06. 계산 지옥 탈출 암산 개형 추론</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/07_frame_44736.jpg" alt="4차함수 비율관계(1:루트2, 3:1) 확장" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">07. 4차함수 3:1 및 1:√2 비율 확장</div>
+          </div>
+          <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #0b1120;">
+            <img src="captures_v37/08_frame_51447.jpg" alt="수능 1등급 직결 파이널 마인드" style="width: 100%; height: auto; display: block;">
+            <div style="padding: 10px 12px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">08. 수능 1등급 직결 다항함수 개형 체화</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manim Code Box -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin: 0;">
+            🎬 Manim 수학 애니메이션 코드 (Python)
+          </h3>
+          <button onclick="copyCode('manimCodeLec37')" style="padding: 5px 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.8rem; cursor: pointer;">
+            코드 복사
+          </button>
+        </div>
+        <pre style="background: #080d17; padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); overflow-x: auto; font-size: 0.84rem; color: #93c5fd; max-height: 280px;"><code id="manimCodeLec37">__MANIM_CODE_37__</code></pre>
+      </div>
+
+      <!-- Video Stream & External Link -->
+      <div class="glass-card">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: #f1f5f9; margin-bottom: 12px;">
+          📺 강의 영상 스트림
+        </h3>
+        <div style="border-radius: 12px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.1); max-width: 720px; margin: 0 auto 16px;">
+          <video controls preload="metadata" style="width: 100%; display: block;">
+            <source src="lecture_video37.mp4" type="video/mp4">
+            브라우저가 비디오 재생을 지원하지 않습니다.
+          </video>
+        </div>
+        <div style="text-align: center;">
+          <a href="https://youtu.be/W0NgWPHcDLM" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-size: 0.88rem; text-decoration: none;">
+            🌐 YouTube에서 원본 영상 보기
+          </a>
+        </div>
+      </div>
+    </div>

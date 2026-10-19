@@ -1,0 +1,246 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 23 (PARABOLA 7 GEOMETRIC PROPERTIES)        -->
+    <!-- ============================================================== -->
+    <div id="lecture23View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제23강 · 월화수목수학일 (수능·내신 기하 킬러 완벽 정복)
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          포물선의 기하학적 성질 7가지 완전 정복
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "복잡한 이차곡선 연립방정식은 버려라! 기하학적 본질 7가지만 알면 3초 만에 풀린다!"<br>
+          수능 기하 킬러 문항을 지배하는 7대 절대 정리:<br>
+          <strong>초점 현의 조화평균 $\frac{1}{a} + \frac{1}{b} = \frac{1}{p}$ · 준선 위 두 접선의 $90^\circ$ 직교성 · 접선 마름모 $\overline{FP}=\overline{FT}=\overline{PH}$ · 초점 현 지름원의 준선 접함</strong>을 실시간 동적 포물선 엔진으로 완벽 증명합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 수능 빈출 포물선 7대 기하 정리 매트릭스
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1. 초점 현의 조화평균</div>
+            <div style="color: #facc15; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$\frac{1}{a} + \frac{1}{b} = \frac{1}{p}$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">초점을 지나는 모든 현에서 항등 성립</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2. 준선 위 접선 직교</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">교각 $\theta = 90^\circ$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">준선 위의 점에서 그은 두 접선은 수직</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3. 접선 마름모 성질</div>
+            <div style="color: #f43f5e; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">$\overline{FP}=\overline{FT}=\overline{PH}$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">접선이 초점거리 각을 정확히 이등분</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">4. 지름원과 준선 접함</div>
+            <div style="color: #38bdf8; font-size: 1.1rem; font-weight: 800; margin: 4px 0;">중점거리 $=$ 반지름</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">현 $AB$를 지름으로 하는 원은 준선에 접함</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 23 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL23_1" onclick="switchL23Tab(1)">
+          <span>⚡ 7대 성질 인터랙티브 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL23_2" onclick="switchL23Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL23_3" onclick="switchL23Tab(3)">
+          <span>📐 수학적 증명 &amp; 7대 공식</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL23_4" onclick="switchL23Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL23_5" onclick="switchL23Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL23_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec23" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 초점 현의 기울기 슬라이더를 움직이거나 7대 성질 모드를 클릭해 실시간 기하를 검증하세요.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 7대 성질 시각화 모드 선택
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL23_mode1" onclick="setL23Mode(1)">
+                  <span>1. 초점 현 조화평균 (1/a + 1/b = 1/p)</span>
+                  <span class="p-sub">두 초점거리의 역수합은 항상 1/p로 일정</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL23_mode2" onclick="setL23Mode(2)">
+                  <span>2. 준선 위 두 접선의 직교성 (90°)</span>
+                  <span class="p-sub">현 양 끝점 접선이 준선 위에서 직교 만남</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL23_mode3" onclick="setL23Mode(3)">
+                  <span>3. 접선 마름모 &amp; 광학적 반사 법칙</span>
+                  <span class="p-sub">접선 x절편 T(-x1, 0)과 평행 광선 집광</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL23_mode4" onclick="setL23Mode(4)">
+                  <span>4. 초점 현 지름원 준선 접함 &amp; 2:1 넓이비</span>
+                  <span class="p-sub">AB 지름원의 준선 접선 &amp; 아르키메데스 넓이비</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">파라미터 조절</span>
+              </div>
+              <div class="slider-row">
+                <label>초점 거리 $p$:</label>
+                <input type="range" id="slL23_p" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updateL23()">
+                <span class="slider-val" id="valL23_p">1.0</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>초점현 각도 $\theta$:</label>
+                <input type="range" id="slL23_angle" min="30" max="150" step="2" value="65" oninput="updateL23()">
+                <span class="slider-val" id="valL23_angle">65°</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 기하 수치 검증 (Real-time Audit)
+              </div>
+              <div id="statL23_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 초점거리 $a = \overline{AF} = $ <strong style="color: #38bdf8;">2.45</strong>, $b = \overline{BF} = $ <strong style="color: #34d399;">1.69</strong></div>
+                <div>• 조화평균 계산: $\frac{1}{a} + \frac{1}{b} = $ <strong style="color: #facc15;">1.000</strong></div>
+                <div>• 이론값 $1/p = $ <strong style="color: #f43f5e;">1.000 (완벽 일치!)</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL23_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [01:00] 인트로: 포물선 정의($\overline{PF} = \overline{PH}$)와 7대 성질 개괄</div>
+              <img src="captures_v23/01_parabola_seven_properties.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_props">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">포물선의 기본 정의로부터 유도되는 7가지 강력한 기하학적 무기를 소개합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [04:00] 제1성질: 초점 현의 조화평균 공식 ($\frac{1}{a} + \frac{1}{b} = \frac{1}{p}$)</div>
+              <img src="captures_v23/02_focal_chord_harmonic_mean.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_harmonic">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">초점을 지나는 직선과 두 초점거리 $\overline{AF}, \overline{BF}$ 사이의 조화평균 관계를 완벽 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [08:00] 제2성질: 준선 위에서의 두 접선 직교 ($90^\circ$)</div>
+              <img src="captures_v23/03_directrix_orthogonal_tangents.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_orthogonal">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">준선 위의 임의의 점에서 그은 두 접선의 기울기 곱이 $-1$이 됨을 판별식과 근과 계수 관계로 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [12:00] 제3성질: 접선의 $x$절편과 마름모 형성</div>
+              <img src="captures_v23/04_tangent_projection_isosceles.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_rhombus">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">접선이 $x$축과 만나는 점 $T$가 $-x_1$이며, $\triangle FPT$가 이등변삼각형이 되어 마름모가 탄생함을 보입니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [16:00] 제4성질: 포물선 거울과 광학적 반사 법칙</div>
+              <img src="captures_v23/05_optical_reflection_property.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_reflection">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">접선과 법선의 각의 이등분선 성질로부터 평행 광선이 초점으로 모이는 광학적 원리를 설명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [20:00] 제5성질: 법선의 $x$절편과 $2p$ 일정 법칙</div>
+              <img src="captures_v23/06_subtangent_axis_symmetry.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_subnormal">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">접선에 수직인 법선을 그었을 때 $x$축 위의 발과 수선의 발 사이의 거리가 항상 $2p$로 일정함을 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [24:00] 제6성질: 초점 현을 지름으로 하는 원과 준선의 접함</div>
+              <img src="captures_v23/07_focal_radius_circle_tangent.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_circle">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">사다리꼴의 중점 연결 정리에 의해 초점 현의 중점에서 준선까지의 거리가 반지름과 같음을 시각화합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [28:00] 제7성질: 아르키메데스 포물선 $2:1$ 넓이 비</div>
+              <img src="captures_v23/08_archimedes_area_ratio.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_archimedes">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">포물선의 활꼴 넓이와 외접 삼각형의 넓이비가 $2:1$임을 아르키메데스의 고전 기하로 확인합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [32:00] 수능 및 내신 기출문제 실전 3초 풀이</div>
+              <img src="captures_v23/09_exam_focal_problems.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_exam">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">4점 킬러 기하 문제를 복잡한 연립방정식 없이 성질 1~7을 적용하여 암산으로 격파합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [34:10] 7대 기하 공식 마스터 총정리</div>
+              <img src="captures_v23/10_seven_formula_recap.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_recap">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">시험 직전 머릿속에 반드시 넣어야 할 포물선의 7가지 기하 공식을 마스터 카드로 최종 정리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL23_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 증명 &amp; 7대 포물선 공식</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 초점현의 조화평균 증명 ($\frac{1}{a} + \frac{1}{b} = \frac{1}{p}$)</strong></p>
+            <p>초점 $F(p,0)$을 지나는 직선의 기울기를 $m$, 각도를 $\theta$라 하면, 점 $A, B$는 극좌표계에서 $r = \frac{2p}{1 - \cos \theta}$로 표현됩니다. 방향이 반대인 두 점에 대해:</p>
+            $$a = \frac{2p}{1 - \cos \theta}, \quad b = \frac{2p}{1 - \cos(\theta + \pi)} = \frac{2p}{1 + \cos \theta}$$
+            $$\frac{1}{a} + \frac{1}{b} = \frac{1 - \cos \theta}{2p} + \frac{1 + \cos \theta}{2p} = \frac{2}{2p} = \frac{1}{p}$$
+            <p>직선의 기울기와 상관없이 **항상 $\frac{1}{p}$로 일정**합니다!</p>
+
+            <p style="margin-top: 15px;"><strong>2. 준선 위 접선의 직교성 증명</strong></p>
+            <p>포물선 $y^2 = 4px$에 접하고 기울기가 $m$인 접선의 방정식은 $y = mx + \frac{p}{m}$입니다. 이 접선이 준선 $x = -p$ 위의 점 $(-p, y_0)$를 지나므로:</p>
+            $$y_0 = -pm + \frac{p}{m} \iff p m^2 + y_0 m - p = 0$$
+            <p>이 이차방정식의 두 근을 $m_1, m_2$라 하면 근과 계수의 관계에 의해:</p>
+            $$m_1 m_2 = \frac{-p}{p} = -1$$
+            <p>따라서 준선 위의 임의의 점에서 그은 두 접선은 **언제나 서로 직각($90^\circ$)**을 이룹니다.</p>
+
+            <p style="margin-top: 15px;"><strong>3. 접선 마름모 성질</strong></p>
+            <p>점 $P(x_1, y_1)$에서의 접선 $y_1 y = 2p(x + x_1)$의 $x$절편은 $T(-x_1, 0)$입니다.<br>
+            $\overline{FT} = p - (-x_1) = x_1 + p$<br>
+            포물선 정의에 의해 $\overline{FP} = \overline{PH} = x_1 + p$이므로, 사각형 $FPTH$는 네 변의 길이가 같은 **마름모**가 됩니다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL23_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode23()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre23" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_23__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL23_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video23.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/z7SQOrKT7xY" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (월화수목수학일)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

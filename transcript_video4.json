@@ -1,0 +1,132 @@
+[
+  {
+    "text": "평균값의 정리.이는 이는 미분 가능",
+    "start": 0.56,
+    "duration": 4.48
+  },
+  {
+    "text": "함수의 경우 a부터 b까지의 평균",
+    "start": 3.04,
+    "duration": 4.12
+  },
+  {
+    "text": "변화율과 c에서의 접선의 기울기가",
+    "start": 5.04,
+    "duration": 4.639
+  },
+  {
+    "text": "같아지는 c가 존재한다는 이론입니다.",
+    "start": 7.16,
+    "duration": 4.96
+  },
+  {
+    "text": "이에 따르면 당함수가 두 실근 ab만",
+    "start": 9.679,
+    "duration": 4.601
+  },
+  {
+    "text": "가지는 경우 평균값 정리를 만족하는",
+    "start": 12.12,
+    "duration": 4.8
+  },
+  {
+    "text": "c의 위치는 정해져 있는데 이게 바로",
+    "start": 14.28,
+    "duration": 5.839
+  },
+  {
+    "text": "함수의 비율 관계입니다. fx는 px",
+    "start": 16.92,
+    "duration": 5.92
+  },
+  {
+    "text": "- a m² x - b n제곱일 때",
+    "start": 20.119,
+    "duration": 5.0
+  },
+  {
+    "text": "c의 값을 구해 보면 a부터 b까지",
+    "start": 22.84,
+    "duration": 4.279
+  },
+  {
+    "text": "평균 변화율은 0, p는 0이",
+    "start": 25.119,
+    "duration": 3.881
+  },
+  {
+    "text": "아니므로 날리고 미분해서 0 되는",
+    "start": 27.119,
+    "duration": 4.4
+  },
+  {
+    "text": "값을 구해 보죠. 공통인수 x - a",
+    "start": 29.0,
+    "duration": 4.84
+  },
+  {
+    "text": "n - 1제, x - b의 n -",
+    "start": 31.519,
+    "duration": 4.72
+  },
+  {
+    "text": "1제곱을 약분하면 mx - b +",
+    "start": 33.84,
+    "duration": 5.399
+  },
+  {
+    "text": "nx - a는 0. m + nx는",
+    "start": 36.239,
+    "duration": 6.361
+  },
+  {
+    "text": "mb에서 x의 값 c는 m + nb",
+    "start": 39.239,
+    "duration": 6.361
+  },
+  {
+    "text": "+ na. 아하. c는 m대 n",
+    "start": 42.6,
+    "duration": 5.72
+  },
+  {
+    "text": "내분점. 2에 따르면 fx는 p x",
+    "start": 45.6,
+    "duration": 5.68
+  },
+  {
+    "text": "- a제곱 x - b일 때 c는 2대",
+    "start": 48.32,
+    "duration": 5.64
+  },
+  {
+    "text": "1 내분점. fx는 p x - a의",
+    "start": 51.28,
+    "duration": 5.24
+  },
+  {
+    "text": "세제곱 x - b일 때 c는 3대 1",
+    "start": 53.96,
+    "duration": 4.72
+  },
+  {
+    "text": "내분점이 되겠군요. 다음 함수 비율",
+    "start": 56.52,
+    "duration": 4.6
+  },
+  {
+    "text": "관계는 단 하나. 이런 멋진 수업",
+    "start": 58.68,
+    "duration": 4.039
+  },
+  {
+    "text": "절벽 수학에서 만나보시죠.",
+    "start": 61.12,
+    "duration": 5.52
+  },
+  {
+    "text": "www.c.com cbs.com",
+    "start": 62.719,
+    "duration": 3.921
+  }
+]

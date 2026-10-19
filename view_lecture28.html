@@ -1,0 +1,249 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 28 (14 TEXTBOOK GRAPHS MASTER)             -->
+    <!-- ============================================================== -->
+    <div id="lecture28View" style="display: block;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제28강 · 고교 수학(상·하/수I·II/미적·기하) 그래프 총정리
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          대한민국 고교 교과서 14개 그래프 총정리
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "수학 시험지에 등장하는 모든 곡선은 단 14개뿐이다!"<br>
+          다항함수부터 분수·무리함수, 초월함수, 이차곡선까지 이어지는 대한민국 고교 수학의 완전한 계통도:<br>
+          <strong>4대 곡선 패밀리(다항식 4총사 · 분수무리 · 초월함수 · 이차곡선 4형제)의 수식, 대칭성, 점근선, 초점</strong>을 원클릭 인터랙티브 캔버스로 총망라합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 대한민국 고교 14대 그래프 4대 계통도
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">[1] 다항함수 4형제</div>
+            <div style="color: #facc15; font-size: 1.0rem; font-weight: 800; margin: 4px 0;">1차 · 2차 · 3차 · 4차</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">차수별 굴절과 변곡·선대칭</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">[2] 대수적 곡선</div>
+            <div style="color: #38bdf8; font-size: 1.0rem; font-weight: 800; margin: 4px 0;">유리함수 · 무리함수</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">점근선 교점과 출발점 제약</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">[3] 초월함수 4총사</div>
+            <div style="color: #f43f5e; font-size: 1.0rem; font-weight: 800; margin: 4px 0;">지수 · 로그 · sin/cos · tan</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">$y=x$ 역함수 대칭과 주기 파동</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">[4] 기하 이차곡선</div>
+            <div style="color: #38bdf8; font-size: 1.0rem; font-weight: 800; margin: 4px 0;">원 · 포물선 · 타원 · 쌍곡선</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">원뿔단면(Conic)과 초점의 정의</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 28 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL28_1" onclick="switchL28Tab(1)">
+          <span>⚡ 14대 그래프 인터랙티브 갤러리</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL28_2" onclick="switchL28Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL28_3" onclick="switchL28Tab(3)">
+          <span>📐 수학적 원리 &amp; 14대 계통표</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL28_4" onclick="switchL28Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL28_5" onclick="switchL28Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL28_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec28" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 14개 버튼 중 원하는 그래프를 선택하면 좌표축에 곡선, 점근선, 초점이 실시간 렌더링됩니다.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 10px; font-weight: 700;">
+                🎯 14대 그래프 퀵 셀렉터 (Graph Selector)
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; max-height: 250px; overflow-y: auto; padding-right: 4px;">
+                <button type="button" class="preset-btn active" id="btnL28_g1" onclick="setL28Graph(1)">1. 1차함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g2" onclick="setL28Graph(2)">2. 2차함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g3" onclick="setL28Graph(3)">3. 3차함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g4" onclick="setL28Graph(4)">4. 4차함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g5" onclick="setL28Graph(5)">5. 유리함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g6" onclick="setL28Graph(6)">6. 무리함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g7" onclick="setL28Graph(7)">7. 지수함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g8" onclick="setL28Graph(8)">8. 로그함수</button>
+                <button type="button" class="preset-btn" id="btnL28_g9" onclick="setL28Graph(9)">9. 삼각(sin/cos)</button>
+                <button type="button" class="preset-btn" id="btnL28_g10" onclick="setL28Graph(10)">10. 삼각(tan)</button>
+                <button type="button" class="preset-btn" id="btnL28_g11" onclick="setL28Graph(11)">11. 원의 방정식</button>
+                <button type="button" class="preset-btn" id="btnL28_g12" onclick="setL28Graph(12)">12. 포물선(기하)</button>
+                <button type="button" class="preset-btn" id="btnL28_g13" onclick="setL28Graph(13)">13. 타원의 방정식</button>
+                <button type="button" class="preset-btn" id="btnL28_g14" onclick="setL28Graph(14)">14. 쌍곡선(기하)</button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">동적 형상 파라미터 $k$</span>
+              </div>
+              <div class="slider-row">
+                <label>형상 계수 $k$:</label>
+                <input type="range" id="slL28_k" min="0.5" max="3.0" step="0.1" value="1.0" oninput="updateL28()">
+                <span class="slider-val" id="valL28_k">1.0</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 선택 그래프 기하학적 특성 (Properties)
+              </div>
+              <div id="statL28_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 수식: <strong style="color: #38bdf8;">$y = ax + b$</strong></div>
+                <div>• 대칭성: <strong style="color: #34d399;">원점 또는 특정 점에 대한 점대칭</strong></div>
+                <div>• 점근선/특이점: <strong style="color: #facc15;">없음 (전구간 연속·미분가능)</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL28_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:30] 인트로: 고교 수학을 지배하는 14대 그래프 지도</div>
+              <img src="captures_v28/01_14graphs_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">고등학교 수학 전체에 걸쳐 등장하는 모든 곡선을 4대 그룹으로 분류한 전체 로드맵을 제시합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [03:00] 다항함수 4형제 (1차, 2차, 3차, 4차)</div>
+              <img src="captures_v28/02_polynomial_four.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_poly">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">차수 증가에 따른 굴절 횟수와 극값의 최대 개수 규칙을 완벽 정리합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [07:30] 삼차함수와 사차함수의 대칭성 비교</div>
+              <img src="captures_v28/03_cubic_quartic_symmetry.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_sym">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">홀수차수(점대칭 변곡점)와 짝수차수(선대칭 축)의 본질적 차이를 시각화합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [12:00] 유리함수: 직각쌍곡선과 점근선의 교점</div>
+              <img src="captures_v28/04_rational_hyperbola.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_rational">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">평행이동과 대칭의 중심이 되는 두 점근선 (x=p, y=q)의 핵심 역할을 분석합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [16:00] 무리함수: 포물선의 역함수와 정의역·치역 제한</div>
+              <img src="captures_v28/05_irrational_curve.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_irrational">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">근호 안이 0 이상이어야 한다는 제약조건에서 발생하는 곡선의 출발점 메커니즘을 밝힙니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [20:00] 지수함수와 로그함수의 역함수 대칭</div>
+              <img src="captures_v28/06_exp_log_duality.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_exp_log">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">직선 y = x를 기준으로 완벽히 포개어지는 지수와 로그의 상호보완적 구조를 배웁니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [24:30] 삼각함수: 단위원 회전과 8칸 파동</div>
+              <img src="captures_v28/07_trig_periodic_wave.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_trig">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">원운동이 시간축으로 펼쳐지며 만들어지는 사인, 코사인, 탄젠트의 주기성과 점근선을 다룹니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [29:00] 이차곡선 1: 원과 포물선</div>
+              <img src="captures_v28/08_circle_parabola.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_circle_parabola">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">원뿔 단면에서 파생되는 원과 준선-초점 거리가 같은 포물선의 기하학적 정의를 점검합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [35:00] 이차곡선 2: 타원과 쌍곡선</div>
+              <img src="captures_v28/09_ellipse_hyperbola.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_ellipse_hyperbola">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">거리의 합이 일정한 타원과 거리의 차가 일정한 쌍곡선의 점근선 공식을 비교합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [41:00] 대한민국 14대 그래프 올인원 마스터 차트</div>
+              <img src="captures_v28/10_14graphs_master_chart.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_chart">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">14개 그래프의 수식, 대칭성, 점근선, 핵심 암기법을 한눈에 담은 종합 차트로 마무리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL28_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 14대 그래프 분류표</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>고등학교 3개년 교과서 곡선의 4대 대분류</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem;">
+              <thead>
+                <tr style="border-bottom: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                  <th style="padding: 8px; text-align: left;">분류</th>
+                  <th style="padding: 8px; text-align: left;">함수/곡선</th>
+                  <th style="padding: 8px; text-align: left;">표준형 수식</th>
+                  <th style="padding: 8px; text-align: left;">핵심 기하 성질</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>다항</td><td>1. 일차함수</td><td>$y=ax+b$</td><td>기울기 $a$, $y$절편 $b$ 직선</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>다항</td><td>2. 이차함수</td><td>$y=a(x-p)^2+q$</td><td>꼭짓점 $(p,q)$, $x=p$ 축 대칭 포물선</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>다항</td><td>3. 삼차함수</td><td>$y=ax^3+\cdots$</td><td>변곡점 점대칭, 8칸 박스 $2:1$ 접선 분할비</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>다항</td><td>4. 사차함수</td><td>$y=ax^4+\cdots$</td><td>이중접선 선대칭 W형, $1:\sqrt{2}$ 비율</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>대수</td><td>5. 유리함수</td><td>$y=\frac{k}{x-p}+q$</td><td>점근선 교점 $(p,q)$ 점대칭 직각쌍곡선</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>대수</td><td>6. 무리함수</td><td>$y=\sqrt{ax+b}+c$</td><td>시작점과 방향, 포물선의 역함수 반쪽</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>초월</td><td>7. 지수함수</td><td>$y=a^x$</td><td>수평 점근선 $y=0$, 정점 $(0,1)$</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>초월</td><td>8. 로그함수</td><td>$y=\log_a x$</td><td>수직 점근선 $x=0$, $y=x$ 역함수 대칭</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>초월</td><td>9. 삼각(sin/cos)</td><td>$y=A\sin(Bx)$</td><td>주기 $2\pi/B$, 진폭 $A$ 8칸 파동</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>초월</td><td>10. 삼각(tan)</td><td>$y=A\tan(Bx)$</td><td>주기 $\pi/B$, 점근선 $x=\frac{\pi}{2B} + \frac{n\pi}{B}$</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>이차곡선</td><td>11. 원의 방정식</td><td>$(x-a)^2+(y-b)^2=r^2$</td><td>중심 $(a,b)$, 반지름 $r$ 원대칭</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>이차곡선</td><td>12. 포물선(기하)</td><td>$y^2=4px$</td><td>초점 $F(p,0)$, 준선 $x=-p$</td></tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);"><td>이차곡선</td><td>13. 타원의 방정식</td><td>$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$</td><td>거리의 합 $2a$, 원점 대칭</td></tr>
+                <tr><td>이차곡선</td><td>14. 쌍곡선(기하)</td><td>$\frac{x^2}{a^2}-\frac{y^2}{b^2}=\pm 1$</td><td>거리의 차 $2a$, 점근선 $y=\pm\frac{b}{a}x$</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL28_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode28()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre28" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_28__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL28_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video28.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/hRpteAyG2Ts" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (매스프레소)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>

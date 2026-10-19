@@ -1,0 +1,233 @@
+    <!-- ============================================================== -->
+    <!-- SECTION FOR LECTURE 27 (POLYNOMIAL ROOTS & SYMMETRY)           -->
+    <!-- ============================================================== -->
+    <div id="lecture27View" style="display: none;">
+      <header>
+        <div class="badge-pill" style="border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);">
+          ⚡ 제27강 · 수능 수학 II 다항함수 킬러 실전 비기
+        </div>
+        <h1 style="background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          다항함수를 보는 눈 (인수와 대칭성, 8칸 박스법)
+        </h1>
+        <p class="subtitle" style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #cbd5e1;">
+          "미분해서 0 되는 점만 찾는 기계적 계산을 멈춰라!"<br>
+          다항함수의 본질은 식보다 '개형과 대칭성'에 있습니다:<br>
+          <strong>인수의 접촉 차수(1차 관통, 2차 접함, 3차 변곡접선) · 삼차함수 8칸 박스법과 $2:1$ 접선 비율 · 극값 높이차 공식 $\Delta y = \frac{|a|}{2} L^3$ · 차함수 식작성</strong>을 실시간 인터랙티브 기하 캔버스로 체화합니다.
+        </p>
+      </header>
+
+      <!-- TOP SUMMARY BANNER -->
+      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); border: 2px solid rgba(56, 189, 248, 0.4); border-radius: 20px; padding: 26px; margin-bottom: 35px; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);">
+        <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; text-align: center;">
+          ⭐ 수능 다항함수 킬러 4대 불변의 비율 &amp; 식작성 공식
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; text-align: center; margin-top: 15px;">
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.3);">
+            <div style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">1. 변곡점 $1:1:1$ 분할</div>
+            <div style="color: #facc15; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">극대-변곡-극소-교점</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">동일 간격 $\Delta x = L$로 4분할</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.3);">
+            <div style="color: #c084fc; font-weight: bold; font-size: 0.85rem;">2. 접선 $2:1$ 분할비</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">접점:교점 $= 2:1$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">기울어진 접선(차함수)에서도 불변</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(52, 211, 153, 0.3);">
+            <div style="color: #34d399; font-weight: bold; font-size: 0.85rem;">3. 극값 높이차 공식</div>
+            <div style="color: #f43f5e; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">$\Delta y = \frac{|a|}{2} L^3$</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">미분 연립 없이 암산으로 극값 산출</div>
+          </div>
+          <div style="background: rgba(15, 23, 42, 0.6); padding: 12px; border-radius: 10px; border: 1px solid rgba(251, 191, 36, 0.3);">
+            <div style="color: #facc15; font-weight: bold; font-size: 0.85rem;">4. 사차함수 $1:\sqrt{2}$</div>
+            <div style="color: #38bdf8; font-size: 1.05rem; font-weight: 800; margin: 4px 0;">이중접선 대칭 W형</div>
+            <div style="color: #94a3b8; font-size: 0.75rem;">극소점과 외곽 교점의 황금비율</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS FOR LECTURE 27 -->
+      <div class="tab-bar">
+        <button type="button" class="tab-btn active" id="tabBtnL27_1" onclick="switchL27Tab(1)">
+          <span>⚡ 다항함수 8칸 박스법 시뮬레이터</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL27_2" onclick="switchL27Tab(2)">
+          <span>📸 10단계 판서 캡처</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL27_3" onclick="switchL27Tab(3)">
+          <span>📐 수학적 원리 &amp; 수능 킬러 식작성</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL27_4" onclick="switchL27Tab(4)">
+          <span>🎬 Manim 코드</span>
+        </button>
+        <button type="button" class="tab-btn" id="tabBtnL27_5" onclick="switchL27Tab(5)">
+          <span>📺 원본 강의 영상</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: INTERACTIVE SIMULATOR -->
+      <div class="tab-panel active" id="tabL27_1">
+        <div class="sim-grid">
+          <div class="canvas-box" style="position: relative;">
+            <canvas id="cvsLec27" width="600" height="420"></canvas>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: #94a3b8; text-align: center;">
+              💡 모드를 선택하고 극값 간격 $L$과 최고차항 계수 $a$를 조절하여 8칸 박스와 $2:1$ 분할을 확인하세요.
+            </div>
+          </div>
+          <div class="sim-controls">
+            <div class="control-card">
+              <div class="control-title" style="color: #38bdf8; margin-bottom: 12px; font-weight: 700;">
+                🎯 다항함수 탐구 모드 (Analysis Mode)
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                <button type="button" class="preset-btn active" id="btnL27_mode1" onclick="setL27Mode(1)">
+                  <span>1. 삼차함수 8칸 박스법 ($2:1$ 접선 비율)</span>
+                  <span class="p-sub">극대점 수평접선과 변곡점 $1:1:1$ 대칭 분할</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL27_mode2" onclick="setL27Mode(2)">
+                  <span>2. 인수의 접촉 차수 (Contact Order)</span>
+                  <span class="p-sub">1차 관통 vs 2차 접함 vs 3차 변곡접선</span>
+                </button>
+                <button type="button" class="preset-btn" id="btnL27_mode3" onclick="setL27Mode(3)">
+                  <span>3. 사차함수 W형 선대칭 &amp; $1:\sqrt{2}$ 비율</span>
+                  <span class="p-sub">이중접선 $y = k$를 기준으로 한 대칭 개형</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="control-card">
+              <div class="control-header">
+                <span class="control-title">함수 파라미터 조절</span>
+              </div>
+              <div class="slider-row">
+                <label>극값 간격 $L$ ($\Delta x$):</label>
+                <input type="range" id="slL27_L" min="0.8" max="2.0" step="0.1" value="1.0" oninput="updateL27()">
+                <span class="slider-val" id="valL27_L">1.0</span>
+              </div>
+              <div class="slider-row" style="margin-top: 10px;">
+                <label>최고차항 계수 $a$:</label>
+                <input type="range" id="slL27_a" min="0.5" max="2.5" step="0.1" value="1.0" oninput="updateL27()">
+                <span class="slider-val" id="valL27_a">1.0</span>
+              </div>
+            </div>
+
+            <div class="control-card" style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.3);">
+              <div class="control-title" style="color: #facc15; font-size: 0.9rem; margin-bottom: 8px;">
+                📊 실시간 극값 및 높이차 계산 (Live Metric)
+              </div>
+              <div id="statL27_box" style="font-size: 0.84rem; line-height: 1.6; color: #cbd5e1;">
+                <div>• 극값 간격: <strong style="color: #38bdf8;">$2L = 2.00$</strong></div>
+                <div>• 극값 높이차: <strong style="color: #facc15;">$\Delta y = 4 \cdot |a| \cdot L^3 = 4.00$</strong></div>
+                <div>• 접점-교점 비율: <strong style="color: #34d399;">$2L : L = 2 : 1$</strong> (완벽 일치)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAPTURES -->
+      <div class="tab-panel" id="tabL27_2">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
+          <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [01:00] 인트로: 다항함수를 식보다 개형으로 먼저 보는 힘</div>
+              <img src="captures_v27/01_poly_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">미분 공식을 무작정 쓰기 전 개형의 기하학적 특징으로부터 식을 역추적하는 1등급의 시선을 제시합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [03:30] 인수의 차수와 그래프의 교점 거동</div>
+              <img src="captures_v27/02_factors_behavior.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_factors">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">1차(단순 관통), 2차(포물선 접함), 3차(변곡 관통 접선) 인수가 함수에 부여하는 거동을 분석합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [06:00] 삼차함수의 점대칭성(변곡점)의 본질</div>
+              <img src="captures_v27/03_cubic_point_symmetry.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_cubic_sym">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">변곡점 x = -b/(3a)를 중심으로 모든 점과 접선이 180도 회전 대칭을 이룸을 시각화합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [09:00] 8칸 박스법과 2:1 접선 비율관계</div>
+              <img src="captures_v27/04_tangent_ratio_two_to_one.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_ratio">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">극대점을 지나는 수평 접선이 삼차함수와 다시 만나는 점 사이의 2:1 분할비를 박스법으로 증명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [12:00] 최고차항 계수와 극값 높이차 공식</div>
+              <img src="captures_v27/05_height_difference_formula.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_height_diff">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">Δy = (|a|/2) L^3 공식을 통해 미분 연립 없이 암산으로 극값을 계산하는 비기를 전수합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [15:30] 차함수 g(x) = f(x) - (mx + n)의 마법</div>
+              <img src="captures_v27/06_diff_function_magic.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_diff_func">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">기울어진 접선에서도 비율 관계와 접촉 차수가 그대로 보존되는 차함수 원리를 설명합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [18:00] 사차함수의 이중접선과 선대칭성</div>
+              <img src="captures_v27/07_quartic_double_tangent.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_quartic_double">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">W자 대칭 사차함수에서 1:√2 비율관계와 이중접선 인수를 분석합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [20:30] 사차함수의 삼중근 변곡접선 (3:1 비율)</div>
+              <img src="captures_v27/08_quartic_triple_root.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_quartic_triple">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">한 극값이 평탄해지며 삼중근을 갖는 사차함수 개형의 3:1 분할을 도출합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [22:50] 수능 평가원 킬러 기출 실전 1줄 식작성</div>
+              <img src="captures_v27/09_csat_killer_one_line.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_csat_killer">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">실제 22번 킬러 문항을 인수와 대칭성만으로 30초 만에 완벽 해결하는 과정을 시연합니다.</p>
+            </div>
+            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [24:40] 다항함수 마스터 맵 총정리</div>
+              <img src="captures_v27/10_poly_master_map.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_poly_map">
+              <p style="font-size: 0.88rem; color: #cbd5e1;">시험장에서 반드시 떠올려야 할 다항함수의 인수 거동과 비율 공식을 한눈에 정리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
+      <div class="tab-panel" id="tabL27_3">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📐 수학적 원리 &amp; 다항함수 비율관계 증명</h3>
+          <div style="font-size: 0.95rem; line-height: 1.8; color: #cbd5e1;">
+            <p><strong>1. 삼차함수 8칸 박스법의 대수학적 증명</strong></p>
+            <p>변곡점이 원점 $(0,0)$이고 극대점이 $(-L, y_{max})$, 극소점이 $(L, y_{min})$인 최고차항 $a$의 삼차함수는:</p>
+            $$f'(x) = 3a(x+L)(x-L) = 3a(x^2 - L^2)$$
+            $$f(x) = ax^3 - 3aL^2 x = ax(x^2 - 3L^2)$$
+            <p>극대값은 $f(-L) = 2aL^3$, 극소값은 $f(L) = -2aL^3$이므로 <strong>극값 높이차는 정확히 $\Delta y = 4aL^3$</strong>입니다.</p>
+            <p>극대점 접선 $y = 2aL^3$과의 교점 방정식을 세우면:</p>
+            $$ax^3 - 3aL^2 x = 2aL^3 \iff a(x+L)^2 (x - 2L) = 0$$
+            <p>접점 $x = -L$에서 중근, 교점 $x = 2L$에서 1차 실근을 가지므로, 접점-변곡점 거리 $L$ 대 변곡점-교점 거리 $2L$은 <strong>$2:1$ 분할비</strong>를 만족합니다!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: MANIM CODE -->
+      <div class="tab-panel" id="tabL27_4">
+        <div class="glass-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="color: #38bdf8; margin: 0;">🎬 Manim 애니메이션 소스 코드</h3>
+            <button type="button" class="tab-btn" onclick="copyManimCode27()" style="padding: 6px 14px; font-size: 0.8rem;">
+              📋 파이썬 코드 복사
+            </button>
+          </div>
+          <pre id="manimPre27" style="background: #050811; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; overflow-x: auto; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"><code>__MANIM_CODE_27__</code></pre>
+        </div>
+      </div>
+
+      <!-- TAB 5: VIDEO -->
+      <div class="tab-panel" id="tabL27_5">
+        <div class="glass-card">
+          <h3 style="color: #38bdf8; margin-bottom: 16px;">📺 원본 강의 영상 시청</h3>
+          <div style="text-align: center; margin-bottom: 16px;">
+            <video controls style="width: 100%; max-width: 800px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+              <source src="lecture_video27.mp4" type="video/mp4">
+              브라우저가 비디오 태그를 지원하지 않습니다.
+            </video>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://youtu.be/Jw8F2akj_T0" target="_blank" rel="noopener noreferrer" class="tab-btn" style="display: inline-flex; text-decoration: none;">
+              <span>🌐 YouTube에서 원본 영상 보기 (수능 수학은 이동준)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
