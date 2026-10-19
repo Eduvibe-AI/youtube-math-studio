@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL27_1" onclick="switchL27Tab(1)">
           <span>⚡ 다항함수 8칸 박스법 시뮬레이터</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL27_2" onclick="switchL27Tab(2)">
-          <span>📸 10단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL27_3" onclick="switchL27Tab(3)">
           <span>📐 수학적 원리 &amp; 수능 킬러 식작성</span>
         </button>
@@ -125,63 +122,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL27_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [01:00] 인트로: 다항함수를 식보다 개형으로 먼저 보는 힘</div>
-              <img src="captures_v27/01_poly_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">미분 공식을 무작정 쓰기 전 개형의 기하학적 특징으로부터 식을 역추적하는 1등급의 시선을 제시합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [03:30] 인수의 차수와 그래프의 교점 거동</div>
-              <img src="captures_v27/02_factors_behavior.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_factors">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">1차(단순 관통), 2차(포물선 접함), 3차(변곡 관통 접선) 인수가 함수에 부여하는 거동을 분석합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [06:00] 삼차함수의 점대칭성(변곡점)의 본질</div>
-              <img src="captures_v27/03_cubic_point_symmetry.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_cubic_sym">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">변곡점 x = -b/(3a)를 중심으로 모든 점과 접선이 180도 회전 대칭을 이룸을 시각화합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [09:00] 8칸 박스법과 2:1 접선 비율관계</div>
-              <img src="captures_v27/04_tangent_ratio_two_to_one.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_ratio">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">극대점을 지나는 수평 접선이 삼차함수와 다시 만나는 점 사이의 2:1 분할비를 박스법으로 증명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [12:00] 최고차항 계수와 극값 높이차 공식</div>
-              <img src="captures_v27/05_height_difference_formula.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_height_diff">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">Δy = (|a|/2) L^3 공식을 통해 미분 연립 없이 암산으로 극값을 계산하는 비기를 전수합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [15:30] 차함수 g(x) = f(x) - (mx + n)의 마법</div>
-              <img src="captures_v27/06_diff_function_magic.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_diff_func">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">기울어진 접선에서도 비율 관계와 접촉 차수가 그대로 보존되는 차함수 원리를 설명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [18:00] 사차함수의 이중접선과 선대칭성</div>
-              <img src="captures_v27/07_quartic_double_tangent.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_quartic_double">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">W자 대칭 사차함수에서 1:√2 비율관계와 이중접선 인수를 분석합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [20:30] 사차함수의 삼중근 변곡접선 (3:1 비율)</div>
-              <img src="captures_v27/08_quartic_triple_root.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_quartic_triple">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">한 극값이 평탄해지며 삼중근을 갖는 사차함수 개형의 3:1 분할을 도출합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [22:50] 수능 평가원 킬러 기출 실전 1줄 식작성</div>
-              <img src="captures_v27/09_csat_killer_one_line.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_csat_killer">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">실제 22번 킬러 문항을 인수와 대칭성만으로 30초 만에 완벽 해결하는 과정을 시연합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [24:40] 다항함수 마스터 맵 총정리</div>
-              <img src="captures_v27/10_poly_master_map.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_poly_map">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">시험장에서 반드시 떠올려야 할 다항함수의 인수 거동과 비율 공식을 한눈에 정리합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL27_3">

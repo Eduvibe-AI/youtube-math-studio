@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL22_1" onclick="switchL22Tab(1)">
           <span>⚡ N축 동적 시뮬레이터</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL22_2" onclick="switchL22Tab(2)">
-          <span>📸 10단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL22_3" onclick="switchL22Tab(3)">
           <span>📐 수학적 원리 &amp; N축 알고리즘</span>
         </button>
@@ -129,63 +126,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL22_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [01:00] 인트로: N축의 필요성과 합성함수 그래프의 난관</div>
-              <img src="captures_v22/01_n_axis_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_n_axis">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">고1 내신 킬러 문제에서 합성함수 작도가 왜 변별력의 핵심인지 소개합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [05:00] 속함수 $g(x)$와 겉함수 $f(t)$의 역학 관계</div>
-              <img src="captures_v22/02_inner_outer_composition.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_inner_outer">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">입력 $x$가 $g$를 거쳐 매개변수 $t$가 되고, $t$가 $f$를 거쳐 최종 $y$가 되는 데이터 흐름을 도식화합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [10:00] N축 구조의 배치: $t$축의 공통 결합</div>
-              <img src="captures_v22/03_n_axis_rotation_setup.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_setup">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">두 직교좌표계를 결합하여 'N'자 형태의 좌표 평면을 구성하는 세팅법을 전수합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [16:00] 방향성과 궤적 추적의 기본 원리</div>
-              <img src="captures_v22/04_turning_points_extrema.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_turning">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">$t$가 증가할 때는 정방향, $t$가 감소할 때는 역방향으로 겉함수의 개형이 그려지는 반전 메커니즘을 설명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [22:00] 조각 선형 함수(꺾인 선)의 N축 실전 적용</div>
-              <img src="captures_v22/05_piecewise_linear_n_axis.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_piecewise">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">절댓값 및 삼각형 형태의 일차함수 합성을 단 10초 만에 완벽 작도하는 테크닉을 시연합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [28:00] 이차함수와 일차함수의 복합 합성</div>
-              <img src="captures_v22/06_quadratic_inside_linear.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_quad">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">포물선의 꼭짓점에서 $t$가 방향을 바꾸는 턴어라운드(Turn-around) 지점의 극값 생성 과정을 추적합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [35:00] 주기함수 및 삼각함수와의 결합</div>
-              <img src="captures_v22/07_periodic_function_composition.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_periodic">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">왕복 운동하는 속함수가 겉함수를 무한 반복 재생하는 원리를 밝힙니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [42:00] 합성방정식 $f(g(x)) = k$ 실근 개수 초스피드 판정</div>
-              <img src="captures_v22/08_root_count_determination.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_roots">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">그래프 작도 후 수평선과의 교점을 통해 복잡한 합성방정식의 실근 개수를 암산으로 해결합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [49:00] 대치동 1등급 심화 킬러 문제 풀이</div>
-              <img src="captures_v22/09_daechi_secret_technique.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_killer">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">실제 명문고 내신 기출 최고난도 문항을 N축으로 단번에 무너뜨리는 실전을 보여줍니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [54:10] N축 마스터 차트 총정리</div>
-              <img src="captures_v22/10_master_summary_chart.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_summary">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">속함수와 겉함수의 결합 공식과 주의사항을 마스터 차트로 최종 압축합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL22_3">

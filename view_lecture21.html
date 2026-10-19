@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL21_1" onclick="switchL21Tab(1)">
           <span>⚡ 인터랙티브 시뮬레이터</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL21_2" onclick="switchL21Tab(2)">
-          <span>📸 9단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL21_3" onclick="switchL21Tab(3)">
           <span>📐 수학적 원리 &amp; 8칸 공식</span>
         </button>
@@ -139,58 +136,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL21_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 9단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:25] 인트로: "삼각함수에서도 비율관계를 쓸 수 있다?!"</div>
-              <img src="captures_v21/01_intro_ratio_concept.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">삼차함수에만 있는 줄 알았던 비율관계가 수능 킬러 삼각함수 그래프에도 동일하게 적용됨을 밝힙니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:50] 삼차함수 vs 삼각함수 비율 비교</div>
-              <img src="captures_v21/02_cubic_vs_trig_ratio.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_compare">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">삼차함수의 극값-변곡점 $1:1:1$ 분할과 삼각함수의 4분주기 분할 구조를 직관적으로 비교합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [04:00] 8칸 박스법의 표준화</div>
-              <img src="captures_v21/03_eight_box_division.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_eight_box">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">진폭 $A$와 주기 $T$에 의해 결정되는 가로 4등분, 세로 2등분의 직사각형 8칸 박스를 작도합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [06:30] 특수각과 높이의 비례 관계</div>
-              <img src="captures_v21/04_ratio_special_angles.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_special_angles">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">$\sin 30^\circ = 1/2$, $\sin 45^\circ = \sqrt{2}/2$, $\sin 60^\circ = \sqrt{3}/2$가 박스 내에서 어떻게 가로 길이를 분할하는지 시각화합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [09:00] 높이 절반의 $1:2$ 분할 법칙 (핵심)</div>
-              <img src="captures_v21/05_half_height_one_third.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_half_height">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">높이가 절반($y=1/2$)일 때 가로축은 정확히 $1/3$과 $2/3$로 쪼개지는 $1:2$ 비율이 성립함을 엄밀히 증명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [11:30] 변곡접선과 대칭축의 역할</div>
-              <img src="captures_v21/06_symmetry_inflection_tangent.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_symmetry">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">중심선과의 교점(변곡점)과 극대/극소(대칭축)를 기준으로 한 좌우 대칭성을 공식화합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [14:00] 실전 문제 속도전 풀이</div>
-              <img src="captures_v21/07_exam_speed_solving.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_speed_solving">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">실제 모의고사 기출문제에서 방정식을 세우지 않고 8칸 박스 눈금만으로 근을 암산하는 시연을 보입니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [16:30] 수능 킬러 복합 문항 적용</div>
-              <img src="captures_v21/08_csat_killer_application.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_killer_app">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">주기 $\omega$와 평행이동이 섞인 고난도 4점 문항에서 비율관계를 통해 미지수를 일거에 소거합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [19:10] 삼각함수 비율관계 최종 정리</div>
-              <img src="captures_v21/09_final_ratio_formula.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_final_formula">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">3등분점($1/2, \sqrt{3}/2$)과 2등분점($\sqrt{2}/2$)을 외우는 암기법을 정리하며 강의를 마무리합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL21_3">

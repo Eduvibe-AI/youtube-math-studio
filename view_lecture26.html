@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL26_1" onclick="switchL26Tab(1)">
           <span>⚡ 테일러 급수 다항식 근사기</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL26_2" onclick="switchL26Tab(2)">
-          <span>📸 8단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL26_3" onclick="switchL26Tab(3)">
           <span>📐 수학적 원리 &amp; 오일러 공식</span>
         </button>
@@ -120,53 +117,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL26_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 8단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:15] 인트로: 초월함수와 다항함수의 기적적 만남</div>
-              <img src="captures_v26/01_transcendental_vs_polynomial.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">초월함수를 다항식으로 근사하는 테일러 급수의 철학과 발상의 출발점을 소개합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:00] 접선 근사 (1차 근사)</div>
-              <img src="captures_v26/02_tangent_first_order.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_tangent">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">x=0에서의 접선 y = f(0) + f'(0)x가 가장 단순한 1차 다항식 근사임을 시각적으로 확인합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [02:00] 곡률 반영 (2차 근사)</div>
-              <img src="captures_v26/03_curvature_second_order.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_curvature">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">2계 도함수 f''(0)를 일치시키며 곡률까지 똑같은 포물선 P2(x)를 유도합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [03:00] 팩토리얼(n!)의 등장과 일반화</div>
-              <img src="captures_v26/04_factorial_generalization.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_factorial">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">x^n을 n번 미분할 때 생기는 n! 계수를 상쇄하기 위해 분모에 n!이 붙는 필연적 원리를 밝힙니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [03:50] 지수함수 $e^x$의 매클로린 전개</div>
-              <img src="captures_v26/05_exp_expansion.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_exp">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">미분해도 자기 자신이 되는 e^x의 아름다운 무한 다항식 전개식을 완성합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [04:40] 사인함수 $\sin x$의 홀수차 전개</div>
-              <img src="captures_v26/06_sin_odd_powers.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_sin">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">0, 1, 0, -1이 순환하며 홀수 차수만 남는 사인함수의 우아한 교대급수를 분석합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [05:20] 코사인함수 $\cos x$의 짝수차 전개</div>
-              <img src="captures_v26/07_cos_even_powers.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_cos">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">짝수 차수 항들로 구성되어 완벽한 우함수 대칭을 이루는 코사인 급수를 확인합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [06:00] 오일러 공식과의 연결 및 총정리</div>
-              <img src="captures_v26/08_euler_link_summary.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_euler">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">e^{ix} = cos x + i sin x로 이어지는 수학사 최고의 공식을 조망하며 수업을 마무리합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL26_3">

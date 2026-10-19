@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL28_1" onclick="switchL28Tab(1)">
           <span>⚡ 14대 그래프 인터랙티브 갤러리</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL28_2" onclick="switchL28Tab(2)">
-          <span>📸 10단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL28_3" onclick="switchL28Tab(3)">
           <span>📐 수학적 원리 &amp; 14대 계통표</span>
         </button>
@@ -122,63 +119,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL28_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:30] 인트로: 고교 수학을 지배하는 14대 그래프 지도</div>
-              <img src="captures_v28/01_14graphs_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">고등학교 수학 전체에 걸쳐 등장하는 모든 곡선을 4대 그룹으로 분류한 전체 로드맵을 제시합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [03:00] 다항함수 4형제 (1차, 2차, 3차, 4차)</div>
-              <img src="captures_v28/02_polynomial_four.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_poly">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">차수 증가에 따른 굴절 횟수와 극값의 최대 개수 규칙을 완벽 정리합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [07:30] 삼차함수와 사차함수의 대칭성 비교</div>
-              <img src="captures_v28/03_cubic_quartic_symmetry.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_sym">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">홀수차수(점대칭 변곡점)와 짝수차수(선대칭 축)의 본질적 차이를 시각화합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [12:00] 유리함수: 직각쌍곡선과 점근선의 교점</div>
-              <img src="captures_v28/04_rational_hyperbola.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_rational">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">평행이동과 대칭의 중심이 되는 두 점근선 (x=p, y=q)의 핵심 역할을 분석합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [16:00] 무리함수: 포물선의 역함수와 정의역·치역 제한</div>
-              <img src="captures_v28/05_irrational_curve.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_irrational">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">근호 안이 0 이상이어야 한다는 제약조건에서 발생하는 곡선의 출발점 메커니즘을 밝힙니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [20:00] 지수함수와 로그함수의 역함수 대칭</div>
-              <img src="captures_v28/06_exp_log_duality.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_exp_log">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">직선 y = x를 기준으로 완벽히 포개어지는 지수와 로그의 상호보완적 구조를 배웁니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [24:30] 삼각함수: 단위원 회전과 8칸 파동</div>
-              <img src="captures_v28/07_trig_periodic_wave.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_trig">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">원운동이 시간축으로 펼쳐지며 만들어지는 사인, 코사인, 탄젠트의 주기성과 점근선을 다룹니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [29:00] 이차곡선 1: 원과 포물선</div>
-              <img src="captures_v28/08_circle_parabola.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_circle_parabola">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">원뿔 단면에서 파생되는 원과 준선-초점 거리가 같은 포물선의 기하학적 정의를 점검합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [35:00] 이차곡선 2: 타원과 쌍곡선</div>
-              <img src="captures_v28/09_ellipse_hyperbola.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_ellipse_hyperbola">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">거리의 합이 일정한 타원과 거리의 차가 일정한 쌍곡선의 점근선 공식을 비교합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [41:00] 대한민국 14대 그래프 올인원 마스터 차트</div>
-              <img src="captures_v28/10_14graphs_master_chart.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_chart">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">14개 그래프의 수식, 대칭성, 점근선, 핵심 암기법을 한눈에 담은 종합 차트로 마무리합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL28_3">

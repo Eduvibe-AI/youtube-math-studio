@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL23_1" onclick="switchL23Tab(1)">
           <span>⚡ 7대 성질 인터랙티브 시뮬레이터</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL23_2" onclick="switchL23Tab(2)">
-          <span>📸 10단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL23_3" onclick="switchL23Tab(3)">
           <span>📐 수학적 증명 &amp; 7대 공식</span>
         </button>
@@ -129,63 +126,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL23_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [01:00] 인트로: 포물선 정의($\overline{PF} = \overline{PH}$)와 7대 성질 개괄</div>
-              <img src="captures_v23/01_parabola_seven_properties.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_props">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">포물선의 기본 정의로부터 유도되는 7가지 강력한 기하학적 무기를 소개합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [04:00] 제1성질: 초점 현의 조화평균 공식 ($\frac{1}{a} + \frac{1}{b} = \frac{1}{p}$)</div>
-              <img src="captures_v23/02_focal_chord_harmonic_mean.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_harmonic">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">초점을 지나는 직선과 두 초점거리 $\overline{AF}, \overline{BF}$ 사이의 조화평균 관계를 완벽 증명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [08:00] 제2성질: 준선 위에서의 두 접선 직교 ($90^\circ$)</div>
-              <img src="captures_v23/03_directrix_orthogonal_tangents.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_orthogonal">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">준선 위의 임의의 점에서 그은 두 접선의 기울기 곱이 $-1$이 됨을 판별식과 근과 계수 관계로 증명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [12:00] 제3성질: 접선의 $x$절편과 마름모 형성</div>
-              <img src="captures_v23/04_tangent_projection_isosceles.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_rhombus">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">접선이 $x$축과 만나는 점 $T$가 $-x_1$이며, $\triangle FPT$가 이등변삼각형이 되어 마름모가 탄생함을 보입니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [16:00] 제4성질: 포물선 거울과 광학적 반사 법칙</div>
-              <img src="captures_v23/05_optical_reflection_property.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_reflection">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">접선과 법선의 각의 이등분선 성질로부터 평행 광선이 초점으로 모이는 광학적 원리를 설명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [20:00] 제5성질: 법선의 $x$절편과 $2p$ 일정 법칙</div>
-              <img src="captures_v23/06_subtangent_axis_symmetry.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_subnormal">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">접선에 수직인 법선을 그었을 때 $x$축 위의 발과 수선의 발 사이의 거리가 항상 $2p$로 일정함을 증명합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [24:00] 제6성질: 초점 현을 지름으로 하는 원과 준선의 접함</div>
-              <img src="captures_v23/07_focal_radius_circle_tangent.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_circle">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">사다리꼴의 중점 연결 정리에 의해 초점 현의 중점에서 준선까지의 거리가 반지름과 같음을 시각화합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [28:00] 제7성질: 아르키메데스 포물선 $2:1$ 넓이 비</div>
-              <img src="captures_v23/08_archimedes_area_ratio.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_archimedes">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">포물선의 활꼴 넓이와 외접 삼각형의 넓이비가 $2:1$임을 아르키메데스의 고전 기하로 확인합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [32:00] 수능 및 내신 기출문제 실전 3초 풀이</div>
-              <img src="captures_v23/09_exam_focal_problems.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_exam">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">4점 킬러 기하 문제를 복잡한 연립방정식 없이 성질 1~7을 적용하여 암산으로 격파합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [34:10] 7대 기하 공식 마스터 총정리</div>
-              <img src="captures_v23/10_seven_formula_recap.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_recap">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">시험 직전 머릿속에 반드시 넣어야 할 포물선의 7가지 기하 공식을 마스터 카드로 최종 정리합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL23_3">

@@ -50,9 +50,6 @@
         <button type="button" class="tab-btn active" id="tabBtnL30_1" onclick="switchL30Tab(1)">
           <span>⚡ 코사인법칙 기하 시뮬레이터</span>
         </button>
-        <button type="button" class="tab-btn" id="tabBtnL30_2" onclick="switchL30Tab(2)">
-          <span>📸 10단계 판서 캡처</span>
-        </button>
         <button type="button" class="tab-btn" id="tabBtnL30_3" onclick="switchL30Tab(3)">
           <span>📐 수학적 원리 &amp; 수선의 발 유도</span>
         </button>
@@ -111,63 +108,7 @@
       </div>
 
       <!-- TAB 2: CAPTURES -->
-      <div class="tab-panel" id="tabL30_2">
-        <div class="glass-card">
-          <h3 style="color: #38bdf8; margin-bottom: 20px;">📸 10단계 판서 캡처 &amp; 타임라인별 상세 해설</h3>
-          <div style="display: flex; flex-direction: column; gap: 30px;">
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1단계 [00:20] 코사인법칙의 소개와 중요성</div>
-              <img src="captures_v30/01_cosine_rule_intro.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="01_intro">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">피타고라스 정리를 일반적인 모든 삼각형으로 확장한 코사인법칙의 기하학적 위상을 소개합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">2단계 [01:10] 코사인법칙을 '언제' 쓰는가? 3대 조건</div>
-              <img src="captures_v30/02_when_to_use_cosine_rule.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="02_when">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">주어진 조건(SAS, SSS, 비끼인각)을 보고 연필을 들기 전 코사인법칙을 확신하는 시선을 제시합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">3단계 [02:20] 직각삼각형 분할을 통한 코사인법칙 유도</div>
-              <img src="captures_v30/03_standard_formula_derivation.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="03_derivation">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">꼭짓점에서 수선의 발을 내려 피타고라스 정리를 적용해 공식을 유도합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">4단계 [03:40] 두 변과 끼인각(SAS) 적용 실전 예제</div>
-              <img src="captures_v30/04_sas_case_example.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="04_sas">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">b=5, c=8, A=60도일 때 대변 a의 길이를 10초 만에 계산하는 표준 풀이를 시연합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">5단계 [05:00] 세 변의 길이(SSS)로 각도 구하기 (변형 공식)</div>
-              <img src="captures_v30/05_sss_case_cos_formula.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="05_sss">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">세 변의 길이로부터 cos A를 구하고 이를 통해 넓이까지 확장합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">6단계 [06:20] 코사인 부호를 통한 삼각형 형태 판별</div>
-              <img src="captures_v30/06_triangle_obtuse_acute_test.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="06_test">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">cos A > 0이면 예각, cos A = 0이면 직각, cos A < 0이면 둔각이 되는 판별법을 정리합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">7단계 [07:30] 사인법칙 vs 코사인법칙 선택 기준 가이드</div>
-              <img src="captures_v30/07_sine_vs_cosine_decision.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="07_compare">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">외접원이나 마주보는 한 쌍이 있으면 사인법칙, 끼인각이나 세 변이 있으면 코사인법칙을 쓰는 구분 기준을 제시합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">8단계 [08:40] 수능·내신 기출 도형 복합 응용</div>
-              <img src="captures_v30/08_csat_applied_problem.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="08_applied">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">사각형이나 원에 내접하는 복합 다각형에서 보조선을 그어 코사인법칙을 연쇄 적용하는 비기를 배웁니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">9단계 [09:40] 계산 실수 방지 및 특수각 단축 팁</div>
-              <img src="captures_v30/09_calculation_shortcut_tip.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="09_tips">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">둔각 코사인 부호 실수를 원천 차단하는 계산 팁을 전수합니다.</p>
-            </div>
-            <div style="background: rgba(15, 23, 42, 0.6); padding: 18px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
-              <div style="font-weight: 700; color: #38bdf8; margin-bottom: 8px;">10단계 [10:20] 코사인법칙 올인원 요약</div>
-              <img src="captures_v30/10_cosine_rule_master_summary.jpg" style="width: 100%; border-radius: 8px; margin-bottom: 10px;" alt="10_summary">
-              <p style="font-size: 0.88rem; color: #cbd5e1;">시험장에서 즉각 적용할 수 있는 코사인법칙 공식을 마스터 카드로 최종 정리합니다.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- TAB 3: MATHEMATICAL PRINCIPLES -->
       <div class="tab-panel" id="tabL30_3">
