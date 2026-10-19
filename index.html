@@ -1182,7 +1182,7 @@
       <div class="gate-error" id="gateErrorMsg">❌ 비밀번호가 올바르지 않습니다. 다시 확인해주세요.</div>
 
       <div class="gate-footer-hint">
-        🛡️ 인증 성공 시 37개 수능 킬러 공식 · 그래프 시뮬레이터 · 중1~고3 스튜디오가 즉시 활성화됩니다.
+        🛡️ 인증 성공 시 39개 수능 킬러 공식 · 그래프 시뮬레이터 · 중1~고3 스튜디오가 즉시 활성화됩니다.
       </div>
     </div>
   </div>
@@ -1199,7 +1199,7 @@
         <button type="button" class="subj-tab active" data-subject="all" onclick="selectSubject('all')">
           <span class="tab-icon">✨</span>
           <span class="tab-text">전체보기</span>
-          <span class="tab-badge">37</span>
+          <span class="tab-badge">39</span>
         </button>
         <button type="button" class="subj-tab" data-subject="math-ha" onclick="selectSubject('math-ha')">
           <span class="tab-icon">📘</span>
@@ -1214,7 +1214,7 @@
         <button type="button" class="subj-tab" data-subject="math2" onclick="selectSubject('math2')">
           <span class="tab-icon">📙</span>
           <span class="tab-text">수학 II · 미적분</span>
-          <span class="tab-badge">11</span>
+          <span class="tab-badge">13</span>
         </button>
         <button type="button" class="subj-tab" data-subject="geom" onclick="selectSubject('geom')">
           <span class="tab-icon">📐</span>
@@ -1247,11 +1247,11 @@
         </div>
         <div class="sort-controls-wrap">
           <span class="sort-label">자동 순서 리뉴얼:</span>
-          <button type="button" class="sort-btn active" id="sortAscBtn" onclick="setSortOrder('asc')" title="1강부터 37강 교과과정 순서로 자동 리뉴얼">
-            <span>🔢 1강 ➔ 37강 순</span>
+          <button type="button" class="sort-btn active" id="sortAscBtn" onclick="setSortOrder('asc')" title="1강부터 39강 교과과정 순서로 자동 리뉴얼">
+            <span>🔢 1강 ➔ 39강 순</span>
           </button>
-          <button type="button" class="sort-btn" id="sortDescBtn" onclick="setSortOrder('desc')" title="최신 37강부터 1강 역순으로 자동 리뉴얼">
-            <span>⚡ 37강 ➔ 1강 역순</span>
+          <button type="button" class="sort-btn" id="sortDescBtn" onclick="setSortOrder('desc')" title="최신 39강부터 1강 역순으로 자동 리뉴얼">
+            <span>⚡ 39강 ➔ 1강 역순</span>
           </button>
           <button type="button" class="sort-btn" id="sortKillerBtn" onclick="setSortOrder('killer')" title="수능 킬러 &amp; 필수 공식 우선 정렬">
             <span>🔥 킬러·꿀팁 우선</span>
@@ -1429,6 +1429,16 @@
               <span class="badge-pill-sm">⚡ 킬러체화</span>
               <span class="lec-title">삼차함수 비율관계와 극대·극소 높이차 공식</span>
             </button>
+            <button type="button" class="lecture-btn" id="btnLec38" onclick="setLecture(38)" data-subj="math2">
+              <span class="lec-num">38</span>
+              <span class="badge-pill-sm">⚡ 본질</span>
+              <span class="lec-title">적분은 왜 직사각형부터 시작할까? (리만 합)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec39" onclick="setLecture(39)" data-subj="math2">
+              <span class="lec-num">39</span>
+              <span class="badge-pill-sm">⚡ 증명</span>
+              <span class="lec-title">원뿔의 부피와 구분구적법 ($V=\frac{1}{3}\pi r^2 h$)</span>
+            </button>
           </div>
         </div>
 
@@ -1563,7 +1573,252 @@
     <!-- SECTION FOR LECTURE 31 (EXP & LOG FAST CONCEPT SUMMARY)        -->
     <!-- ============================================================== -->
         <!-- ==================== LECTURE 33 VIEW ==================== -->
-        <!-- ==================== LECTURE 37 VIEW ==================== -->
+        <!-- ==================== LECTURE 38 VIEW ==================== -->
+    <div id="lecture38View" class="lecture-view-container" style="display: none;">
+      <!-- Title & Hero Banner -->
+      <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #06b6d4;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <span class="badge-pill" style="background: rgba(6, 182, 212, 0.2); color: #22d3ee; border-color: rgba(6, 182, 212, 0.4);">
+            수학 II · 다항함수의 적분법 &amp; 리만 합 (Riemann Sum)
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.85rem;">⚡ [탑그레이드] 미분적분학 정적분의 본질</span>
+        </div>
+        <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          제38강 · 적분은 왜 직사각형부터 시작할까? (리만 합과 적분의 본질)
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0 0 10px 0;">
+          "곡선 밑의 넓이를 구하는데 왜 굳이 투박한 직사각형을 쓸까?" 사다리꼴이나 곡선 토막보다 
+          <strong>가로 $\Delta x = \frac{b-a}{n}$와 세로 $f(x_k)$</strong>로 분할 계산이 압도적으로 단순하면서도, 
+          분할 수 $n \to \infty$ 극한에서 오차 상한 $\epsilon \le \frac{M(b-a)^2}{2n} \to 0$으로 소멸하여 
+          완벽한 정적분 참값 $\int_a^b f(x)dx$로 수렴하는 리만 합의 경이로운 수학적 필연성을 인터랙티브 시뮬레이터로 탐구합니다.
+        </p>
+        <div class="source-meta">
+          <span>🎬 강사/출처: <strong>탑그레이드 (미분적분학)</strong></span>
+          <span>•</span>
+          <a href="https://youtube.com/shorts/zk3kxW3AKqo?si=YI_anWkj6pwbBSAT" target="_blank" rel="noopener"><span>YouTube Shorts 영상 보기</span></a>
+        </div>
+      </div>
+
+      <!-- Simulator Section -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin: 0 0 4px 0;">
+              🧪 리만 합(Riemann Sum) 직사각형 분할 &amp; 정적분 수렴 시뮬레이터
+            </h3>
+            <p style="color: var(--text-dim); font-size: 0.84rem; margin: 0;">
+              분할 수 $n$을 늘리며 직사각형들의 합 $S_n$이 실제 정적분 값 $\int_0^4 f(x)dx$에 오차 없이 일치해가는 과정을 확인하세요.
+            </p>
+          </div>
+          <!-- Sample Mode Buttons -->
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="l38TypeLeft" onclick="setL38Mode('left')" style="padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.82rem; cursor: pointer;">
+              좌측합 (Left)
+            </button>
+            <button type="button" id="l38TypeMid" onclick="setL38Mode('mid')" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #06b6d4; background: rgba(6,182,212,0.25); color: #22d3ee; font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+              중점합 (Midpoint)
+            </button>
+            <button type="button" id="l38TypeRight" onclick="setL38Mode('right')" style="padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.82rem; cursor: pointer;">
+              우측합 (Right)
+            </button>
+          </div>
+        </div>
+
+        <!-- Controls Row -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 260px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #22d3ee; font-weight: 700;">직사각형 분할 수 n:</span>
+            <input type="range" id="sliderL38N" min="2" max="64" step="1" value="8" oninput="updateL38N(this.value)" style="flex: 1; accent-color: #06b6d4;">
+            <span id="lblL38N" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 45px;">n = 8</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 240px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #fbbf24; font-weight: 700;">피적분 곡선 f(x):</span>
+            <select id="selectL38Func" onchange="updateL38Func(this.value)" style="flex: 1; padding: 6px 10px; border-radius: 8px; background: #0f172a; border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 0.84rem;">
+              <option value="parabola">f(x) = -x² + 4x (포물선)</option>
+              <option value="cubic">f(x) = 0.3x³ - 1.2x² + 1.2x + 1 (3차함수)</option>
+              <option value="sine">f(x) = 2.5 sin(πx / 4) + 0.5 (삼각함수)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Canvas -->
+        <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080d17;">
+          <canvas id="cvsLec38" style="width: 100%; display: block;" height="420"></canvas>
+        </div>
+
+        <!-- Live Math Stats Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px;">
+          <div style="background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #67e8f9; font-weight: 700; text-transform: uppercase;">직사각형 면적 합 (리만 합 S_n)</div>
+            <div id="statL38RiemannSum" style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 4px;">S_8 = 10.667</div>
+          </div>
+          <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #6ee7b7; font-weight: 700; text-transform: uppercase;">실제 정적분 참값 (∫ f(x)dx)</div>
+            <div id="statL38Exact" style="font-size: 1.15rem; font-weight: 800; color: #34d399; margin-top: 4px;">I = 10.667</div>
+          </div>
+          <div style="background: rgba(244, 63, 94, 0.12); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fda4af; font-weight: 700; text-transform: uppercase;">오차 |S_n - I| (오차율)</div>
+            <div id="statL38Error" style="font-size: 1.15rem; font-weight: 800; color: #f43f5e; margin-top: 4px;">0.000 (0.0%)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Theory Deep Dive -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px;">
+          📖 정적분의 정의와 왜 직사각형인가? 3대 핵심 원리
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 1rem; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">1. 가로 곱하기 세로의 간결성</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              사다리꼴 넓이는 $\frac{f(x_k)+f(x_{k+1})}{2}\Delta x$로 덧셈과 나눗셈이 필요하지만, 직사각형은 <strong>가로 $\Delta x$ × 세로 $f(x_k)$</strong>로 단 한 번의 곱셈입니다. $n$개의 합을 전개할 때 거듭제곱의 합 공식($\sum k, \sum k^2$)을 가장 아름답고 단순하게 적용할 수 있습니다.
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 1rem; font-weight: 700; color: #34d399; margin-bottom: 8px;">2. 극한에서 오차는 1/n로 0에 수렴</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              직사각형 윗부분의 뾰족한 삼각형 모양 오차들의 총합은 $n$이 2배가 되면 오차가 절반($\frac{1}{n}$)으로 줄어듭니다. 즉 $\lim_{n\to\infty} \text{오차} = 0$이므로, 굳이 복잡한 도형을 쓰지 않아도 직사각형만으로 완벽한 곡선의 넓이가 정확히 복원됩니다!
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 1rem; font-weight: 700; color: #fbbf24; margin-bottom: 8px;">3. 수능 미적분 급수와 정적분의 변환 공식</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              $$\lim_{n\to\infty} \sum_{k=1}^n f\left(a + \frac{p}{n}k\right)\frac{p}{n} = \int_a^{a+p} f(x)dx$$
+              $\frac{k}{n} \to x$, $\frac{1}{n} \to dx$ 치환법의 뿌리가 바로 이 직사각형 리만 합의 분할입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== LECTURE 39 VIEW ==================== -->
+    <div id="lecture39View" class="lecture-view-container" style="display: none;">
+      <!-- Title & Hero Banner -->
+      <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #a855f7;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <span class="badge-pill" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border-color: rgba(168, 85, 247, 0.4);">
+            수학 II / 미적분 · 구분구적법 &amp; 3D 입체도형
+          </span>
+          <span style="color: var(--text-dim); font-size: 0.85rem;">⚡ [너도 아는 수학] 원뿔의 부피 완벽 증명</span>
+        </div>
+        <h2 style="font-size: 1.65rem; font-weight: 800; color: #fff; margin-bottom: 8px;">
+          제39강 · 원뿔의 부피는 왜 기둥의 1/3인가? ($V = \frac{1}{3}\pi r^2 h$ 구분구적법)
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0 0 10px 0;">
+          "모든 뿔의 부피는 기둥의 $\frac{1}{3}$이다." 암기했던 공식의 숨은 비밀! 원뿔을 $n$개의 얇은 원기둥 원판(Disc)으로 자르면 
+          $k$번째 원판의 반지름은 $r \frac{k}{n}$, 부피는 $\pi \left(r\frac{k}{n}\right)^2 \frac{h}{n} = \frac{\pi r^2 h}{n^3} k^2$이 됩니다. 
+          이들의 총합을 구할 때 등장하는 <strong>자연수 제곱의 합 공식 $\sum k^2 = \frac{n(n+1)(2n+1)}{6}$</strong>의 최고차항 계수 $\frac{2}{6} = \frac{1}{3}$이 
+          바로 $\frac{1}{3}$의 기원임을 3D 디스크 시뮬레이터로 생생하게 증명합니다.
+        </p>
+        <div class="source-meta">
+          <span>🎬 강사/출처: <strong>너도 아는 수학 (수2/미적분)</strong></span>
+          <span>•</span>
+          <a href="https://youtube.com/shorts/f6fyBpIyHt4?si=BcD4WbEpVX9n08NP" target="_blank" rel="noopener"><span>YouTube Shorts 영상 보기</span></a>
+        </div>
+      </div>
+
+      <!-- Simulator Section -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin: 0 0 4px 0;">
+              🧪 3D 원기둥 원판(Disc) 슬라이스 &amp; 원뿔 수렴 시뮬레이터
+            </h3>
+            <p style="color: var(--text-dim); font-size: 0.84rem; margin: 0;">
+              원판 분할 수 $n$을 올리면 계단식 원기둥 층이 부드러운 원뿔로 수렴하며, 부피 합이 정확히 $\frac{1}{3}\pi r^2 h$로 수렴합니다.
+            </p>
+          </div>
+          <!-- Mode Toggle -->
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="l39TypeCircum" onclick="setL39Type('circum')" style="padding: 6px 12px; border-radius: 8px; border: 1px solid #a855f7; background: rgba(168,85,247,0.25); color: #c084fc; font-size: 0.82rem; font-weight: 700; cursor: pointer;">
+              외접 원기둥 (Upper Sum)
+            </button>
+            <button type="button" id="l39TypeIn" onclick="setL39Type('in')" style="padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: #cbd5e1; font-size: 0.82rem; cursor: pointer;">
+              내접 원기둥 (Lower Sum)
+            </button>
+          </div>
+        </div>
+
+        <!-- Controls Row -->
+        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 18px; margin-bottom: 16px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center;">
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 240px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #c084fc; font-weight: 700;">원판 분할 수 n:</span>
+            <input type="range" id="sliderL39N" min="2" max="40" step="1" value="6" oninput="updateL39N(this.value)" style="flex: 1; accent-color: #a855f7;">
+            <span id="lblL39N" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 45px;">n = 6</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 200px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #38bdf8; font-weight: 700;">밑면 반지름 r:</span>
+            <input type="range" id="sliderL39R" min="1.0" max="3.0" step="0.2" value="2.0" oninput="updateL39R(this.value)" style="flex: 1; accent-color: #38bdf8;">
+            <span id="lblL39R" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 35px;">r = 2.0</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; min-width: 200px; flex: 1;">
+            <span style="font-size: 0.85rem; color: #fbbf24; font-weight: 700;">원뿔 높이 h:</span>
+            <input type="range" id="sliderL39H" min="2.0" max="6.0" step="0.5" value="4.0" oninput="updateL39H(this.value)" style="flex: 1; accent-color: #fbbf24;">
+            <span id="lblL39H" style="font-size: 0.85rem; color: #fff; font-weight: 700; min-width: 35px;">h = 4.0</span>
+          </div>
+        </div>
+
+        <!-- Canvas -->
+        <div style="position: relative; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080d17;">
+          <canvas id="cvsLec39" style="width: 100%; display: block;" height="440"></canvas>
+        </div>
+
+        <!-- Live Math Stats Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px;">
+          <div style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #d8b4fe; font-weight: 700; text-transform: uppercase;">n개 원판 부피 합 (V_n)</div>
+            <div id="statL39DiscSum" style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-top: 4px;">V_6 = 20.246</div>
+          </div>
+          <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #7dd3fc; font-weight: 700; text-transform: uppercase;">원뿔 공식 참값 ((1/3)πr²h)</div>
+            <div id="statL39Formula" style="font-size: 1.15rem; font-weight: 800; color: #38bdf8; margin-top: 4px;">V = 16.755</div>
+          </div>
+          <div style="background: rgba(251, 191, 36, 0.12); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 10px; padding: 12px 16px;">
+            <div style="font-size: 0.76rem; color: #fde047; font-weight: 700; text-transform: uppercase;">∑k² 극한 계수 수렴율</div>
+            <div id="statL39Ratio" style="font-size: 1.15rem; font-weight: 800; color: #fbbf24; margin-top: 4px;">0.4028 ➔ 0.3333 (1/3)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mathematical Proof Step-by-Step -->
+      <div class="glass-card" style="margin-bottom: 28px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px;">
+          📐 구분구적법 수식 전개 4단계 완전 유도
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #c084fc; margin-bottom: 8px;">STEP 1. 높이 n등분 &amp; k번째 반지름</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              원뿔의 꼭짓점으로부터 높이를 $n$등분하면 한 층의 높이는 $\Delta h = \frac{h}{n}$입니다.<br>
+              닮음비에 의해 위에서 $k$번째 원판의 반지름은 <strong>$r_k = r \cdot \frac{k}{n}$</strong>가 됩니다.
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #38bdf8; margin-bottom: 8px;">STEP 2. k번째 원기둥 원판의 부피</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              $$V_k = \pi r_k^2 \Delta h = \pi \left(r\frac{k}{n}\right)^2 \frac{h}{n} = \frac{\pi r^2 h}{n^3} \cdot k^2$$
+              각 원판의 부피는 자연수의 제곱 $k^2$에 비례합니다!
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #34d399; margin-bottom: 8px;">STEP 3. n개 원판의 총 부피 합산</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              $$V_n = \sum_{k=1}^n V_k = \frac{\pi r^2 h}{n^3} \sum_{k=1}^n k^2 = \frac{\pi r^2 h}{n^3} \cdot \frac{n(n+1)(2n+1)}{6}$$
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #fbbf24; margin-bottom: 8px;">STEP 4. 극한 n ➔ ∞ 취하기 (1/3의 탄생)</div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.65; margin: 0;">
+              $$V = \lim_{n\to\infty} \frac{\pi r^2 h}{6} \frac{2n^3 + 3n^2 + n}{n^3} = \frac{2}{6}\pi r^2 h = \frac{1}{3}\pi r^2 h$$
+              최고차항 계수의 비 $\frac{2}{6} = \frac{1}{3}$이 원뿔 부피 공식의 근원입니다!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== LECTURE 37 VIEW ==================== -->
     <div id="lecture37View" class="lecture-view-container" style="display: none;">
       <!-- Title & Hero Banner -->
       <div class="glass-card" style="margin-bottom: 24px; border-left: 5px solid #f59e0b;">
@@ -16401,6 +16656,8 @@ class PolynomialRatioScene(Scene):
     /* GLOBAL LECTURE & SUBJECT ROUTING SYSTEM                   */
     /* ========================================================= */
     const LECTURE_META = {
+      39: { subj: 'math2',   subjName: '수학 II / 미적분 · 구분구적법', title: '제39강 · 원뿔의 부피와 구분구적법 ($V=\\frac{1}{3}\\pi r^2 h$)' },
+      38: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제38강 · 적분은 왜 직사각형부터 시작할까? (리만 합과 적분의 본질)' },
       37: { subj: 'math2',   subjName: '수학 II · 도함수의 활용', title: '제37강 · 삼차함수 비율관계와 극대·극소 높이차 공식' },
       36: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분법', title: '제36강 · 다항함수 거리곱 공식과 고속 개형 추론' },
       35: { subj: 'geom',    subjName: '기하 & 미적분 · 원의 성질', title: '제35강 · 원의 성질 핵심 정리 · 원주각과 접현각' },
@@ -16487,7 +16744,7 @@ class PolynomialRatioScene(Scene):
       const k12Section = document.getElementById('k12StudioSection');
       if (k12Section) k12Section.style.display = 'none';
 
-      for (let i = 1; i <= 37; i++) {
+      for (let i = 1; i <= 39; i++) {
         const btn = document.getElementById(`btnLec${i}`);
         const view = document.getElementById(`lecture${i}View`);
         if (btn) btn.classList.toggle('active', i === num);
@@ -16508,7 +16765,9 @@ class PolynomialRatioScene(Scene):
         }
       }
 
-      if (num === 37) setTimeout(renderL37, 50);
+      if (num === 39) setTimeout(renderL39, 50);
+      else if (num === 38) setTimeout(renderL38, 50);
+      else if (num === 37) setTimeout(renderL37, 50);
       else if (num === 36) setTimeout(renderL36, 50);
       else if (num === 35) setTimeout(renderL35, 50);
       else if (num === 34) setTimeout(renderL34, 50);
@@ -26761,9 +27020,420 @@ function renderL37() {
   if (cardFormula) cardFormula.textContent = `H = (|${a.toFixed(1)}|/2) × ${L.toFixed(2)}³ = ${H.toFixed(2)}`;
 }
 
+// ==========================================
+// LECTURE 38: RIEMANN SUM & NATURE OF INTEGRAL
+// ==========================================
+let l38N = 8;
+let l38Mode = 'mid'; // 'left', 'mid', 'right'
+let l38FuncType = 'parabola';
+
+function updateL38N(val) {
+  l38N = parseInt(val, 10);
+  const lbl = document.getElementById('lblL38N');
+  if (lbl) lbl.textContent = `n = ${l38N}`;
+  renderL38();
+}
+
+function setL38Mode(mode) {
+  l38Mode = mode;
+  ['left', 'mid', 'right'].forEach(m => {
+    const btn = document.getElementById(`l38Type${m.charAt(0).toUpperCase() + m.slice(1)}`);
+    if (btn) {
+      const active = (m === mode);
+      btn.style.borderColor = active ? '#06b6d4' : 'rgba(255,255,255,0.15)';
+      btn.style.background = active ? 'rgba(6,182,212,0.25)' : 'rgba(255,255,255,0.06)';
+      btn.style.color = active ? '#22d3ee' : '#cbd5e1';
+      btn.style.fontWeight = active ? '700' : '400';
+    }
+  });
+  renderL38();
+}
+
+function updateL38Func(val) {
+  l38FuncType = val;
+  renderL38();
+}
+
+function getL38FuncDef() {
+  if (l38FuncType === 'cubic') {
+    return {
+      fn: x => 0.3 * Math.pow(x, 3) - 1.2 * Math.pow(x, 2) + 1.2 * x + 1.0,
+      exact: 7.200,
+      formulaStr: 'f(x) = 0.3x³ - 1.2x² + 1.2x + 1'
+    };
+  } else if (l38FuncType === 'sine') {
+    return {
+      fn: x => 2.5 * Math.sin(Math.PI * x / 4) + 0.5,
+      exact: (20.0 / Math.PI) + 2.0, // ~8.3662
+      formulaStr: 'f(x) = 2.5 sin(πx/4) + 0.5'
+    };
+  } else {
+    // parabola default
+    return {
+      fn: x => -Math.pow(x, 2) + 4.0 * x,
+      exact: 32.0 / 3.0, // ~10.6667
+      formulaStr: 'f(x) = -x² + 4x'
+    };
+  }
+}
+
+function renderL38() {
+  const cvs = document.getElementById('cvsLec38');
+  if (!cvs) return;
+  const parentW = cvs.parentElement.clientWidth || 800;
+  const dpr = window.devicePixelRatio || 1;
+  const w = parentW;
+  const h = 420;
+
+  cvs.width = w * dpr;
+  cvs.height = h * dpr;
+  cvs.style.width = `${w}px`;
+  cvs.style.height = `${h}px`;
+
+  const ctx = cvs.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+
+  // Background gradient
+  const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+  bgGrad.addColorStop(0, '#090f1d');
+  bgGrad.addColorStop(1, '#050912');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, w, h);
+
+  const def = getL38FuncDef();
+  const a = 0.0, b = 4.0;
+  const n = l38N;
+  const dx = (b - a) / n;
+
+  // Coordinate scales
+  const padL = 60, padR = 40, padT = 50, padB = 55;
+  const plotW = w - padL - padR;
+  const plotH = h - padT - padB;
+
+  const minX = -0.5, maxX = 4.6;
+  const minY = -0.8, maxY = 5.2;
+
+  const toX = x => padL + ((x - minX) / (maxX - minX)) * plotW;
+  const toY = y => padT + ((maxY - y) / (maxY - minY)) * plotH;
+
+  // Grid lines
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x <= 4; x += 1) {
+    ctx.beginPath();
+    ctx.moveTo(toX(x), toY(minY));
+    ctx.lineTo(toX(x), toY(maxY));
+    ctx.stroke();
+  }
+  for (let y = 0; y <= 5; y += 1) {
+    ctx.beginPath();
+    ctx.moveTo(toX(minX), toY(y));
+    ctx.lineTo(toX(maxX), toY(y));
+    ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+  ctx.lineWidth = 1.8;
+  // X axis
+  ctx.beginPath();
+  ctx.moveTo(toX(minX), toY(0));
+  ctx.lineTo(toX(maxX), toY(0));
+  ctx.stroke();
+  // Y axis
+  ctx.beginPath();
+  ctx.moveTo(toX(0), toY(minY));
+  ctx.lineTo(toX(0), toY(maxY));
+  ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '12px Outfit, sans-serif';
+  for (let x = 0; x <= 4; x += 1) {
+    ctx.fillText(`${x}`, toX(x) - 4, toY(0) + 18);
+  }
+  for (let y = 1; y <= 5; y += 1) {
+    ctx.fillText(`${y}`, toX(0) - 22, toY(y) + 4);
+  }
+  ctx.fillText('x', toX(maxX) - 10, toY(0) + 20);
+  ctx.fillText('y', toX(0) - 16, toY(maxY) - 8);
+
+  // Compute Riemann sum and draw rectangles
+  let riemannSum = 0;
+  for (let k = 0; k < n; k++) {
+    const xLeft = a + k * dx;
+    const xRight = xLeft + dx;
+    let xSample = xLeft;
+    if (l38Mode === 'mid') xSample = xLeft + 0.5 * dx;
+    else if (l38Mode === 'right') xSample = xRight;
+
+    const yVal = def.fn(xSample);
+    const rectArea = yVal * dx;
+    riemannSum += rectArea;
+
+    const pxLeft = toX(xLeft);
+    const pxRight = toX(xRight);
+    const pyBase = toY(0);
+    const pyTop = toY(Math.max(0, yVal));
+    const rectW = pxRight - pxLeft;
+    const rectH = pyBase - pyTop;
+
+    // Fill rectangle
+    ctx.fillStyle = 'rgba(6, 182, 212, 0.22)';
+    ctx.fillRect(pxLeft, pyTop, rectW, rectH);
+
+    // Border
+    ctx.strokeStyle = 'rgba(6, 182, 212, 0.85)';
+    ctx.lineWidth = 1.4;
+    ctx.strokeRect(pxLeft, pyTop, rectW, rectH);
+
+    // Sample point dot
+    const pxSample = toX(xSample);
+    const pySample = toY(yVal);
+    ctx.fillStyle = '#22d3ee';
+    ctx.beginPath();
+    ctx.arc(pxSample, pySample, 3.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Draw Function Curve
+  ctx.strokeStyle = '#f8fafc';
+  ctx.lineWidth = 3.0;
+  ctx.beginPath();
+  const step = 0.02;
+  for (let x = 0; x <= 4.1; x += step) {
+    const px = toX(x);
+    const py = toY(def.fn(x));
+    if (x === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Draw Curve Formula Badge
+  ctx.fillStyle = '#fbbf24';
+  ctx.font = 'bold 13px Outfit, sans-serif';
+  ctx.fillText(def.formulaStr, toX(0.2), toY(4.8));
+
+  // Mode badge
+  const modeKo = l38Mode === 'left' ? '좌측 리만합' : (l38Mode === 'right' ? '우측 리만합' : '중점 리만합');
+  ctx.fillStyle = '#22d3ee';
+  ctx.font = '12px Outfit, sans-serif';
+  ctx.fillText(`[ ${modeKo} | 분할폭 Δx = ${dx.toFixed(3)} ]`, toX(0.2), toY(4.4));
+
+  // Update Stats
+  const exact = def.exact;
+  const absErr = Math.abs(riemannSum - exact);
+  const relErr = (exact > 0) ? (absErr / exact) * 100 : 0;
+
+  const statSum = document.getElementById('statL38RiemannSum');
+  const statExact = document.getElementById('statL38Exact');
+  const statErr = document.getElementById('statL38Error');
+
+  if (statSum) statSum.textContent = `S_${n} = ${riemannSum.toFixed(4)}`;
+  if (statExact) statExact.textContent = `I = ${exact.toFixed(4)}`;
+  if (statErr) statErr.textContent = `${absErr.toFixed(4)} (${relErr.toFixed(2)}%)`;
+}
+
+// ==========================================
+// LECTURE 39: CONE VOLUME & METHOD OF EXHAUSTION
+// ==========================================
+let l39N = 6;
+let l39R = 2.0;
+let l39H = 4.0;
+let l39Type = 'circum'; // 'circum' (외접), 'in' (내접)
+
+function updateL39N(val) {
+  l39N = parseInt(val, 10);
+  const lbl = document.getElementById('lblL39N');
+  if (lbl) lbl.textContent = `n = ${l39N}`;
+  renderL39();
+}
+
+function updateL39R(val) {
+  l39R = parseFloat(val);
+  const lbl = document.getElementById('lblL39R');
+  if (lbl) lbl.textContent = `r = ${l39R.toFixed(1)}`;
+  renderL39();
+}
+
+function updateL39H(val) {
+  l39H = parseFloat(val);
+  const lbl = document.getElementById('lblL39H');
+  if (lbl) lbl.textContent = `h = ${l39H.toFixed(1)}`;
+  renderL39();
+}
+
+function setL39Type(type) {
+  l39Type = type;
+  const btnC = document.getElementById('l39TypeCircum');
+  const btnI = document.getElementById('l39TypeIn');
+  if (btnC && btnI) {
+    const isC = (type === 'circum');
+    btnC.style.borderColor = isC ? '#a855f7' : 'rgba(255,255,255,0.15)';
+    btnC.style.background = isC ? 'rgba(168,85,247,0.25)' : 'rgba(255,255,255,0.06)';
+    btnC.style.color = isC ? '#c084fc' : '#cbd5e1';
+    btnC.style.fontWeight = isC ? '700' : '400';
+
+    btnI.style.borderColor = !isC ? '#a855f7' : 'rgba(255,255,255,0.15)';
+    btnI.style.background = !isC ? 'rgba(168,85,247,0.25)' : 'rgba(255,255,255,0.06)';
+    btnI.style.color = !isC ? '#c084fc' : '#cbd5e1';
+    btnI.style.fontWeight = !isC ? '700' : '400';
+  }
+  renderL39();
+}
+
+function renderL39() {
+  const cvs = document.getElementById('cvsLec39');
+  if (!cvs) return;
+  const parentW = cvs.parentElement.clientWidth || 800;
+  const dpr = window.devicePixelRatio || 1;
+  const w = parentW;
+  const h = 440;
+
+  cvs.width = w * dpr;
+  cvs.height = h * dpr;
+  cvs.style.width = `${w}px`;
+  cvs.style.height = `${h}px`;
+
+  const ctx = cvs.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+
+  // Background
+  const bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+  bgGrad.addColorStop(0, '#0a0d1c');
+  bgGrad.addColorStop(1, '#050711');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, w, h);
+
+  const n = l39N;
+  const r = l39R;
+  const heightVal = l39H;
+
+  const apexX = w / 2;
+  const apexY = 55;
+  const baseY = 360;
+  const totalPixelH = baseY - apexY;
+
+  // Max radius in pixels
+  const maxPixelR = Math.min(w * 0.32, 190);
+  const scaleR = maxPixelR / 3.0; // max r is 3.0
+  const baseRx = r * scaleR;
+  const baseRy = baseRx * 0.32; // 3D ellipse aspect
+
+  // 1. Draw Cone Outline / Guide
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+  ctx.lineWidth = 1.8;
+  ctx.setLineDash([4, 4]);
+
+  // Left slant line
+  ctx.beginPath();
+  ctx.moveTo(apexX, apexY);
+  ctx.lineTo(apexX - baseRx, baseY);
+  ctx.stroke();
+
+  // Right slant line
+  ctx.beginPath();
+  ctx.moveTo(apexX, apexY);
+  ctx.lineTo(apexX + baseRx, baseY);
+  ctx.stroke();
+
+  // Base cone ellipse guide
+  ctx.beginPath();
+  ctx.ellipse(apexX, baseY, baseRx, baseRy, 0, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // 2. Draw Stacked Cylindrical Discs (Bottom to Top)
+  const dyPixel = totalPixelH / n;
+  let discVolSum = 0;
+  let sumK2 = 0;
+
+  // Render discs from bottom (k = n) to top (k = 1) for correct depth ordering
+  for (let k = n; k >= 1; k--) {
+    const kEffective = (l39Type === 'circum') ? k : (k - 1);
+    if (kEffective < 0) continue;
+
+    const rK = r * (kEffective / n);
+    const discRx = rK * scaleR;
+    const discRy = discRx * 0.32;
+
+    const discTopY = apexY + (k - 1) * dyPixel;
+    const discBotY = apexY + k * dyPixel;
+
+    if (discRx > 1.5) {
+      // Cylinder side body
+      const sideGrad = ctx.createLinearGradient(apexX - discRx, 0, apexX + discRx, 0);
+      sideGrad.addColorStop(0, 'rgba(126, 34, 206, 0.45)');
+      sideGrad.addColorStop(0.3, 'rgba(168, 85, 247, 0.7)');
+      sideGrad.addColorStop(0.7, 'rgba(192, 132, 252, 0.75)');
+      sideGrad.addColorStop(1, 'rgba(107, 33, 168, 0.45)');
+
+      ctx.fillStyle = sideGrad;
+      ctx.beginPath();
+      ctx.moveTo(apexX - discRx, discTopY);
+      ctx.lineTo(apexX + discRx, discTopY);
+      ctx.lineTo(apexX + discRx, discBotY);
+      // bottom arc
+      ctx.ellipse(apexX, discBotY, discRx, discRy, 0, 0, Math.PI, false);
+      ctx.lineTo(apexX - discRx, discTopY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Top ellipse cap
+      const topGrad = ctx.createRadialGradient(apexX, discTopY - discRy*0.3, 2, apexX, discTopY, discRx);
+      topGrad.addColorStop(0, 'rgba(233, 213, 255, 0.85)');
+      topGrad.addColorStop(0.8, 'rgba(168, 85, 247, 0.6)');
+      topGrad.addColorStop(1, 'rgba(126, 34, 206, 0.7)');
+
+      ctx.fillStyle = topGrad;
+      ctx.beginPath();
+      ctx.ellipse(apexX, discTopY, discRx, discRy, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Disc edges
+      ctx.strokeStyle = 'rgba(216, 180, 254, 0.9)';
+      ctx.lineWidth = 1.3;
+      ctx.stroke();
+    }
+
+    // Volume calculation
+    const deltaH = heightVal / n;
+    const vK = Math.PI * Math.pow(rK, 2) * deltaH;
+    discVolSum += vK;
+    sumK2 += Math.pow(kEffective, 2);
+  }
+
+  // Draw Apex Marker
+  ctx.fillStyle = '#facc15';
+  ctx.beginPath();
+  ctx.arc(apexX, apexY, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.font = 'bold 12px Outfit, sans-serif';
+  ctx.fillText('원뿔 꼭짓점 (Apex)', apexX + 10, apexY + 4);
+
+  // Exact Cone Volume
+  const exactConeVol = (1.0 / 3.0) * Math.PI * Math.pow(r, 2) * heightVal;
+  const ratioCoeff = sumK2 / Math.pow(n, 3);
+
+  // Update Stats in DOM
+  const statDisc = document.getElementById('statL39DiscSum');
+  const statForm = document.getElementById('statL39Formula');
+  const statRatio = document.getElementById('statL39Ratio');
+
+  if (statDisc) statDisc.textContent = `V_${n} = ${discVolSum.toFixed(3)}`;
+  if (statForm) statForm.textContent = `V = ${exactConeVol.toFixed(3)}`;
+  if (statRatio) statRatio.textContent = `${ratioCoeff.toFixed(4)} ➔ 0.3333 (1/3)`;
+}
+
 window.addEventListener('resize', () => {
   const v37 = document.getElementById('lecture37View');
   if (v37 && v37.style.display !== 'none') renderL37();
+  const v38 = document.getElementById('lecture38View');
+  if (v38 && v38.style.display !== 'none') renderL38();
+  const v39 = document.getElementById('lecture39View');
+  if (v39 && v39.style.display !== 'none') renderL39();
 });
 
 // ==========================================
