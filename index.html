@@ -199,77 +199,174 @@
       font-weight: 500;
     }
 
-    /* 3. Lecture Buttons Grid */
-    .lecture-btn-grid {
+    /* 3. Hub Toolbar: Search & Auto-Renewal Sort Controls */
+    .hub-toolbar {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 14px 0 18px;
+      padding: 10px 16px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.18);
+      border-radius: 14px;
       flex-wrap: wrap;
-      gap: 7px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
     }
-
-    .lecture-btn {
+    .search-box-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(7, 10, 19, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 7px 14px;
+      flex: 1;
+      min-width: 250px;
+      max-width: 440px;
+      transition: all 0.2s;
+    }
+    .search-box-wrap:focus-within {
+      border-color: #38bdf8;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.28);
+    }
+    .search-box-wrap .search-icon { font-size: 0.95rem; opacity: 0.75; }
+    .lecture-search-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 0.84rem;
+      width: 100%;
+    }
+    .lecture-search-input::placeholder { color: #64748b; font-size: 0.8rem; }
+    .search-clear-btn {
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 2px 4px;
+    }
+    .search-clear-btn:hover { color: #fff; }
+    .sort-controls-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sort-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .sort-btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 8px 14px;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sort-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .sort-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(99, 102, 241, 0.25));
+      border-color: #38bdf8;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.28);
+    }
+
+    /* 4. Lecture Buttons Clean Card Grid */
+    .lecture-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 9px;
+    }
+    .lecture-btn {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
       border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.035);
+      background: rgba(15, 23, 42, 0.65);
       color: #cbd5e1;
       font-size: 0.83rem;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: left;
+      min-height: 48px;
     }
     .lecture-btn:hover {
       color: #fff;
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(30, 41, 59, 0.88);
+      border-color: rgba(56, 189, 248, 0.4);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
     }
     .lecture-btn.active {
       background: linear-gradient(135deg, #0284c7, #6366f1);
-      border-color: rgba(56, 189, 248, 0.7);
+      border-color: rgba(56, 189, 248, 0.85);
       color: #fff;
       font-weight: 700;
-      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.42);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.48);
       transform: translateY(-1px);
     }
     .lecture-btn .lec-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 21px;
-      height: 21px;
-      padding: 0 4px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #93c5fd;
-      transition: all 0.2s;
+      min-width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: #38bdf8;
+      flex-shrink: 0;
     }
     .lecture-btn.active .lec-num {
       background: rgba(255, 255, 255, 0.25);
       color: #fff;
     }
     .lecture-btn .badge-pill-sm {
-      background: rgba(6, 182, 212, 0.35);
+      background: rgba(6, 182, 212, 0.25);
       color: #67e8f9;
-      border: 1px solid rgba(6, 182, 212, 0.5);
-      padding: 1px 6px;
+      border: 1px solid rgba(6, 182, 212, 0.45);
+      padding: 2px 7px;
       border-radius: 6px;
-      font-size: 0.68rem;
+      font-size: 0.69rem;
       font-weight: 700;
+      flex-shrink: 0;
     }
     .lecture-btn.active .badge-pill-sm {
       background: rgba(255, 255, 255, 0.25);
       color: #fff;
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+    .lecture-btn .lec-title {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .lecture-btn.search-hidden {
+      display: none !important;
     }
 
-    /* 4. Active Lecture Status Banner */
+    /* 5. Active Lecture Status Banner */
     .current-lecture-badge {
       display: flex;
       align-items: center;
@@ -326,21 +423,40 @@
       transform: translateY(-1px);
     }
 
+    /* Strict Password Gate Locking */
+    body.portal-locked {
+      overflow: hidden !important;
+    }
+    body.portal-locked .container {
+      filter: blur(28px) grayscale(60%);
+      opacity: 0.05;
+      pointer-events: none !important;
+      user-select: none !important;
+      transition: filter 0.45s ease, opacity 0.45s ease;
+    }
+    body:not(.portal-locked) .container {
+      filter: none;
+      opacity: 1;
+      pointer-events: auto;
+      user-select: auto;
+      transition: filter 0.45s ease, opacity 0.45s ease;
+    }
+
     /* Password Gate Modal Overlay */
     #portalGateOverlay {
       position: fixed;
       inset: 0;
-      z-index: 9999999;
-      background: radial-gradient(circle at 50% 40%, rgba(15, 23, 42, 0.96), rgba(7, 10, 19, 0.98));
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
+      z-index: 99999999;
+      background: radial-gradient(circle at 50% 40%, rgba(15, 23, 42, 0.98), rgba(7, 10, 19, 0.99));
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
       transition: opacity 0.35s ease, visibility 0.35s ease;
     }
-    #portalGateOverlay.unlocked {
+    body:not(.portal-locked) #portalGateOverlay {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -1043,7 +1159,7 @@
     }
   </style>
 </head>
-<body>
+<body class="portal-locked">
 
   <!-- PASSWORD GATE OVERLAY (비밀번호: 509401) -->
   <div id="portalGateOverlay" aria-modal="true" role="dialog">
@@ -1122,44 +1238,47 @@
         </a>
       </div>
 
+      <!-- 빠른 검색 및 자동 순서 리뉴얼 컨트롤 바 -->
+      <div class="hub-toolbar">
+        <div class="search-box-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="lectureSearchInput" class="lecture-search-input" placeholder="공식명, 단원, 번호 검색 (예: 비율관계, 삼차함수, 37, 정적분...)" oninput="filterLecturesBySearch(this.value)">
+          <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearLectureSearch()" style="display: none;">✕</button>
+        </div>
+        <div class="sort-controls-wrap">
+          <span class="sort-label">자동 순서 리뉴얼:</span>
+          <button type="button" class="sort-btn active" id="sortAscBtn" onclick="setSortOrder('asc')" title="1강부터 37강 교과과정 순서로 자동 리뉴얼">
+            <span>🔢 1강 ➔ 37강 순</span>
+          </button>
+          <button type="button" class="sort-btn" id="sortDescBtn" onclick="setSortOrder('desc')" title="최신 37강부터 1강 역순으로 자동 리뉴얼">
+            <span>⚡ 37강 ➔ 1강 역순</span>
+          </button>
+          <button type="button" class="sort-btn" id="sortKillerBtn" onclick="setSortOrder('killer')" title="수능 킬러 &amp; 필수 공식 우선 정렬">
+            <span>🔥 킬러·꿀팁 우선</span>
+          </button>
+        </div>
+      </div>
+
       <!-- 2. 과목별 강의 그룹 컨테이너 -->
       <div class="lecture-groups-wrapper">
 
-        <!-- [그룹 1] 수학(하) · 함수와 그래프 (6강) -->
+        <!-- [그룹 1] 수학(하) · 함수와 그래프 (8강) -->
         <div class="subject-panel" id="group-math-ha" data-subj="math-ha">
           <div class="subj-header">
             <span class="subj-indicator ind-blue"></span>
             <span class="subj-title-text">📘 수학(하) · 함수와 그래프</span>
-            <span class="subj-sub">(유리·무리함수 · 절댓값 · 수와 연산)</span>
+            <span class="subj-sub">(유리·무리함수 · 절댓값 · 수와 연산 · 교과서 14개 그래프)</span>
           </div>
           <div class="lecture-btn-grid">
-            <button type="button" class="lecture-btn active" id="btnLec28" onclick="setLecture(28)" data-subj="math-ha">
-              <span class="lec-num">28</span>
-              <span class="badge-pill-sm">⚡ 마스터</span>
-              <span class="lec-title">교과서 14개 그래프 총정리</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec22" onclick="setLecture(22)" data-subj="math-ha">
-              <span class="lec-num">22</span>
-              <span class="badge-pill-sm">⚡ 꿀팁</span>
-              <span class="lec-title">합성함수 그래프 그리기 (N축 스킬)</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec18" onclick="setLecture(18)" data-subj="math-ha">
-              <span class="lec-num">18</span>
-              <span class="lec-title">무리함수 GSP 시뮬레이션</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec17" onclick="setLecture(17)" data-subj="math-ha">
-              <span class="lec-num">17</span>
-              <span class="lec-title">유리함수 $d$ 변화</span>
+            <button type="button" class="lecture-btn" id="btnLec10" onclick="setLecture(10)" data-subj="math-ha">
+              <span class="lec-num">10</span>
+              <span class="badge-pill-sm">⚡ 3초</span>
+              <span class="lec-title">유리함수 평행이동 공식</span>
             </button>
             <button type="button" class="lecture-btn" id="btnLec11" onclick="setLecture(11)" data-subj="math-ha">
               <span class="lec-num">11</span>
               <span class="badge-pill-sm">⚡ 3초</span>
               <span class="lec-title">무리함수와 역함수 교점 공식</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec10" onclick="setLecture(10)" data-subj="math-ha">
-              <span class="lec-num">10</span>
-              <span class="badge-pill-sm">⚡ 3초</span>
-              <span class="lec-title">유리함수 평행이동 공식</span>
             </button>
             <button type="button" class="lecture-btn" id="btnLec13" onclick="setLecture(13)" data-subj="math-ha">
               <span class="lec-num">13</span>
@@ -1169,10 +1288,28 @@
               <span class="lec-num">15</span>
               <span class="lec-title">약수의 총곱 &amp; 기하평균</span>
             </button>
+            <button type="button" class="lecture-btn" id="btnLec17" onclick="setLecture(17)" data-subj="math-ha">
+              <span class="lec-num">17</span>
+              <span class="lec-title">유리함수 $d$ 변화</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec18" onclick="setLecture(18)" data-subj="math-ha">
+              <span class="lec-num">18</span>
+              <span class="lec-title">무리함수 GSP 시뮬레이션</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec22" onclick="setLecture(22)" data-subj="math-ha">
+              <span class="lec-num">22</span>
+              <span class="badge-pill-sm">⚡ 꿀팁</span>
+              <span class="lec-title">합성함수 그래프 그리기 (N축 스킬)</span>
+            </button>
+            <button type="button" class="lecture-btn active" id="btnLec28" onclick="setLecture(28)" data-subj="math-ha">
+              <span class="lec-num">28</span>
+              <span class="badge-pill-sm">⚡ 마스터</span>
+              <span class="lec-title">교과서 14개 그래프 총정리</span>
+            </button>
           </div>
         </div>
 
-        <!-- [그룹 2] 수학 I · 삼각함수 (3강) -->
+        <!-- [그룹 2] 수학 I · 지수·로그 & 삼각함수 (11강) -->
         <div class="subject-panel" id="group-math1" data-subj="math1">
           <div class="subj-header">
             <span class="subj-indicator ind-green"></span>
@@ -1180,62 +1317,62 @@
             <span class="subj-sub">(지수·로그함수 역함수 교점 · 단위원 · 8칸 박스법 · 삼각비)</span>
           </div>
           <div class="lecture-btn-grid">
-            <button type="button" class="lecture-btn" id="btnLec32" onclick="setLecture(32)" data-subj="math1">
-              <span class="lec-num">32</span>
-              <span class="badge-pill-sm">⚡ 실전팁</span>
-              <span class="lec-title">지수·로그 확대·축소 &amp; 실전 비율 관계</span>
+            <button type="button" class="lecture-btn" id="btnLec7" onclick="setLecture(7)" data-subj="math1">
+              <span class="lec-num">7</span>
+              <span class="lec-title">삼각비에서 삼각함수까지</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec31" onclick="setLecture(31)" data-subj="math1">
-              <span class="lec-num">31</span>
-              <span class="badge-pill-sm">⚡ 요약</span>
-              <span class="lec-title">지수함수와 로그함수 수능 요약</span>
+            <button type="button" class="lecture-btn" id="btnLec8" onclick="setLecture(8)" data-subj="math1">
+              <span class="lec-num">8</span>
+              <span class="lec-title">삼각함수 그래프 8칸 박스법</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec30" onclick="setLecture(30)" data-subj="math1">
-              <span class="lec-num">30</span>
-              <span class="badge-pill-sm">⚡ 필수</span>
-              <span class="lec-title">삼각함수 활용 · 코사인법칙</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec25" onclick="setLecture(25)" data-subj="math1">
-              <span class="lec-num">25</span>
-              <span class="badge-pill-sm">⚡ 꿀팁</span>
-              <span class="lec-title">점화식 25분 아작내기 (Big 4 &amp; 응용 6)</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec24" onclick="setLecture(24)" data-subj="math1">
-              <span class="lec-num">24</span>
-              <span class="badge-pill-sm">⚡ 킬러</span>
-              <span class="lec-title">도형 문제 최상위권의 시선 (삼각함수 활용)</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec21" onclick="setLecture(21)" data-subj="math1">
-              <span class="lec-num">21</span>
-              <span class="badge-pill-sm">⚡ 필수</span>
-              <span class="lec-title">삼각함수 비율관계</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec20" onclick="setLecture(20)" data-subj="math1">
-              <span class="lec-num">20</span>
-              <span class="badge-pill-sm">⚡ 수능</span>
-              <span class="lec-title">지수·로그함수 기울기 $m=-1$ 활용법</span>
+            <button type="button" class="lecture-btn" id="btnLec16" onclick="setLecture(16)" data-subj="math1">
+              <span class="lec-num">16</span>
+              <span class="lec-title">단위원 삼각함수 정복</span>
             </button>
             <button type="button" class="lecture-btn" id="btnLec19" onclick="setLecture(19)" data-subj="math1">
               <span class="lec-num">19</span>
               <span class="badge-pill-sm">⚡ 8초</span>
               <span class="lec-title">지수·로그함수와 역함수 교점</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec16" onclick="setLecture(16)" data-subj="math1">
-              <span class="lec-num">16</span>
-              <span class="lec-title">단위원 삼각함수 정복</span>
+            <button type="button" class="lecture-btn" id="btnLec20" onclick="setLecture(20)" data-subj="math1">
+              <span class="lec-num">20</span>
+              <span class="badge-pill-sm">⚡ 수능</span>
+              <span class="lec-title">지수·로그함수 기울기 $m=-1$ 활용법</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec8" onclick="setLecture(8)" data-subj="math1">
-              <span class="lec-num">8</span>
-              <span class="lec-title">삼각함수 그래프 8칸 박스법</span>
+            <button type="button" class="lecture-btn" id="btnLec21" onclick="setLecture(21)" data-subj="math1">
+              <span class="lec-num">21</span>
+              <span class="badge-pill-sm">⚡ 필수</span>
+              <span class="lec-title">삼각함수 비율관계</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec7" onclick="setLecture(7)" data-subj="math1">
-              <span class="lec-num">7</span>
-              <span class="lec-title">삼각비에서 삼각함수까지</span>
+            <button type="button" class="lecture-btn" id="btnLec24" onclick="setLecture(24)" data-subj="math1">
+              <span class="lec-num">24</span>
+              <span class="badge-pill-sm">⚡ 킬러</span>
+              <span class="lec-title">도형 문제 최상위권의 시선 (삼각함수 활용)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec25" onclick="setLecture(25)" data-subj="math1">
+              <span class="lec-num">25</span>
+              <span class="badge-pill-sm">⚡ 꿀팁</span>
+              <span class="lec-title">점화식 25분 아작내기 (Big 4 &amp; 응용 6)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec30" onclick="setLecture(30)" data-subj="math1">
+              <span class="lec-num">30</span>
+              <span class="badge-pill-sm">⚡ 필수</span>
+              <span class="lec-title">삼각함수 활용 · 코사인법칙</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec31" onclick="setLecture(31)" data-subj="math1">
+              <span class="lec-num">31</span>
+              <span class="badge-pill-sm">⚡ 요약</span>
+              <span class="lec-title">지수함수와 로그함수 수능 요약</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec32" onclick="setLecture(32)" data-subj="math1">
+              <span class="lec-num">32</span>
+              <span class="badge-pill-sm">⚡ 실전팁</span>
+              <span class="lec-title">지수·로그 확대·축소 &amp; 실전 비율 관계</span>
             </button>
           </div>
         </div>
 
-        <!-- [그룹 3] 수학 II · 다항함수 미적분 (6강) -->
+        <!-- [그룹 3] 수학 II · 다항함수 미적분 (11강) -->
         <div class="subject-panel" id="group-math2" data-subj="math2">
           <div class="subj-header">
             <span class="subj-indicator ind-orange"></span>
@@ -1243,97 +1380,97 @@
             <span class="subj-sub">(비율관계 · 변곡접선 · 극대 정의 · 정적분 만능공식)</span>
           </div>
           <div class="lecture-btn-grid">
-            <button type="button" class="lecture-btn" id="btnLec37" onclick="setLecture(37)" data-subj="math2">
-              <span class="lec-num">37</span>
-              <span class="badge-pill-sm">⚡ 킬러체화</span>
-              <span class="lec-title">삼차함수 비율관계와 극대·극소 높이차 공식</span>
+            <button type="button" class="lecture-btn" id="btnLec1" onclick="setLecture(1)" data-subj="math2">
+              <span class="lec-num">1</span>
+              <span class="lec-title">다항함수 넓이의 비 ($S_1:S_2 = 1:n$)</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec36" onclick="setLecture(36)" data-subj="math2">
-              <span class="lec-num">36</span>
-              <span class="badge-pill-sm">⚡ 꿀팁</span>
-              <span class="lec-title">다항함수 거리곱 공식과 고속 개형 추론</span>
+            <button type="button" class="lecture-btn" id="btnLec2" onclick="setLecture(2)" data-subj="math2">
+              <span class="lec-num">2</span>
+              <span class="lec-title">정적분 넓이 만능 공식 ($\frac{m!n!}{(m+n+1)!}$)</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec33" onclick="setLecture(33)" data-subj="math2">
-              <span class="lec-num">33</span>
-              <span class="badge-pill-sm">⚡ 본질</span>
-              <span class="lec-title">정적분의 본질 · 넓이 vs 함숫값의 이중성</span>
+            <button type="button" class="lecture-btn" id="btnLec3" onclick="setLecture(3)" data-subj="math2">
+              <span class="lec-num">3</span>
+              <span class="lec-title">변곡접선 정리하기</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec29" onclick="setLecture(29)" data-subj="math2">
-              <span class="lec-num">29</span>
-              <span class="badge-pill-sm">⚡ 킬러</span>
-              <span class="lec-title">함수의 극한 성질 진위판단 (치환법)</span>
+            <button type="button" class="lecture-btn" id="btnLec4" onclick="setLecture(4)" data-subj="math2">
+              <span class="lec-num">4</span>
+              <span class="lec-title">다항함수 비율관계 ($m:n$ 내분점)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec9" onclick="setLecture(9)" data-subj="math2">
+              <span class="lec-num">9</span>
+              <span class="lec-title">정적분과 넓이 &amp; 차함수의 마법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec14" onclick="setLecture(14)" data-subj="math2">
+              <span class="lec-num">14</span>
+              <span class="lec-title">이게 극대라고?! (극값의 정의)</span>
             </button>
             <button type="button" class="lecture-btn" id="btnLec27" onclick="setLecture(27)" data-subj="math2">
               <span class="lec-num">27</span>
               <span class="badge-pill-sm">⚡ 킬러</span>
               <span class="lec-title">다항함수를 보는 눈 (인수와 대칭성)</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec14" onclick="setLecture(14)" data-subj="math2">
-              <span class="lec-num">14</span>
-              <span class="lec-title">이게 극대라고?! (극값의 정의)</span>
+            <button type="button" class="lecture-btn" id="btnLec29" onclick="setLecture(29)" data-subj="math2">
+              <span class="lec-num">29</span>
+              <span class="badge-pill-sm">⚡ 킬러</span>
+              <span class="lec-title">함수의 극한 성질 진위판단 (치환법)</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec4" onclick="setLecture(4)" data-subj="math2">
-              <span class="lec-num">4</span>
-              <span class="lec-title">다항함수 비율관계 ($m:n$ 내분점)</span>
+            <button type="button" class="lecture-btn" id="btnLec33" onclick="setLecture(33)" data-subj="math2">
+              <span class="lec-num">33</span>
+              <span class="badge-pill-sm">⚡ 본질</span>
+              <span class="lec-title">정적분의 본질 · 넓이 vs 함숫값의 이중성</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec3" onclick="setLecture(3)" data-subj="math2">
-              <span class="lec-num">3</span>
-              <span class="lec-title">변곡접선 정리하기</span>
+            <button type="button" class="lecture-btn" id="btnLec36" onclick="setLecture(36)" data-subj="math2">
+              <span class="lec-num">36</span>
+              <span class="badge-pill-sm">⚡ 꿀팁</span>
+              <span class="lec-title">다항함수 거리곱 공식과 고속 개형 추론</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec9" onclick="setLecture(9)" data-subj="math2">
-              <span class="lec-num">9</span>
-              <span class="lec-title">정적분과 넓이 &amp; 차함수의 마법</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec2" onclick="setLecture(2)" data-subj="math2">
-              <span class="lec-num">2</span>
-              <span class="lec-title">정적분 넓이 만능 공식 ($\frac{m!n!}{(m+n+1)!}$)</span>
-            </button>
-            <button type="button" class="lecture-btn" id="btnLec1" onclick="setLecture(1)" data-subj="math2">
-              <span class="lec-num">1</span>
-              <span class="lec-title">다항함수 넓이의 비 ($S_1:S_2 = 1:n$)</span>
+            <button type="button" class="lecture-btn" id="btnLec37" onclick="setLecture(37)" data-subj="math2">
+              <span class="lec-num">37</span>
+              <span class="badge-pill-sm">⚡ 킬러체화</span>
+              <span class="lec-title">삼차함수 비율관계와 극대·극소 높이차 공식</span>
             </button>
           </div>
         </div>
 
-        <!-- [그룹 4] 기하 & 미적분 (3강) -->
+        <!-- [그룹 4] 기하 & 미적분 (7강) -->
         <div class="subject-panel" id="group-geom" data-subj="geom">
           <div class="subj-header">
             <span class="subj-indicator ind-purple"></span>
             <span class="subj-title-text">📐 기하 &amp; 미적분</span>
-            <span class="subj-sub">(수능 기하 7대 정리 · 직각쌍곡선 · 피타고라스)</span>
+            <span class="subj-sub">(수능 기하 7대 정리 · 직각쌍곡선 · 피타고라스 · 중학도형)</span>
           </div>
           <div class="lecture-btn-grid">
-            <button type="button" class="lecture-btn" id="btnLec35" onclick="setLecture(35)" data-subj="geom">
-              <span class="lec-num">35</span>
-              <span class="badge-pill-sm">⚡ 필수도형</span>
-              <span class="lec-title">원의 성질 핵심 정리 · 원주각과 접현각</span>
+            <button type="button" class="lecture-btn" id="btnLec5" onclick="setLecture(5)" data-subj="geom">
+              <span class="lec-num">5</span>
+              <span class="lec-title">피타고라스 정리 (유클리드 증명)</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec34" onclick="setLecture(34)" data-subj="geom">
-              <span class="lec-num">34</span>
-              <span class="badge-pill-sm">⚡ 기본기</span>
-              <span class="lec-title">중학도형 핵심 총정리 · 각의 이등분선과 닮음</span>
+            <button type="button" class="lecture-btn" id="btnLec6" onclick="setLecture(6)" data-subj="geom">
+              <span class="lec-num">6</span>
+              <span class="lec-title">수능 기하 7대 핵심정리 총정리</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec26" onclick="setLecture(26)" data-subj="geom">
-              <span class="lec-num">26</span>
-              <span class="badge-pill-sm">⚡ 심화</span>
-              <span class="lec-title">테일러 급수 (초월함수의 다항식 근사)</span>
+            <button type="button" class="lecture-btn" id="btnLec12" onclick="setLecture(12)" data-subj="geom">
+              <span class="lec-num">12</span>
+              <span class="lec-title">직각쌍곡선 넓이 $S=T$ 꿀팁</span>
             </button>
             <button type="button" class="lecture-btn" id="btnLec23" onclick="setLecture(23)" data-subj="geom">
               <span class="lec-num">23</span>
               <span class="badge-pill-sm">⚡ 수능</span>
               <span class="lec-title">포물선의 기하학적 성질 7가지</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec12" onclick="setLecture(12)" data-subj="geom">
-              <span class="lec-num">12</span>
-              <span class="lec-title">직각쌍곡선 넓이 $S=T$ 꿀팁</span>
+            <button type="button" class="lecture-btn" id="btnLec26" onclick="setLecture(26)" data-subj="geom">
+              <span class="lec-num">26</span>
+              <span class="badge-pill-sm">⚡ 심화</span>
+              <span class="lec-title">테일러 급수 (초월함수의 다항식 근사)</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec6" onclick="setLecture(6)" data-subj="geom">
-              <span class="lec-num">6</span>
-              <span class="lec-title">수능 기하 7대 핵심정리 총정리</span>
+            <button type="button" class="lecture-btn" id="btnLec34" onclick="setLecture(34)" data-subj="geom">
+              <span class="lec-num">34</span>
+              <span class="badge-pill-sm">⚡ 기본기</span>
+              <span class="lec-title">중학도형 핵심 총정리 · 각의 이등분선과 닮음</span>
             </button>
-            <button type="button" class="lecture-btn" id="btnLec5" onclick="setLecture(5)" data-subj="geom">
-              <span class="lec-num">5</span>
-              <span class="lec-title">피타고라스 정리 (유클리드 증명)</span>
+            <button type="button" class="lecture-btn" id="btnLec35" onclick="setLecture(35)" data-subj="geom">
+              <span class="lec-num">35</span>
+              <span class="badge-pill-sm">⚡ 필수도형</span>
+              <span class="lec-title">원의 성질 핵심 정리 · 원주각과 접현각</span>
             </button>
           </div>
         </div>
@@ -26632,22 +26769,16 @@ window.addEventListener('resize', () => {
 // ==========================================
 // PASSWORD GATE AUTHENTICATION (비밀번호: 509401)
 // ==========================================
-const PORTAL_AUTH_KEY = 'math_portal_pw_authenticated';
 const CORRECT_PORTAL_PW = '509401';
 
 function initPasswordGate() {
-  const overlay = document.getElementById('portalGateOverlay');
   const input = document.getElementById('gatePasswordInput');
-  if (!overlay) return;
+  // Always lock from the very first opening
+  document.body.classList.add('portal-locked');
 
-  if (sessionStorage.getItem(PORTAL_AUTH_KEY) === CORRECT_PORTAL_PW) {
-    overlay.classList.add('unlocked');
-  } else {
-    overlay.classList.remove('unlocked');
-    setTimeout(() => {
-      if (input) input.focus();
-    }, 120);
-  }
+  setTimeout(() => {
+    if (input) input.focus();
+  }, 150);
 
   if (input) {
     input.addEventListener('keydown', function(e) {
@@ -26662,24 +26793,27 @@ function verifyGatePassword() {
   const input = document.getElementById('gatePasswordInput');
   const errorMsg = document.getElementById('gateErrorMsg');
   const card = document.getElementById('gateCard');
-  const overlay = document.getElementById('portalGateOverlay');
   const icon = document.getElementById('gateIcon');
   if (!input) return;
 
   const val = input.value.trim();
   if (val === CORRECT_PORTAL_PW) {
-    // Correct password
-    sessionStorage.setItem(PORTAL_AUTH_KEY, CORRECT_PORTAL_PW);
+    // Correct password entered: unlock portal immediately
     if (errorMsg) errorMsg.style.display = 'none';
     if (icon) {
       icon.innerHTML = '🔓';
       icon.style.background = 'linear-gradient(135deg, rgba(52, 211, 153, 0.35), rgba(16, 185, 129, 0.35))';
       icon.style.borderColor = '#34d399';
-      icon.style.boxShadow = '0 0 30px rgba(52, 211, 153, 0.6)';
+      icon.style.boxShadow = '0 0 35px rgba(52, 211, 153, 0.7)';
     }
+
     setTimeout(() => {
-      overlay.classList.add('unlocked');
-    }, 250);
+      document.body.classList.remove('portal-locked');
+      // Render active lecture content cleanly
+      const activeBtn = document.querySelector('.lecture-btn.active');
+      const activeNum = activeBtn ? parseInt(activeBtn.querySelector('.lec-num').textContent, 10) : 28;
+      setLecture(activeNum);
+    }, 280);
   } else {
     // Incorrect password
     if (errorMsg) errorMsg.style.display = 'block';
@@ -26707,8 +26841,7 @@ function toggleGatePasswordVisibility() {
 }
 
 function lockPortal() {
-  sessionStorage.removeItem(PORTAL_AUTH_KEY);
-  const overlay = document.getElementById('portalGateOverlay');
+  document.body.classList.add('portal-locked');
   const input = document.getElementById('gatePasswordInput');
   const icon = document.getElementById('gateIcon');
   const errorMsg = document.getElementById('gateErrorMsg');
@@ -26719,10 +26852,68 @@ function lockPortal() {
     icon.style.boxShadow = '';
   }
   if (errorMsg) errorMsg.style.display = 'none';
-  if (overlay) overlay.classList.remove('unlocked');
   if (input) {
     input.value = '';
     setTimeout(() => input.focus(), 150);
+  }
+}
+
+// ==========================================
+// DYNAMIC SORTING & AUTO-RENEWAL SYSTEM
+// ==========================================
+let currentSortMode = 'asc'; // 'asc', 'desc', 'killer'
+
+function setSortOrder(mode) {
+  currentSortMode = mode;
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.id === `sort${mode.charAt(0).toUpperCase() + mode.slice(1)}Btn`);
+  });
+
+  const grids = document.querySelectorAll('.lecture-btn-grid');
+  grids.forEach(grid => {
+    const buttons = Array.from(grid.querySelectorAll('.lecture-btn'));
+    buttons.sort((a, b) => {
+      const numA = parseInt(a.querySelector('.lec-num').textContent, 10);
+      const numB = parseInt(b.querySelector('.lec-num').textContent, 10);
+      
+      if (mode === 'asc') {
+        return numA - numB;
+      } else if (mode === 'desc') {
+        return numB - numA;
+      } else if (mode === 'killer') {
+        const badgeA = a.querySelector('.badge-pill-sm') ? 1 : 0;
+        const badgeB = b.querySelector('.badge-pill-sm') ? 1 : 0;
+        if (badgeA !== badgeB) return badgeB - badgeA; // with badge first
+        return numA - numB;
+      }
+      return 0;
+    });
+
+    buttons.forEach(btn => grid.appendChild(btn));
+  });
+}
+
+function filterLecturesBySearch(query) {
+  const q = (query || '').trim().toLowerCase();
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (clearBtn) clearBtn.style.display = q ? 'inline-flex' : 'none';
+
+  const buttons = document.querySelectorAll('.lecture-btn');
+  buttons.forEach(btn => {
+    const num = btn.querySelector('.lec-num')?.textContent.toLowerCase() || '';
+    const title = btn.querySelector('.lec-title')?.textContent.toLowerCase() || '';
+    const badge = btn.querySelector('.badge-pill-sm')?.textContent.toLowerCase() || '';
+    const match = !q || num.includes(q) || title.includes(q) || badge.includes(q);
+    btn.classList.toggle('search-hidden', !match);
+  });
+}
+
+function clearLectureSearch() {
+  const input = document.getElementById('lectureSearchInput');
+  if (input) {
+    input.value = '';
+    filterLecturesBySearch('');
+    input.focus();
   }
 }
 
