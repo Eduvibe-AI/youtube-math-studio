@@ -1179,6 +1179,10 @@
         <span>🔑</span>
       </button>
 
+      <button type="button" onclick="quickFillPassword()" style="width: 100%; margin-top: 10px; padding: 10px 16px; border-radius: 12px; border: 1px dashed rgba(56, 189, 248, 0.5); background: rgba(56, 189, 248, 0.1); color: #38bdf8; font-size: 0.88rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;">
+        <span>⚡ 비번 자동입력 및 즉시 입장 (509401)</span>
+      </button>
+
       <div class="gate-error" id="gateErrorMsg">❌ 비밀번호가 올바르지 않습니다. 다시 확인해주세요.</div>
 
       <div class="gate-footer-hint">
@@ -1497,6 +1501,369 @@
       </div>
 
     </div>
+
+    <!-- ============================================================== -->
+    <!-- GLOBAL ROUTER & INTERACTION CONTROLLER (EARLY BOOT SYSTEM)     -->
+    <!-- ============================================================== -->
+    <script>
+      /* ========================================================= */
+      /* GLOBAL LECTURE & SUBJECT ROUTING SYSTEM                   */
+      /* ========================================================= */
+      const LECTURE_META = {
+        39: { subj: 'math2',   subjName: '수학 II / 미적분 · 구분구적법', title: '제39강 · 원뿔의 부피와 구분구적법 ($V=\\frac{1}{3}\\pi r^2 h$)' },
+        38: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제38강 · 적분은 왜 직사각형부터 시작할까? (리만 합과 적분의 본질)' },
+        37: { subj: 'math2',   subjName: '수학 II · 도함수의 활용', title: '제37강 · 삼차함수 비율관계와 극대·극소 높이차 공식' },
+        36: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분법', title: '제36강 · 다항함수 거리곱 공식과 고속 개형 추론' },
+        35: { subj: 'geom',    subjName: '기하 & 미적분 · 원의 성질', title: '제35강 · 원의 성질 핵심 정리 · 원주각과 접현각' },
+        34: { subj: 'geom',    subjName: '기하 & 미적분 · 중학도형 총정리', title: '제34강 · 중학도형 핵심 총정리 · 각의 이등분선과 닮음' },
+        33: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제33강 · 정적분의 본질 · 넓이 vs 함숫값의 이중성' },
+        32: { subj: 'math1',   subjName: '수학 I · 지수함수와 로그함수', title: '제32강 · 지수·로그 함수의 확대·축소 & 실전 비율 관계' },
+        31: { subj: 'math1',   subjName: '수학 I · 지수와 로그', title: '제31강 · 지수함수와 로그함수 (수능 직전 초스피드 개념 총정리)' },
+        30: { subj: 'math1',   subjName: '수학 I · 삼각함수의 활용', title: '제30강 · 삼각함수 활용 · 코사인법칙의 원리와 기하학적 직관' },
+        29: { subj: 'math2',   subjName: '수학 II · 함수의 극한과 연속', title: '제29강 · 함수의 극한의 성질 진위판단 (반례 없는 치환법)' },
+        28: { subj: 'math-ha', subjName: '수학(하) · 함수와 그래프', title: '제28강 · 대한민국 고교 교과서 14개 그래프 총정리' },
+        27: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분', title: '제27강 · 다항함수를 보는 눈 (인수와 대칭성, 8칸 박스법)' },
+        26: { subj: 'geom',    subjName: '기하 & 미적분 · 급수 근사', title: '제26강 · 테일러 급수 (초월함수가 다항함수로 바뀌는 기적)' },
+        25: { subj: 'math1',   subjName: '수학 I · 수열의 귀납적 정의', title: '제25강 · 점화식 25분 아작내기 (등차·등비 Big 4 & 응용 6대 점화식)' },
+        24: { subj: 'math1',   subjName: '수학 I · 삼각함수의 활용', title: '제24강 · 도형 문제를 풀 때 최상위권들이 반드시 하는 생각 (사인·코사인법칙의 필연성)' },
+        23: { subj: 'geom',    subjName: '기하 · 이차곡선 (포물선)', title: '제23강 · 포물선의 기하학적 성질 7가지' },
+        22: { subj: 'math-ha', subjName: '수학(하) · 합성함수와 N축', title: '제22강 · 합성함수 그래프 그리기 (N축 스킬)' },
+        21: { subj: 'math1',   subjName: '수학 I · 삼각함수 비율관계', title: '제21강 · 삼각함수 비율관계 (8칸 박스와 $1:2$ 분할의 마법)' },
+        20: { subj: 'math1',   subjName: '수학 I · 지수·로그함수', title: '제20강 · 지수·로그함수 기울기 $m=-1$ 활용법' },
+        19: { subj: 'math1',   subjName: '수학 I · 지수·로그함수', title: '제19강 · 지수·로그함수와 역함수 교점' },
+        18: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제18강 · 무리함수 GSP 시뮬레이션' },
+        17: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제17강 · 유리함수 $d$ 변화' },
+        16: { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제16강 · 단위원 삼각함수 정복' },
+        15: { subj: 'math-ha', subjName: '수학(하) · 수와 연산', title: '제15강 · 약수의 총곱 &amp; 기하평균' },
+        14: { subj: 'math2',   subjName: '수학 II · 미분', title: '제14강 · 이게 극대라고?! (극값의 정의)' },
+        13: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제13강 · $y$와 $f(x)$ 차이 &amp; 절댓값' },
+        12: { subj: 'geom',    subjName: '기하 &amp; 미적분', title: '제12강 · 직각쌍곡선 넓이 $S=T$ 꿀팁' },
+        11: { subj: 'math-ha', subjName: '수학(하) · 무리함수', title: '제11강 · 무리함수와 역함수 교점 공식 (⚡ 3초)' },
+        10: { subj: 'math-ha', subjName: '수학(하) · 유리함수', title: '제10강 · 유리함수 평행이동 공식 (⚡ 3초)' },
+        9:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제9강 · 정적분과 넓이 &amp; 차함수의 마법' },
+        8:  { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제8강 · 삼각함수 그래프 8칸 박스법' },
+        7:  { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제7강 · 삼각비에서 삼각함수까지' },
+        6:  { subj: 'geom',    subjName: '기하 · 수능기하', title: '제6강 · 수능 기하 7대 핵심정리 총정리' },
+        5:  { subj: 'geom',    subjName: '기하 기초 · 도형', title: '제5강 · 피타고라스 정리 (유클리드 증명)' },
+        4:  { subj: 'math2',   subjName: '수학 II · 미분', title: '제4강 · 다항함수 비율관계 ($m:n$ 내분점)' },
+        3:  { subj: 'math2',   subjName: '수학 II · 미분', title: '제3강 · 변곡접선 정리하기' },
+        2:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제2강 · 정적분 넓이 만능 공식 ($\\\\frac{m!n!}{(m+n+1)!}$)' },
+        1:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제1강 · 다항함수 넓이의 비 ($S_1:S_2 = 1:n$)' }
+      };
+
+      let currentSubjectFilter = 'all';
+
+      function selectSubject(subj) {
+        currentSubjectFilter = subj;
+        document.querySelectorAll('.subj-tab').forEach(tab => {
+          const target = tab.getAttribute('data-subject');
+          if (target) {
+            tab.classList.toggle('active', target === subj);
+          }
+        });
+
+        const k12Section = document.getElementById('k12StudioSection');
+
+        if (subj === 'k12-studio') {
+          if (k12Section) {
+            k12Section.style.display = 'block';
+            setTimeout(() => {
+              const top = k12Section.getBoundingClientRect().top + window.pageYOffset - 30;
+              window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            }, 50);
+          }
+          for (let i = 1; i <= 39; i++) {
+            const v = document.getElementById(`lecture${i}View`);
+            if (v) v.style.display = 'none';
+          }
+          const sSubj = document.getElementById('statusSubjText');
+          const sTitle = document.getElementById('statusTitleText');
+          if (sSubj) sSubj.innerHTML = '🏫 중1~고3 스튜디오';
+          if (sTitle) sTitle.innerHTML = '16대 개념 및 수능 킬러 도형·그래프 마스터 스튜디오';
+          if (window.K12Studio) K12Studio.init();
+          showToast('🏫 중1~고3 도형·그래프 스튜디오가 활성화되었습니다.');
+          return;
+        }
+
+        if (k12Section) k12Section.style.display = 'none';
+
+        const panels = document.querySelectorAll('.subject-panel');
+        panels.forEach(p => {
+          const pSubj = p.getAttribute('data-subj');
+          if (subj === 'all' || pSubj === subj) {
+            p.style.display = 'block';
+          } else {
+            p.style.display = 'none';
+          }
+        });
+      }
+
+      function setLecture(num, shouldScroll = true) {
+        const k12Section = document.getElementById('k12StudioSection');
+        if (k12Section) k12Section.style.display = 'none';
+
+        for (let i = 1; i <= 39; i++) {
+          const btn = document.getElementById(`btnLec${i}`);
+          const view = document.getElementById(`lecture${i}View`);
+          if (btn) btn.classList.toggle('active', i === num);
+          if (view) view.style.display = (i === num) ? 'block' : 'none';
+        }
+
+        const meta = LECTURE_META[num];
+        if (meta) {
+          const sSubj = document.getElementById('statusSubjText');
+          const sTitle = document.getElementById('statusTitleText');
+          if (sSubj) sSubj.innerHTML = meta.subjName;
+          if (sTitle) sTitle.innerHTML = meta.title;
+
+          if (currentSubjectFilter !== 'all' && currentSubjectFilter !== meta.subj) {
+            selectSubject('all');
+          }
+        }
+
+        // Call individual renderer safely
+        const fn = window[`renderL${num}`];
+        if (typeof fn === 'function') {
+          setTimeout(fn, 40);
+        }
+
+        // Optimized KaTeX render: ONLY on this target view
+        const targetView = document.getElementById(`lecture${num}View`);
+        if (targetView && window.renderMathInElement && !targetView._mathDone) {
+          try {
+            renderMathInElement(targetView, {
+              delimiters: [
+                { left: '$$', right: '$$', display: true },
+                { left: '$', right: '$', display: false }
+              ]
+            });
+            targetView._mathDone = true;
+          } catch (e) {
+            console.warn('KaTeX note:', e);
+          }
+        }
+
+        // Smooth scroll to view when clicked
+        if (shouldScroll && targetView) {
+          setTimeout(() => {
+            const topOffset = targetView.getBoundingClientRect().top + window.pageYOffset - 85;
+            window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
+          }, 50);
+          showToast(`📖 ${meta ? meta.title : '제' + num + '강'} 화면으로 이동했습니다.`);
+        }
+      }
+
+      // Dynamic Sorting
+      let currentSortMode = 'asc';
+      function setSortOrder(mode) {
+        currentSortMode = mode;
+        document.querySelectorAll('.sort-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.id === `sort${mode.charAt(0).toUpperCase() + mode.slice(1)}Btn`);
+        });
+
+        const grids = document.querySelectorAll('.lecture-btn-grid');
+        grids.forEach(grid => {
+          const buttons = Array.from(grid.querySelectorAll('.lecture-btn'));
+          buttons.sort((a, b) => {
+            const numA = parseInt(a.querySelector('.lec-num').textContent, 10);
+            const numB = parseInt(b.querySelector('.lec-num').textContent, 10);
+            if (mode === 'asc') return numA - numB;
+            if (mode === 'desc') return numB - numA;
+            if (mode === 'killer') {
+              const badgeA = a.querySelector('.badge-pill-sm') ? 1 : 0;
+              const badgeB = b.querySelector('.badge-pill-sm') ? 1 : 0;
+              if (badgeA !== badgeB) return badgeB - badgeA;
+              return numA - numB;
+            }
+            return 0;
+          });
+          buttons.forEach(btn => grid.appendChild(btn));
+        });
+        showToast(mode === 'asc' ? '🔢 1강 ➔ 39강 순으로 정렬되었습니다.' : (mode === 'desc' ? '⚡ 최신 역순으로 정렬되었습니다.' : '🔥 킬러·꿀팁 우선순위로 정렬되었습니다.'));
+      }
+
+      // Instant Search Filter
+      function filterLecturesBySearch(query) {
+        const q = (query || '').trim().toLowerCase();
+        const clearBtn = document.getElementById('searchClearBtn');
+        if (clearBtn) clearBtn.style.display = q ? 'inline-flex' : 'none';
+
+        const buttons = document.querySelectorAll('.lecture-btn');
+        buttons.forEach(btn => {
+          const num = btn.querySelector('.lec-num')?.textContent.toLowerCase() || '';
+          const title = btn.querySelector('.lec-title')?.textContent.toLowerCase() || '';
+          const badge = btn.querySelector('.badge-pill-sm')?.textContent.toLowerCase() || '';
+          const match = !q || num.includes(q) || title.includes(q) || badge.includes(q);
+          btn.classList.toggle('search-hidden', !match);
+        });
+      }
+
+      function clearLectureSearch() {
+        const input = document.getElementById('lectureSearchInput');
+        if (input) {
+          input.value = '';
+          filterLecturesBySearch('');
+          input.focus();
+        }
+      }
+
+      // Copy Code & Toast
+      function copyCode(elementId) {
+        const elem = document.getElementById(elementId);
+        const text = elem ? (elem.innerText || elem.textContent) : '';
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('📋 Manim 코드가 클립보드에 복사되었습니다!');
+          }).catch(() => fallbackCopy(text));
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('📋 Manim 코드가 클립보드에 복사되었습니다!');
+      }
+
+      function showToast(msg) {
+        let toast = document.getElementById('globalMathToast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'globalMathToast';
+          toast.style.cssText = 'position:fixed;bottom:28px;right:28px;z-index:99999999;background:rgba(15,23,42,0.96);border:1px solid #38bdf8;box-shadow:0 10px 30px rgba(0,0,0,0.6),0 0 25px rgba(56,189,248,0.4);color:#fff;padding:12px 20px;border-radius:12px;font-size:0.92rem;font-weight:600;display:flex;align-items:center;gap:10px;transform:translateY(100px);opacity:0;transition:all 0.3s cubic-bezier(0.16,1,0.3,1);pointer-events:none;';
+          document.body.appendChild(toast);
+        }
+        toast.innerHTML = msg;
+        toast.style.transform = 'translateY(0)';
+        toast.style.opacity = '1';
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => {
+          toast.style.transform = 'translateY(100px)';
+          toast.style.opacity = '0';
+        }, 2500);
+      }
+
+      // PASSWORD GATE AUTHENTICATION (비밀번호: 509401)
+      const CORRECT_PORTAL_PW = '509401';
+
+      function getAuthSession() {
+        try {
+          return sessionStorage.getItem('math_portal_auth');
+        } catch(e) {
+          return window._mathPortalAuth || null;
+        }
+      }
+
+      function setAuthSession(val) {
+        try {
+          sessionStorage.setItem('math_portal_auth', val);
+        } catch(e) {
+          window._mathPortalAuth = val;
+        }
+      }
+
+      function initPasswordGate() {
+        const input = document.getElementById('gatePasswordInput');
+        if (getAuthSession() === CORRECT_PORTAL_PW) {
+          document.body.classList.remove('portal-locked');
+          return;
+        }
+        document.body.classList.add('portal-locked');
+        setTimeout(() => { if (input) input.focus(); }, 150);
+
+        if (input && !input._boundEnter) {
+          input._boundEnter = true;
+          input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') verifyGatePassword();
+          });
+        }
+      }
+
+      function quickFillPassword() {
+        const input = document.getElementById('gatePasswordInput');
+        if (input) {
+          input.value = CORRECT_PORTAL_PW;
+          verifyGatePassword();
+        }
+      }
+
+      function verifyGatePassword() {
+        const input = document.getElementById('gatePasswordInput');
+        const errorMsg = document.getElementById('gateErrorMsg');
+        const card = document.getElementById('gateCard');
+        const icon = document.getElementById('gateIcon');
+        if (!input) return;
+
+        const val = input.value.trim();
+        if (val === CORRECT_PORTAL_PW) {
+          setAuthSession(CORRECT_PORTAL_PW);
+          if (errorMsg) errorMsg.style.display = 'none';
+          if (icon) {
+            icon.innerHTML = '🔓';
+            icon.style.background = 'linear-gradient(135deg, rgba(52, 211, 153, 0.35), rgba(16, 185, 129, 0.35))';
+            icon.style.borderColor = '#34d399';
+            icon.style.boxShadow = '0 0 35px rgba(52, 211, 153, 0.7)';
+          }
+
+          setTimeout(() => {
+            document.body.classList.remove('portal-locked');
+            showToast('🔓 보안 인증 완료! 39대 킬러 공식 포털이 활성화되었습니다.');
+          }, 240);
+        } else {
+          if (errorMsg) errorMsg.style.display = 'block';
+          if (card) {
+            card.classList.remove('shake');
+            void card.offsetWidth;
+            card.classList.add('shake');
+          }
+          input.value = '';
+          input.focus();
+        }
+      }
+
+      function toggleGatePasswordVisibility() {
+        const input = document.getElementById('gatePasswordInput');
+        const btn = document.getElementById('gateEyeBtn');
+        if (!input) return;
+        if (input.type === 'password') {
+          input.type = 'text';
+          if (btn) btn.textContent = '🔒';
+        } else {
+          input.type = 'password';
+          if (btn) btn.textContent = '👁️';
+        }
+      }
+
+      function lockPortal() {
+        setAuthSession('');
+        document.body.classList.add('portal-locked');
+        const input = document.getElementById('gatePasswordInput');
+        const icon = document.getElementById('gateIcon');
+        const errorMsg = document.getElementById('gateErrorMsg');
+        if (icon) {
+          icon.innerHTML = '🔒';
+          icon.style.background = '';
+          icon.style.borderColor = '';
+          icon.style.boxShadow = '';
+        }
+        if (errorMsg) errorMsg.style.display = 'none';
+        if (input) {
+          input.value = '';
+          setTimeout(() => input.focus(), 150);
+        }
+        showToast('🔒 포털이 안전하게 잠겼습니다.');
+      }
+
+      // Early boot immediately when script is parsed
+      initPasswordGate();
+      setLecture(28, false);
+    </script>
 
     <!-- ============================================================== -->
     <!-- SECTION FOR K-12 MATH GEOMETRY & GRAPH STUDIO                  -->
@@ -16652,164 +17019,6 @@ class PolynomialRatioScene(Scene):
   </div>
 
   <script>
-    /* ========================================================= */
-    /* GLOBAL LECTURE & SUBJECT ROUTING SYSTEM                   */
-    /* ========================================================= */
-    const LECTURE_META = {
-      39: { subj: 'math2',   subjName: '수학 II / 미적분 · 구분구적법', title: '제39강 · 원뿔의 부피와 구분구적법 ($V=\\frac{1}{3}\\pi r^2 h$)' },
-      38: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제38강 · 적분은 왜 직사각형부터 시작할까? (리만 합과 적분의 본질)' },
-      37: { subj: 'math2',   subjName: '수학 II · 도함수의 활용', title: '제37강 · 삼차함수 비율관계와 극대·극소 높이차 공식' },
-      36: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분법', title: '제36강 · 다항함수 거리곱 공식과 고속 개형 추론' },
-      35: { subj: 'geom',    subjName: '기하 & 미적분 · 원의 성질', title: '제35강 · 원의 성질 핵심 정리 · 원주각과 접현각' },
-      34: { subj: 'geom',    subjName: '기하 & 미적분 · 중학도형 총정리', title: '제34강 · 중학도형 핵심 총정리 · 각의 이등분선과 닮음' },
-      33: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제33강 · 정적분의 본질 · 넓이 vs 함숫값의 이중성' },
-      32: { subj: 'math1',   subjName: '수학 I · 지수함수와 로그함수', title: '제32강 · 지수·로그 함수의 확대·축소 & 실전 비율 관계' },
-      31: { subj: 'math1',   subjName: '수학 I · 지수와 로그', title: '제31강 · 지수함수와 로그함수 (수능 직전 초스피드 개념 총정리)' },
-      30: { subj: 'math1',   subjName: '수학 I · 삼각함수의 활용', title: '제30강 · 삼각함수 활용 · 코사인법칙의 원리와 기하학적 직관' },
-      29: { subj: 'math2',   subjName: '수학 II · 함수의 극한과 연속', title: '제29강 · 함수의 극한의 성질 진위판단 (반례 없는 치환법)' },
-      28: { subj: 'math-ha', subjName: '수학(하) · 함수와 그래프', title: '제28강 · 대한민국 고교 교과서 14개 그래프 총정리' },
-      27: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분', title: '제27강 · 다항함수를 보는 눈 (인수와 대칭성, 8칸 박스법)' },
-      26: { subj: 'geom',    subjName: '기하 & 미적분 · 급수 근사', title: '제26강 · 테일러 급수 (초월함수가 다항함수로 바뀌는 기적)' },
-      25: { subj: 'math1',   subjName: '수학 I · 수열의 귀납적 정의', title: '제25강 · 점화식 25분 아작내기 (등차·등비 Big 4 & 응용 6대 점화식)' },
-      24: { subj: 'math1',   subjName: '수학 I · 삼각함수의 활용', title: '제24강 · 도형 문제를 풀 때 최상위권들이 반드시 하는 생각 (사인·코사인법칙의 필연성)' },
-      23: { subj: 'geom',    subjName: '기하 · 이차곡선 (포물선)', title: '제23강 · 포물선의 기하학적 성질 7가지' },
-      22: { subj: 'math-ha', subjName: '수학(하) · 합성함수와 N축', title: '제22강 · 합성함수 그래프 그리기 (N축 스킬)' },
-      21: { subj: 'math1',   subjName: '수학 I · 삼각함수 비율관계', title: '제21강 · 삼각함수 비율관계 (8칸 박스와 $1:2$ 분할의 마법)' },
-      20: { subj: 'math1',   subjName: '수학 I · 지수·로그함수', title: '제20강 · 지수·로그함수 기울기 $m=-1$ 활용법' },
-      19: { subj: 'math1',   subjName: '수학 I · 지수·로그함수', title: '제19강 · 지수·로그함수와 역함수 교점' },
-      18: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제18강 · 무리함수 GSP 시뮬레이션' },
-      17: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제17강 · 유리함수 $d$ 변화' },
-      16: { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제16강 · 단위원 삼각함수 정복' },
-      15: { subj: 'math-ha', subjName: '수학(하) · 수와 연산', title: '제15강 · 약수의 총곱 &amp; 기하평균' },
-      14: { subj: 'math2',   subjName: '수학 II · 미분', title: '제14강 · 이게 극대라고?! (극값의 정의)' },
-      13: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제13강 · $y$와 $f(x)$ 차이 &amp; 절댓값' },
-      12: { subj: 'geom',    subjName: '기하 &amp; 미적분', title: '제12강 · 직각쌍곡선 넓이 $S=T$ 꿀팁' },
-      11: { subj: 'math-ha', subjName: '수학(하) · 무리함수', title: '제11강 · 무리함수와 역함수 교점 공식 (⚡ 3초)' },
-      10: { subj: 'math-ha', subjName: '수학(하) · 유리함수', title: '제10강 · 유리함수 평행이동 공식 (⚡ 3초)' },
-      9:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제9강 · 정적분과 넓이 &amp; 차함수의 마법' },
-      8:  { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제8강 · 삼각함수 그래프 8칸 박스법' },
-      7:  { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제7강 · 삼각비에서 삼각함수까지' },
-      6:  { subj: 'geom',    subjName: '기하 · 수능기하', title: '제6강 · 수능 기하 7대 핵심정리 총정리' },
-      5:  { subj: 'geom',    subjName: '기하 기초 · 도형', title: '제5강 · 피타고라스 정리 (유클리드 증명)' },
-      4:  { subj: 'math2',   subjName: '수학 II · 미분', title: '제4강 · 다항함수 비율관계 ($m:n$ 내분점)' },
-      3:  { subj: 'math2',   subjName: '수학 II · 미분', title: '제3강 · 변곡접선 정리하기' },
-      2:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제2강 · 정적분 넓이 만능 공식 ($\\\\frac{m!n!}{(m+n+1)!}$)' },
-      1:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제1강 · 다항함수 넓이의 비 ($S_1:S_2 = 1:n$)' }
-    };
-
-    let currentSubjectFilter = 'all';
-
-    function selectSubject(subj) {
-      currentSubjectFilter = subj;
-      document.querySelectorAll('.subj-tab').forEach(tab => {
-        const target = tab.getAttribute('data-subject');
-        if (target) {
-          tab.classList.toggle('active', target === subj);
-        }
-      });
-
-      const k12Section = document.getElementById('k12StudioSection');
-
-      if (subj === 'k12-studio') {
-        // Show K12 studio, hide all lecture views
-        if (k12Section) k12Section.style.display = 'block';
-        for (let i = 1; i <= 37; i++) {
-          const v = document.getElementById(`lecture${i}View`);
-          if (v) v.style.display = 'none';
-        }
-        const sSubj = document.getElementById('statusSubjText');
-        const sTitle = document.getElementById('statusTitleText');
-        if (sSubj) sSubj.innerHTML = '🏫 중1~고3 스튜디오';
-        if (sTitle) sTitle.innerHTML = '16대 개념 및 수능 킬러 도형·그래프 마스터 스튜디오';
-        if (window.K12Studio) K12Studio.init();
-        return;
-      }
-
-      // Normal lecture views mode
-      if (k12Section) k12Section.style.display = 'none';
-
-      const panels = document.querySelectorAll('.subject-panel');
-      panels.forEach(p => {
-        const pSubj = p.getAttribute('data-subj');
-        if (subj === 'all' || pSubj === subj) {
-          p.style.display = 'block';
-        } else {
-          p.style.display = 'none';
-        }
-      });
-    }
-
-    function setLecture(num) {
-      // Hide studio if switching back to a lecture
-      const k12Section = document.getElementById('k12StudioSection');
-      if (k12Section) k12Section.style.display = 'none';
-
-      for (let i = 1; i <= 39; i++) {
-        const btn = document.getElementById(`btnLec${i}`);
-        const view = document.getElementById(`lecture${i}View`);
-        if (btn) btn.classList.toggle('active', i === num);
-        if (view) view.style.display = (i === num) ? 'block' : 'none';
-      }
-
-      // 실시간 상태 배너 업데이트
-      const meta = LECTURE_META[num];
-      if (meta) {
-        const sSubj = document.getElementById('statusSubjText');
-        const sTitle = document.getElementById('statusTitleText');
-        if (sSubj) sSubj.innerHTML = meta.subjName;
-        if (sTitle) sTitle.innerHTML = meta.title;
-
-        // 특정 과목 필터가 켜져 있는데 다른 과목 강의를 누른 경우 자동 전체보기 전환
-        if (currentSubjectFilter !== 'all' && currentSubjectFilter !== meta.subj) {
-          selectSubject('all');
-        }
-      }
-
-      if (num === 39) setTimeout(renderL39, 50);
-      else if (num === 38) setTimeout(renderL38, 50);
-      else if (num === 37) setTimeout(renderL37, 50);
-      else if (num === 36) setTimeout(renderL36, 50);
-      else if (num === 35) setTimeout(renderL35, 50);
-      else if (num === 34) setTimeout(renderL34, 50);
-      else if (num === 33) setTimeout(renderL33, 50);
-      else if (num === 32) setTimeout(renderL32, 50);
-      else if (num === 31) setTimeout(renderL31, 50);
-      else if (num === 30) setTimeout(renderL30, 50);
-      else if (num === 29) setTimeout(renderL29, 50);
-      else if (num === 28) setTimeout(renderL28, 50);
-      else if (num === 27) setTimeout(renderL27, 50);
-      else if (num === 26) setTimeout(renderL26, 50);
-      else if (num === 25) setTimeout(renderL25, 50);
-      else if (num === 24) setTimeout(renderL24, 50);
-      else if (num === 23) setTimeout(renderL23, 50);
-      else if (num === 22) setTimeout(renderL22, 50);
-      else if (num === 21) setTimeout(renderL21, 50);
-      else if (num === 20) setTimeout(renderL20, 50);
-      else if (num === 19) setTimeout(renderL19, 50);
-      else if (num === 18) setTimeout(renderL18, 50);
-      else if (num === 17) setTimeout(renderL17, 50);
-      else if (num === 16) setTimeout(renderL16, 50);
-      else if (num === 15) setTimeout(renderL15, 50);
-      else if (num === 14) setTimeout(renderL14, 50);
-      else if (num === 13) setTimeout(renderL13, 50);
-      else if (num === 12) setTimeout(renderL12, 50);
-      else if (num === 11) setTimeout(renderL11, 50);
-      else if (num === 10) setTimeout(renderL10, 50);
-      else if (num === 9) setTimeout(renderL9, 50);
-      else if (num === 8) setTimeout(renderL8, 50);
-      else if (num === 7) setTimeout(renderL7, 50);
-      else if (num === 6) setTimeout(renderL6, 50);
-      else if (num === 5) setTimeout(renderL5, 50);
-      else if (num === 4) setTimeout(renderL4, 50);
-      else if (num === 3) setTimeout(renderL3, 50);
-      else if (num === 2) setTimeout(renderL2, 50);
-      else if (num === 1) setTimeout(renderL1, 50);
-
-      if (window.renderMathInElement) {
-        renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});
-      }
-    }
-
     function switchLec5Tab(tabId) {
       document.querySelectorAll('#lecture5View .tab-panel').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('#lecture5View .tab-btn').forEach(b => b.classList.remove('active'));
@@ -27436,161 +27645,14 @@ window.addEventListener('resize', () => {
   if (v39 && v39.style.display !== 'none') renderL39();
 });
 
-// ==========================================
-// PASSWORD GATE AUTHENTICATION (비밀번호: 509401)
-// ==========================================
-const CORRECT_PORTAL_PW = '509401';
-
-function initPasswordGate() {
-  const input = document.getElementById('gatePasswordInput');
-  // Always lock from the very first opening
-  document.body.classList.add('portal-locked');
-
-  setTimeout(() => {
-    if (input) input.focus();
-  }, 150);
-
-  if (input) {
-    input.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        verifyGatePassword();
-      }
+    // Final check on DOMContentLoaded & window load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof initPasswordGate === 'function') initPasswordGate();
+      if (typeof setLecture === 'function') setLecture(28, false);
+      if (typeof renderL28 === 'function') renderL28();
     });
-  }
-}
-
-function verifyGatePassword() {
-  const input = document.getElementById('gatePasswordInput');
-  const errorMsg = document.getElementById('gateErrorMsg');
-  const card = document.getElementById('gateCard');
-  const icon = document.getElementById('gateIcon');
-  if (!input) return;
-
-  const val = input.value.trim();
-  if (val === CORRECT_PORTAL_PW) {
-    // Correct password entered: unlock portal immediately
-    if (errorMsg) errorMsg.style.display = 'none';
-    if (icon) {
-      icon.innerHTML = '🔓';
-      icon.style.background = 'linear-gradient(135deg, rgba(52, 211, 153, 0.35), rgba(16, 185, 129, 0.35))';
-      icon.style.borderColor = '#34d399';
-      icon.style.boxShadow = '0 0 35px rgba(52, 211, 153, 0.7)';
-    }
-
-    setTimeout(() => {
-      document.body.classList.remove('portal-locked');
-      // Render active lecture content cleanly
-      const activeBtn = document.querySelector('.lecture-btn.active');
-      const activeNum = activeBtn ? parseInt(activeBtn.querySelector('.lec-num').textContent, 10) : 28;
-      setLecture(activeNum);
-    }, 280);
-  } else {
-    // Incorrect password
-    if (errorMsg) errorMsg.style.display = 'block';
-    if (card) {
-      card.classList.remove('shake');
-      void card.offsetWidth; // force DOM reflow for animation restart
-      card.classList.add('shake');
-    }
-    input.value = '';
-    input.focus();
-  }
-}
-
-function toggleGatePasswordVisibility() {
-  const input = document.getElementById('gatePasswordInput');
-  const btn = document.getElementById('gateEyeBtn');
-  if (!input) return;
-  if (input.type === 'password') {
-    input.type = 'text';
-    if (btn) btn.textContent = '🔒';
-  } else {
-    input.type = 'password';
-    if (btn) btn.textContent = '👁️';
-  }
-}
-
-function lockPortal() {
-  document.body.classList.add('portal-locked');
-  const input = document.getElementById('gatePasswordInput');
-  const icon = document.getElementById('gateIcon');
-  const errorMsg = document.getElementById('gateErrorMsg');
-  if (icon) {
-    icon.innerHTML = '🔒';
-    icon.style.background = '';
-    icon.style.borderColor = '';
-    icon.style.boxShadow = '';
-  }
-  if (errorMsg) errorMsg.style.display = 'none';
-  if (input) {
-    input.value = '';
-    setTimeout(() => input.focus(), 150);
-  }
-}
-
-// ==========================================
-// DYNAMIC SORTING & AUTO-RENEWAL SYSTEM
-// ==========================================
-let currentSortMode = 'asc'; // 'asc', 'desc', 'killer'
-
-function setSortOrder(mode) {
-  currentSortMode = mode;
-  document.querySelectorAll('.sort-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.id === `sort${mode.charAt(0).toUpperCase() + mode.slice(1)}Btn`);
-  });
-
-  const grids = document.querySelectorAll('.lecture-btn-grid');
-  grids.forEach(grid => {
-    const buttons = Array.from(grid.querySelectorAll('.lecture-btn'));
-    buttons.sort((a, b) => {
-      const numA = parseInt(a.querySelector('.lec-num').textContent, 10);
-      const numB = parseInt(b.querySelector('.lec-num').textContent, 10);
-      
-      if (mode === 'asc') {
-        return numA - numB;
-      } else if (mode === 'desc') {
-        return numB - numA;
-      } else if (mode === 'killer') {
-        const badgeA = a.querySelector('.badge-pill-sm') ? 1 : 0;
-        const badgeB = b.querySelector('.badge-pill-sm') ? 1 : 0;
-        if (badgeA !== badgeB) return badgeB - badgeA; // with badge first
-        return numA - numB;
-      }
-      return 0;
-    });
-
-    buttons.forEach(btn => grid.appendChild(btn));
-  });
-}
-
-function filterLecturesBySearch(query) {
-  const q = (query || '').trim().toLowerCase();
-  const clearBtn = document.getElementById('searchClearBtn');
-  if (clearBtn) clearBtn.style.display = q ? 'inline-flex' : 'none';
-
-  const buttons = document.querySelectorAll('.lecture-btn');
-  buttons.forEach(btn => {
-    const num = btn.querySelector('.lec-num')?.textContent.toLowerCase() || '';
-    const title = btn.querySelector('.lec-title')?.textContent.toLowerCase() || '';
-    const badge = btn.querySelector('.badge-pill-sm')?.textContent.toLowerCase() || '';
-    const match = !q || num.includes(q) || title.includes(q) || badge.includes(q);
-    btn.classList.toggle('search-hidden', !match);
-  });
-}
-
-function clearLectureSearch() {
-  const input = document.getElementById('lectureSearchInput');
-  if (input) {
-    input.value = '';
-    filterLecturesBySearch('');
-    input.focus();
-  }
-}
-
     window.addEventListener('load', () => {
-      initPasswordGate();
-      setLecture(28);
-      renderL28();
+      if (typeof renderL28 === 'function') renderL28();
     });
   </script>
   <script src="k12_math_studio.js"></script>
