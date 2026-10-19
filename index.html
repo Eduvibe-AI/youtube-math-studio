@@ -304,6 +304,190 @@
       color: #f1f5f9;
       font-weight: 600;
     }
+    .lock-toggle-btn {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .lock-toggle-btn:hover {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #fca5a5;
+      transform: translateY(-1px);
+    }
+
+    /* Password Gate Modal Overlay */
+    #portalGateOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999999;
+      background: radial-gradient(circle at 50% 40%, rgba(15, 23, 42, 0.96), rgba(7, 10, 19, 0.98));
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    #portalGateOverlay.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .gate-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 24px;
+      padding: 38px 32px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(56, 189, 248, 0.2);
+      text-align: center;
+      position: relative;
+      animation: gatePopIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes gatePopIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .gate-icon-wrap {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2));
+      border: 1.5px solid rgba(56, 189, 248, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 18px;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+      transition: all 0.3s ease;
+    }
+    .gate-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .gate-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .gate-desc {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .gate-input-box {
+      position: relative;
+      margin-bottom: 16px;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 14px 48px 14px 20px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      background: rgba(7, 10, 19, 0.85);
+      color: #fff;
+      font-size: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.25em;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+    .gate-input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+    .gate-eye-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      font-size: 1.15rem;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .gate-eye-btn:hover { color: #38bdf8; }
+    .gate-btn {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.4);
+      transition: all 0.22s ease;
+    }
+    .gate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(2, 132, 199, 0.55);
+      background: linear-gradient(135deg, #0369a1, #4f46e5);
+    }
+    .gate-btn:active {
+      transform: translateY(0);
+    }
+    .gate-error {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid rgba(239, 68, 68, 0.38);
+      color: #f87171;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+    }
+    .gate-card.shake {
+      animation: gateShake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+    @keyframes gateShake {
+      10%, 90% { transform: translate3d(-3px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+      40%, 60% { transform: translate3d(5px, 0, 0); }
+    }
+    .gate-footer-hint {
+      margin-top: 22px;
+      font-size: 0.78rem;
+      color: #64748b;
+      line-height: 1.45;
+    }
 
     /* Header */
     header {
@@ -861,6 +1045,32 @@
 </head>
 <body>
 
+  <!-- PASSWORD GATE OVERLAY (비밀번호: 509401) -->
+  <div id="portalGateOverlay" aria-modal="true" role="dialog">
+    <div class="gate-card" id="gateCard">
+      <div class="gate-icon-wrap" id="gateIcon">🔒</div>
+      <div class="gate-badge">수능 수학 마스터 포털 · 보안 인증</div>
+      <h2 class="gate-title">수학 킬러 공식 마스터</h2>
+      <p class="gate-desc">강의 및 시뮬레이터 이용을 위해<br><strong style="color: #38bdf8;">입장 비밀번호</strong>를 입력해주세요.</p>
+      
+      <div class="gate-input-box">
+        <input type="password" id="gatePasswordInput" class="gate-input" placeholder="비밀번호 6자리" inputmode="numeric" maxlength="20" autofocus autocomplete="current-password">
+        <button type="button" class="gate-eye-btn" id="gateEyeBtn" onclick="toggleGatePasswordVisibility()" title="비밀번호 표시/숨김">👁️</button>
+      </div>
+
+      <button type="button" class="gate-btn" id="gateSubmitBtn" onclick="verifyGatePassword()">
+        <span>입장하기</span>
+        <span>🔑</span>
+      </button>
+
+      <div class="gate-error" id="gateErrorMsg">❌ 비밀번호가 올바르지 않습니다. 다시 확인해주세요.</div>
+
+      <div class="gate-footer-hint">
+        🛡️ 인증 성공 시 37개 수능 킬러 공식 · 그래프 시뮬레이터 · 중1~고3 스튜디오가 즉시 활성화됩니다.
+      </div>
+    </div>
+  </div>
+
   <div class="container">
 
     <!-- ============================================================== -->
@@ -1136,6 +1346,7 @@
         <span class="status-subj" id="statusSubjText">수학(하) · 함수와 그래프</span>
         <span class="status-sep">/</span>
         <span class="status-title" id="statusTitleText">제28강 · 대한민국 고교 교과서 14개 그래프 총정리</span>
+        <button type="button" class="lock-toggle-btn" onclick="lockPortal()" title="포털 보안 잠금">🔒 잠금</button>
       </div>
 
     </div>
@@ -26201,7 +26412,7 @@ function renderL36() {
     if (cardProd) cardProd.textContent = `h = |a|·d₁·d₂ = 1 × ${d1.toFixed(2)} × ${d2.toFixed(2)} = ${heightCalc.toFixed(2)}`;
   } else {
     // Cubic f(x) = -(x - 1)^2 * (x - 4) (Tangent at 1, root at 4)
-    const fnC = x => -(x - 1)**2 * (x - 4);
+    const fnC = x => -Math.pow(x - 1, 2) * (x - 4);
 
     ctx.strokeStyle = '#c084fc';
     ctx.lineWidth = 2.6;
@@ -26418,7 +26629,105 @@ window.addEventListener('resize', () => {
   if (v37 && v37.style.display !== 'none') renderL37();
 });
 
+// ==========================================
+// PASSWORD GATE AUTHENTICATION (비밀번호: 509401)
+// ==========================================
+const PORTAL_AUTH_KEY = 'math_portal_pw_authenticated';
+const CORRECT_PORTAL_PW = '509401';
+
+function initPasswordGate() {
+  const overlay = document.getElementById('portalGateOverlay');
+  const input = document.getElementById('gatePasswordInput');
+  if (!overlay) return;
+
+  if (sessionStorage.getItem(PORTAL_AUTH_KEY) === CORRECT_PORTAL_PW) {
+    overlay.classList.add('unlocked');
+  } else {
+    overlay.classList.remove('unlocked');
+    setTimeout(() => {
+      if (input) input.focus();
+    }, 120);
+  }
+
+  if (input) {
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        verifyGatePassword();
+      }
+    });
+  }
+}
+
+function verifyGatePassword() {
+  const input = document.getElementById('gatePasswordInput');
+  const errorMsg = document.getElementById('gateErrorMsg');
+  const card = document.getElementById('gateCard');
+  const overlay = document.getElementById('portalGateOverlay');
+  const icon = document.getElementById('gateIcon');
+  if (!input) return;
+
+  const val = input.value.trim();
+  if (val === CORRECT_PORTAL_PW) {
+    // Correct password
+    sessionStorage.setItem(PORTAL_AUTH_KEY, CORRECT_PORTAL_PW);
+    if (errorMsg) errorMsg.style.display = 'none';
+    if (icon) {
+      icon.innerHTML = '🔓';
+      icon.style.background = 'linear-gradient(135deg, rgba(52, 211, 153, 0.35), rgba(16, 185, 129, 0.35))';
+      icon.style.borderColor = '#34d399';
+      icon.style.boxShadow = '0 0 30px rgba(52, 211, 153, 0.6)';
+    }
+    setTimeout(() => {
+      overlay.classList.add('unlocked');
+    }, 250);
+  } else {
+    // Incorrect password
+    if (errorMsg) errorMsg.style.display = 'block';
+    if (card) {
+      card.classList.remove('shake');
+      void card.offsetWidth; // force DOM reflow for animation restart
+      card.classList.add('shake');
+    }
+    input.value = '';
+    input.focus();
+  }
+}
+
+function toggleGatePasswordVisibility() {
+  const input = document.getElementById('gatePasswordInput');
+  const btn = document.getElementById('gateEyeBtn');
+  if (!input) return;
+  if (input.type === 'password') {
+    input.type = 'text';
+    if (btn) btn.textContent = '🔒';
+  } else {
+    input.type = 'password';
+    if (btn) btn.textContent = '👁️';
+  }
+}
+
+function lockPortal() {
+  sessionStorage.removeItem(PORTAL_AUTH_KEY);
+  const overlay = document.getElementById('portalGateOverlay');
+  const input = document.getElementById('gatePasswordInput');
+  const icon = document.getElementById('gateIcon');
+  const errorMsg = document.getElementById('gateErrorMsg');
+  if (icon) {
+    icon.innerHTML = '🔒';
+    icon.style.background = '';
+    icon.style.borderColor = '';
+    icon.style.boxShadow = '';
+  }
+  if (errorMsg) errorMsg.style.display = 'none';
+  if (overlay) overlay.classList.remove('unlocked');
+  if (input) {
+    input.value = '';
+    setTimeout(() => input.focus(), 150);
+  }
+}
+
     window.addEventListener('load', () => {
+      initPasswordGate();
       setLecture(28);
       renderL28();
     });
