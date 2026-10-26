@@ -14,3 +14,15 @@ temp_*/
 # OS generated
 Thumbs.db
 .DS_Store
+
+# Local tools & scratch
+.claude/
+scratch/
+serve.py
+
+# Sub-repositories
+509-401-math--helper/
+claude-math-lab/
+claude-math-v2/
+math-calc-lab/
+math-interactive-workbook/
