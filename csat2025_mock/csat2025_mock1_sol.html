@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2025수능기반 수학 실전모의고사 제1회 정답 및 해설</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    throwOnError: false
+  });"></script>
+
+<style>
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Batang", "BatangChe", "NanumMyeongjo", "Malgun Gothic", serif;
+  color: #111;
+  background: #fff;
+  font-size: 10pt;
+  line-height: 1.55;
+}
+.exam-page {
+  width: 210mm;
+  height: 297mm;
+  padding: 12mm 13mm 14mm 13mm;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.exam-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+/* KICE Header */
+.kice-header-first {
+  border-bottom: 1.6pt solid #111;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+}
+.kice-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Malgun Gothic", "Dotum", sans-serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.kice-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.kice-session {
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 13pt;
+  font-weight: 800;
+  width: 90px;
+}
+.kice-main-title {
+  font-family: "Batang", serif;
+  font-size: 23pt;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-align: center;
+  flex: 1;
+}
+.kice-type-box {
+  border: 1.2pt solid #111;
+  padding: 2px 9px;
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 11.5pt;
+  font-weight: 800;
+  border-radius: 2px;
+}
+.kice-header-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1.3pt solid #111;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+.kice-page-big {
+  font-family: "Times New Roman", serif;
+  font-size: 20pt;
+  font-weight: 800;
+  line-height: 1;
+}
+.kice-sub-title {
+  font-family: "Batang", serif;
+  font-size: 17pt;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+/* Section Banner */
+.sec-tag {
+  display: inline-block;
+  border: 1pt solid #111;
+  padding: 2px 14px;
+  font-family: "Malgun Gothic", sans-serif;
+  font-weight: 800;
+  font-size: 10.5pt;
+  margin-bottom: 8px;
+  background: #fafafa;
+}
+/* 2-Column Body */
+.two-col-body {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.col-left {
+  width: 50%;
+  padding-right: 4.5mm;
+  border-right: 0.75pt solid #222;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 22mm;
+}
+.col-right {
+  width: 50%;
+  padding-left: 4.5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 22mm;
+}
+.prob-item {
+  font-size: 10.2pt;
+  line-height: 1.62;
+  word-break: keep-all;
+}
+.prob-num {
+  font-family: "Times New Roman", serif;
+  font-weight: 800;
+  font-size: 11pt;
+  margin-right: 3px;
+}
+.cond-box {
+  border: 0.85pt solid #222;
+  padding: 7px 10px;
+  margin: 7px 0;
+  font-size: 9.8pt;
+  line-height: 1.6;
+  background: #fff;
+}
+.fig-box {
+  text-align: center;
+  margin: 6px 0;
+}
+.choices-grid-1 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  padding-right: 6px;
+  font-size: 10pt;
+}
+.choices-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 5px;
+  margin-top: 7px;
+  font-size: 10pt;
+}
+.norm-table {
+  border-collapse: collapse;
+  font-size: 8.6pt;
+  text-align: center;
+}
+.norm-table th, .norm-table td {
+  border: 0.75pt solid #222;
+  padding: 2.5px 6px;
+}
+.norm-table th {
+  background: #f3f4f6;
+}
+.confirm-box {
+  margin-top: auto;
+  border: 0.85pt solid #222;
+  padding: 7px 10px;
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 8.5pt;
+  line-height: 1.5;
+  background: #fcfcfc;
+}
+/* Footer */
+.kice-footer {
+  margin-top: 6px;
+  padding-top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 8pt;
+  color: #333;
+}
+.page-frac-box {
+  border: 0.8pt solid #222;
+  width: 44px;
+  height: 20px;
+  position: relative;
+  font-family: "Times New Roman", serif;
+  font-size: 9pt;
+  font-weight: 700;
+  background: #fff;
+}
+.page-frac-box .p-cur {
+  position: absolute;
+  top: 1px;
+  left: 5px;
+}
+.page-frac-box .p-tot {
+  position: absolute;
+  bottom: 1px;
+  right: 5px;
+}
+.page-frac-box .p-slash {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom right, transparent 48%, #222 49%, #222 51%, transparent 52%);
+}
+.copyright-note {
+  position: absolute;
+  right: 0;
+  font-size: 7.8pt;
+  color: #1d4ed8;
+}
+
+/* Solution Manual Styling */
+.sol-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 13mm 14mm 14mm 14mm;
+  page-break-after: always;
+  break-after: page;
+}
+.sol-header {
+  border-bottom: 1.8pt solid #111;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.sol-title {
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 16pt;
+  font-weight: 900;
+  color: #111;
+}
+.sol-sub {
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 10pt;
+  font-weight: 700;
+  color: #374151;
+}
+.ans-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 9.2pt;
+  text-align: center;
+}
+.ans-table th, .ans-table td {
+  border: 0.8pt solid #333;
+  padding: 4px 3px;
+}
+.ans-table th {
+  background: #e5e7eb;
+  font-weight: 800;
+}
+.ans-table td.ans-val {
+  font-weight: 800;
+  color: #1d4ed8;
+  background: #f8fafc;
+}
+.sol-grid {
+  column-count: 2;
+  column-gap: 7mm;
+  column-rule: 0.6pt solid #cbd5e1;
+}
+.sol-item {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 0.5pt dashed #cbd5e1;
+  font-size: 9.2pt;
+  line-height: 1.55;
+}
+.sol-item-head {
+  font-family: "Malgun Gothic", sans-serif;
+  font-weight: 800;
+  font-size: 9.8pt;
+  color: #0f172a;
+  background: #f1f5f9;
+  padding: 2px 6px;
+  border-left: 3px solid #1d4ed8;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+}
+.sol-intent {
+  font-family: "Malgun Gothic", sans-serif;
+  font-size: 8.6pt;
+  color: #475569;
+  margin-bottom: 3px;
+  font-weight: 700;
+}
+.katex { font-size: 1.02em; }
+.katex-display { margin: 0.35em 0; }
+</style>
+</head>
+<body>
+
+        <div class="exam-page">
+          <div class="sol-header">
+            <span class="sol-title">2025학년도 수능 기반 수학 실전모의고사 (제1회) 정답 및 해설 (1/5)</span>
+            <span class="sol-sub">공통과목(1~22번) + 확률과 통계(23~30번)</span>
+          </div>
+          
+    <div style="margin-bottom: 8px;">
+      <div style="font-family:'Malgun Gothic',sans-serif; font-weight:800; font-size:10pt; margin-bottom:3px;">■ [공통과목: 수학Ⅰ·수학Ⅱ] 빠른 정답표 (1번 ~ 22번)</div>
+      <table class="ans-table"><tr><th>문항</th><th>1번</th><th>2번</th><th>3번</th><th>4번</th><th>5번</th><th>6번</th><th>7번</th><th>8번</th><th>9번</th><th>10번</th><th>11번</th></tr><tr><th>배점</th><td>2점</td><td>2점</td><td>3점</td><td>3점</td><td>3점</td><td>3점</td><td>3점</td><td>3점</td><td>4점</td><td>4점</td><td>4점</td></tr><tr><th>정답</th><td class='ans-val'>③</td><td class='ans-val'>④</td><td class='ans-val'>④</td><td class='ans-val'>②</td><td class='ans-val'>④</td><td class='ans-val'>⑤</td><td class='ans-val'>③</td><td class='ans-val'>②</td><td class='ans-val'>④</td><td class='ans-val'>③</td><td class='ans-val'>②</td></tr></table>
+      <table class="ans-table"><tr><th>문항</th><th>12번</th><th>13번</th><th>14번</th><th>15번</th><th>16번</th><th>17번</th><th>18번</th><th>19번</th><th>20번</th><th>21번</th><th>22번</th></tr><tr><th>배점</th><td>4점</td><td>4점</td><td>4점</td><td>4점</td><td>3점</td><td>3점</td><td>3점</td><td>3점</td><td>4점</td><td>4점</td><td>4점</td></tr><tr><th>정답</th><td class='ans-val'>①</td><td class='ans-val'>⑤</td><td class='ans-val'>④</td><td class='ans-val'>②</td><td class='ans-val'>9</td><td class='ans-val'>27</td><td class='ans-val'>90</td><td class='ans-val'>92</td><td class='ans-val'>48</td><td class='ans-val'>30</td><td class='ans-val'>65</td></tr></table>
+      <div style="font-family:'Malgun Gothic',sans-serif; font-weight:800; font-size:10pt; margin:4px 0 3px 0;">■ [선택과목: 확률과 통계] 빠른 정답표 (23번 ~ 30번)</div>
+      <table class="ans-table" style="width:75%;"><tr><th>문항</th><th>23번</th><th>24번</th><th>25번</th><th>26번</th><th>27번</th><th>28번</th><th>29번</th><th>30번</th></tr><tr><th>배점</th><td>2점</td><td>3점</td><td>3점</td><td>3점</td><td>3점</td><td>4점</td><td>4점</td><td>4점</td></tr><tr><th>정답</th><td class='ans-val'>⑤</td><td class='ans-val'>③</td><td class='ans-val'>①</td><td class='ans-val'>③</td><td class='ans-val'>④</td><td class='ans-val'>②</td><td class='ans-val'>38</td><td class='ans-val'>86</td></tr></table>
+    </div>
+    
+          <div class="two-col-body" style="flex:1;">
+            <div class="col-left" style="gap:2mm; border-right:0.6pt solid #cbd5e1;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>1. [공통(수학Ⅰ·수학Ⅱ) / 2점]</span>
+            <span style="color:#1d4ed8;">정답 ③</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 지수법칙을 이용하여 식의 값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $\sqrt[3]{3}\times 9^{\frac{1}{3}} = 3^{\frac{1}{3}}\times (3^2)^{\frac{1}{3}} = 3^{\frac{1}{3}}\times 3^{\frac{2}{3}} = 3^{\frac{1}{3}+\frac{2}{3}} = 3^1 = 3$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>2. [공통(수학Ⅰ·수학Ⅱ) / 2점]</span>
+            <span style="color:#1d4ed8;">정답 ④</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 미분계수의 정의를 이용하여 미분계수를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $f'(x)=3x^2-5$이므로 미분계수의 정의에 의하여
+$$\lim_{h\to 0}\dfrac{f(2+h)-f(2)}{h} = f'(2) = 3\times 2^2 - 5 = 7$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>3. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ④</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 등비수열의 일반항을 이용하여 양수 $k$의 값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 등비수열 $\{a_n\}$의 첫째항과 공비가 모두 양수 $k$이므로 $a_n=k^n$이다.
+$$\dfrac{a_4}{a_2}+\dfrac{a_2}{a_1} = k^2 + k = 20$$
+$k^2+k-20 = (k+5)(k-4) = 0$에서 $k>0$이므로 $k=4$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>4. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ②</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 함수의 연속의 정의를 이해하고 상수의 값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 함수 $f(x)$가 실수 전체의 집합에서 연속이므로 $x=-2$에서 연속이어야 한다.
+$$\lim_{x\to -2-}f(x)=\lim_{x\to -2-}(4x+a)=-8+a$$
+$$\lim_{x\to -2+}f(x)=f(-2)=(-2)^2-a=4-a$$
+따라서 $-8+a = 4-a$에서 $2a=12$, 즉 $a=6$이다.</div>
+        </div>
+        </div>
+            <div class="col-right" style="gap:2mm;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>5. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ④</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 함수의 곱의 미분법을 사용하여 미분계수를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 곱의 미분법에 의하여
+$$f'(x) = 2x(2x^2-x) + (x^2+2)(4x-1)$$
+따라서 $f'(1) = 2\times 1 + 3\times 3 = 11$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>6. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ⑤</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 삼각함수의 성질을 이해하여 식의 값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $\cos\left(\dfrac{\pi}{2}+\theta\right)=-\sin\theta=-\dfrac{1}{4}$이므로 $\sin\theta=\dfrac{1}{4}$이다.
+따라서 $1-\cos^2\theta=\sin^2\theta$이므로
+$$\dfrac{\sin\theta}{1-\cos^2\theta}=\dfrac{\sin\theta}{\sin^2\theta}=\dfrac{1}{\sin\theta}=4$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>7. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ③</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 정적분으로 정의된 함수를 이해하고 함숫값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 주어진 등식의 양변을 $x$에 대하여 미분하면
+$$f(x) = 6x^2+5$$
+따라서 $f(2) = 6\times 2^2 + 5 = 29$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>8. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ②</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 로그의 정의와 성질을 이용하여 값을 간단히 나타낼 수 있는가?</div>
+          <div><strong>[풀이]</strong> $$a = 4\times\left(-\dfrac{1}{2}\right)\log 10 + \log_3(9\times 10) = -2 + 2 + \log_3 10 = \log_3 10$$
+따라서 밑의 변환 공식에 의하여
+$$a\times b = \log_3 10 \times 2\log 3 = \dfrac{\log 10}{\log 3}\times 2\log 3 = 2$$</div>
+        </div>
+        </div>
+          </div>
+          <div class="kice-footer">
+            <div class="page-frac-box">
+              <span class="p-cur">1</span>
+              <span class="p-slash"></span>
+              <span class="p-tot">5</span>
+            </div>
+            <span class="copyright-note">2025학년도 수능 기반 실전모의고사 제1회 정답 및 해설</span>
+          </div>
+        </div>
+        
+
+        <div class="exam-page">
+          <div class="sol-header">
+            <span class="sol-title">2025학년도 수능 기반 수학 실전모의고사 (제1회) 정답 및 해설 (2/5)</span>
+            <span class="sol-sub">공통과목(1~22번) + 확률과 통계(23~30번)</span>
+          </div>
+          
+          <div class="two-col-body" style="flex:1;">
+            <div class="col-left" style="gap:2mm; border-right:0.6pt solid #cbd5e1;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>9. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ④</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 정적분의 정의와 성질을 이용하여 상수의 값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $\int_{-2}^a f(x)\,dx = \int_{-2}^0 f(x)\,dx + \int_0^a f(x)\,dx$이므로 주어진 조건에서
+$$\int_0^a f(x)\,dx = \Big[x^3-6x^2\Big]_0^a = a^2(a-6) = 0$$
+$a>0$이므로 $a=6$이다.
+    <div class="fig-box">
+      <svg width="220" height="145" viewBox="0 0 220 145" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr9_1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0.5 L5.5,3 L0,5.5 Z" fill="#111"/>
+          </marker>
+        </defs>
+        <!-- Shaded negative & positive areas on [0, a] -->
+        <path d="M 65,75 Q 105,135 140,75 Z" fill="#e5e7eb" stroke="none"/>
+        <path d="M 140,75 Q 160,42 172,22 L 172,75 Z" fill="#d1d5db" stroke="none"/>
+        <!-- Axes -->
+        <line x1="18" y1="75" x2="205" y2="75" stroke="#111" stroke-width="1.1" marker-end="url(#arr9_1)"/>
+        <line x1="65" y1="132" x2="65" y2="14" stroke="#111" stroke-width="1.1" marker-end="url(#arr9_1)"/>
+        <!-- Curve y = f(x) -->
+        <path d="M 32,20 Q 48,50 65,75 Q 105,135 140,75 Q 160,42 176,15" fill="none" stroke="#111" stroke-width="1.4"/>
+        <line x1="172" y1="22" x2="172" y2="75" stroke="#444" stroke-width="0.9" stroke-dasharray="2.5,2.5"/>
+        <text x="54" y="88" font-family="Times New Roman, serif" font-size="11">O</text>
+        <text x="136" y="88" font-family="Times New Roman, serif" font-size="11">4</text>
+        <text x="169" y="88" font-family="Times New Roman, serif" font-style="italic" font-size="11.5">a=6</text>
+        <text x="98" y="96" font-family="Times New Roman, serif" font-size="10.5">(&minus;)</text>
+        <text x="152" y="66" font-family="Times New Roman, serif" font-size="10.5">(+)</text>
+        <text x="178" y="24" font-family="Times New Roman, serif" font-style="italic" font-size="11.5">y=f(x)</text>
+      </svg>
+    </div>
+    </div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>10. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ③</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 코사인함수의 최댓값과 주기를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $a$가 자연수이므로 함수 $f(x)=a\cos bx+4$의 최댓값은 $a+4$이다.
+$a+4=12$에서 $a=8$이다.
+또한 $x=\dfrac{\pi}{4}$에서 최댓값을 가지므로 $\cos\left(\dfrac{b\pi}{4}\right)=1$이어야 한다.
+즉, $\dfrac{b\pi}{4}=2k\pi$ ($k$는 자연수)에서 $b=8k$이므로 자연수 $b$의 최솟값은 $8$이다.
+따라서 $a+b$의 최솟값은 $8+8=16$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>11. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ②</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 수직선 위를 움직이는 점의 속도와 가속도를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 점 $\mathrm{P}$의 시각 $t$에서의 속도를 $v(t)$, 가속도를 $a(t)$라 하면
+$$v(t) = x'(t) = 3t^2-6t-9 = 3(t-3)(t+1)$$
+$$a(t) = v'(t) = 6t-6$$
+출발한 후($t>0$) 점 $\mathrm{P}$의 운동 방향이 바뀌는 시각은 $v(t)=0$에서 $t=3$이다.
+따라서 $t=3$에서의 가속도는 $a(3) = 6\times 3 - 6 = 12$이다.</div>
+        </div>
+        </div>
+            <div class="col-right" style="gap:2mm;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>12. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ①</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 시그마의 성질을 이용하여 수열의 일반항과 합을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 주어진 식에 $n=1$을 대입하면 $\dfrac{a_1}{b_2}=\dfrac{1}{2}$이고, $a_1=4$이므로 $b_2=8$이다.
+등차수열 $\{b_n\}$에서 $b_1=4, b_2=8$이므로 공차는 $4$이고 $b_n=4n$, $b_{n+1}=4(n+1)$이다.
+$n\ge 2$일 때
+$$\dfrac{a_n}{b_{n+1}} = \dfrac{1}{2}n^2 - \dfrac{1}{2}(n-1)^2 = n-\dfrac{1}{2}$$
+이므로 $a_n = 4(n+1)\left(n-\dfrac{1}{2}\right) = 4n^2+2n-2$이다. ($n=1$일 때도 $a_1=4$로 성립)
+따라서
+$$\sum_{k=1}^5 a_k = \sum_{k=1}^5 (4k^2+2k-2)$$
+$$= 4\times 55 + 2\times 15 - 10 = 240$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>13. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ⑤</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 정적분을 활용하여 곡선과 직선으로 둘러싸인 두 영역의 넓이의 차를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $f(x)=(x-1)(x-2)(x-k)$라 하면 $f'(x)=(x-2)(x-k)+(x-1)(x-k)+(x-1)(x-2)$이다.
+$f'(0)=2k+k+2=-4$에서 $3k=-6$, 즉 $k=-2$이다.
+따라서 $f(x)=(x-1)(x-2)(x+2)=x^3-x^2-4x+4$이고, $f(3)=2\times 1\times 5=10$이므로 $\mathrm{P}(3, 10)$이다.
+직선 $\mathrm{OP}$의 방정식은 $y=\dfrac{10}{3}x$이므로
+$$B-A = \int_0^3 \left\{\dfrac{10}{3}x - f(x)\right\}dx$$
+$$= \int_0^3 \left(-x^3+x^2+\dfrac{22}{3}x-4\right)dx$$
+$$= \left[-\dfrac{1}{4}x^4+\dfrac{1}{3}x^3+\dfrac{11}{3}x^2-4x\right]_0^3$$
+$$= -\dfrac{81}{4}+9+33-12 = \dfrac{39}{4}$$</div>
+        </div>
+        </div>
+          </div>
+          <div class="kice-footer">
+            <div class="page-frac-box">
+              <span class="p-cur">2</span>
+              <span class="p-slash"></span>
+              <span class="p-tot">5</span>
+            </div>
+            <span class="copyright-note">2025학년도 수능 기반 실전모의고사 제1회 정답 및 해설</span>
+          </div>
+        </div>
+        
+
+        <div class="exam-page">
+          <div class="sol-header">
+            <span class="sol-title">2025학년도 수능 기반 수학 실전모의고사 (제1회) 정답 및 해설 (3/5)</span>
+            <span class="sol-sub">공통과목(1~22번) + 확률과 통계(23~30번)</span>
+          </div>
+          
+          <div class="two-col-body" style="flex:1;">
+            <div class="col-left" style="gap:2mm; border-right:0.6pt solid #cbd5e1;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>14. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ④</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 사인법칙과 코사인법칙을 이용하여 삼각형의 넓이의 최댓값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 원 $O$의 반지름의 길이를 $r$라 하면 $\overline{\mathrm{AD}}=\overline{\mathrm{AE}}=r$이고, $\overline{\mathrm{AD}}:\overline{\mathrm{DB}}=2:3$이므로 $\overline{\mathrm{AB}}=\dfrac{5}{2}r$이다.
+삼각형 $\mathrm{ADE}$와 삼각형 $\mathrm{ABC}$의 넓이의 비가 $4:35$이므로
+$$\dfrac{1}{2}r^2\sin A : \dfrac{1}{2}\times\dfrac{5}{2}r\times\overline{\mathrm{AC}}\sin A = 4:35 \implies \overline{\mathrm{AC}} = \dfrac{7}{2}r$$
+삼각형 $\mathrm{ABC}$에서 사인법칙에 의하여 $\overline{\mathrm{BC}}=\overline{\mathrm{AB}}\times\dfrac{\sin A}{\sin C}=\dfrac{5}{2}r\times\dfrac{8}{5}=4r$이다.
+즉, $\overline{\mathrm{AB}}:\overline{\mathrm{AC}}:\overline{\mathrm{BC}} = 5:7:8$이므로 $\angle\mathrm{ACB}=\theta$라 하면 코사인법칙에 의하여
+$$\cos\theta = \dfrac{(4r)^2+\left(\frac{7}{2}r\right)^2-\left(\frac{5}{2}r\right)^2}{2\times 4r\times\frac{7}{2}r} = \dfrac{11}{14}$$
+$$\sin\theta = \sqrt{1-\cos^2\theta} = \dfrac{5\sqrt{3}}{14}$$
+외접원의 반지름의 길이가 $7$이므로 사인법칙에서 $\overline{\mathrm{AB}}=2\times 7\sin\theta = 5\sqrt{3}$이고, $\dfrac{5}{2}r=5\sqrt{3}$에서 $r=2\sqrt{3}$, $\overline{\mathrm{BC}}=8\sqrt{3}$이다.
+점 $\mathrm{A}$에서 변 $\mathrm{BC}$에 내린 수선의 발을 $\mathrm{H}$라 하면 $\overline{\mathrm{AH}}=\overline{\mathrm{AC}}\sin\theta = 7\sqrt{3}\times\dfrac{5\sqrt{3}}{14} = \dfrac{15}{2}$이다.
+따라서 삼각형 $\mathrm{PBC}$의 넓이의 최댓값은
+$$\dfrac{1}{2}\times\overline{\mathrm{BC}}\times(\overline{\mathrm{AH}}+r) = 4\sqrt{3}\left(\dfrac{15}{2}+2\sqrt{3}\right) = 24+30\sqrt{3}$$
+    <div class="fig-box">
+      <svg width="235" height="178" viewBox="0 0 235 178" xmlns="http://www.w3.org/2000/svg">
+        <!-- Circle O centered at A(108, 76) with r=52 -->
+        <circle cx="108" cy="76" r="52" fill="none" stroke="#111" stroke-width="1.3"/>
+        <!-- Triangle ABC -->
+        <polygon points="108,76 68,152 186,152" fill="none" stroke="#111" stroke-width="1.35"/>
+        <!-- Segment DE -->
+        <line x1="83.8" y1="122.0" x2="145.2" y2="112.3" stroke="#111" stroke-width="1.2"/>
+        
+        <!-- Altitude AH and extension to Q -->
+        <line x1="108" y1="24" x2="108" y2="152" stroke="#d9480f" stroke-width="1.2" stroke-dasharray="3,2"/>
+        <rect x="108" y="145" width="7" height="7" fill="none" stroke="#d9480f" stroke-width="0.9"/>
+        <circle cx="108" cy="24" r="2.8" fill="#d9480f"/>
+        <text x="103" y="19" font-family="Times New Roman, serif" font-weight="bold" font-size="11.5" fill="#d9480f">Q(P)</text>
+        <text x="104" y="164" font-family="Times New Roman, serif" font-size="11.5" fill="#d9480f">H</text>
+        
+        <!-- Labels -->
+        <text x="104" y="71" font-family="Times New Roman, serif" font-size="12.5">A</text>
+        <text x="56" y="156" font-family="Times New Roman, serif" font-size="12.5">B</text>
+        <text x="190" y="156" font-family="Times New Roman, serif" font-size="12.5">C</text>
+        <text x="71" y="129" font-family="Times New Roman, serif" font-size="12">D</text>
+        <text x="149" y="113" font-family="Times New Roman, serif" font-size="12">E</text>
+        <text x="155" y="42" font-family="Times New Roman, serif" font-style="italic" font-size="12.5">O</text>
+      </svg>
+    </div>
+    </div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>15. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ②</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 함수의 미분가능성과 도함수의 실근 조건을 이용하여 미정계수를 결정할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 조건 (가)에서 $g(x)$가 $x=0$에서 미분가능하므로 $f(0)=g(0)=5$, $f'(0)=9$이다.
+이차함수 $f(x)$의 최고차항의 계수를 $p$ ($p<0$)라 하면 $f(x)=px^2+9x+5$이고, $f'(x)=2px+9=0$의 실근은 $x=-\dfrac{9}{2p}>0$이다.
+조건 (나)에서 방정식 $g'(x)g'(x-2)=0$의 서로 다른 실근의 개수가 $4$가 되려면 $x<0$에서 $g'(x)=3x^2+2ax+9=0$이 서로 다른 두 음의 실근 $\alpha, \beta$ ($\alpha<\beta<0$)를 갖고,
+$$\beta = \alpha+2,\quad -\dfrac{9}{2p} = \beta+2$$
+이어야 한다. 근과 계수의 관계에서 $\alpha(\alpha+2)=3 \implies (\alpha+3)(\alpha-1)=0$이므로 $\alpha<0$에서 $\alpha=-3, \beta=-1$이다.
+또한 $\alpha+\beta=-4=-\dfrac{2a}{3}$에서 $a=6$이고, $-\dfrac{9}{2p}=-1+2=1$에서 $p=-\dfrac{9}{2}$이다.
+따라서 $g(-2)=(-2)^3+6(-2)^2+9(-2)+5=3$, $g(2)=-\dfrac{9}{2}(2)^2+9(2)+5=5$이므로
+$$g(-2)+g(2)=3+5=8$$</div>
+        </div>
+        </div>
+            <div class="col-right" style="gap:2mm;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>16. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 9</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 로그의 진수 조건과 밑의 변환을 이용하여 로그방정식의 해를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 로그의 진수 조건에서 $x-4>0$이고 $3x-2>0$이므로 $x>4$이다.
+$\log_2(x-4)=\log_4(x-4)^2=\log_4(3x-2)$이므로
+$$(x-4)^2 = 3x-2 \implies x^2-11x+18 = (x-2)(x-9) = 0$$
+$x>4$이므로 $x=9$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>17. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 27</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 다항함수의 부정적분을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $f(x)=\int (6x^2+4x)\,dx = 2x^3+2x^2+C$ (단, $C$는 적분상수)이다.
+$f(1)=2+2+C=7$에서 $C=3$이므로 $f(x)=2x^3+2x^2+3$이다.
+따라서 $f(2)=16+8+3=27$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>18. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 90</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 귀납적으로 정의된 수열의 주기적 합 성질을 이용하여 수열의 합을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $a_n+a_{n+3}=15$이므로
+$$\sum_{n=1}^{12} a_n = \sum_{n=1}^3 (a_n+a_{n+3}) + \sum_{n=7}^9 (a_n+a_{n+3})$$
+$$= 15\times 3 + 15\times 3 = 90$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>19. [공통(수학Ⅰ·수학Ⅱ) / 3점]</span>
+            <span style="color:#1d4ed8;">정답 92</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 삼차함수의 도함수를 이용하여 극댓값과 미정계수를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $f'(x)=6x^2-6ax-12a^2=6(x+a)(x-2a)=0$에서 $a>0$이므로 함수 $f(x)$는 $x=-a$에서 극댓값을 갖는다.
+$$f(-a) = -2a^3-3a^3+12a^3 = 7a^3 = \dfrac{7}{8}$$
+에서 $a^3=\dfrac{1}{8}$, 즉 $a=\dfrac{1}{2}$이다.
+따라서 $f(x)=2x^3-\dfrac{3}{2}x^2-3x$이므로 $f(4)=128-24-12=92$이다.</div>
+        </div>
+        </div>
+          </div>
+          <div class="kice-footer">
+            <div class="page-frac-box">
+              <span class="p-cur">3</span>
+              <span class="p-slash"></span>
+              <span class="p-tot">5</span>
+            </div>
+            <span class="copyright-note">2025학년도 수능 기반 실전모의고사 제1회 정답 및 해설</span>
+          </div>
+        </div>
+        
+
+        <div class="exam-page">
+          <div class="sol-header">
+            <span class="sol-title">2025학년도 수능 기반 수학 실전모의고사 (제1회) 정답 및 해설 (4/5)</span>
+            <span class="sol-sub">공통과목(1~22번) + 확률과 통계(23~30번)</span>
+          </div>
+          
+          <div class="two-col-body" style="flex:1;">
+            <div class="col-left" style="gap:2mm; border-right:0.6pt solid #cbd5e1;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>20. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 48</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 지수함수의 그래프와 합성함수의 성질을 이용하여 함숫값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 곡선 $y=\left(\dfrac{1}{3}\right)^{x-4}$과 직선 $y=x$의 교점의 $x$좌표가 $k$이므로 $\left(\dfrac{1}{3}\right)^{k-4}=k$, 즉 $k\times 3^k = 3^4$이다.
+따라서 $\dfrac{1}{k^2\times 3^{2k}} = \dfrac{1}{(k\times 3^k)^2} = \dfrac{1}{3^8}$이다.
+$x>k$인 실수 $\alpha$에 대하여 $f(\alpha)=\left(\dfrac{1}{3}\right)^{\alpha-4}=\dfrac{1}{3^8}$이라 하면 $\alpha-4=8$, 즉 $\alpha=12$ ($>k$)이다.
+따라서
+$$f\left(\dfrac{1}{k^2\times 3^{2k}}\right) = f\left(\dfrac{1}{3^8}\right) = f(f(12)) = 4\times 12 = 48$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>21. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 30</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 함수의 극한의 수렴 조건을 이용하여 삼차함수의 실근 조건과 계수의 범위를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 방정식 $f(x)=0$의 실근을 $\beta$라 하면 $\lim_{x\to\beta}\dfrac{f(2x+1)}{f(x)}$이 수렴하므로 $f(2\beta+1)=0$이어야 한다.
+만약 $2\beta+1\ne\beta$, 즉 $\beta\ne -1$이면 $\beta, 2\beta+1, 4\beta+3, 8\beta+7$이 모두 삼차방정식 $f(x)=0$의 서로 다른 실근이 되어 모순이다.
+따라서 방정식 $f(x)=0$의 실근은 $x=-1$뿐이다.
+$f(-1)=-1+a-b+9=0$에서 $b=a+8$이고,
+$$f(x)=(x+1)\{x^2+(a-1)x+9\}$$
+이차방정식 $x^2+(a-1)x+9=0$은 실근을 갖지 않아야 하므로 판별식 $D=(a-1)^2-36<0$에서 $-5 < a < 7$이다.
+정수 $a$의 최댓값은 $6$이므로 $f(1)=1+a+b+9=2a+18$의 최댓값은 $2\times 6+18=30$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>22. [공통(수학Ⅰ·수학Ⅱ) / 4점]</span>
+            <span style="color:#1d4ed8;">정답 65</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 귀납적으로 정의된 수열의 홀짝 케이스 분류와 역추적을 통해 첫째항을 추론할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 조건 (나)에서 $|a_3|=|a_5|$이고 $|a_1|\ne|a_3|$, $|a_2|\ne|a_4|$이다.
+(i) $|a_3|$이 홀수인 경우: $a_4=a_3-5$ (짝수), $a_5=\dfrac{a_3-5}{2}$이다. $|a_3|=\left|\dfrac{a_3-5}{2}\right|$에서 $a_3=-5$이면 $a_4=-10$이고 $a_2=-10$이 되어 $|a_2|=|a_4|$이므로 모순이다.
+(ii) $|a_3|$이 $0$ 또는 짝수인 경우: $a_4=\dfrac{1}{2}a_3$이다.
+  ① $a_4$가 짝수이면 $a_5=\dfrac{1}{4}a_3$이므로 $|a_3|=\left|\dfrac{1}{4}a_3\right|$에서 $a_3=0, a_4=0$이다. $|a_2|\ne|a_4|=0$이므로 $a_2=5$이고, $|a_1|\ne|a_3|=0$에서 $a_1=10$이다.
+  ② $a_4$가 홀수이면 $a_5=\dfrac{1}{2}a_3-5$이므로 $|a_3|=\left|\dfrac{1}{2}a_3-5\right|$에서 $a_3=-10, a_4=-5$이다. ($a_3=\frac{10}{3}$은 정수가 아님)
+  $a_3=-10$에서 $|a_2|\ne|a_4|=5$이므로 $a_2=-20$ ($a_2=-5$는 제외)이고, $a_2=-20$에서 $a_1=-15$ 또는 $a_1=-40$이다.
+따라서 가능한 $a_1$은 $10, -15, -40$이고, $|a_1|$의 값의 합은 $10+15+40=65$이다.</div>
+        </div>
+        </div>
+            <div class="col-right" style="gap:2mm;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>23. [확률과 통계 / 2점]</span>
+            <span style="color:#1d4ed8;">정답 ⑤</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 이항정리를 이용하여 다항식의 전개식에서 특정 항의 계수를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $(x^3+3)^4$의 전개식의 일반항은 ${}_4\mathrm{C}_r \times 3^{4-r} \times (x^3)^r$이다.
+$x^6$항은 $r=2$일 때이므로 $x^6$의 계수는 ${}_4\mathrm{C}_2 \times 3^2 = 6\times 9 = 54$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>24. [확률과 통계 / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ③</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 사건의 독립과 확률의 덧셈정리를 이용하여 합사건의 확률을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $\mathrm{P}(A|B)=\mathrm{P}(A)$이므로 두 사건 $A, B$는 서로 독립이다.
+$\mathrm{P}(A\cap B)=\mathrm{P}(A)\mathrm{P}(B)=\dfrac{1}{3}\mathrm{P}(B)=\dfrac{1}{6}$에서 $\mathrm{P}(B)=\dfrac{1}{2}$이다.
+따라서 확률의 덧셈정리에 의하여
+$$\mathrm{P}(A\cup B) = \mathrm{P}(A)+\mathrm{P}(B)-\mathrm{P}(A\cap B) = \dfrac{1}{3}+\dfrac{1}{2}-\dfrac{1}{6} = \dfrac{2}{3}$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>25. [확률과 통계 / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ①</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 모평균의 신뢰구간의 길이를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 모표준편차 $\sigma=5$, 표본의 크기 $n=100$이므로 신뢰도 $95\%$의 신뢰구간의 길이는
+$$b-a = 2\times 1.96\times\dfrac{\sigma}{\sqrt{n}} = 2\times 1.96\times\dfrac{5}{\sqrt{100}} = 1.96$$</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>26. [확률과 통계 / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ③</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 여사건의 확률과 조합을 이용하여 확률을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> $12$명 중에서 임의로 선택한 $3$명 모두 과목 $\mathrm{A}$를 선택할 확률은
+$$\dfrac{{}_8\mathrm{C}_3}{{}_{12}\mathrm{C}_3} = \dfrac{56}{220} = \dfrac{14}{55}$$
+따라서 적어도 한 명이 과목 $\mathrm{B}$를 선택한 학생일 확률은 여사건의 확률에 의하여
+$$1 - \dfrac{14}{55} = \dfrac{41}{55}$$</div>
+        </div>
+        </div>
+          </div>
+          <div class="kice-footer">
+            <div class="page-frac-box">
+              <span class="p-cur">4</span>
+              <span class="p-slash"></span>
+              <span class="p-tot">5</span>
+            </div>
+            <span class="copyright-note">2025학년도 수능 기반 실전모의고사 제1회 정답 및 해설</span>
+          </div>
+        </div>
+        
+
+        <div class="exam-page">
+          <div class="sol-header">
+            <span class="sol-title">2025학년도 수능 기반 수학 실전모의고사 (제1회) 정답 및 해설 (5/5)</span>
+            <span class="sol-sub">공통과목(1~22번) + 확률과 통계(23~30번)</span>
+          </div>
+          
+          <div class="two-col-body" style="flex:1;">
+            <div class="col-left" style="gap:2mm; border-right:0.6pt solid #cbd5e1;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>27. [확률과 통계 / 3점]</span>
+            <span style="color:#1d4ed8;">정답 ④</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 모집단과 표본평균의 분산 사이의 관계를 이해하고 상수의 값을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 모집단의 확률변수를 $X$라 하면 $\mathrm{E}(X)=6$이고,
+$$\mathrm{V}(X) = \dfrac{16+4+0+4+16}{5} = 8$$
+크기가 $n=2$인 표본평균 $\bar{X}$의 분산은 $\mathrm{V}(\bar{X})=\dfrac{\mathrm{V}(X)}{2}=4$이다.
+$\mathrm{V}(a\bar{X}+5)=a^2\mathrm{V}(\bar{X})=4a^2=64$에서 $a^2=16$이므로 양수 $a=4$이다.</div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>28. [확률과 통계 / 4점]</span>
+            <span style="color:#1d4ed8;">정답 ②</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 중복조합을 이용하여 주어진 부등식과 약수 조건을 만족시키는 함수의 개수를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 조건 (가), (나)에서 $f(1)\le f(6)$이고 $f(1)\times f(6)\in\{1, 2, 4\}$이다.
+(i) $f(1)=1, f(6)=1$일 때: $2\le f(2)\le f(3)\le f(4)\le f(5)\le 2$이므로 $1$개
+(ii) $f(1)=1, f(6)=2$일 때: $2\le f(2)\le f(3)\le f(4)\le f(5)\le 4$이므로 ${}_3\mathrm{H}_4 = {}_6\mathrm{C}_4 = 15$개
+(iii) $f(1)=1, f(6)=4$일 때: $2\le f(2)\le f(3)\le f(4)\le f(5)\le 6$ (공역이 $X$이므로 상한은 $6$)이므로 ${}_5\mathrm{H}_4 = {}_8\mathrm{C}_4 = 70$개
+(iv) $f(1)=2, f(6)=2$일 때: $4\le f(2)\le f(3)\le f(4)\le f(5)\le 4$이므로 $1$개
+따라서 구하는 함수 $f$의 개수는 $1+15+70+1=87$이다.</div>
+        </div>
+        </div>
+            <div class="col-right" style="gap:2mm;">
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>29. [확률과 통계 / 4점]</span>
+            <span style="color:#1d4ed8;">정답 38</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 정규분포 곡선의 대칭성과 평행이동 성질을 이용하여 평균과 표준편차를 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 모든 실수 $x$에 대하여 $\mathrm{P}(X\le x)=\mathrm{P}(X\ge 60-x)$이므로 정규분포 곡선의 대칭축에서 $m_1=30$이다.
+또한 모든 실수 $x$에 대하여 $\mathrm{P}(Y\le x)=\mathrm{P}(X\le x+12)$이므로
+$$\dfrac{x-m_2}{\sigma_2} = \dfrac{x+12-30}{\sigma_1} = \dfrac{x-18}{\sigma_1}$$
+이 $x$에 대한 항등식이므로 $\sigma_1=\sigma_2$이고 $m_2=18$이다.
+$$\mathrm{P}(24\le X\le 30)+\mathrm{P}(24\le Y\le 30)$$
+$$= \mathrm{P}\left(0\le Z\le \dfrac{6}{\sigma_1}\right) + \mathrm{P}\left(\dfrac{6}{\sigma_1}\le Z\le \dfrac{12}{\sigma_1}\right)$$
+$$= \mathrm{P}\left(0\le Z\le \dfrac{12}{\sigma_1}\right) = 0.4332$$
+표준정규분포표에서 $\dfrac{12}{\sigma_1}=1.5$이므로 $\sigma_1=\sigma_2=8$이다. 따라서 $m_1+\sigma_2=30+8=38$이다.
+    <div class="fig-box">
+      <svg width="240" height="125" viewBox="0 0 240 125" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shaded region under Y from mid to m1 -->
+        <path d="M 120,56 C 132,74 144,88 158,94 L 158,98 L 120,98 Z" fill="#d1d5db" stroke="none"/>
+        <!-- Shaded region under X from mid to m1 -->
+        <path d="M 120,56 C 134,34 146,22 158,22 L 158,98 L 120,98 Z" fill="#e5e7eb" stroke="none"/>
+        <!-- Baseline -->
+        <line x1="12" y1="98" x2="228" y2="98" stroke="#111" stroke-width="1.1"/>
+        <!-- Bell curve Y centered at x=82 (m2) -->
+        <path d="M 18,97 C 42,96 58,76 68,46 C 74,28 78,22 82,22 C 86,22 90,28 96,46 C 106,76 122,96 158,97"
+              fill="none" stroke="#555" stroke-width="1.3" stroke-dasharray="3.5,2"/>
+        <!-- Bell curve X centered at x=158 (m1) -->
+        <path d="M 82,97 C 118,96 134,76 144,46 C 150,28 154,22 158,22 C 162,22 166,28 172,46 C 182,76 198,96 222,97"
+              fill="none" stroke="#111" stroke-width="1.45"/>
+        <!-- Vertical lines at m2, mid, m1 -->
+        <line x1="82" y1="22" x2="82" y2="98" stroke="#555" stroke-width="0.9" stroke-dasharray="2.5,2.5"/>
+        <line x1="120" y1="56" x2="120" y2="98" stroke="#111" stroke-width="0.9" stroke-dasharray="2,2"/>
+        <line x1="158" y1="22" x2="158" y2="98" stroke="#111" stroke-width="0.9" stroke-dasharray="2.5,2.5"/>
+        <!-- Labels -->
+        <text x="70" y="112" font-family="Times New Roman, serif" font-size="10.5">m₂=18</text>
+        <text x="114" y="112" font-family="Times New Roman, serif" font-size="10.5">24</text>
+        <text x="148" y="112" font-family="Times New Roman, serif" font-size="10.5">m₁=30</text>
+        <text x="52" y="20" font-family="Times New Roman, serif" font-style="italic" font-size="11">Y</text>
+        <text x="175" y="20" font-family="Times New Roman, serif" font-style="italic" font-size="11">X</text>
+      </svg>
+    </div>
+    </div>
+        </div>
+        
+
+        <div class="sol-item">
+          <div class="sol-item-head">
+            <span>30. [확률과 통계 / 4점]</span>
+            <span style="color:#1d4ed8;">정답 86</span>
+          </div>
+          <div class="sol-intent">▶ 출제의도 : 독립시행에서 $6$의 눈이 나온 횟수에 따른 케이스 분류를 통해 확률을 구할 수 있는가?</div>
+          <div><strong>[풀이]</strong> 초기 상태는 $\mathrm{H, H, H, T, T}$이다. $4$번의 시행에서 $6$의 눈이 나온 횟수를 기준으로 경우를 나눈다.
+(i) $6$의 눈이 $0$번 나온 경우: $4, 5$번째 동전은 홀수 번, $1, 2, 3$번째 동전은 짝수 번 뒤집혀야 한다.
+  - $\{4, 5\}$ 중 하나가 $3$번, 다른 하나가 $1$번 나오는 경우: $2\times\dfrac{4!}{3!1!}=8$가지
+  - $4, 5$가 각 $1$번씩 나오고 $\{1, 2, 3\}$ 중 하나가 $2$번 나오는 경우: $3\times\dfrac{4!}{2!1!1!}=36$가지
+(ii) $6$의 눈이 $1$번 나온 경우: 전체가 한 번 뒤집히므로 $1, 2, 3$번째 동전이 각 $1$번씩 뒤집혀야 한다. 즉 눈의 수 $1, 2, 3, 6$이 각 $1$번씩 나오는 경우의 수는 $4!=24$가지이다.
+(iii) $6$의 눈이 $2$번 나온 경우: 전체가 두 번 뒤집혀 원상복구되므로 남은 $2$번 동안 $4, 5$의 눈이 각 $1$번씩 나와야 한다. 즉 $\{4, 5, 6, 6\}$을 나열하는 경우의 수는 $\dfrac{4!}{2!1!1!}=12$가지이다.
+(iv) $6$의 눈이 $3$번 또는 $4$번 나온 경우: 모두 앞면이 될 수 없다 ($0$가지).
+따라서 구하는 확률은 $\dfrac{8+36+24+12}{6^4}=\dfrac{80}{1296}=\dfrac{5}{81}$이므로 $p+q=81+5=86$이다.</div>
+        </div>
+        </div>
+          </div>
+          <div class="kice-footer">
+            <div class="page-frac-box">
+              <span class="p-cur">5</span>
+              <span class="p-slash"></span>
+              <span class="p-tot">5</span>
+            </div>
+            <span class="copyright-note">2025학년도 수능 기반 실전모의고사 제1회 정답 및 해설</span>
+          </div>
+        </div>
+        
+</body>
+</html>

@@ -15,10 +15,13 @@ temp_*/
 Thumbs.db
 .DS_Store
 
-# Local tools & scratch
+# Local tools, backups & scratch
 .claude/
 scratch/
 serve.py
+index_backup_*.html
+shorts_l2_backup_*.js
+font_sample_l2.html
 
 # Sub-repositories
 509-401-math--helper/

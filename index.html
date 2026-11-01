@@ -1186,7 +1186,7 @@
       <div class="gate-error" id="gateErrorMsg">❌ 비밀번호가 올바르지 않습니다. 다시 확인해주세요.</div>
 
       <div class="gate-footer-hint">
-        🛡️ 인증 성공 시 39개 수능 킬러 공식 · 그래프 시뮬레이터 · 중1~고3 스튜디오가 즉시 활성화됩니다.
+        🛡️ 인증 성공 시 171개 (2022 개정 전 단원 &amp; 킬러 특강) 수능 킬러 공식 · 그래프 시뮬레이터 · 중1~고3 스튜디오가 즉시 활성화됩니다.
       </div>
     </div>
   </div>
@@ -1201,28 +1201,83 @@
       <!-- 1. 과목별 상단 필터 탭 바 -->
       <div class="subject-tab-bar" role="tablist" aria-label="과목별 분류 필터">
         <button type="button" class="subj-tab active" data-subject="all" onclick="selectSubject('all')">
-          <span class="tab-icon">✨</span>
-          <span class="tab-text">전체보기</span>
-          <span class="tab-badge">39</span>
+          <span class="tab-icon">🌟</span>
+          <span class="tab-text">전체보기 (2022 개정)</span>
+          <span class="tab-badge" id="totalLecturesBadge">171</span>
+        </button>
+        <button type="button" class="subj-tab" data-subject="common1" onclick="selectSubject('common1')">
+          <span class="tab-icon">📕</span>
+          <span class="tab-text">공통수학 1 · 다항식·방정식·행렬</span>
+          <span class="tab-badge">12</span>
+        </button>
+        <button type="button" class="subj-tab" data-subject="common2" onclick="selectSubject('common2')">
+          <span class="tab-icon">📘</span>
+          <span class="tab-text">공통수학 2 · 도형·집합·명제·함수</span>
+          <span class="tab-badge">12</span>
         </button>
         <button type="button" class="subj-tab" data-subject="math-ha" onclick="selectSubject('math-ha')">
           <span class="tab-icon">📘</span>
-          <span class="tab-text">수학(하) · 함수</span>
+          <span class="tab-text">공통수학 2 · 함수와 그래프</span>
           <span class="tab-badge">8</span>
         </button>
         <button type="button" class="subj-tab" data-subject="math1" onclick="selectSubject('math1')">
           <span class="tab-icon">📗</span>
-          <span class="tab-text">수학 I · 지수로그·삼각</span>
+          <span class="tab-text">대수 · 지수로그·삼각·수열</span>
           <span class="tab-badge">11</span>
         </button>
         <button type="button" class="subj-tab" data-subject="math2" onclick="selectSubject('math2')">
           <span class="tab-icon">📙</span>
-          <span class="tab-text">수학 II · 미적분</span>
+          <span class="tab-text">미적분 I · 다항함수 미적분</span>
           <span class="tab-badge">13</span>
+        </button>
+        <button type="button" class="subj-tab" data-subject="probstat" onclick="selectSubject('probstat')">
+          <span class="tab-icon">📙</span>
+          <span class="tab-text">확률과 통계 · 경우의수·확률·통계</span>
+          <span class="tab-badge">12</span>
+        </button>
+        <button type="button" class="subj-tab" data-subject="calc" onclick="selectSubject('calc')">
+          <span class="tab-icon">📗</span>
+          <span class="tab-text">미적분 심화 · 급수·초월미적분</span>
+          <span class="tab-badge">12</span>
+        </button>
+        <button type="button" class="subj-tab" data-subject="geoadv" onclick="selectSubject('geoadv')">
+          <span class="tab-icon">📐</span>
+          <span class="tab-text">기하 심화 · 이차곡선·벡터·공간</span>
+          <span class="tab-badge">12</span>
+        </button>
+        <button type="button" class="subj-tab" data-subject="killer" onclick="selectSubject('killer')">
+          <span class="tab-icon">🔥</span>
+          <span class="tab-text">수능 킬러·준킬러 실전 테마 특강</span>
+          <span class="tab-badge">12</span>
+        </button>
+                <button type="button" class="subj-tab" data-subject="core12" onclick="selectSubject('core12')">
+          <span class="tab-icon">💎</span>
+          <span class="tab-text">대수·미적분 I 필수 빈틈 완성</span>
+          <span class="tab-badge">12</span>
+        </button>
+                <button type="button" class="subj-tab" data-subject="midgeo" onclick="selectSubject('midgeo')">
+          <span class="tab-icon">📐</span>
+          <span class="tab-text">중학도형→수능 12대 법칙</span>
+          <span class="tab-badge">12</span>
+        </button>
+                <button type="button" class="subj-tab" data-subject="speed" onclick="selectSubject('speed')">
+          <span class="tab-icon">⚡</span>
+          <span class="tab-text">수능 시간단축 암산·검산 12</span>
+          <span class="tab-badge">12</span>
+        </button>
+                <button type="button" class="subj-tab" data-subject="midalg" onclick="selectSubject('midalg')">
+          <span class="tab-icon">🌉</span>
+          <span class="tab-text">중학대수·함수→고등 12</span>
+          <span class="tab-badge">12</span>
+        </button>
+                <button type="button" class="subj-tab" data-subject="elem" onclick="selectSubject('elem')">
+          <span class="tab-icon">🌱</span>
+          <span class="tab-text">초등영재·사고력→중고등 12</span>
+          <span class="tab-badge">12</span>
         </button>
         <button type="button" class="subj-tab" data-subject="geom" onclick="selectSubject('geom')">
           <span class="tab-icon">📐</span>
-          <span class="tab-text">기하 &amp; 미적분</span>
+          <span class="tab-text">기하 &amp; 미적분 II</span>
           <span class="tab-badge">7</span>
         </button>
         <button type="button" class="subj-tab" data-subject="k12-studio" onclick="selectSubject('k12-studio')" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.25)); border-color: rgba(168, 85, 247, 0.6); color: #f3e8ff;">
@@ -1252,10 +1307,10 @@
         <div class="sort-controls-wrap">
           <span class="sort-label">자동 순서 리뉴얼:</span>
           <button type="button" class="sort-btn active" id="sortAscBtn" onclick="setSortOrder('asc')" title="1강부터 39강 교과과정 순서로 자동 리뉴얼">
-            <span>🔢 1강 ➔ 39강 순</span>
+            <span>🔢 1강 ➔ 171강 순</span>
           </button>
           <button type="button" class="sort-btn" id="sortDescBtn" onclick="setSortOrder('desc')" title="최신 39강부터 1강 역순으로 자동 리뉴얼">
-            <span>⚡ 39강 ➔ 1강 역순</span>
+            <span>⚡ 171강 ➔ 1강 역순</span>
           </button>
           <button type="button" class="sort-btn" id="sortKillerBtn" onclick="setSortOrder('killer')" title="수능 킬러 &amp; 필수 공식 우선 정렬">
             <span>🔥 킬러·꿀팁 우선</span>
@@ -1266,12 +1321,154 @@
       <!-- 2. 과목별 강의 그룹 컨테이너 -->
       <div class="lecture-groups-wrapper">
 
-        <!-- [그룹 1] 수학(하) · 함수와 그래프 (8강) -->
+        <!-- [그룹 0] 공통수학 1 · 다항식·방정식·경우의 수·행렬 (2022 개정 · 12강) -->
+        <div class="subject-panel" id="group-common1" data-subj="common1">
+          <div class="subj-header">
+            <span class="subj-indicator" style="background:#f43f5e;color:#f43f5e;box-shadow:0 0 10px #f43f5e;"></span>
+            <span class="subj-title-text">📕 공통수학 1 · 다항식 · 방정식과 부등식 · 경우의 수 · 행렬</span>
+            <span class="subj-sub">(2022 개정 교육과정 · 대칭식 · 나머지정리 · 복소수 ω · 차함수 · 근의 분리 · 순열조합 · 행렬 신설)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec40" onclick="setLecture(40)" data-subj="common1">
+              <span class="lec-num">40</span>
+              <span class="badge-pill-sm">⚡ 다항식</span>
+              <span class="lec-title">곱셈공식 변형과 대칭식($x+y=u, xy=v$) 구조</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec41" onclick="setLecture(41)" data-subj="common1">
+              <span class="lec-num">41</span>
+              <span class="badge-pill-sm">⚡ 킬러</span>
+              <span class="lec-title">나머지정리 $(x-\alpha)^2$ 중근 인수와 미분·조립제법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec42" onclick="setLecture(42)" data-subj="common1">
+              <span class="lec-num">42</span>
+              <span class="badge-pill-sm">⚡ 인수분해</span>
+              <span class="lec-title">고차식 인수분해 · 복소수 범위와 상반방정식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec43" onclick="setLecture(43)" data-subj="common1">
+              <span class="lec-num">43</span>
+              <span class="badge-pill-sm">⚡ 3초공식</span>
+              <span class="lec-title">복소수 $i$의 4주기 순환성과 허근 $\omega$($x^3=\pm1$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec44" onclick="setLecture(44)" data-subj="common1">
+              <span class="lec-num">44</span>
+              <span class="badge-pill-sm">⚡ 필수</span>
+              <span class="lec-title">판별식 $D$와 근과 계수의 관계 (두 근의 차 $\frac{\sqrt{D}}{|a|}$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec45" onclick="setLecture(45)" data-subj="common1">
+              <span class="lec-num">45</span>
+              <span class="badge-pill-sm">⚡ 본질</span>
+              <span class="lec-title">이차함수와 직선의 위치관계 · 차함수 $f(x)-g(x)$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec46" onclick="setLecture(46)" data-subj="common1">
+              <span class="lec-num">46</span>
+              <span class="badge-pill-sm">⚡ 빈출</span>
+              <span class="lec-title">제한된 범위에서 이차함수의 최대·최소 (대칭축 이동)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec47" onclick="setLecture(47)" data-subj="common1">
+              <span class="lec-num">47</span>
+              <span class="badge-pill-sm">⚡ 방정식</span>
+              <span class="lec-title">삼차방정식 세 근의 구조($\alpha,\beta,\gamma$)와 켤레근</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec48" onclick="setLecture(48)" data-subj="common1">
+              <span class="lec-num">48</span>
+              <span class="badge-pill-sm">⚡ 거리해석</span>
+              <span class="lec-title">절댓값 부등식과 거리 합 $|x-a|+|x-b|$ 그래프</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec49" onclick="setLecture(49)" data-subj="common1">
+              <span class="lec-num">49</span>
+              <span class="badge-pill-sm">⚡ 킬러</span>
+              <span class="lec-title">이차방정식 근의 분리 (실근의 위치: 함·판·축 3초 판정)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec50" onclick="setLecture(50)" data-subj="common1">
+              <span class="lec-num">50</span>
+              <span class="badge-pill-sm">⚡ 경우의수</span>
+              <span class="lec-title">순열(${}_n\mathrm{P}_r$)·조합(${}_n\mathrm{C}_r$) 구분 트리와 분할·분배</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec51" onclick="setLecture(51)" data-subj="common1">
+              <span class="lec-num">51</span>
+              <span class="badge-pill-sm">⚡ 2022신설</span>
+              <span class="lec-title">행렬의 연산·거듭제곱($A^n$)과 케일리-해밀턴 정리</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- [그룹 0-2] 공통수학 2 · 도형의 방정식·집합과 명제·함수 심화 (12강) -->
+        <div class="subject-panel" id="group-common2" data-subj="common2">
+          <div class="subj-header">
+            <span class="subj-indicator ind-blue"></span>
+            <span class="subj-title-text">📘 공통수학 2 · 도형의 방정식·집합과 명제·함수 심화</span>
+            <span class="subj-sub">(평면좌표·직선·원의 방정식 · 아폴로니오스 원·접선 · 도형의 이동 · 집합·명제 · 산술기하·코시슈바르츠 · 역함수 교점)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec52" onclick="setLecture(52)" data-subj="common2">
+              <span class="lec-num">52</span>
+              <span class="badge-pill-sm">⚡ 평면좌표</span>
+              <span class="lec-title">내분점·외분점·무게중심과 파푸스 중선정리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec53" onclick="setLecture(53)" data-subj="common2">
+              <span class="lec-num">53</span>
+              <span class="badge-pill-sm">⚡ 직선</span>
+              <span class="lec-title">정점을 지나는 직선($l_1+kl_2=0$)과 점·직선 거리 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec54" onclick="setLecture(54)" data-subj="common2">
+              <span class="lec-num">54</span>
+              <span class="badge-pill-sm">⚡ 자취킬러</span>
+              <span class="lec-title">원의 방정식과 아폴로니오스의 원 ($\overline{PA}:\overline{PB}=m:n$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec55" onclick="setLecture(55)" data-subj="common2">
+              <span class="lec-num">55</span>
+              <span class="badge-pill-sm">⚡ 접선공식</span>
+              <span class="lec-title">원과 직선의 위치관계($d$ vs $r$) &amp; 원의 접선 3대 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec56" onclick="setLecture(56)" data-subj="common2">
+              <span class="lec-num">56</span>
+              <span class="badge-pill-sm">⚡ 공통현</span>
+              <span class="lec-title">두 원의 공통현($C_1-C_2=0$)과 원 위의 점 거리 최대·최소</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec57" onclick="setLecture(57)" data-subj="common2">
+              <span class="lec-num">57</span>
+              <span class="badge-pill-sm">⚡ 최단거리</span>
+              <span class="lec-title">도형의 평행·대칭이동과 빛의 반사 최단거리 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec58" onclick="setLecture(58)" data-subj="common2">
+              <span class="lec-num">58</span>
+              <span class="badge-pill-sm">⚡ 집합연산</span>
+              <span class="lec-title">드모르간·대칭차집합과 원소의 개수 $n(A\cup B)$ 최대·최소</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec59" onclick="setLecture(59)" data-subj="common2">
+              <span class="lec-num">59</span>
+              <span class="badge-pill-sm">⚡ 명제조건</span>
+              <span class="lec-title">충분조건·필요조건 진리집합 포함관계($P\subset Q$)와 대우</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec60" onclick="setLecture(60)" data-subj="common2">
+              <span class="lec-num">60</span>
+              <span class="badge-pill-sm">⚡ 절대부등식1</span>
+              <span class="lec-title">산술·기하평균 부등식 역수 변형과 등호 성립 조건 함정</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec61" onclick="setLecture(61)" data-subj="common2">
+              <span class="lec-num">61</span>
+              <span class="badge-pill-sm">⚡ 절대부등식2</span>
+              <span class="lec-title">코시-슈바르츠 부등식 $(a^2+b^2)(x^2+y^2)\ge(ax+by)^2$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec62" onclick="setLecture(62)" data-subj="common2">
+              <span class="lec-num">62</span>
+              <span class="badge-pill-sm">⚡ 킬러함정</span>
+              <span class="lec-title">일대일대응 조건과 역함수 $y=f^{-1}(x)$ 교점의 진실 (증가 vs 감소)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec63" onclick="setLecture(63)" data-subj="common2">
+              <span class="lec-num">63</span>
+              <span class="badge-pill-sm">⚡ 실전마스터</span>
+              <span class="lec-title">유리함수 점근선 대칭성과 무리함수·직선 교점 개수 판별</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- [그룹 1] 공통수학 2 · 함수와 그래프 (2022 개정 · 8강) -->
         <div class="subject-panel" id="group-math-ha" data-subj="math-ha">
           <div class="subj-header">
             <span class="subj-indicator ind-blue"></span>
-            <span class="subj-title-text">📘 수학(하) · 함수와 그래프</span>
-            <span class="subj-sub">(유리·무리함수 · 절댓값 · 수와 연산 · 교과서 14개 그래프)</span>
+            <span class="subj-title-text">📘 공통수학 2 · 함수와 그래프 (2022 개정)</span>
+            <span class="subj-sub">(유리·무리함수 · 절댓값 · 대칭·주기 · 교과서 14개 그래프 · 구 수학(하))</span>
           </div>
           <div class="lecture-btn-grid">
             <button type="button" class="lecture-btn" id="btnLec10" onclick="setLecture(10)" data-subj="math-ha">
@@ -1317,8 +1514,8 @@
         <div class="subject-panel" id="group-math1" data-subj="math1">
           <div class="subj-header">
             <span class="subj-indicator ind-green"></span>
-            <span class="subj-title-text">📗 수학 I · 지수·로그 &amp; 삼각함수</span>
-            <span class="subj-sub">(지수·로그함수 역함수 교점 · 단위원 · 8칸 박스법 · 삼각비)</span>
+            <span class="subj-title-text">📗 대수 · 지수·로그 &amp; 삼각함수·수열 (2022 개정)</span>
+            <span class="subj-sub">(단위원 · 8칸 박스법 · 사인·코사인법칙 · 지수·로그 대칭 · 점화식 · 구 수학 I)</span>
           </div>
           <div class="lecture-btn-grid">
             <button type="button" class="lecture-btn" id="btnLec7" onclick="setLecture(7)" data-subj="math1">
@@ -1380,8 +1577,8 @@
         <div class="subject-panel" id="group-math2" data-subj="math2">
           <div class="subj-header">
             <span class="subj-indicator ind-orange"></span>
-            <span class="subj-title-text">📙 수학 II · 다항함수 미적분</span>
-            <span class="subj-sub">(비율관계 · 변곡접선 · 극대 정의 · 정적분 만능공식)</span>
+            <span class="subj-title-text">📙 미적분 I · 다항함수 미적분 (2022 개정)</span>
+            <span class="subj-sub">(극한 진위판단 · 비율관계 · 변곡접선 · 극대 정의 · 정적분 만능공식 · 구 수학 II)</span>
           </div>
           <div class="lecture-btn-grid">
             <button type="button" class="lecture-btn" id="btnLec1" onclick="setLecture(1)" data-subj="math2">
@@ -1446,12 +1643,651 @@
           </div>
         </div>
 
+                <!-- [그룹 5] 확률과 통계 · 순열·조합 심화·조건부확률·정규분포 (12강) -->
+        <div class="subject-panel" id="group-probstat" data-subj="probstat">
+          <div class="subj-header">
+            <span class="subj-indicator ind-orange"></span>
+            <span class="subj-title-text">📙 확률과 통계 · 순열·조합 심화·조건부확률·정규분포</span>
+            <span class="subj-sub">(원순열·중복조합 $_n\mathrm{H}_r$ · 이항정리 · 조건부확률·독립시행 · 이항분포·정규분포 표준화 $Z$ · 표본평균·신뢰구간)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec64" onclick="setLecture(64)" data-subj="probstat">
+              <span class="lec-num">64</span>
+              <span class="badge-pill-sm">⚡ 원순열</span>
+              <span class="lec-title">원순열 $(n-1)!$ 고정점 해법과 다각형 탁자 배열</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec65" onclick="setLecture(65)" data-subj="probstat">
+              <span class="lec-num">65</span>
+              <span class="badge-pill-sm">⚡ 최단경로</span>
+              <span class="lec-title">중복순열($_n\Pi_r$)과 같은 것이 있는 순열 $\frac{n!}{p!q!r!}$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec66" onclick="setLecture(66)" data-subj="probstat">
+              <span class="lec-num">66</span>
+              <span class="badge-pill-sm">⚡ 수능킬러</span>
+              <span class="lec-title">중복조합 $_n\mathrm{H}_r$ 칸막이 원리와 부정방정식·함수 개수</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec67" onclick="setLecture(67)" data-subj="probstat">
+              <span class="lec-num">67</span>
+              <span class="badge-pill-sm">⚡ 이항정리</span>
+              <span class="lec-title">이항정리 일반항과 파스칼 삼각형·하키스틱 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec68" onclick="setLecture(68)" data-subj="probstat">
+              <span class="lec-num">68</span>
+              <span class="badge-pill-sm">⚡ 여사건</span>
+              <span class="lec-title">확률의 덧셈정리와 여사건의 확률 $1-P(A^c)$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec69" onclick="setLecture(69)" data-subj="probstat">
+              <span class="lec-num">69</span>
+              <span class="badge-pill-sm">⚡ 베이즈</span>
+              <span class="lec-title">조건부확률 $P(B|A)$ 2×2 표 해법과 베이즈 정리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec70" onclick="setLecture(70)" data-subj="probstat">
+              <span class="lec-num">70</span>
+              <span class="badge-pill-sm">⚡ 독립시행</span>
+              <span class="lec-title">사건의 독립($P(A\cap B)=P(A)P(B)$)과 독립시행의 확률</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec71" onclick="setLecture(71)" data-subj="probstat">
+              <span class="lec-num">71</span>
+              <span class="badge-pill-sm">⚡ 제평평제</span>
+              <span class="lec-title">이산확률변수 기댓값 $E(X)$와 분산 $V(aX+b)=a^2V(X)$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec72" onclick="setLecture(72)" data-subj="probstat">
+              <span class="lec-num">72</span>
+              <span class="badge-pill-sm">⚡ 이항분포</span>
+              <span class="lec-title">이항분포 $B(n,p)$의 평균 $np$·분산 $npq$ 3초 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec73" onclick="setLecture(73)" data-subj="probstat">
+              <span class="lec-num">73</span>
+              <span class="badge-pill-sm">⚡ 표준화Z</span>
+              <span class="lec-title">정규분포 $N(m,\sigma^2)$ 대칭성과 표준화 $Z=\frac{X-m}{\sigma}$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec74" onclick="setLecture(74)" data-subj="probstat">
+              <span class="lec-num">74</span>
+              <span class="badge-pill-sm">⚡ 표본평균</span>
+              <span class="lec-title">표본평균 $\bar{X}$의 분포 $N(m,\frac{\sigma^2}{n})$와 표준오차 $\frac{\sigma}{\sqrt{n}}$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec75" onclick="setLecture(75)" data-subj="probstat">
+              <span class="lec-num">75</span>
+              <span class="badge-pill-sm">⚡ 신뢰구간</span>
+              <span class="lec-title">모평균의 신뢰구간 추정과 신뢰구간 길이 $L=2k\frac{\sigma}{\sqrt{n}}$</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 6] 미적분 심화 · 수열의 극한·급수·초월함수 미분·적분·부피 (12강) -->
+        <div class="subject-panel" id="group-calc" data-subj="calc">
+          <div class="subj-header">
+            <span class="subj-indicator ind-green"></span>
+            <span class="subj-title-text">📗 미적분 심화 · 수열의 극한·급수·초월함수 미분·적분·부피</span>
+            <span class="subj-sub">(등비수열 극한·프랙탈 등비급수 · 자연상수 $e$ · 삼각함수 덧셈정리·도형 극한 · 역함수 미분·초월함수 개형 · 치환·부분적분 · 단면 부피)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec76" onclick="setLecture(76)" data-subj="calc">
+              <span class="lec-num">76</span>
+              <span class="badge-pill-sm">⚡ 수열극한</span>
+              <span class="lec-title">수열의 극한 샌드위치 정리와 등비수열 $r^n$ 4구간 분류</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec77" onclick="setLecture(77)" data-subj="calc">
+              <span class="lec-num">77</span>
+              <span class="badge-pill-sm">⚡ 프랙탈</span>
+              <span class="lec-title">무한급수 성질과 도형 등비급수 $\frac{a}{1-r}$ (넓이비 $k^2$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec78" onclick="setLecture(78)" data-subj="calc">
+              <span class="lec-num">78</span>
+              <span class="badge-pill-sm">⚡ 자연상수e</span>
+              <span class="lec-title">자연상수 $e$ 정의와 지수·로그 극한 $\frac{e^x-1}{x},\frac{\ln(1+x)}{x}$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec79" onclick="setLecture(79)" data-subj="calc">
+              <span class="lec-num">79</span>
+              <span class="badge-pill-sm">⚡ 덧셈정리</span>
+              <span class="lec-title">삼각함수 덧셈정리·배각공식과 두 직선이 이루는 각 $\tan\theta$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec80" onclick="setLecture(80)" data-subj="calc">
+              <span class="lec-num">80</span>
+              <span class="badge-pill-sm">⚡ 도형극한</span>
+              <span class="lec-title">삼각함수 극한 $\frac{\sin x}{x}=1$과 $1-\cos x\approx\frac{1}{2}x^2$ 근사</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec81" onclick="setLecture(81)" data-subj="calc">
+              <span class="lec-num">81</span>
+              <span class="badge-pill-sm">⚡ 연쇄법칙</span>
+              <span class="lec-title">몫의 미분법·합성함수 연쇄법칙과 음함수·매개변수 미분</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec82" onclick="setLecture(82)" data-subj="calc">
+              <span class="lec-num">82</span>
+              <span class="badge-pill-sm">⚡ 역함수미분</span>
+              <span class="lec-title">역함수 미분법 $(f^{-1})'(b)=\frac{1}{f'(a)}$과 이계도함수·변곡점</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec83" onclick="setLecture(83)" data-subj="calc">
+              <span class="lec-num">83</span>
+              <span class="badge-pill-sm">⚡ 킬러개형</span>
+              <span class="lec-title">수능 필수 초월함수 개형 ($xe^{-x}, \frac{\ln x}{x}$ 최대 $\frac{1}{e}$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec84" onclick="setLecture(84)" data-subj="calc">
+              <span class="lec-num">84</span>
+              <span class="badge-pill-sm">⚡ 치환적분</span>
+              <span class="lec-title">치환적분법과 분수함수 적분 $\int\frac{f'(x)}{f(x)}dx=\ln|f(x)|$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec85" onclick="setLecture(85)" data-subj="calc">
+              <span class="lec-num">85</span>
+              <span class="badge-pill-sm">⚡ 도표적분</span>
+              <span class="lec-title">부분적분법(로다삼지)과 다항식×초월함수 3초 도표적분(DI)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec86" onclick="setLecture(86)" data-subj="calc">
+              <span class="lec-num">86</span>
+              <span class="badge-pill-sm">⚡ 급수적분</span>
+              <span class="lec-title">정적분과 무한급수의 변환 $\lim\frac{1}{n}\sum f(a+\frac{p}{n}k)$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec87" onclick="setLecture(87)" data-subj="calc">
+              <span class="lec-num">87</span>
+              <span class="badge-pill-sm">⚡ 부피·길이</span>
+              <span class="lec-title">단면 적분 입체 부피 $\int S(x)dx$와 곡선의 길이·이동거리</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 7] 기하 심화 · 이차곡선 접선·평면벡터 내적·공간도형과 삼수선·정사영과 공간좌표 (12강) -->
+        <div class="subject-panel" id="group-geoadv" data-subj="geoadv">
+          <div class="subj-header">
+            <span class="subj-indicator ind-orange"></span>
+            <span class="subj-title-text">📐 기하 심화 · 이차곡선 접선·평면벡터 내적·삼수선의 정리·정사영·구의 방정식</span>
+            <span class="subj-sub">(포물선·타원·쌍곡선 초점삼각형과 접선 · 평면벡터 일직선·내적 중점 분해 · 삼수선의 정리·이면각·정사영 · 공간좌표와 구의 방정식)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec88" onclick="setLecture(88)" data-subj="geoadv">
+              <span class="lec-num">88</span>
+              <span class="badge-pill-sm">⚡ 포물선심화</span>
+              <span class="lec-title">포물선의 정의($\overline{PF}=\overline{PH}$)와 초점 현·준선 직각 성질</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec89" onclick="setLecture(89)" data-subj="geoadv">
+              <span class="lec-num">89</span>
+              <span class="badge-pill-sm">⚡ 초점삼각형</span>
+              <span class="lec-title">타원($r_1+r_2=2a$)·쌍곡선($|r_1-r_2|=2a$) 초점삼각형과 점근선</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec90" onclick="setLecture(90)" data-subj="geoadv">
+              <span class="lec-num">90</span>
+              <span class="badge-pill-sm">⚡ 이차곡선접선</span>
+              <span class="lec-title">이차곡선 접선의 방정식 3대 공식(기울기 $m$·접점 쪼개기)과 반사 성질</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec91" onclick="setLecture(91)" data-subj="geoadv">
+              <span class="lec-num">91</span>
+              <span class="badge-pill-sm">⚡ 벡터와자취</span>
+              <span class="lec-title">평면벡터 분점·일직선 조건($\alpha+\beta=1$)과 종점 자취 넓이</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec92" onclick="setLecture(92)" data-subj="geoadv">
+              <span class="lec-num">92</span>
+              <span class="badge-pill-sm">⚡ 내적최대최소</span>
+              <span class="lec-title">평면벡터 내적의 정사영 의미와 중점 분해 공식($|\overrightarrow{PM}|^2-\frac{1}{4}\overline{AB}^2$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec93" onclick="setLecture(93)" data-subj="geoadv">
+              <span class="lec-num">93</span>
+              <span class="badge-pill-sm">⚡ 직선원벡터</span>
+              <span class="lec-title">직선의 벡터방정식(방향·법선벡터)과 원의 벡터방정식 2가지</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec94" onclick="setLecture(94)" data-subj="geoadv">
+              <span class="lec-num">94</span>
+              <span class="badge-pill-sm">⚡ 꼬인위치각</span>
+              <span class="lec-title">공간도형 평면 결정 조건 4가지와 꼬인 위치의 두 직선이 이루는 각</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec95" onclick="setLecture(95)" data-subj="geoadv">
+              <span class="lec-num">95</span>
+              <span class="badge-pill-sm">⚡ 삼수선정리</span>
+              <span class="lec-title">직선·평면 수직 조건과 삼수선의 정리 3유형 피타고라스 해법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec96" onclick="setLecture(96)" data-subj="geoadv">
+              <span class="lec-num">96</span>
+              <span class="badge-pill-sm">⚡ 이면각</span>
+              <span class="lec-title">이면각의 정의(수선의 발)와 정사면체($\cos\theta=\frac{1}{3}$)·정팔면체 이면각</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec97" onclick="setLecture(97)" data-subj="geoadv">
+              <span class="lec-num">97</span>
+              <span class="badge-pill-sm">⚡ 정사영</span>
+              <span class="lec-title">정사영의 길이·넓이($S'=S\cos\theta$)와 태양광선 그림자 넓이 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec98" onclick="setLecture(98)" data-subj="geoadv">
+              <span class="lec-num">98</span>
+              <span class="badge-pill-sm">⚡ 공간좌표</span>
+              <span class="lec-title">공간좌표 대칭·내분·외분·무게중심과 대칭이동 최단거리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec99" onclick="setLecture(99)" data-subj="geoadv">
+              <span class="lec-num">99</span>
+              <span class="badge-pill-sm">⚡ 구의방정식</span>
+              <span class="lec-title">구의 방정식, 좌표평면에 접하는 구와 평면 단면 원($r'=\sqrt{R^2-d^2}$)</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 8] 수능 킬러·준킬러 실전 테마 특강 (12강) -->
+        <div class="subject-panel" id="group-killer" data-subj="killer">
+          <div class="subj-header">
+            <span class="subj-indicator ind-orange"></span>
+            <span class="subj-title-text">🔥 수능 킬러·준킬러 실전 테마 특강 · 대칭·차함수·절댓값 미분·정적분 함수·역추적</span>
+            <span class="subj-sub">(선대칭·점대칭과 주기 · 차함수 인수정리 · 곱함수·절댓값 미분가능성 · 합성방정식·교점 불연속 · 정적분 함수 · 귀납적 역추적)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec100" onclick="setLecture(100)" data-subj="killer">
+              <span class="lec-num">100</span>
+              <span class="badge-pill-sm">🔥 대칭과주기</span>
+              <span class="lec-title">선대칭·점대칭·주기성 함수 방정식 1초 판독과 정적분</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec101" onclick="setLecture(101)" data-subj="killer">
+              <span class="lec-num">101</span>
+              <span class="badge-pill-sm">🔥 차함수스킬</span>
+              <span class="lec-title">차함수 $f(x)-g(x)$ 인수정리 식 세우기 (접점 제곱·변곡 세제곱)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec102" onclick="setLecture(102)" data-subj="killer">
+              <span class="lec-num">102</span>
+              <span class="badge-pill-sm">🔥 곱연속미분</span>
+              <span class="lec-title">곱함수 $f(x)g(x)$ 의 연속성과 미분가능성 영인자 법칙</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec103" onclick="setLecture(103)" data-subj="killer">
+              <span class="lec-num">103</span>
+              <span class="badge-pill-sm">🔥 절댓값미분</span>
+              <span class="lec-title">절댓값 함수 $|f(x)-t|$ 의 미분가능성과 접어 올린 첨점 소거</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec104" onclick="setLecture(104)" data-subj="killer">
+              <span class="lec-num">104</span>
+              <span class="badge-pill-sm">🔥 합성방정식</span>
+              <span class="lec-title">합성함수 방정식 $f(g(x))=k$ 의 실근 개수 2단계 치환 역추적</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec105" onclick="setLecture(105)" data-subj="killer">
+              <span class="lec-num">105</span>
+              <span class="badge-pill-sm">🔥 교점불연속</span>
+              <span class="lec-title">수평선 $y=t$ 교점 개수 함수 $g(t)$ 의 불연속점 $=$ 극값 법칙</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec106" onclick="setLecture(106)" data-subj="killer">
+              <span class="lec-num">106</span>
+              <span class="badge-pill-sm">🔥 정적분함수</span>
+              <span class="lec-title">정적분 함수 $\int_a^x f(t)dt$ 와 $\int_a^x(x-t)f(t)dt$ 2회 미분</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec107" onclick="setLecture(107)" data-subj="killer">
+              <span class="lec-num">107</span>
+              <span class="badge-pill-sm">🔥 이동정적분</span>
+              <span class="lec-title">움직이는 구간 정적분 $\int_x^{x+p}f(t)dt$ 미분과 함숫값 일치 극값</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec108" onclick="setLecture(108)" data-subj="killer">
+              <span class="lec-num">108</span>
+              <span class="badge-pill-sm">🔥 넓이등분</span>
+              <span class="lec-title">정적분 넓이 같음($S_1=S_2\iff\int_\alpha^\gamma f=0$)과 대칭 등분</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec109" onclick="setLecture(109)" data-subj="killer">
+              <span class="lec-num">109</span>
+              <span class="badge-pill-sm">🔥 귀납역추적</span>
+              <span class="lec-title">수열의 귀납적 정의(갈림길 점화식) 역추적 수형도 킬러 해법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec110" onclick="setLecture(110)" data-subj="killer">
+              <span class="lec-num">110</span>
+              <span class="badge-pill-sm">🔥 지수로그도형</span>
+              <span class="lec-title">지수·로그함수 평행이동·역함수 대칭 넓이와 격자점 카운팅</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec111" onclick="setLecture(111)" data-subj="killer">
+              <span class="lec-num">111</span>
+              <span class="badge-pill-sm">🔥 삼각도형킬러</span>
+              <span class="lec-title">삼각함수 도형 킬러 3단계 행동강령(내접사각형·사인·코사인 연립)</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 9] 대수(수학 I) & 미적분 I(수학 II) 필수 빈틈 완성 (12강) -->
+        <div class="subject-panel" id="group-core12" data-subj="core12">
+          <div class="subj-header">
+            <span class="subj-indicator ind-green"></span>
+            <span class="subj-title-text">💎 대수(수학 I) &amp; 미적분 I(수학 II) 필수 빈틈 완성 · 수열 합·망원급수·평균값정리·사차개형·속도거리</span>
+            <span class="subj-sub">(거듭제곱근 실근 개수 · 상용로그 정수·소수부분 · 삼각방정식 대칭합 · 등차·등비수열 합 · 시그마 망원급수 · 군수열 · 사잇값·평균값 정리 · 사차함수 4대 개형 · 우함수·기함수 적분 · 속도와 거리)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec112" onclick="setLecture(112)" data-subj="core12">
+              <span class="lec-num">112</span>
+              <span class="badge-pill-sm">💎 거듭제곱근</span>
+              <span class="lec-title">$a$ 의 $n$제곱근 실근 개수($n$ 홀짝 $\times$ $a$ 부호) 3초 판정표</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec113" onclick="setLecture(113)" data-subj="core12">
+              <span class="lec-num">113</span>
+              <span class="badge-pill-sm">💎 상용로그</span>
+              <span class="lec-title">상용로그 정수부분(자리수)·소수부분(숫자배열)과 가우스 $[\log x]$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec114" onclick="setLecture(114)" data-subj="core12">
+              <span class="lec-num">114</span>
+              <span class="badge-pill-sm">💎 삼각방정식</span>
+              <span class="lec-title">삼각방정식·삼각부등식과 대칭축 중점합($\alpha+\beta=2m$) 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec115" onclick="setLecture(115)" data-subj="core12">
+              <span class="lec-num">115</span>
+              <span class="badge-pill-sm">💎 등차합이차</span>
+              <span class="lec-title">등차수열 일반항(기울기 $d$)과 합 $S_n=An^2+Bn$ 이차함수 해석</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec116" onclick="setLecture(116)" data-subj="core12">
+              <span class="lec-num">116</span>
+              <span class="badge-pill-sm">💎 등비합변환</span>
+              <span class="lec-title">등비수열의 합과 $S_n\to a_n$ 변환 ($n=1$ 첫째항 함정 판정법)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec117" onclick="setLecture(117)" data-subj="core12">
+              <span class="lec-num">117</span>
+              <span class="badge-pill-sm">💎 망원급수</span>
+              <span class="lec-title">시그마($\Sigma$) 거듭제곱 합 공식과 부분분수·망원급수 연쇄 소거</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec118" onclick="setLecture(118)" data-subj="core12">
+              <span class="lec-num">118</span>
+              <span class="badge-pill-sm">💎 군수열격자</span>
+              <span class="lec-title">군수열 묶음 3단계 해법과 좌표평면 대각선 격자점 수열</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec119" onclick="setLecture(119)" data-subj="core12">
+              <span class="lec-num">119</span>
+              <span class="badge-pill-sm">💎 사잇값정리</span>
+              <span class="lec-title">연속함수의 최대·최소 정리와 사잇값 정리($f(a)f(b)<0$) 실근 판정</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec120" onclick="setLecture(120)" data-subj="core12">
+              <span class="lec-num">120</span>
+              <span class="badge-pill-sm">💎 평균값정리</span>
+              <span class="lec-title">롤의 정리와 평균값 정리($\frac{f(b)-f(a)}{b-a}=f'(c)$) 내분점 비율</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec121" onclick="setLecture(121)" data-subj="core12">
+              <span class="lec-num">121</span>
+              <span class="badge-pill-sm">💎 사차4개형</span>
+              <span class="lec-title">사차함수 4대 개형 완벽 분류(W대칭·변곡 $1:3$·삼중근)와 극값 조건</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec122" onclick="setLecture(122)" data-subj="core12">
+              <span class="lec-num">122</span>
+              <span class="badge-pill-sm">💎 우기정적분</span>
+              <span class="lec-title">우함수·기함수 정적분($\int_{-a}^a$)과 평행이동 대칭축 적분 소거</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec123" onclick="setLecture(123)" data-subj="core12">
+              <span class="lec-num">123</span>
+              <span class="badge-pill-sm">💎 속도거리</span>
+              <span class="lec-title">수직선 속도와 거리 · 위치 변화량($\int v\,dt$) vs 이동거리($\int|v|\,dt$)</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 10] 중학 도형 → 수능 직결 12대 법칙 마스터 (12강) -->
+        <div class="subject-panel" id="group-midgeo" data-subj="midgeo">
+          <div class="subj-header">
+            <span class="subj-indicator ind-orange"></span>
+            <span class="subj-title-text">📐 중학 도형 → 수능 직결 12대 법칙 마스터 · 원주각·방멱·내심외심·가게이등분선·사영정리·닮음넓이비</span>
+            <span class="subj-sub">(원주각·중심각과 사각형 내접 · 접선과 현이 이루는 각 · 원의 방멱정리 3종 · 삼각형의 내심과 방접원 · 외심과 사인법칙 · 무게중심 2:1과 중선정리 · 내각·외각의 이등분선 · 직각삼각형 사영정리 · 피타고라스 직교 대각선 · 닮음비·넓이비·부피비와 등비급수 · 할선·접선 합성 도형 · 브라마굽타·톨레미 정리)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec124" onclick="setLecture(124)" data-subj="midgeo">
+              <span class="lec-num">124</span>
+              <span class="badge-pill-sm">📐 원주각내접</span>
+              <span class="lec-title">원주각·중심각($\theta\leftrightarrow 2\theta$)과 네 점이 한 원 위에 있을 조건</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec125" onclick="setLecture(125)" data-subj="midgeo">
+              <span class="lec-num">125</span>
+              <span class="badge-pill-sm">📐 접선현각</span>
+              <span class="lec-title">원의 접선 길이($PA=PB$)와 접선과 현이 이루는 각(접현각) 정리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec126" onclick="setLecture(126)" data-subj="midgeo">
+              <span class="lec-num">126</span>
+              <span class="badge-pill-sm">📐 원의방멱</span>
+              <span class="lec-title">원의 방멱정리 3종($PA\cdot PB=PC\cdot PD=PT^2$)과 닮음비 직결</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec127" onclick="setLecture(127)" data-subj="midgeo">
+              <span class="lec-num">127</span>
+              <span class="badge-pill-sm">📐 내심반지름</span>
+              <span class="lec-title">삼각형의 내심($I$)과 내접원 반지름 넓이 공식 $S=\frac{1}{2}r(a+b+c)$</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec128" onclick="setLecture(128)" data-subj="midgeo">
+              <span class="lec-num">128</span>
+              <span class="badge-pill-sm">📐 외심수심</span>
+              <span class="lec-title">삼각형의 외심($O$)·수심($H$)과 사인법칙 지름($2R$) 보조선</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec129" onclick="setLecture(129)" data-subj="midgeo">
+              <span class="lec-num">129</span>
+              <span class="badge-pill-sm">📐 무게중심</span>
+              <span class="lec-title">무게중심($G$) $2:1$ 내분·6등분 넓이와 파푸스 중선정리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec130" onclick="setLecture(130)" data-subj="midgeo">
+              <span class="lec-num">130</span>
+              <span class="badge-pill-sm">📐 각이등분선</span>
+              <span class="lec-title">내각·외각의 이등분선 정리($AB:AC=BD:CD$)와 넓이 분할 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec131" onclick="setLecture(131)" data-subj="midgeo">
+              <span class="lec-num">131</span>
+              <span class="badge-pill-sm">📐 사영정리</span>
+              <span class="lec-title">직각삼각형 닮음 사영정리 4대 공식($h^2=xy,\ a^2=xc$)과 소($\text{牛}$) 공식</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec132" onclick="setLecture(132)" data-subj="midgeo">
+              <span class="lec-num">132</span>
+              <span class="badge-pill-sm">📐 직교대각선</span>
+              <span class="lec-title">피타고라스 직교 대각선 공식($a^2+c^2=b^2+d^2$)과 히포크라테스 초승달</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec133" onclick="setLecture(133)" data-subj="midgeo">
+              <span class="lec-num">133</span>
+              <span class="badge-pill-sm">📐 닮음넓이비</span>
+              <span class="lec-title">평행선 닮음비($m:n$)·넓이비($m^2:n^2$)와 무한등비급수 도형 공비</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec134" onclick="setLecture(134)" data-subj="midgeo">
+              <span class="lec-num">134</span>
+              <span class="badge-pill-sm">📐 외접원접선</span>
+              <span class="lec-title">두 원의 외접·내접 공통접선 길이($2\sqrt{Rr}$)와 중심거리 직각삼각형</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec135" onclick="setLecture(135)" data-subj="midgeo">
+              <span class="lec-num">135</span>
+              <span class="badge-pill-sm">📐 톨레미정리</span>
+              <span class="lec-title">원 내접 사각형 코사인법칙 대각선과 톨레미 정리($ac+bd=pq$)</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 11] 수능 시간 단축 암산·검산 공식 & 그래프 비율관계 마스터 (12강) -->
+        <div class="subject-panel" id="group-speed" data-subj="speed">
+          <div class="subj-header">
+            <span class="subj-indicator ind-gold"></span>
+            <span class="subj-title-text">⚡ 수능 시간 단축 암산·검산 공식 &amp; 그래프 비율관계 마스터 · 극값차·넓이공식·근과계수·로피탈·신발끈</span>
+            <span class="subj-sub">(이차함수 할선 기울기·접선 교점 · 삼차함수 극값 차 $\frac{|a|}{2}\Delta^3$ · 사차함수 이중접선 넓이 $\frac{|a|}{30}\Delta^5$ · 삼차함수 세 실근 합 $3x_{\text{변곡}}$ · 등차·등비수열 대칭쌍 암산 · 부분분수·무리식 망원급수 암산 · 유리함수 대칭점 &amp; 역함수 3초 공식 · 지수·로그 기울기 $\pm 1$ 평행이동 · 삼각함수 $\tan(\theta/2)$ 반각·특수삼각형 · 로피탈 정리 &amp; 테일러 2차 근사 검산 · 신발끈 공식 $S=\frac{1}{2}|x_1y_2-x_2y_1|$ · 차원 분석·특수값·대칭성 3중 검산)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec136" onclick="setLecture(136)" data-subj="speed">
+              <span class="lec-num">136</span>
+              <span class="badge-pill-sm">⚡ 이차평균접선</span>
+              <span class="lec-title">이차함수 할선 기울기($a(\alpha+\beta)+b$)와 두 접선 교점 중점·삼각형 넓이</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec137" onclick="setLecture(137)" data-subj="speed">
+              <span class="lec-num">137</span>
+              <span class="badge-pill-sm">⚡ 삼차극값차</span>
+              <span class="lec-title">삼차함수 극댓값·극솟값 차 $\frac{|a|}{2}(\beta-\alpha)^3$ 와 변곡점 기울기 암산</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec138" onclick="setLecture(138)" data-subj="speed">
+              <span class="lec-num">138</span>
+              <span class="badge-pill-sm">⚡ 사차넓이비율</span>
+              <span class="lec-title">사차함수 이중접선 넓이($\frac{|a|}{30}\Delta^5$)·삼중근 넓이($\frac{|a|}{20}\Delta^5$)와 $1:\sqrt{2}$ 비율</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec139" onclick="setLecture(139)" data-subj="speed">
+              <span class="lec-num">139</span>
+              <span class="badge-pill-sm">⚡ 삼차세실근합</span>
+              <span class="lec-title">삼차함수와 할선·접선의 세 교점 합 불변 법칙($x_1+x_2+x_3=3x_{\text{변곡}}$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec140" onclick="setLecture(140)" data-subj="speed">
+              <span class="lec-num">140</span>
+              <span class="badge-pill-sm">⚡ 수열대칭암산</span>
+              <span class="lec-title">등차·등비수열 중앙항 평균($S_{2k-1}=(2k-1)a_k$)과 블록합 등차·등비 암산</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec141" onclick="setLecture(141)" data-subj="speed">
+              <span class="lec-num">141</span>
+              <span class="badge-pill-sm">⚡ 망원급수1초</span>
+              <span class="lec-title">연속곱($\sum k(k+1)$)·부분분수·무리식 망원급수 양끝단 대입 1초 암산</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec142" onclick="setLecture(142)" data-subj="speed">
+              <span class="lec-num">142</span>
+              <span class="badge-pill-sm">⚡ 유리역함수</span>
+              <span class="lec-title">유리함수 역함수 부호교환($\frac{-dx+b}{cx-a}$)과 점근선 교점 대칭·산술기하 최단거리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec143" onclick="setLecture(143)" data-subj="speed">
+              <span class="lec-num">143</span>
+              <span class="badge-pill-sm">⚡ 지수로직각삼각</span>
+              <span class="lec-title">지수·로그함수와 기울기 $\pm 1,\ m$ 직선의 교점 거리($\sqrt{1+m^2}|\Delta x|$) 암산</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec144" onclick="setLecture(144)" data-subj="speed">
+              <span class="lec-num">144</span>
+              <span class="badge-pill-sm">⚡ 삼각내접반각</span>
+              <span class="lec-title">직각삼각형 내접원 $\tan(\theta/2)=\frac{r}{s-a}$ 와 수능 빈출 코사인 정수비 삼각형</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec145" onclick="setLecture(145)" data-subj="speed">
+              <span class="lec-num">145</span>
+              <span class="badge-pill-sm">⚡ 로피탈테일러</span>
+              <span class="lec-title">$\frac{0}{0}$ 극한 로피탈 정리($\frac{f'(a)}{g'(a)}$)와 초월함수 테일러 2차 근사 1초 검산</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec146" onclick="setLecture(146)" data-subj="speed">
+              <span class="lec-num">146</span>
+              <span class="badge-pill-sm">⚡ 신발끈넓이</span>
+              <span class="lec-title">좌표평면 삼각형 넓이 신발끈 공식 $S=\frac{1}{2}|x_1y_2-x_2y_1|$ 원점 평행이동 암산</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec147" onclick="setLecture(147)" data-subj="speed">
+              <span class="lec-num">147</span>
+              <span class="badge-pill-sm">⚡ 실전3중검산</span>
+              <span class="lec-title">수능 실전 오답 제로 3중 검산법 (특수값 경계 대입 · 차원 동차성 · 대칭 불변량)</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 12] 중학 대수·함수 → 고등 수학 1등급 브릿지 (12강) -->
+        <div class="subject-panel" id="group-midalg" data-subj="midalg">
+          <div class="subj-header">
+            <span class="subj-indicator ind-blue"></span>
+            <span class="subj-title-text">🌉 중학 수학 → 고등 수학 1등급 브릿지 · 정수론·절댓값·부등식·일차·이차함수·분산 12대 뿌리</span>
+            <span class="subj-sub">(소인수분해 약수 개수·총합 · 최대공약수·최소공배수와 유클리드 호제법 · 순환소수와 무한등비급수 · 절댓값 거리와 평평한 바닥 그래프 · 일차부등식 정수 해 개수와 등호 판정 · 일차함수 기울기와 정점 통과 · 연립일차방정식 불능·부정 · 제곱근 정수·소수부분과 유리화 · 다변수·복이차 인수분해 · 이차방정식 켤레근과 가우스 $[x]$ · 이차함수 $a,b,c$ 부호 판정 · 분산·표준편차 선형변환)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec148" onclick="setLecture(148)" data-subj="midalg">
+              <span class="lec-num">148</span>
+              <span class="badge-pill-sm">🌉 소인수약수</span>
+              <span class="lec-title">소인수분해와 약수의 개수($(a+1)(b+1)$)·총합 공식 및 제곱수 판정</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec149" onclick="setLecture(149)" data-subj="midalg">
+              <span class="lec-num">149</span>
+              <span class="badge-pill-sm">🌉 공약수호제법</span>
+              <span class="lec-title">최대공약수($G$)·최소공배수($L$) 관계식($AB=GL$)과 유클리드 호제법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec150" onclick="setLecture(150)" data-subj="midalg">
+              <span class="lec-num">150</span>
+              <span class="badge-pill-sm">🌉 순환소수극한</span>
+              <span class="lec-title">유한소수 판별($2^m\cdot 5^n$)·순환소수 분수 변환과 $0.\dot{9}=1$ 등비급수</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec151" onclick="setLecture(151)" data-subj="midalg">
+              <span class="lec-num">151</span>
+              <span class="badge-pill-sm">🌉 절댓값거리</span>
+              <span class="lec-title">절댓값 기호의 수직선 거리 해석과 $|x-a|+|x-b|$ 바닥 그래프 작도</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec152" onclick="setLecture(152)" data-subj="midalg">
+              <span class="lec-num">152</span>
+              <span class="badge-pill-sm">🌉 부등식정수해</span>
+              <span class="lec-title">일차부등식 정수 해의 개수 조건과 경계 등호($\le$ vs $<$) 3초 판정법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec153" onclick="setLecture(153)" data-subj="midalg">
+              <span class="lec-num">153</span>
+              <span class="badge-pill-sm">🌉 일차정점통과</span>
+              <span class="lec-title">일차함수 기울기·절편과 $y=m(x-a)+b$ 정점 통과·넓이 이등분선</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec154" onclick="setLecture(154)" data-subj="midalg">
+              <span class="lec-num">154</span>
+              <span class="badge-pill-sm">🌉 연립불능부정</span>
+              <span class="lec-title">연립일차방정식의 해가 없을 조건(불능·평행)과 무수히 많을 조건(부정·일치)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec155" onclick="setLecture(155)" data-subj="midalg">
+              <span class="lec-num">155</span>
+              <span class="badge-pill-sm">🌉 무리수소수부분</span>
+              <span class="lec-title">제곱근 $\sqrt{A^2}=|A|$ 부호 판정과 무리수의 정수·소수부분·켤레 유리화</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec156" onclick="setLecture(156)" data-subj="midalg">
+              <span class="lec-num">156</span>
+              <span class="badge-pill-sm">🌉 다변수인수분해</span>
+              <span class="lec-title">다변수 다항식의 최저차 문자 내림차순 인수분해와 복이차식 완전제곱 변형</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec157" onclick="setLecture(157)" data-subj="midalg">
+              <span class="lec-num">157</span>
+              <span class="badge-pill-sm">🌉 켤레근가우스</span>
+              <span class="lec-title">이차방정식 무리수·허수 켤레근의 함정과 가우스 기호 $[x]$ 방정식 해법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec158" onclick="setLecture(158)" data-subj="midalg">
+              <span class="lec-num">158</span>
+              <span class="badge-pill-sm">🌉 이차계수부호</span>
+              <span class="lec-title">이차함수 그래프 개형과 $a,b,c,\ b^2-4ac,\ a\pm b+c$ 부호 3초 판정법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec159" onclick="setLecture(159)" data-subj="midalg">
+              <span class="lec-num">159</span>
+              <span class="badge-pill-sm">🌉 분산표준편차</span>
+              <span class="lec-title">평균·분산($\overline{x^2}-\bar{x}^2$)·표준편차와 $ax+b$ 선형변환($|a|\sigma$) 직결</span>
+            </button>
+          </div>
+        </div>
+
+                <!-- [그룹 13] 초등 영재·사고력 수학 → 중·고등 직결 12대 원리 (12강) -->
+        <div class="subject-panel" id="group-elem" data-subj="elem">
+          <div class="subj-header">
+            <span class="subj-indicator ind-green"></span>
+            <span class="subj-title-text">🌱 초등 영재·사고력 수학 → 중·고등 직결 12대 원리 · 분수·비율·농도·속력·규칙성·도형 구적법</span>
+            <span class="subj-sub">(분수 나눗셈 역수 원리와 단위분수 쪼개기 · 비례배분·연비와 가비의 리 · 소금물 농도 보존과 지레(내분점) 가중평균 · 거리·속력·시간과 왕복 평균속력(조화평균) · 단위시간 작업률과 물탱크 · 기수법 전개식과 배수 판정법 · 삼각수·사각수 도형 배열과 가우스 합 · 간격(식목일)·과부족 법칙 · 평행선 등적변형과 사다리꼴 나비 날개 · 원의 넓이 직사각형 쪼개기와 잎사귀 넓이 · 원뿔·원기둥·구 $1:2:3$ 부피비와 전개도 중심각 · 포함·배제·비둘기집 원리와 최단경로 숫자 쓰기)</span>
+          </div>
+          <div class="lecture-btn-grid">
+            <button type="button" class="lecture-btn" id="btnLec160" onclick="setLecture(160)" data-subj="elem">
+              <span class="lec-num">160</span>
+              <span class="badge-pill-sm">🌱 분수나눗셈역수</span>
+              <span class="lec-title">분수 나눗셈이 역수의 곱셈이 되는 이유($\frac{A}{B}\div\frac{C}{D}=\frac{AD}{BC}$)와 단위분수 쪼개기</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec161" onclick="setLecture(161)" data-subj="elem">
+              <span class="lec-num">161</span>
+              <span class="badge-pill-sm">🌱 비례배분연비</span>
+              <span class="lec-title">비와 비율·연비($A:B:C$)·비례배분과 비례식 상수 $k$ 치환·가비의 리 원리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec162" onclick="setLecture(162)" data-subj="elem">
+              <span class="lec-num">162</span>
+              <span class="badge-pill-sm">🌱 소금물가중평균</span>
+              <span class="lec-title">소금물 농도 보존 법칙과 시소(지레·내분점) 공식 — 방정식 없는 5초 가중평균</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec163" onclick="setLecture(163)" data-subj="elem">
+              <span class="lec-num">163</span>
+              <span class="badge-pill-sm">🌱 속력조화평균</span>
+              <span class="lec-title">거리·속력·시간($D=vt$)·왕복 평균속력(조화평균 $\frac{2ab}{a+b}$)과 트랙 만남·추월</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec164" onclick="setLecture(164)" data-subj="elem">
+              <span class="lec-num">164</span>
+              <span class="badge-pill-sm">🌱 일의양조화합</span>
+              <span class="lec-title">일의 양(전체 $=1$)과 단위시간 작업률($\frac{1}{A}+\frac{1}{B}=\frac{1}{T}$) · 물탱크 급수·배수</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec165" onclick="setLecture(165)" data-subj="elem">
+              <span class="lec-num">165</span>
+              <span class="badge-pill-sm">🌱 기수법자릿수</span>
+              <span class="lec-title">십진법 자릿값 전개식($100a+10b+c$)과 $2,3,4,5,8,9,11$의 배수 판정법 완벽 증명</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec166" onclick="setLecture(166)" data-subj="elem">
+              <span class="lec-num">166</span>
+              <span class="badge-pill-sm">🌱 도형수규칙합</span>
+              <span class="lec-title">삼각수($\frac{n(n+1)}{2}$)·사각수($1+3+\cdots+(2n-1)=n^2$) 도형 배열과 가우스 합</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec167" onclick="setLecture(167)" data-subj="elem">
+              <span class="lec-num">167</span>
+              <span class="badge-pill-sm">🌱 식목일과부족</span>
+              <span class="lec-title">간격(식목일) 법칙(나무 수 $=$ 간격 $\pm 1$)·과부족 산법과 등차수열 항의 개수</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec168" onclick="setLecture(168)" data-subj="elem">
+              <span class="lec-num">168</span>
+              <span class="badge-pill-sm">🌱 등적변형나비</span>
+              <span class="lec-title">평행선 등적변형(넓이 보존 이동)과 사다리꼴 나비 날개 넓이($S_1=S_2,\ S^2=AB$)</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec169" onclick="setLecture(169)" data-subj="elem">
+              <span class="lec-num">169</span>
+              <span class="badge-pill-sm">🌱 원넓이잎사귀</span>
+              <span class="lec-title">원을 직사각형으로 쪼개는 넓이($\pi r^2$) 유도와 정사각형 속 잎사귀($0.57r^2$) 구적법</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec170" onclick="setLecture(170)" data-subj="elem">
+              <span class="lec-num">170</span>
+              <span class="badge-pill-sm">🌱 회전체전개도</span>
+              <span class="lec-title">원뿔·구·원기둥 부피비($1:2:3$)·원뿔 전개도 중심각($360^\circ\times\frac{r}{\ell}$)과 최단거리</span>
+            </button>
+            <button type="button" class="lecture-btn" id="btnLec171" onclick="setLecture(171)" data-subj="elem">
+              <span class="lec-num">171</span>
+              <span class="badge-pill-sm">🌱 비둘기집경로</span>
+              <span class="lec-title">포함·배제의 원리·비둘기집의 원리(최악의 경우 $+1$)와 격자 최단경로 숫자 쓰기</span>
+            </button>
+          </div>
+        </div>
+
         <!-- [그룹 4] 기하 & 미적분 (7강) -->
         <div class="subject-panel" id="group-geom" data-subj="geom">
           <div class="subj-header">
             <span class="subj-indicator ind-purple"></span>
-            <span class="subj-title-text">📐 기하 &amp; 미적분</span>
-            <span class="subj-sub">(수능 기하 7대 정리 · 직각쌍곡선 · 피타고라스 · 중학도형)</span>
+            <span class="subj-title-text">📐 기하 &amp; 미적분 II (2022 개정)</span>
+            <span class="subj-sub">(피타고라스 · 중학도형 · 원주각·접현각 · 수능 기하 7대 정리 · 이차곡선 · 테일러 급수)</span>
           </div>
           <div class="lecture-btn-grid">
             <button type="button" class="lecture-btn" id="btnLec5" onclick="setLecture(5)" data-subj="geom">
@@ -1494,7 +2330,7 @@
       <!-- 3. 현재 선택된 강의 실시간 안내 배너 -->
       <div class="current-lecture-badge" id="currentLecStatus">
         <span class="status-dot"></span>
-        <span class="status-subj" id="statusSubjText">수학(하) · 함수와 그래프</span>
+        <span class="status-subj" id="statusSubjText">공통수학 2 (2022 개정) · 함수와 그래프</span>
         <span class="status-sep">/</span>
         <span class="status-title" id="statusTitleText">제28강 · 대한민국 고교 교과서 14개 그래프 총정리</span>
         <button type="button" class="lock-toggle-btn" onclick="lockPortal()" title="포털 보안 잠금">🔒 잠금</button>
@@ -1510,45 +2346,187 @@
       /* GLOBAL LECTURE & SUBJECT ROUTING SYSTEM                   */
       /* ========================================================= */
       const LECTURE_META = {
-        39: { subj: 'math2',   subjName: '수학 II / 미적분 · 구분구적법', title: '제39강 · 원뿔의 부피와 구분구적법 ($V=\\frac{1}{3}\\pi r^2 h$)' },
-        38: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제38강 · 적분은 왜 직사각형부터 시작할까? (리만 합과 적분의 본질)' },
-        37: { subj: 'math2',   subjName: '수학 II · 도함수의 활용', title: '제37강 · 삼차함수 비율관계와 극대·극소 높이차 공식' },
-        36: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분법', title: '제36강 · 다항함수 거리곱 공식과 고속 개형 추론' },
-        35: { subj: 'geom',    subjName: '기하 & 미적분 · 원의 성질', title: '제35강 · 원의 성질 핵심 정리 · 원주각과 접현각' },
-        34: { subj: 'geom',    subjName: '기하 & 미적분 · 중학도형 총정리', title: '제34강 · 중학도형 핵심 총정리 · 각의 이등분선과 닮음' },
-        33: { subj: 'math2',   subjName: '수학 II · 다항함수의 적분법', title: '제33강 · 정적분의 본질 · 넓이 vs 함숫값의 이중성' },
-        32: { subj: 'math1',   subjName: '수학 I · 지수함수와 로그함수', title: '제32강 · 지수·로그 함수의 확대·축소 & 실전 비율 관계' },
-        31: { subj: 'math1',   subjName: '수학 I · 지수와 로그', title: '제31강 · 지수함수와 로그함수 (수능 직전 초스피드 개념 총정리)' },
-        30: { subj: 'math1',   subjName: '수학 I · 삼각함수의 활용', title: '제30강 · 삼각함수 활용 · 코사인법칙의 원리와 기하학적 직관' },
-        29: { subj: 'math2',   subjName: '수학 II · 함수의 극한과 연속', title: '제29강 · 함수의 극한의 성질 진위판단 (반례 없는 치환법)' },
-        28: { subj: 'math-ha', subjName: '수학(하) · 함수와 그래프', title: '제28강 · 대한민국 고교 교과서 14개 그래프 총정리' },
-        27: { subj: 'math2',   subjName: '수학 II · 다항함수의 미분', title: '제27강 · 다항함수를 보는 눈 (인수와 대칭성, 8칸 박스법)' },
-        26: { subj: 'geom',    subjName: '기하 & 미적분 · 급수 근사', title: '제26강 · 테일러 급수 (초월함수가 다항함수로 바뀌는 기적)' },
-        25: { subj: 'math1',   subjName: '수학 I · 수열의 귀납적 정의', title: '제25강 · 점화식 25분 아작내기 (등차·등비 Big 4 & 응용 6대 점화식)' },
-        24: { subj: 'math1',   subjName: '수학 I · 삼각함수의 활용', title: '제24강 · 도형 문제를 풀 때 최상위권들이 반드시 하는 생각 (사인·코사인법칙의 필연성)' },
-        23: { subj: 'geom',    subjName: '기하 · 이차곡선 (포물선)', title: '제23강 · 포물선의 기하학적 성질 7가지' },
-        22: { subj: 'math-ha', subjName: '수학(하) · 합성함수와 N축', title: '제22강 · 합성함수 그래프 그리기 (N축 스킬)' },
-        21: { subj: 'math1',   subjName: '수학 I · 삼각함수 비율관계', title: '제21강 · 삼각함수 비율관계 (8칸 박스와 $1:2$ 분할의 마법)' },
-        20: { subj: 'math1',   subjName: '수학 I · 지수·로그함수', title: '제20강 · 지수·로그함수 기울기 $m=-1$ 활용법' },
-        19: { subj: 'math1',   subjName: '수학 I · 지수·로그함수', title: '제19강 · 지수·로그함수와 역함수 교점' },
-        18: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제18강 · 무리함수 GSP 시뮬레이션' },
-        17: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제17강 · 유리함수 $d$ 변화' },
-        16: { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제16강 · 단위원 삼각함수 정복' },
-        15: { subj: 'math-ha', subjName: '수학(하) · 수와 연산', title: '제15강 · 약수의 총곱 &amp; 기하평균' },
-        14: { subj: 'math2',   subjName: '수학 II · 미분', title: '제14강 · 이게 극대라고?! (극값의 정의)' },
-        13: { subj: 'math-ha', subjName: '수학(하) · 함수', title: '제13강 · $y$와 $f(x)$ 차이 &amp; 절댓값' },
-        12: { subj: 'geom',    subjName: '기하 &amp; 미적분', title: '제12강 · 직각쌍곡선 넓이 $S=T$ 꿀팁' },
-        11: { subj: 'math-ha', subjName: '수학(하) · 무리함수', title: '제11강 · 무리함수와 역함수 교점 공식 (⚡ 3초)' },
-        10: { subj: 'math-ha', subjName: '수학(하) · 유리함수', title: '제10강 · 유리함수 평행이동 공식 (⚡ 3초)' },
-        9:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제9강 · 정적분과 넓이 &amp; 차함수의 마법' },
-        8:  { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제8강 · 삼각함수 그래프 8칸 박스법' },
-        7:  { subj: 'math1',   subjName: '수학 I · 삼각함수', title: '제7강 · 삼각비에서 삼각함수까지' },
-        6:  { subj: 'geom',    subjName: '기하 · 수능기하', title: '제6강 · 수능 기하 7대 핵심정리 총정리' },
-        5:  { subj: 'geom',    subjName: '기하 기초 · 도형', title: '제5강 · 피타고라스 정리 (유클리드 증명)' },
-        4:  { subj: 'math2',   subjName: '수학 II · 미분', title: '제4강 · 다항함수 비율관계 ($m:n$ 내분점)' },
-        3:  { subj: 'math2',   subjName: '수학 II · 미분', title: '제3강 · 변곡접선 정리하기' },
-        2:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제2강 · 정적분 넓이 만능 공식 ($\\\\frac{m!n!}{(m+n+1)!}$)' },
-        1:  { subj: 'math2',   subjName: '수학 II · 적분', title: '제1강 · 다항함수 넓이의 비 ($S_1:S_2 = 1:n$)' }
+        171: { subj: 'elem', subjName: '초등영재→중고등 직결 · 포함·배제와 비둘기집·최단경로', title: '제171강 · 포함·배제의 원리·비둘기집의 원리(최악의 경우 $+1$)와 격자 도로망 최단경로 합의 법칙' },
+        170: { subj: 'elem', subjName: '초등영재→중고등 직결 · 원뿔·구·원기둥과 전개도 중심각', title: '제170강 · 아르키메데스 원뿔·구·원기둥 부피비($1:2:3$)와 원뿔 전개도 중심각($360^\\circ\\times\\frac{r}{\\ell}$)·최단거리' },
+        169: { subj: 'elem', subjName: '초등영재→중고등 직결 · 원 넓이 직사각형 분할과 잎사귀', title: '제169강 · 원을 직사각형으로 쪼개는 넓이($\\pi r^2$) 유도와 정사각형 속 잎사귀($\\left(\\frac{\\pi}{2}-1\\right)r^2$) 구적법' },
+        168: { subj: 'elem', subjName: '초등영재→중고등 직결 · 평행선 등적변형과 나비 날개', title: '제168강 · 평행선 등적변형(삼각형 넓이 보존 이동)과 사다리꼴 대각선 나비 날개 넓이($S^2=A\\cdot B$)' },
+        167: { subj: 'elem', subjName: '초등영재→중고등 직결 · 간격(식목일) 법칙과 과부족', title: '제167강 · 간격(식목일) 법칙(나무 수 $=$ 간격 수 $\\pm 1$)·과부족 산법과 등차수열 항의 개수($n-m+1$)' },
+        166: { subj: 'elem', subjName: '초등영재→중고등 직결 · 삼각수·사각수 도형 배열과 합', title: '제166강 · 삼각수($\\frac{n(n+1)}{2}$)·사각수($1+3+\\cdots+(2n-1)=n^2$) 도형 배열과 가우스 등차수열 합' },
+        165: { subj: 'elem', subjName: '초등영재→중고등 직결 · 십진법 자릿값과 배수 판정법', title: '제165강 · 십진법 자릿값 전개식($100a+10b+c$)과 $2,3,4,5,8,9,11$의 배수 판정법 완벽 증명' },
+        164: { subj: 'elem', subjName: '초등영재→중고등 직결 · 단위시간 작업률과 물탱크', title: '제164강 · 일의 양(전체 $=1$)과 단위시간 작업률($\\frac{1}{A}+\\frac{1}{B}=\\frac{1}{T}$) · 물탱크 급수·배수' },
+        163: { subj: 'elem', subjName: '초등영재→중고등 직결 · 거리·속력·시간과 왕복 조화평균', title: '제163강 · 거리·속력·시간($D=vt$)·왕복 평균속력(조화평균 $\\frac{2ab}{a+b}$)과 트랙 마주 보기·추월' },
+        162: { subj: 'elem', subjName: '초등영재→중고등 직결 · 소금물 농도 보존과 지레 공식', title: '제162강 · 소금물 농도 보존 법칙과 시소(지레·내분점) 공식 — 방정식 없이 5초에 섞는 가중평균' },
+        161: { subj: 'elem', subjName: '초등영재→중고등 직결 · 비례배분·연비와 가비의 리', title: '제161강 · 비와 비율·연비($A:B:C$)·비례배분과 비례식 상수 $k$ 치환·가비의 리 원리' },
+        160: { subj: 'elem', subjName: '초등영재→중고등 직결 · 분수 나눗셈 역수와 단위분수', title: '제160강 · 분수 나눗셈이 역수의 곱셈이 되는 이유($\\frac{A}{B}\\div\\frac{C}{D}=\\frac{AD}{BC}$)와 단위분수 쪼개기' },
+
+        159: { subj: 'midalg', subjName: '중학→고등 브릿지 · 분산과 표준편차 선형변환', title: '제159강 · 대푯값과 산포도(분산 $V=\\overline{x^2}-\\bar{x}^2$·표준편차 $\\sigma$)와 $ax+b$ 선형변환($|a|\\sigma$) 직결' },
+        158: { subj: 'midalg', subjName: '중학→고등 브릿지 · 이차함수 계수 부호 판정', title: '제158강 · 이차함수 $y=ax^2+bx+c$ 그래프 개형과 $a,b(\\text{같다}),c,D,a\\pm b+c$ 부호 3초 판정' },
+        157: { subj: 'midalg', subjName: '중학→고등 브릿지 · 켤레근 조건과 가우스 방정식', title: '제157강 · 이차방정식 켤레근 성질(계수 조건 주의)과 가우스 기호 $[x]$ 방정식 해법' },
+        156: { subj: 'midalg', subjName: '중학→고등 브릿지 · 내림차순과 복이차 인수분해', title: '제156강 · 다변수 식의 최저차 문자 내림차순 정리와 복이차식($x^4+ax^2+b$) 인수분해' },
+        155: { subj: 'midalg', subjName: '중학→고등 브릿지 · 제곱근 절댓값과 무리수 소수부분', title: '제155강 · 제곱근 $\\sqrt{A^2}=|A|$ 부호 벗기기와 무리수의 정수·소수부분·켤레 유리화' },
+        154: { subj: 'midalg', subjName: '중학→고등 브릿지 · 연립방정식 불능·부정과 직선', title: '제154강 · 연립일차방정식의 특수해(불능·평행 vs 부정·일치)와 두 직선의 위치 관계' },
+        153: { subj: 'midalg', subjName: '중학→고등 브릿지 · 일차함수 정점 통과와 넓이 이등분', title: '제153강 · 일차함수 기울기·절편과 정점 통과 직선 $y=m(x-a)+b$ · 다각형 넓이 이등분' },
+        152: { subj: 'midalg', subjName: '중학→고등 브릿지 · 일차부등식 정수 해와 등호 판정', title: '제152강 · 일차부등식 정수 해의 개수 조건과 경계값 대입 등호($\\le$ vs $<$) 3초 판정법' },
+        151: { subj: 'midalg', subjName: '중학→고등 브릿지 · 절댓값 거리 해석과 바닥 그래프', title: '제151강 · 절댓값의 수직선 거리 해석과 $y=|x-a|+|x-b|$ 평평한 바닥 그래프 3초 작도' },
+        150: { subj: 'midalg', subjName: '중학→고등 브릿지 · 유한소수·순환소수와 등비급수', title: '제150강 · 유한소수 판정($2^m\\cdot 5^n$)·순환소수 분수 변환 공식과 $0.\\dot{9}=1$ 무한등비급수' },
+        149: { subj: 'midalg', subjName: '중학→고등 브릿지 · 최대공약수·최소공배수와 호제법', title: '제149강 · 최대공약수($G$)·최소공배수($L$)의 핵심 관계식($AB=GL$)과 유클리드 호제법' },
+        148: { subj: 'midalg', subjName: '중학→고등 브릿지 · 소인수분해와 약수 개수·총합', title: '제148강 · 소인수분해와 약수의 개수($(a+1)(b+1)$)·약수의 총합 공식 및 완전제곱수 조건' },
+
+        147: { subj: 'speed', subjName: '시간단축 마스터 · 실전 3중 검산 시크릿', title: '제147강 · 수능 실전 오답 제로 3중 검산법 (특수값·경계 대입 · 차원 동차성 · 대칭 불변량)' },
+        146: { subj: 'speed', subjName: '시간단축 마스터 · 신발끈 넓이 3초 공식', title: '제146강 · 좌표평면 삼각형 넓이 신발끈 공식 $S=\\frac{1}{2}|x_1y_2-x_2y_1|$ 원점 평행이동 암산법' },
+        145: { subj: 'speed', subjName: '시간단축 마스터 · 로피탈 & 테일러 근사 검산', title: '제145강 · $\\frac{0}{0}$ 극한 로피탈 정리($\\frac{f\'(a)}{g\'(a)}$)와 초월함수 테일러 2차 근사 1초 검산' },
+        144: { subj: 'speed', subjName: '시간단축 마스터 · 내접원 반각 & 코사인 정수비', title: '제144강 · 직각·내접원 반각 공식($\\tan(\\theta/2)=\\frac{r}{s-a}$)과 수능 빈출 코사인 정수비 삼각형($3\\text{-}5\\text{-}7,\\ 3\\text{-}7\\text{-}8$)' },
+        143: { subj: 'speed', subjName: '시간단축 마스터 · 지수·로그 평행이동 직각삼각형', title: '제143강 · 지수·로그함수와 기울기 $m$ 직선의 교점 거리($\\sqrt{1+m^2}|\\Delta x|$) 평행이동 암산' },
+        142: { subj: 'speed', subjName: '시간단축 마스터 · 유리함수 역함수 & 대칭 최단거리', title: '제142강 · 유리함수 역함수 1초 공식($\\frac{-dx+b}{cx-a}$)과 점근선 교점 대칭·산술기하 최단거리' },
+        141: { subj: 'speed', subjName: '시간단축 마스터 · 연속곱·망원급수 1초 암산', title: '제141강 · 연속 자연수 곱($\\sum k(k+1)=\\frac{n(n+1)(n+2)}{3}$)과 부분분수·무리식 망원급수 암산' },
+        140: { subj: 'speed', subjName: '시간단축 마스터 · 등차·등비수열 대칭쌍과 블록합', title: '제140강 · 등차·등비수열 중앙항 공식($S_{2k-1}=(2k-1)a_k$)과 부분합 블록($S_n,\\ S_{2n}-S_n$) 암산' },
+        139: { subj: 'speed', subjName: '시간단축 마스터 · 삼차함수 세 교점 합 불변 법칙', title: '제139강 · 삼차함수와 직선의 세 교점 합 불변 법칙($x_1+x_2+x_3=3x_{\\text{변곡}}=-\\frac{b}{a}$)과 접선 근 암산' },
+        138: { subj: 'speed', subjName: '시간단축 마스터 · 사차함수 넓이 공식과 1:√2 비율', title: '제138강 · 사차함수 이중접선 넓이($\\frac{|a|}{30}\\Delta^5$)·삼중근 넓이($\\frac{|a|}{20}\\Delta^5$)와 $1:\\sqrt{2}$ 비율관계' },
+        137: { subj: 'speed', subjName: '시간단축 마스터 · 삼차함수 극값 차와 변곡점 기울기', title: '제137강 · 삼차함수 극댓값·극솟값 차 공식($\\Delta y=\\frac{|a|}{2}(\\beta-\\alpha)^3$)과 변곡접선 최소 기울기' },
+        136: { subj: 'speed', subjName: '시간단축 마스터 · 이차함수 할선 기울기와 접선 중점', title: '제136강 · 이차함수 할선 기울기($a(\\alpha+\\beta)+b$)와 두 접선 교점 중점($\\frac{\\alpha+\\beta}{2}$)·아르키메데스 넓이 비 $2:1$' },
+
+        135: { subj: 'midgeo', subjName: '중학 도형 마스터 · 내접사각형과 톨레미 정리', title: '제135강 · 원에 내접하는 사각형의 코사인법칙($\\cos(\\pi-\\theta)=-\\cos\\theta$)과 톨레미 정리($ac+bd=pq$)' },
+        134: { subj: 'midgeo', subjName: '중학 도형 마스터 · 두 원의 접선과 중심거리', title: '제134강 · 외접·내접하는 두 원의 중심거리($R\\pm r$)와 공통외접선 길이($l=2\\sqrt{Rr}$) 보조선' },
+        133: { subj: 'midgeo', subjName: '중학 도형 마스터 · 닮음비·넓이비와 등비급수', title: '제133강 · 평행선 닮음비($m:n$)·넓이비($m^2:n^2$)·부피비($m^3:n^3$)와 등비급수 도형 공비 3초 추출' },
+        132: { subj: 'midgeo', subjName: '중학 도형 마스터 · 직교 대각선과 히포크라테스 원', title: '제132강 · 대각선이 직교하는 사각형($a^2+c^2=b^2+d^2$)과 히포크라테스의 초승달 넓이' },
+        131: { subj: 'midgeo', subjName: '중학 도형 마스터 · 직각삼각형 사영정리와 소 공식', title: '제131강 · 직각삼각형 수선의 발 사영정리 4대 공식($h^2=xy,\\ a^2=xc,\\ b^2=yc,\\ ab=ch$) 완전 정복' },
+        130: { subj: 'midgeo', subjName: '중학 도형 마스터 · 내각·외각의 이등분선 정리', title: '제130강 · 삼각형 내각·외각의 이등분선 비율($AB:AC=BD:CD$)과 이등분선 길이($AD^2=AB\\cdot AC-BD\\cdot CD$)' },
+        129: { subj: 'midgeo', subjName: '중학 도형 마스터 · 무게중심과 파푸스 중선정리', title: '제129강 · 삼각형의 무게중심($2:1$ 내분·6등분 넓이)과 파푸스의 중선정리($b^2+c^2=2(m^2+d^2)$)' },
+        128: { subj: 'midgeo', subjName: '중학 도형 마스터 · 외심·수심과 사인법칙 지름', title: '제128강 · 삼각형의 외심($O$)·수심($H$)과 사인법칙 지름($2R$) 직각삼각형 보조선의 비밀' },
+        127: { subj: 'midgeo', subjName: '중학 도형 마스터 · 삼각형 내심과 내접원 반지름', title: '제127강 · 삼각형의 내심($I$)과 내접원 반지름 넓이 공식 $S=\\frac{1}{2}r(a+b+c)$ · 직각삼각형 $r=\\frac{a+b-c}{2}$' },
+        126: { subj: 'midgeo', subjName: '중학 도형 마스터 · 원의 방멱정리 3종', title: '제126강 · 원과 할선·접선의 방멱정리($PA\\cdot PB=PC\\cdot PD=PT^2$)와 닮음 삼각형 유도' },
+        125: { subj: 'midgeo', subjName: '중학 도형 마스터 · 접선 길이와 접현각 정리', title: '제125강 · 원 밖의 점에서 그은 접선 길이($PA=PB$)와 접선과 현이 이루는 각($\\angle BAT=\\angle BCA$)' },
+        124: { subj: 'midgeo', subjName: '중학 도형 마스터 · 원주각·중심각과 공원점', title: '제124강 · 원주각과 중심각($\\theta\\leftrightarrow 2\\theta$)·반원의 원주각($90^\\circ$)과 네 점이 한 원 위에 있을 조건' },
+
+        123: { subj: 'core12', subjName: '미적분 I 필수 · 속도와 거리', title: '제123강 · 수직선 운동의 속도와 가속도 · 위치 변화량($\\int v\\,dt$) vs 총 이동거리($\\int|v|\\,dt$)' },
+        122: { subj: 'core12', subjName: '미적분 I 필수 · 우함수·기함수 정적분', title: '제122강 · 우함수·기함수 정적분($\\int_{-a}^a$)과 평행이동된 대칭축 정적분 3초 소거법' },
+        121: { subj: 'core12', subjName: '미적분 I 필수 · 사차함수 4대 개형', title: '제121강 · 사차함수 4대 개형 완벽 분류 (W형·아프리카 $1:3$ 변곡접선·삼중근)와 극값 존재 조건' },
+        120: { subj: 'core12', subjName: '미적분 I 필수 · 롤의 정리와 평균값 정리', title: '제120강 · 롤의 정리와 평균값 정리($\\frac{f(b)-f(a)}{b-a}=f\'(c)$)의 기하학적 내분비($1:1, 1:\\sqrt{3}$)' },
+        119: { subj: 'core12', subjName: '미적분 I 필수 · 최대·최소와 사잇값 정리', title: '제119강 · 연속함수의 최대·최소 정리와 사잇값 정리($f(a)f(b)<0$) 실근 개수 판정' },
+        118: { subj: 'core12', subjName: '대수 필수 · 군수열과 격자점 수열', title: '제118강 · 군수열 3단계 해법(제$k$군의 항수·초항)과 대각선 격자점 수열 번호 추적' },
+        117: { subj: 'core12', subjName: '대수 필수 · 시그마 공식과 망원급수', title: '제117강 · 자연수 거듭제곱 합($\\sum k, \\sum k^2, \\sum k^3$)과 부분분수·망원급수 연쇄 소거' },
+        116: { subj: 'core12', subjName: '대수 필수 · 등비수열의 합과 일반항 변환', title: '제116강 · 등비수열의 합 $S_n=\\frac{a(r^n-1)}{r-1}$ 과 $S_n\\to a_n$ 첫째항($n=1$) 판정 · 원리합계' },
+        115: { subj: 'core12', subjName: '대수 필수 · 등차수열 일반항과 합의 기하학', title: '제115강 · 등차수열 일반항(기울기 $d$)과 합 $S_n=An^2+Bn$ (상수항 없는 이차함수) 3초 해법' },
+        114: { subj: 'core12', subjName: '대수 필수 · 삼각방정식·부등식과 대칭합', title: '제114강 · 삼각방정식·삼각부등식 단위원 해법과 대칭축 중점합($\\alpha+\\beta=2m$) 암산 공식' },
+        113: { subj: 'core12', subjName: '대수 필수 · 상용로그 정수·소수부분', title: '제113강 · 상용로그 정수부분(자리수)·소수부분(숫자 배열)과 가우스 $[\\log x]$ 조건 해법' },
+        112: { subj: 'core12', subjName: '대수 필수 · 거듭제곱근의 실근 개수', title: '제112강 · $a$의 $n$제곱근($x^n=a$) 실근 개수 ($n$ 홀짝 $\\times$ $a$ 부호) 2×3 표 3초 판정' },
+
+        111: { subj: 'killer', subjName: '수능 킬러 특강 · 삼각함수 도형 3단계 행동강령', title: '제111강 · 삼각함수 도형 킬러 3단계 행동강령 (원주각·내접사각형과 사인·코사인 연립)' },
+        110: { subj: 'killer', subjName: '수능 킬러 특강 · 지수·로그 도형과 격자점', title: '제110강 · 지수·로그함수 평행이동·역함수 대칭 넓이와 경계값 격자점 카운팅' },
+        109: { subj: 'killer', subjName: '수능 킬러 특강 · 수열 귀납적 정의 역추적', title: '제109강 · 갈림길 점화식(수능 15번) 역추적 수형도와 정수·홀짝 판정법' },
+        108: { subj: 'killer', subjName: '수능 킬러 특강 · 넓이 같음과 대칭 등분', title: '제108강 · 두 영역 넓이 같음($S_1=S_2\\iff\\int_\\alpha^\\gamma f(x)dx=0$)과 변곡점 대칭 등분' },
+        107: { subj: 'killer', subjName: '수능 킬러 특강 · 이동 구간 정적분의 미분', title: '제107강 · 움직이는 구간 정적분 $g(x)=\\int_x^{x+p}f(t)dt$ 의 도함수 $f(x+p)-f(x)$ 와 극값' },
+        106: { subj: 'killer', subjName: '수능 킬러 특강 · 정적분으로 정의된 함수', title: '제106강 · 정적분 함수 $\\int_a^x f(t)dt$ 와 $\\int_a^x(x-t)f(t)dt$ 의 대입·2회 미분 공식' },
+        105: { subj: 'killer', subjName: '수능 킬러 특강 · 교점 개수 함수의 불연속점', title: '제105강 · 수평선 $y=t$ 교점 개수 함수 $g(t)$ 의 불연속점 $=$ 극값($f\'=0$) 판독법' },
+        104: { subj: 'killer', subjName: '수능 킬러 특강 · 합성함수 방정식 실근 개수', title: '제104강 · 합성함수 방정식 $f(g(x))=k$ 의 실근 개수 2단계 치환($t=g(x)$) 역추적' },
+        103: { subj: 'killer', subjName: '수능 킬러 특강 · 절댓값 함수의 미분가능성', title: '제103강 · 절댓값 함수 $|f(x)-t|$ 의 미분가능성과 첨점 소거($f\'(a)=0$) 개형 추론' },
+        102: { subj: 'killer', subjName: '수능 킬러 특강 · 곱함수의 연속과 미분가능성', title: '제102강 · 곱함수 $f(x)g(x)$ 의 연속·미분가능성을 만드는 영인자($(x-a)^2$) 법칙' },
+        101: { subj: 'killer', subjName: '수능 킬러 특강 · 차함수와 교점 인수정리', title: '제101강 · 차함수 $h(x)=f(x)-g(x)$ 식 세우기 (접점 제곱·변곡점 세제곱과 근과 계수)' },
+        100: { subj: 'killer', subjName: '수능 킬러 특강 · 선대칭·점대칭과 주기성', title: '제100강 · 선대칭 $f(a-x)=f(a+x)$, 점대칭 $f(a-x)+f(a+x)=2b$ 와 주기 정적분' },
+
+        99: { subj: 'geoadv', subjName: '기하 심화 · 구의 방정식과 단면 원', title: '제99강 · 구의 방정식, 좌표평면에 접하는 구와 평면으로 자른 단면 원 ($r\'=\\sqrt{R^2-d^2}$)' },
+        98: { subj: 'geoadv', subjName: '기하 심화 · 공간좌표와 최단거리', title: '제98강 · 공간좌표의 대칭·내분·외분·무게중심과 좌표평면 대칭이동 최단거리' },
+        97: { subj: 'geoadv', subjName: '기하 심화 · 정사영의 길이와 넓이', title: '제97강 · 정사영의 길이($l\'=l\\cos\\theta$)·넓이($S\'=S\\cos\\theta$)와 태양광선 그림자 공식' },
+        96: { subj: 'geoadv', subjName: '기하 심화 · 이면각과 정다면체 코사인', title: '제96강 · 이면각의 정의(교선 수선)와 정사면체($\\cos\\theta=\\frac{1}{3}$)·정팔면체 이면각' },
+        95: { subj: 'geoadv', subjName: '기하 심화 · 삼수선의 정리 완벽 마스터', title: '제95강 · 직선·평면의 수직 조건과 삼수선의 정리 3유형 직각삼각형 분해법' },
+        94: { subj: 'geoadv', subjName: '기하 심화 · 평면 결정 조건과 꼬인 위치', title: '제94강 · 공간도형의 평면 결정 조건 4가지와 꼬인 위치의 두 직선이 이루는 각' },
+        93: { subj: 'geoadv', subjName: '기하 심화 · 직선과 원의 벡터방정식', title: '제93강 · 직선의 벡터방정식(방향·법선벡터)과 원의 벡터방정식 ($|\\vec{p}-\\vec{c}|=r$)' },
+        92: { subj: 'geoadv', subjName: '기하 심화 · 벡터의 내적과 중점 분해', title: '제92강 · 평면벡터 내적의 정사영 의미와 중점 분해 공식($\\overrightarrow{PA}\\cdot\\overrightarrow{PB}=|\\overrightarrow{PM}|^2-\\frac{1}{4}\\overline{AB}^2$)' },
+        91: { subj: 'geoadv', subjName: '기하 심화 · 평면벡터 일직선 조건과 자취', title: '제91강 · 평면벡터의 분점·일직선 조건($\\alpha+\\beta=1$)과 종점 $P$ 의 자취 넓이' },
+        90: { subj: 'geoadv', subjName: '기하 심화 · 이차곡선 접선의 방정식', title: '제90강 · 이차곡선 접선의 방정식 3대 공식(기울기 $m$·접점 쪼개기)과 광학적 성질' },
+        89: { subj: 'geoadv', subjName: '기하 심화 · 타원·쌍곡선 초점삼각형과 점근선', title: '제89강 · 타원($r_1+r_2=2a$)·쌍곡선($|r_1-r_2|=2a$) 초점삼각형과 쌍곡선 점근선' },
+        88: { subj: 'geoadv', subjName: '기하 심화 · 포물선의 정의와 초점 현 성질', title: '제88강 · 포물선의 정의($\\overline{PF}=\\overline{PH}$)와 초점 현·준선 직각 성질' },
+
+        87: { subj: 'calc', subjName: '미적분 심화 · 입체도형의 부피와 곡선의 길이', title: '제87강 · 단면 넓이 적분 부피 $V=\\int_a^b S(x)dx$와 곡선의 길이 · 평면 운동 거리' },
+        86: { subj: 'calc', subjName: '미적분 심화 · 정적분과 급수의 합', title: '제86강 · 무한급수를 정적분으로 바꾸는 3가지 기준 ($\\frac{k}{n}\\to x, \\frac{1}{n}\\to dx$)' },
+        85: { subj: 'calc', subjName: '미적분 심화 · 부분적분법과 도표적분', title: '제85강 · 부분적분법(로·다·삼·지)과 다항식×초월함수 3초 도표적분(DI법)' },
+        84: { subj: 'calc', subjName: '미적분 심화 · 치환적분법과 로그적분', title: '제84강 · 치환적분법 $\\int f(g(x))g\'(x)dx$와 $\\int\\frac{f\'(x)}{f(x)}dx=\\ln|f(x)|+C$' },
+        83: { subj: 'calc', subjName: '미적분 심화 · 초월함수 4대 개형 마스터', title: '제83강 · 수능 필수 초월함수 개형 ($xe^x, xe^{-x}, x\\ln x, \\frac{\\ln x}{x}$ 극댓값 $\\frac{1}{e}$)' },
+        82: { subj: 'calc', subjName: '미적분 심화 · 역함수 미분법과 변곡점', title: '제82강 · 역함수 미분법 $(f^{-1})\'(b)=\\frac{1}{f\'(a)}$과 이계도함수 $f\'\'(x)=0$ 변곡점' },
+        81: { subj: 'calc', subjName: '미적분 심화 · 몫·합성·음함수·매개변수 미분', title: '제81강 · 몫의 미분법, 합성함수 연쇄법칙(Chain Rule)과 음함수·매개변수 미분법' },
+        80: { subj: 'calc', subjName: '미적분 심화 · 삼각함수 극한과 도형 근사', title: '제80강 · 삼각함수 극한 $\\frac{\\sin x}{x}\\to 1, \\frac{1-\\cos x}{x^2}\\to\\frac{1}{2}$과 도형 극한 3초 근사' },
+        79: { subj: 'calc', subjName: '미적분 심화 · 삼각함수 덧셈정리와 두 직선의 각', title: '제79강 · 삼각함수 덧셈정리·배각공식과 두 직선이 이루는 예각 $\\tan\\theta=\\left|\\frac{m_1-m_2}{1+m_1m_2}\\right|$' },
+        78: { subj: 'calc', subjName: '미적분 심화 · 자연상수 e와 지수·로그 극한', title: '제78강 · 자연상수 $e=\\lim(1+x)^{1/x}$와 $\\frac{e^x-1}{x}\\to 1, \\frac{\\ln(1+x)}{x}\\to 1$ 근사' },
+        77: { subj: 'calc', subjName: '미적분 심화 · 무한급수와 프랙탈 등비급수', title: '제77강 · 급수 수렴 판정($\\lim a_n=0$)과 도형 프랙탈 등비급수 $S=\\frac{a}{1-r}$ (넓이비 $k^2$)' },
+        76: { subj: 'calc', subjName: '미적분 심화 · 수열의 극한과 등비수열 극한', title: '제76강 · 수열의 극한 샌드위치 정리와 등비수열 $r^n$ 포함 함수의 4구간 분류' },
+
+        75: { subj: 'probstat', subjName: '확률과 통계 · 통계적 추정과 신뢰구간', title: '제75강 · 모평균 $m$의 신뢰구간(95%·99%)과 신뢰구간 길이 $L=2k\\frac{\\sigma}{\\sqrt{n}}$' },
+        74: { subj: 'probstat', subjName: '확률과 통계 · 모집단과 표본평균의 분포', title: '제74강 · 표본평균 $\\bar{X}$의 분포 $N(m,\\frac{\\sigma^2}{n})$와 표준오차 $\\frac{\\sigma}{\\sqrt{n}}$' },
+        73: { subj: 'probstat', subjName: '확률과 통계 · 정규분포와 표준화', title: '제73강 · 정규분포 $N(m,\\sigma^2)$ 대칭성과 표준화 $Z=\\frac{X-m}{\\sigma}$ · 이항분포 정규근사' },
+        72: { subj: 'probstat', subjName: '확률과 통계 · 이항분포 B(n, p)', title: '제72강 · 이항분포 $B(n,p)$의 평균 $E(X)=np$ · 분산 $V(X)=npq$ 완벽 정리' },
+        71: { subj: 'probstat', subjName: '확률과 통계 · 이산확률변수의 기댓값과 분산', title: '제71강 · 기댓값 $E(X)$, 제평평제 분산 $V(X)$와 $V(aX+b)=a^2V(X)$' },
+        70: { subj: 'probstat', subjName: '확률과 통계 · 사건의 독립과 독립시행', title: '제70강 · 사건의 독립 판별 $P(A\\cap B)=P(A)P(B)$과 독립시행의 확률 ${}_n\\mathrm{C}_r p^r q^{n-r}$' },
+        69: { subj: 'probstat', subjName: '확률과 통계 · 조건부확률과 베이즈 정리', title: '제69강 · 조건부확률 $P(B|A)=\\frac{P(A\\cap B)}{P(A)}$ 2×2 분할표와 베이즈 정리' },
+        68: { subj: 'probstat', subjName: '확률과 통계 · 확률의 덧셈정리와 여사건', title: '제68강 · 확률의 덧셈정리 $P(A\\cup B)$와 여사건의 확률 $1-P(A^c)$' },
+        67: { subj: 'probstat', subjName: '확률과 통계 · 이항정리와 파스칼 삼각형', title: '제67강 · 이항정리 일반항 ${}_n\\mathrm{C}_r a^{n-r}b^r$과 이항계수 합 · 하키스틱 공식' },
+        66: { subj: 'probstat', subjName: '확률과 통계 · 중복조합 킬러', title: '제66강 · 중복조합 ${}_n\\mathrm{H}_r={}_{n+r-1}\\mathrm{C}_r$ 칸막이 원리와 부정방정식·함수 개수' },
+        65: { subj: 'probstat', subjName: '확률과 통계 · 중복순열과 같은 것이 있는 순열', title: '제65강 · 중복순열(${}_n\\Pi_r=n^r$)과 같은 것이 있는 순열 $\\frac{n!}{p!q!r!}$ · 최단경로' },
+        64: { subj: 'probstat', subjName: '확률과 통계 · 원순열과 다각형 배열', title: '제64강 · 원순열 $(n-1)!$ 1명 고정점 해법과 다각형 탁자 배열 공식' },
+
+        63: { subj: 'common2', subjName: '공통수학 2 · 유리·무리함수와 직선의 위치관계', title: '제63강 · 유리함수 점근선 대칭성과 무리함수·직선 교점 개수($D=0$·시작점) 판별' },
+        62: { subj: 'common2', subjName: '공통수학 2 · 함수와 역함수 심화', title: '제62강 · 일대일대응 조건과 역함수 $y=f^{-1}(x)$ 교점의 진실 (증가 vs 감소)' },
+        61: { subj: 'common2', subjName: '공통수학 2 · 절대부등식 (코시-슈바르츠)', title: '제61강 · 코시-슈바르츠 부등식 $(a^2+b^2)(x^2+y^2)\\ge(ax+by)^2$ 완전 정복' },
+        60: { subj: 'common2', subjName: '공통수학 2 · 절대부등식 (산술·기하평균)', title: '제60강 · 산술·기하평균 부등식 역수 구조 변형과 등호 성립 조건 함정 탈출' },
+        59: { subj: 'common2', subjName: '공통수학 2 · 명제와 조건', title: '제59강 · 충분조건·필요조건 진리집합 포함관계($P\\subset Q$)와 대우·귀류법' },
+        58: { subj: 'common2', subjName: '공통수학 2 · 집합의 연산과 원소의 개수', title: '제58강 · 드모르간·대칭차집합($A\\triangle B$)과 합집합·교집합 원소 개수 최대·최소' },
+        57: { subj: 'common2', subjName: '공통수학 2 · 도형의 이동과 최단거리', title: '제57강 · 점과 도형의 평행·대칭이동과 빛의 반사(페르마) 대칭 최단거리 공식' },
+        56: { subj: 'common2', subjName: '공통수학 2 · 두 원의 위치관계와 공통현', title: '제56강 · 두 원의 공통현의 방정식($C_1-C_2=0$)과 원 위의 점 거리 최대·최소($d\\pm r$)' },
+        55: { subj: 'common2', subjName: '공통수학 2 · 원과 직선의 위치관계 & 접선', title: '제55강 · 원과 직선의 위치관계($d$ vs $r$) & 원의 접선 3대 공식 완벽 정리' },
+        54: { subj: 'common2', subjName: '공통수학 2 · 원의 방정식과 아폴로니오스 원', title: '제54강 · 원의 방정식과 아폴로니오스의 원 ($\\overline{PA}:\\overline{PB}=m:n$ 내·외분점 지름)' },
+        53: { subj: 'common2', subjName: '공통수학 2 · 직선의 방정식과 거리 공식', title: '제53강 · 정점을 지나는 직선($l_1+kl_2=0$)과 점·직선 거리 공식 · 신발끈 넓이 공식' },
+        52: { subj: 'common2', subjName: '공통수학 2 · 평면좌표와 파푸스 중선정리', title: '제52강 · 선분의 내분점·외분점·무게중심과 파푸스 중선정리 · 각의 이등분선' },
+
+        51: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 행렬과 연산', title: '제51강 · [2022 개정 신설] 행렬의 연산·거듭제곱($A^n$)과 케일리-해밀턴 정리' },
+        50: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 경우의 수', title: '제50강 · 합의·곱의 법칙과 순열(${}_n\\mathrm{P}_r$)·조합(${}_n\\mathrm{C}_r$)·분할과 분배' },
+        49: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 방정식과 부등식', title: '제49강 · 이차방정식 근의 분리 (실근의 위치: 함·판·축 3초 판정)' },
+        48: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 방정식과 부등식', title: '제48강 · 절댓값 부등식과 거리 합 $|x-a|+|x-b|$ 그래프 해법' },
+        47: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 여러 가지 방정식', title: '제47강 · 삼차방정식 세 근의 구조($\\alpha,\\beta,\\gamma$)와 켤레근 성질' },
+        46: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 이차방정식과 이차함수', title: '제46강 · 제한된 범위($p\\le x\\le q$)에서 이차함수의 최대·최소 (대칭축 이동)' },
+        45: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 이차방정식과 이차함수', title: '제45강 · 이차함수와 직선의 위치관계 · 차함수 $h(x)=f(x)-g(x)$의 탄생' },
+        44: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 복소수와 이차방정식', title: '제44강 · 판별식 $D$의 기하학적 본질과 근과 계수의 관계 (두 근의 차 $\\frac{\\sqrt{D}}{|a|}$)' },
+        43: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 복소수와 이차방정식', title: '제43강 · 복소수 $i$의 4주기 순환성과 허근 $\\omega$($x^3=\\pm1$) 3초 암산법' },
+        42: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 다항식의 인수분해', title: '제42강 · 고차다항식 인수분해 · 상반방정식과 복소수 범위 인수분해' },
+        41: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 항등식과 나머지정리', title: '제41강 · 나머지정리 킬러 · $(x-\\alpha)^2$ 중근 인수와 미분·연속조립제법' },
+        40: { subj: 'common1', subjName: '공통수학 1 (2022 개정) · 다항식의 연산', title: '제40강 · 곱셈공식 변형과 대칭식($x+y=u, xy=v$)·교대식 구조' },
+        39: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 구분구적법', title: '제39강 · 원뿔의 부피와 구분구적법 ($V=\\frac{1}{3}\\pi r^2 h$)' },
+        38: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 다항함수의 적분법', title: '제38강 · 적분은 왜 직사각형부터 시작할까? (리만 합과 적분의 본질)' },
+        37: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 도함수의 활용', title: '제37강 · 삼차함수 비율관계와 극대·극소 높이차 공식' },
+        36: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 다항함수의 미분법', title: '제36강 · 다항함수 거리곱 공식과 고속 개형 추론' },
+        35: { subj: 'geom',    subjName: '기하 & 미적분 II (2022 개정) · 원의 성질', title: '제35강 · 원의 성질 핵심 정리 · 원주각과 접현각' },
+        34: { subj: 'geom',    subjName: '기하 & 미적분 II (2022 개정) · 도형 총정리', title: '제34강 · 중학도형 핵심 총정리 · 각의 이등분선과 닮음' },
+        33: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 다항함수의 적분법', title: '제33강 · 정적분의 본질 · 넓이 vs 함숫값의 이중성' },
+        32: { subj: 'math1',   subjName: '대수 (2022 개정) · 지수함수와 로그함수', title: '제32강 · 지수·로그 함수의 확대·축소 & 실전 비율 관계' },
+        31: { subj: 'math1',   subjName: '대수 (2022 개정) · 지수와 로그', title: '제31강 · 지수함수와 로그함수 (수능 직전 초스피드 개념 총정리)' },
+        30: { subj: 'math1',   subjName: '대수 (2022 개정) · 삼각함수의 활용', title: '제30강 · 삼각함수 활용 · 코사인법칙의 원리와 기하학적 직관' },
+        29: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 함수의 극한과 연속', title: '제29강 · 함수의 극한의 성질 진위판단 (반례 없는 치환법)' },
+        28: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 함수와 그래프', title: '제28강 · 대한민국 고교 교과서 14개 그래프 총정리' },
+        27: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 다항함수의 미분법', title: '제27강 · 다항함수를 보는 눈 (인수와 대칭성, 8칸 박스법)' },
+        26: { subj: 'geom',    subjName: '기하 & 미적분 II (2022 개정) · 급수 근사', title: '제26강 · 테일러 급수 (초월함수가 다항함수로 바뀌는 기적)' },
+        25: { subj: 'math1',   subjName: '대수 (2022 개정) · 수열의 귀납적 정의', title: '제25강 · 점화식 25분 아작내기 (등차·등비 Big 4 & 응용 6대 점화식)' },
+        24: { subj: 'math1',   subjName: '대수 (2022 개정) · 삼각함수의 활용', title: '제24강 · 도형 문제를 풀 때 최상위권들이 반드시 하는 생각 (사인·코사인법칙의 필연성)' },
+        23: { subj: 'geom',    subjName: '기하 & 미적분 II (2022 개정) · 이차곡선', title: '제23강 · 포물선의 기하학적 성질 7가지' },
+        22: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 합성함수와 N축', title: '제22강 · 합성함수 그래프 그리기 (N축 스킬)' },
+        21: { subj: 'math1',   subjName: '대수 (2022 개정) · 삼각함수 비율관계', title: '제21강 · 삼각함수 비율관계 (8칸 박스와 $1:2$ 분할의 마법)' },
+        20: { subj: 'math1',   subjName: '대수 (2022 개정) · 지수·로그함수', title: '제20강 · 지수·로그함수 기울기 $m=-1$ 활용법' },
+        19: { subj: 'math1',   subjName: '대수 (2022 개정) · 지수·로그함수', title: '제19강 · 지수·로그함수와 역함수 교점' },
+        18: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 무리함수', title: '제18강 · 무리함수 GSP 시뮬레이션' },
+        17: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 유리함수', title: '제17강 · 유리함수 $d$ 변화' },
+        16: { subj: 'math1',   subjName: '대수 (2022 개정) · 삼각함수', title: '제16강 · 단위원 삼각함수 정복' },
+        15: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 약수와 기하평균', title: '제15강 · 약수의 총곱 &amp; 기하평균' },
+        14: { subj: 'math2',   subjName: '미적분 I (2022 개정) · 극값의 정의', title: '제14강 · 이게 극대라고?! (극값의 정의)' },
+        13: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 절댓값 함수', title: '제13강 · $y$와 $f(x)$ 차이 &amp; 절댓값' },
+        12: { subj: 'geom',    subjName: '기하 &amp; 미적분 II (2022 개정) · 직각쌍곡선', title: '제12강 · 직각쌍곡선 넓이 $S=T$ 꿀팁' },
+        11: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 무리함수', title: '제11강 · 무리함수와 역함수 교점 공식 (⚡ 3초)' },
+        10: { subj: 'math-ha', subjName: '공통수학 2 (2022 개정) · 유리함수', title: '제10강 · 유리함수 평행이동 공식 (⚡ 3초)' },
+        9:  { subj: 'math2',   subjName: '미적분 I (2022 개정) · 정적분과 차함수', title: '제9강 · 정적분과 넓이 &amp; 차함수의 마법' },
+        8:  { subj: 'math1',   subjName: '대수 (2022 개정) · 삼각함수 그래프', title: '제8강 · 삼각함수 그래프 8칸 박스법' },
+        7:  { subj: 'math1',   subjName: '대수 (2022 개정) · 삼각함수와 호도법', title: '제7강 · 삼각비에서 삼각함수까지' },
+        6:  { subj: 'geom',    subjName: '기하 &amp; 미적분 II (2022 개정) · 수능기하', title: '제6강 · 수능 기하 7대 핵심정리 총정리' },
+        5:  { subj: 'geom',    subjName: '기하 &amp; 미적분 II (2022 개정) · 피타고라스', title: '제5강 · 피타고라스 정리 (유클리드 증명)' },
+        4:  { subj: 'math2',   subjName: '미적분 I (2022 개정) · 다항함수 비율관계', title: '제4강 · 다항함수 비율관계 ($m:n$ 내분점)' },
+        3:  { subj: 'math2',   subjName: '미적분 I (2022 개정) · 변곡접선', title: '제3강 · 변곡접선 정리하기' },
+        2:  { subj: 'math2',   subjName: '미적분 I (2022 개정) · 정적분 넓이 공식', title: '제2강 · 정적분 넓이 만능 공식 ($\\frac{m!n!}{(m+n+1)!}$)' },
+        1:  { subj: 'math2',   subjName: '미적분 I (2022 개정) · 다항함수 넓이 비', title: '제1강 · 다항함수 넓이의 비 ($S_1:S_2 = 1:n$)' }
       };
 
       let currentSubjectFilter = 'all';
@@ -1572,7 +2550,7 @@
               window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
             }, 50);
           }
-          for (let i = 1; i <= 39; i++) {
+          for (let i = 1; i <= 171; i++) {
             const v = document.getElementById(`lecture${i}View`);
             if (v) v.style.display = 'none';
           }
@@ -1602,7 +2580,7 @@
         const k12Section = document.getElementById('k12StudioSection');
         if (k12Section) k12Section.style.display = 'none';
 
-        for (let i = 1; i <= 39; i++) {
+        for (let i = 1; i <= 171; i++) {
           const btn = document.getElementById(`btnLec${i}`);
           const view = document.getElementById(`lecture${i}View`);
           if (btn) btn.classList.toggle('active', i === num);
@@ -1614,7 +2592,7 @@
           const sSubj = document.getElementById('statusSubjText');
           const sTitle = document.getElementById('statusTitleText');
           if (sSubj) sSubj.innerHTML = meta.subjName;
-          if (sTitle) sTitle.innerHTML = meta.title;
+          if (sTitle) { sTitle.innerHTML = meta.title; try { if (window.renderMathInElement) renderMathInElement(sTitle, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }] }); } catch (e) { /* 수식 표시 실패는 무시 */ } }
 
           if (currentSubjectFilter !== 'all' && currentSubjectFilter !== meta.subj) {
             selectSubject('all');
@@ -1679,7 +2657,7 @@
           });
           buttons.forEach(btn => grid.appendChild(btn));
         });
-        showToast(mode === 'asc' ? '🔢 1강 ➔ 39강 순으로 정렬되었습니다.' : (mode === 'desc' ? '⚡ 최신 역순으로 정렬되었습니다.' : '🔥 킬러·꿀팁 우선순위로 정렬되었습니다.'));
+        showToast(mode === 'asc' ? '🔢 1강 ➔ 171강 순으로 정렬되었습니다.' : (mode === 'desc' ? '⚡ 최신 역순으로 정렬되었습니다.' : '🔥 킬러·꿀팁 우선순위로 정렬되었습니다.'));
       }
 
       // Instant Search Filter
@@ -1813,7 +2791,7 @@
 
           setTimeout(() => {
             document.body.classList.remove('portal-locked');
-            showToast('🔓 보안 인증 완료! 39대 킬러 공식 포털이 활성화되었습니다.');
+            showToast('🔓 보안 인증 완료! 171대 (2022 개정 전 단원 & 킬러 특강) 킬러 공식 포털이 활성화되었습니다.');
           }, 240);
         } else {
           if (errorMsg) errorMsg.style.display = 'block';
@@ -2057,6 +3035,7 @@
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l38ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ==================== LECTURE 39 VIEW ==================== -->
@@ -2183,6 +3162,546 @@
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l39ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture40View" class="lecture-view-container" style="display: none;">
+      <div id="l40MainContent"></div>
+      <div class="glass-card" id="l40ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture41View" class="lecture-view-container" style="display: none;">
+      <div id="l41MainContent"></div>
+      <div class="glass-card" id="l41ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture42View" class="lecture-view-container" style="display: none;">
+      <div id="l42MainContent"></div>
+      <div class="glass-card" id="l42ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture43View" class="lecture-view-container" style="display: none;">
+      <div id="l43MainContent"></div>
+      <div class="glass-card" id="l43ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture44View" class="lecture-view-container" style="display: none;">
+      <div id="l44MainContent"></div>
+      <div class="glass-card" id="l44ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture45View" class="lecture-view-container" style="display: none;">
+      <div id="l45MainContent"></div>
+      <div class="glass-card" id="l45ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture46View" class="lecture-view-container" style="display: none;">
+      <div id="l46MainContent"></div>
+      <div class="glass-card" id="l46ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture47View" class="lecture-view-container" style="display: none;">
+      <div id="l47MainContent"></div>
+      <div class="glass-card" id="l47ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture48View" class="lecture-view-container" style="display: none;">
+      <div id="l48MainContent"></div>
+      <div class="glass-card" id="l48ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture49View" class="lecture-view-container" style="display: none;">
+      <div id="l49MainContent"></div>
+      <div class="glass-card" id="l49ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture50View" class="lecture-view-container" style="display: none;">
+      <div id="l50MainContent"></div>
+      <div class="glass-card" id="l50ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture51View" class="lecture-view-container" style="display: none;">
+      <div id="l51MainContent"></div>
+      <div class="glass-card" id="l51ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture52View" class="lecture-view-container" style="display: none;">
+      <div id="l52MainContent"></div>
+      <div class="glass-card" id="l52ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture53View" class="lecture-view-container" style="display: none;">
+      <div id="l53MainContent"></div>
+      <div class="glass-card" id="l53ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture54View" class="lecture-view-container" style="display: none;">
+      <div id="l54MainContent"></div>
+      <div class="glass-card" id="l54ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture55View" class="lecture-view-container" style="display: none;">
+      <div id="l55MainContent"></div>
+      <div class="glass-card" id="l55ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture56View" class="lecture-view-container" style="display: none;">
+      <div id="l56MainContent"></div>
+      <div class="glass-card" id="l56ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture57View" class="lecture-view-container" style="display: none;">
+      <div id="l57MainContent"></div>
+      <div class="glass-card" id="l57ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture58View" class="lecture-view-container" style="display: none;">
+      <div id="l58MainContent"></div>
+      <div class="glass-card" id="l58ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture59View" class="lecture-view-container" style="display: none;">
+      <div id="l59MainContent"></div>
+      <div class="glass-card" id="l59ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture60View" class="lecture-view-container" style="display: none;">
+      <div id="l60MainContent"></div>
+      <div class="glass-card" id="l60ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture61View" class="lecture-view-container" style="display: none;">
+      <div id="l61MainContent"></div>
+      <div class="glass-card" id="l61ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture62View" class="lecture-view-container" style="display: none;">
+      <div id="l62MainContent"></div>
+      <div class="glass-card" id="l62ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture63View" class="lecture-view-container" style="display: none;">
+      <div id="l63MainContent"></div>
+      <div class="glass-card" id="l63ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture64View" class="lecture-view-container" style="display: none;">
+      <div id="l64MainContent"></div>
+      <div class="glass-card" id="l64ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture65View" class="lecture-view-container" style="display: none;">
+      <div id="l65MainContent"></div>
+      <div class="glass-card" id="l65ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture66View" class="lecture-view-container" style="display: none;">
+      <div id="l66MainContent"></div>
+      <div class="glass-card" id="l66ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture67View" class="lecture-view-container" style="display: none;">
+      <div id="l67MainContent"></div>
+      <div class="glass-card" id="l67ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture68View" class="lecture-view-container" style="display: none;">
+      <div id="l68MainContent"></div>
+      <div class="glass-card" id="l68ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture69View" class="lecture-view-container" style="display: none;">
+      <div id="l69MainContent"></div>
+      <div class="glass-card" id="l69ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture70View" class="lecture-view-container" style="display: none;">
+      <div id="l70MainContent"></div>
+      <div class="glass-card" id="l70ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture71View" class="lecture-view-container" style="display: none;">
+      <div id="l71MainContent"></div>
+      <div class="glass-card" id="l71ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture72View" class="lecture-view-container" style="display: none;">
+      <div id="l72MainContent"></div>
+      <div class="glass-card" id="l72ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture73View" class="lecture-view-container" style="display: none;">
+      <div id="l73MainContent"></div>
+      <div class="glass-card" id="l73ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture74View" class="lecture-view-container" style="display: none;">
+      <div id="l74MainContent"></div>
+      <div class="glass-card" id="l74ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture75View" class="lecture-view-container" style="display: none;">
+      <div id="l75MainContent"></div>
+      <div class="glass-card" id="l75ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture76View" class="lecture-view-container" style="display: none;">
+      <div id="l76MainContent"></div>
+      <div class="glass-card" id="l76ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture77View" class="lecture-view-container" style="display: none;">
+      <div id="l77MainContent"></div>
+      <div class="glass-card" id="l77ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture78View" class="lecture-view-container" style="display: none;">
+      <div id="l78MainContent"></div>
+      <div class="glass-card" id="l78ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture79View" class="lecture-view-container" style="display: none;">
+      <div id="l79MainContent"></div>
+      <div class="glass-card" id="l79ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture80View" class="lecture-view-container" style="display: none;">
+      <div id="l80MainContent"></div>
+      <div class="glass-card" id="l80ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture81View" class="lecture-view-container" style="display: none;">
+      <div id="l81MainContent"></div>
+      <div class="glass-card" id="l81ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture82View" class="lecture-view-container" style="display: none;">
+      <div id="l82MainContent"></div>
+      <div class="glass-card" id="l82ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture83View" class="lecture-view-container" style="display: none;">
+      <div id="l83MainContent"></div>
+      <div class="glass-card" id="l83ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture84View" class="lecture-view-container" style="display: none;">
+      <div id="l84MainContent"></div>
+      <div class="glass-card" id="l84ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture85View" class="lecture-view-container" style="display: none;">
+      <div id="l85MainContent"></div>
+      <div class="glass-card" id="l85ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture86View" class="lecture-view-container" style="display: none;">
+      <div id="l86MainContent"></div>
+      <div class="glass-card" id="l86ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture87View" class="lecture-view-container" style="display: none;">
+      <div id="l87MainContent"></div>
+      <div class="glass-card" id="l87ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture88View" class="lecture-view-container" style="display: none;">
+      <div id="l88MainContent"></div>
+      <div class="glass-card" id="l88ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture89View" class="lecture-view-container" style="display: none;">
+      <div id="l89MainContent"></div>
+      <div class="glass-card" id="l89ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture90View" class="lecture-view-container" style="display: none;">
+      <div id="l90MainContent"></div>
+      <div class="glass-card" id="l90ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture91View" class="lecture-view-container" style="display: none;">
+      <div id="l91MainContent"></div>
+      <div class="glass-card" id="l91ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture92View" class="lecture-view-container" style="display: none;">
+      <div id="l92MainContent"></div>
+      <div class="glass-card" id="l92ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture93View" class="lecture-view-container" style="display: none;">
+      <div id="l93MainContent"></div>
+      <div class="glass-card" id="l93ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture94View" class="lecture-view-container" style="display: none;">
+      <div id="l94MainContent"></div>
+      <div class="glass-card" id="l94ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture95View" class="lecture-view-container" style="display: none;">
+      <div id="l95MainContent"></div>
+      <div class="glass-card" id="l95ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture96View" class="lecture-view-container" style="display: none;">
+      <div id="l96MainContent"></div>
+      <div class="glass-card" id="l96ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture97View" class="lecture-view-container" style="display: none;">
+      <div id="l97MainContent"></div>
+      <div class="glass-card" id="l97ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture98View" class="lecture-view-container" style="display: none;">
+      <div id="l98MainContent"></div>
+      <div class="glass-card" id="l98ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture99View" class="lecture-view-container" style="display: none;">
+      <div id="l99MainContent"></div>
+      <div class="glass-card" id="l99ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture100View" class="lecture-view-container" style="display: none;">
+      <div id="l100MainContent"></div>
+      <div class="glass-card" id="l100ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture101View" class="lecture-view-container" style="display: none;">
+      <div id="l101MainContent"></div>
+      <div class="glass-card" id="l101ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture102View" class="lecture-view-container" style="display: none;">
+      <div id="l102MainContent"></div>
+      <div class="glass-card" id="l102ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture103View" class="lecture-view-container" style="display: none;">
+      <div id="l103MainContent"></div>
+      <div class="glass-card" id="l103ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture104View" class="lecture-view-container" style="display: none;">
+      <div id="l104MainContent"></div>
+      <div class="glass-card" id="l104ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture105View" class="lecture-view-container" style="display: none;">
+      <div id="l105MainContent"></div>
+      <div class="glass-card" id="l105ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture106View" class="lecture-view-container" style="display: none;">
+      <div id="l106MainContent"></div>
+      <div class="glass-card" id="l106ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture107View" class="lecture-view-container" style="display: none;">
+      <div id="l107MainContent"></div>
+      <div class="glass-card" id="l107ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture108View" class="lecture-view-container" style="display: none;">
+      <div id="l108MainContent"></div>
+      <div class="glass-card" id="l108ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture109View" class="lecture-view-container" style="display: none;">
+      <div id="l109MainContent"></div>
+      <div class="glass-card" id="l109ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture110View" class="lecture-view-container" style="display: none;">
+      <div id="l110MainContent"></div>
+      <div class="glass-card" id="l110ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture111View" class="lecture-view-container" style="display: none;">
+      <div id="l111MainContent"></div>
+      <div class="glass-card" id="l111ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture112View" class="lecture-view-container" style="display: none;">
+      <div id="l112MainContent"></div>
+      <div class="glass-card" id="l112ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture113View" class="lecture-view-container" style="display: none;">
+      <div id="l113MainContent"></div>
+      <div class="glass-card" id="l113ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture114View" class="lecture-view-container" style="display: none;">
+      <div id="l114MainContent"></div>
+      <div class="glass-card" id="l114ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture115View" class="lecture-view-container" style="display: none;">
+      <div id="l115MainContent"></div>
+      <div class="glass-card" id="l115ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture116View" class="lecture-view-container" style="display: none;">
+      <div id="l116MainContent"></div>
+      <div class="glass-card" id="l116ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture117View" class="lecture-view-container" style="display: none;">
+      <div id="l117MainContent"></div>
+      <div class="glass-card" id="l117ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture118View" class="lecture-view-container" style="display: none;">
+      <div id="l118MainContent"></div>
+      <div class="glass-card" id="l118ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture119View" class="lecture-view-container" style="display: none;">
+      <div id="l119MainContent"></div>
+      <div class="glass-card" id="l119ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture120View" class="lecture-view-container" style="display: none;">
+      <div id="l120MainContent"></div>
+      <div class="glass-card" id="l120ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture121View" class="lecture-view-container" style="display: none;">
+      <div id="l121MainContent"></div>
+      <div class="glass-card" id="l121ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture122View" class="lecture-view-container" style="display: none;">
+      <div id="l122MainContent"></div>
+      <div class="glass-card" id="l122ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture123View" class="lecture-view-container" style="display: none;">
+      <div id="l123MainContent"></div>
+      <div class="glass-card" id="l123ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture124View" class="lecture-view-container" style="display: none;">
+      <div id="l124MainContent"></div>
+      <div class="glass-card" id="l124ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture125View" class="lecture-view-container" style="display: none;">
+      <div id="l125MainContent"></div>
+      <div class="glass-card" id="l125ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture126View" class="lecture-view-container" style="display: none;">
+      <div id="l126MainContent"></div>
+      <div class="glass-card" id="l126ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture127View" class="lecture-view-container" style="display: none;">
+      <div id="l127MainContent"></div>
+      <div class="glass-card" id="l127ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture128View" class="lecture-view-container" style="display: none;">
+      <div id="l128MainContent"></div>
+      <div class="glass-card" id="l128ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture129View" class="lecture-view-container" style="display: none;">
+      <div id="l129MainContent"></div>
+      <div class="glass-card" id="l129ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture130View" class="lecture-view-container" style="display: none;">
+      <div id="l130MainContent"></div>
+      <div class="glass-card" id="l130ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture131View" class="lecture-view-container" style="display: none;">
+      <div id="l131MainContent"></div>
+      <div class="glass-card" id="l131ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture132View" class="lecture-view-container" style="display: none;">
+      <div id="l132MainContent"></div>
+      <div class="glass-card" id="l132ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture133View" class="lecture-view-container" style="display: none;">
+      <div id="l133MainContent"></div>
+      <div class="glass-card" id="l133ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture134View" class="lecture-view-container" style="display: none;">
+      <div id="l134MainContent"></div>
+      <div class="glass-card" id="l134ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture135View" class="lecture-view-container" style="display: none;">
+      <div id="l135MainContent"></div>
+      <div class="glass-card" id="l135ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture136View" class="lecture-view-container" style="display: none;">
+      <div id="l136MainContent"></div>
+      <div class="glass-card" id="l136ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture137View" class="lecture-view-container" style="display: none;">
+      <div id="l137MainContent"></div>
+      <div class="glass-card" id="l137ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture138View" class="lecture-view-container" style="display: none;">
+      <div id="l138MainContent"></div>
+      <div class="glass-card" id="l138ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture139View" class="lecture-view-container" style="display: none;">
+      <div id="l139MainContent"></div>
+      <div class="glass-card" id="l139ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture140View" class="lecture-view-container" style="display: none;">
+      <div id="l140MainContent"></div>
+      <div class="glass-card" id="l140ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture141View" class="lecture-view-container" style="display: none;">
+      <div id="l141MainContent"></div>
+      <div class="glass-card" id="l141ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture142View" class="lecture-view-container" style="display: none;">
+      <div id="l142MainContent"></div>
+      <div class="glass-card" id="l142ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture143View" class="lecture-view-container" style="display: none;">
+      <div id="l143MainContent"></div>
+      <div class="glass-card" id="l143ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture144View" class="lecture-view-container" style="display: none;">
+      <div id="l144MainContent"></div>
+      <div class="glass-card" id="l144ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture145View" class="lecture-view-container" style="display: none;">
+      <div id="l145MainContent"></div>
+      <div class="glass-card" id="l145ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture146View" class="lecture-view-container" style="display: none;">
+      <div id="l146MainContent"></div>
+      <div class="glass-card" id="l146ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture147View" class="lecture-view-container" style="display: none;">
+      <div id="l147MainContent"></div>
+      <div class="glass-card" id="l147ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture148View" class="lecture-view-container" style="display: none;">
+      <div id="l148MainContent"></div>
+      <div class="glass-card" id="l148ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture149View" class="lecture-view-container" style="display: none;">
+      <div id="l149MainContent"></div>
+      <div class="glass-card" id="l149ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture150View" class="lecture-view-container" style="display: none;">
+      <div id="l150MainContent"></div>
+      <div class="glass-card" id="l150ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture151View" class="lecture-view-container" style="display: none;">
+      <div id="l151MainContent"></div>
+      <div class="glass-card" id="l151ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture152View" class="lecture-view-container" style="display: none;">
+      <div id="l152MainContent"></div>
+      <div class="glass-card" id="l152ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture153View" class="lecture-view-container" style="display: none;">
+      <div id="l153MainContent"></div>
+      <div class="glass-card" id="l153ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture154View" class="lecture-view-container" style="display: none;">
+      <div id="l154MainContent"></div>
+      <div class="glass-card" id="l154ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture155View" class="lecture-view-container" style="display: none;">
+      <div id="l155MainContent"></div>
+      <div class="glass-card" id="l155ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture156View" class="lecture-view-container" style="display: none;">
+      <div id="l156MainContent"></div>
+      <div class="glass-card" id="l156ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture157View" class="lecture-view-container" style="display: none;">
+      <div id="l157MainContent"></div>
+      <div class="glass-card" id="l157ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture158View" class="lecture-view-container" style="display: none;">
+      <div id="l158MainContent"></div>
+      <div class="glass-card" id="l158ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture159View" class="lecture-view-container" style="display: none;">
+      <div id="l159MainContent"></div>
+      <div class="glass-card" id="l159ShortsHost" style="margin-top:22px"></div>
+    </div>
+
+    <div id="lecture160View" class="lecture-view-container" style="display: none;">
+      <div id="l160MainContent"></div>
+      <div class="glass-card" id="l160ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture161View" class="lecture-view-container" style="display: none;">
+      <div id="l161MainContent"></div>
+      <div class="glass-card" id="l161ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture162View" class="lecture-view-container" style="display: none;">
+      <div id="l162MainContent"></div>
+      <div class="glass-card" id="l162ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture163View" class="lecture-view-container" style="display: none;">
+      <div id="l163MainContent"></div>
+      <div class="glass-card" id="l163ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture164View" class="lecture-view-container" style="display: none;">
+      <div id="l164MainContent"></div>
+      <div class="glass-card" id="l164ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture165View" class="lecture-view-container" style="display: none;">
+      <div id="l165MainContent"></div>
+      <div class="glass-card" id="l165ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture166View" class="lecture-view-container" style="display: none;">
+      <div id="l166MainContent"></div>
+      <div class="glass-card" id="l166ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture167View" class="lecture-view-container" style="display: none;">
+      <div id="l167MainContent"></div>
+      <div class="glass-card" id="l167ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture168View" class="lecture-view-container" style="display: none;">
+      <div id="l168MainContent"></div>
+      <div class="glass-card" id="l168ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture169View" class="lecture-view-container" style="display: none;">
+      <div id="l169MainContent"></div>
+      <div class="glass-card" id="l169ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture170View" class="lecture-view-container" style="display: none;">
+      <div id="l170MainContent"></div>
+      <div class="glass-card" id="l170ShortsHost" style="margin-top:22px"></div>
+    </div>
+    <div id="lecture171View" class="lecture-view-container" style="display: none;">
+      <div id="l171MainContent"></div>
+      <div class="glass-card" id="l171ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ==================== LECTURE 37 VIEW ==================== -->
@@ -2350,6 +3869,7 @@ class CubicRatioHeightFormulaScene(Scene):
 
       <!-- Video Stream & External Link -->
       
+      <div class="glass-card" id="l37ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ==================== LECTURE 36 VIEW ==================== -->
@@ -2512,6 +4032,7 @@ class DistanceProductRuleScene(Scene):
 
       <!-- Video Stream & External Link -->
       
+      <div class="glass-card" id="l36ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ==================== LECTURE 35 VIEW ==================== -->
@@ -2663,6 +4184,7 @@ class CircleInscribedAngleScene(Scene):
 
       <!-- Video Stream & External Link -->
       
+      <div class="glass-card" id="l35ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ==================== LECTURE 34 VIEW ==================== -->
@@ -2799,6 +4321,7 @@ class AngleBisectorGeomScene(Scene):
 
       <!-- Video Stream & External Link -->
       
+      <div class="glass-card" id="l34ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture33View" class="lecture-view-container" style="display: none;">
@@ -2981,6 +4504,7 @@ class IntegralSignedAreaVsHeightScene(Scene):
 
       <!-- Video Stream & External Link -->
       
+      <div class="glass-card" id="l33ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ==================== LECTURE 32 VIEW ==================== -->
@@ -3165,6 +4689,7 @@ class ExpLogScalingRatioScene(Scene):
 
       <!-- Video Stream & External Link -->
       
+      <div class="glass-card" id="l32ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture31View" style="display: none;">
@@ -3374,6 +4899,7 @@ class ExpLogQuickScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l31ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -3586,6 +5112,7 @@ class CosineRuleScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l30ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -3791,6 +5318,7 @@ class LimitTruthTestScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l29ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture28View" style="display: block;">
@@ -4019,6 +5547,7 @@ class Textbook14GraphsScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l28ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -4250,6 +5779,7 @@ class PolynomialInsightScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l27ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -4470,6 +6000,7 @@ class TaylorSeriesScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l26ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -4695,6 +6226,7 @@ class RecurrenceRelationScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l25ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture24View" style="display: none;">
@@ -4947,6 +6479,7 @@ class SineCosineNecessityScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l24ShortsHost" style="margin-top:22px"></div>
     </div>
 
 <div id="lecture21View" style="display: none;">
@@ -5243,6 +6776,7 @@ class TrigRatioRelationsScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l21ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -5494,6 +7028,7 @@ class CompositeFunctionNAxisScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l22ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -5767,6 +7302,7 @@ class ParabolaSevenPropertiesScene(Scene):
 
       <!-- TAB 5: VIDEO -->
       
+      <div class="glass-card" id="l23ShortsHost" style="margin-top:22px"></div>
     </div>
 
 <div id="lecture20View" style="display: none;">
@@ -6186,6 +7722,7 @@ class ExpLogSlopeSymmetryScene(Scene):
         </div>
 
       </div>
+      <div class="glass-card" id="l20ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture19View" style="display: none;">
@@ -6632,6 +8169,7 @@ class ExpLogInverseIntersectionScene(Scene):
         </div>
 
       </div>
+      <div class="glass-card" id="l19ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture18View" style="display: none;">
@@ -7188,6 +8726,7 @@ class SquareRootFunctionGSPScene(Scene):
 
       <!-- 10 TIMELINE CARDS WITH CAPTURES -->
       
+      <div class="glass-card" id="l18ShortsHost" style="margin-top:22px"></div>
     </div>
 
 <div id="lecture17View" style="display: none;">
@@ -7592,6 +9131,7 @@ class RationalFunctionDVariationScene(Scene):
 
       <!-- TIMELINE CAPTURE CARDS -->
       
+      <div class="glass-card" id="l17ShortsHost" style="margin-top:22px"></div>
     </div>
 
 <div id="lecture16View" style="display: none;">
@@ -8052,6 +9592,7 @@ class UnitCircleTrigScene(Scene):
 
       <!-- TIMELINE CAPTURE CARDS -->
       
+      <div class="glass-card" id="l16ShortsHost" style="margin-top:22px"></div>
     </div>
 
 <div id="lecture15View" style="display: none;">
@@ -8503,6 +10044,7 @@ class ProductOfDivisorsScene(Scene):
 
       <!-- TIMELINE CAPTURE CARDS -->
       
+      <div class="glass-card" id="l15ShortsHost" style="margin-top:22px"></div>
     </div>
 
 <div id="lecture14View" style="display: none;">
@@ -8903,6 +10445,7 @@ class LocalMaximumDefinitionScene(Scene):
 </code></pre>
         </div>
       </div>
+      <div class="glass-card" id="l14ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -9327,6 +10870,7 @@ class YVsFxAbsoluteValueScene(Scene):
 </code></pre>
         </div>
       </div>
+      <div class="glass-card" id="l13ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -9753,6 +11297,7 @@ class HyperbolaAreaTheoremScene(Scene):
 </code></pre>
         </div>
       </div>
+      <div class="glass-card" id="l12ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <!-- ============================================================== -->
@@ -10096,6 +11641,7 @@ class IrrationalFunction3SecScene(Scene):
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l11ShortsHost" style="margin-top:22px"></div>
     </div>
     <!-- END LECTURE 11 VIEW -->
 
@@ -10292,6 +11838,7 @@ class IrrationalFunction3SecScene(Scene):
       </div>
 
       <!-- TAB 4: MANIM SCRIPT (LECTURE 10) -->
+      <div class="glass-card" id="l10ShortsHost" style="margin-top:22px"></div>
     </div>
     <!-- END LECTURE 10 VIEW -->
 
@@ -10644,6 +12191,7 @@ class IntegralAreaDiffFunctionScene(Scene):
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l9ShortsHost" style="margin-top:22px"></div>
     </div>
     <!-- END LECTURE 9 VIEW -->
 
@@ -10984,6 +12532,7 @@ class TrigGraphsBoxMethodScene(Scene):
         </div>
       </div>
 
+      <div class="glass-card" id="l8ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture7View" style="display: none;">
@@ -11323,6 +12872,7 @@ class TrigFunctionsEssenceScene(Scene):
         </div>
       </div>
 
+      <div class="glass-card" id="l7ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture6View" style="display: none;">
@@ -11665,6 +13215,7 @@ class CSATGeometryMasterScene(Scene):
         </div>
       </div>
 
+      <div class="glass-card" id="l6ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <div id="lecture5View" style="display: none;">
@@ -12061,6 +13612,7 @@ class PythagoreanEuclidProof(Scene):
         </div>
       </div>
 
+      <div class="glass-card" id="l5ShortsHost" style="margin-top:22px"></div>
     </div>
 
 
@@ -12348,6 +13900,7 @@ class PolynomialRatioScene(Scene):
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l4ShortsHost" style="margin-top:22px"></div>
     </div>
 
 
@@ -12403,6 +13956,7 @@ class PolynomialRatioScene(Scene):
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l3ShortsHost" style="margin-top:22px"></div>
     </div>
 
 
@@ -12447,6 +14001,7 @@ class PolynomialRatioScene(Scene):
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l2ShortsHost" style="margin-top:22px"></div>
     </div>
 
 
@@ -12487,6 +14042,7 @@ class PolynomialRatioScene(Scene):
           </div>
         </div>
       </div>
+      <div class="glass-card" id="l1ShortsHost" style="margin-top:22px"></div>
     </div>
 
     <footer>
@@ -23133,5 +24689,20 @@ window.addEventListener('resize', () => {
     });
   </script>
   <script src="k12_math_studio.js"></script>
+  <script src="shorts_l2.js"></script>
+  <script src="shorts_math2.js"></script>
+  <script src="shorts_ha_m1.js"></script>
+  <script src="shorts_geo.js"></script>
+  <script src="shorts_common1.js"></script>
+  <script src="shorts_common2.js"></script>
+  <script src="shorts_probstat.js"></script>
+  <script src="shorts_calc.js"></script>
+  <script src="shorts_geoadv.js"></script>
+  <script src="shorts_killer.js"></script>
+  <script src="shorts_core12.js"></script>
+  <script src="shorts_midgeo.js"></script>
+  <script src="shorts_speed.js"></script>
+  <script src="shorts_midalg.js"></script>
+  <script src="shorts_elem.js"></script>
 </body>
 </html>
