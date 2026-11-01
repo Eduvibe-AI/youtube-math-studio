@@ -1,4 +1,5 @@
 .git
+.gitignore
 .claude
 509-401-math--helper
 claude-math-lab
@@ -19,6 +20,9 @@ temp_*
 *.json
 *.py
 *.txt
+*.md
+*.bat
+*.ps1
 index_backup_*.html
 shorts_l2_backup_*.js
 font_sample_l2.html
