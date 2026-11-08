@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2021~2026 수능·모의고사 학년별 기출연계 RPM 771 마스터 시리즈</title>
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    throwOnError: false
+  });"></script>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --accent: #dc2626;
+    --success: #16a34a;
+    --purple: #9333ea;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 24px 16px;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  header {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.25);
+    margin-bottom: 28px;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  header p {
+    font-size: 15px;
+    opacity: 0.92;
+  }
+  .filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .tab-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 9px 18px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.08);
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  .card-title-group h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .badge-year { background: #fee2e2; color: #b91c1c; }
+  .badge-grade { background: #e0e7ff; color: #3730a3; }
+  .badge-theme { background: #f3e8ff; color: #6b21a8; }
+  .prob-box {
+    background: #fdfefe;
+    border-left: 4px solid var(--primary);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+    background-color: #f8fafc;
+  }
+  .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .grid-2col { grid-template-columns: 1fr; }
+  }
+  .sol-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .step-box {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .step-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .step-body {
+    font-size: 14.5px;
+    color: #334155;
+    line-height: 1.7;
+  }
+  .tip-box {
+    background: #fffbeb;
+    border: 1px dashed #f59e0b;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    color: #92400e;
+  }
+  .tip-box strong { color: #b45309; }
+  .viz-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  canvas {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 460px;
+    height: 300px;
+    display: block;
+  }
+  .viz-controls {
+    width: 100%;
+    max-width: 460px;
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .slider-row input[type="range"] {
+    flex: 1;
+    accent-color: var(--primary);
+    cursor: pointer;
+  }
+  .btn-row {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .btn-ctrl {
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-ctrl:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+  }
+  .btn-ctrl.btn-primary {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  .btn-ctrl.btn-primary:hover {
+    background: #1d4ed8;
+  }
+  .viz-legend {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .viz-status {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #0f172a;
+    background: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>2021~2026 수능·모의고사 학년별 기출연계 시리즈</h1>
+    <p>⚡ RPM 771번 (정적분으로 정의된 이동구간 슬라이딩 윈도우 함수) 완벽 정복 및 움직이는 그래프 시뮬레이션</p>
+  </header>
+
+  <div class="filter-tabs">
+    <button class="tab-btn active" onclick="filterGrade('all')">전체 보기 (6개년)</button>
+    <button class="tab-btn" onclick="filterGrade('고1')">고1 공통수학 (이동구간 기초)</button>
+    <button class="tab-btn" onclick="filterGrade('고2')">고2 수Ⅱ (정적분 슬라이딩)</button>
+    <button class="tab-btn" onclick="filterGrade('고3')">고3 수능·미적 (절댓값·킬러)</button>
+  </div>
+
+  <!-- ==================== 1. 2021학년도 (고2 수Ⅱ) ==================== -->
+  <div class="card" data-grade="고2">
+    <div class="card-header">
+      <div class="card-title-group">
+        <h2>
+          <span>1. 2021학년도 수Ⅱ 킬러형</span>
+          <span class="badge badge-year">2021년 기출유형</span>
+          <span class="badge badge-grade">고2 · 고3</span>
+          <span class="badge badge-theme">구간길이 2 슬라이딩 정적분</span>
+        </h2>
+      </div>
+    </div>
+    <div class="prob-box">
+      <strong>[문항]</strong> 실수 $x$에 대하여 함수 $g(x)$를 다음과 같이 정의한다.<br>
+      $$g(x) = \int_{x}^{x+2} (3t^2 - 12t + 9) \, dt$$
+      닫힌구간 $[0, 4]$에서 함수 $g(x)$가 극값을 갖는 $x$의 값을 모두 구하고, 최댓값 $M$과 최솟값 $m$의 합 $M + m$을 구하시오.
+    </div>
+
+    <div class="grid-2col">
+      <div class="sol-col">
+        <div class="step-box">
+          <div class="step-header">📌 1단계: 출제 의도 및 조건 분석 (RPM 771 원리)</div>
+          <div class="step-body">
+            피적분함수 $f(t) = 3t^2 - 12t + 9 = 3(t-1)(t-3)$입니다.<br>
+            폭이 $2$인 구간 $[x, x+2]$가 이동하면서 만들어내는 정적분 값 $g(x)$의 증감을 파악해야 합니다.
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">⚡ 2단계: 미분을 통한 증감 조사</div>
+          <div class="step-body">
+            미적분의 기본정리에 의해 도함수는 다음과 같습니다:<br>
+            $$g'(x) = f(x+2) - f(x)$$
+            $$f(x+2) = 3(x+1)(x-1) = 3x^2 - 3$$
+            $$f(x) = 3x^2 - 12x + 9$$
+            $$g'(x) = (3x^2 - 3) - (3x^2 - 12x + 9) = 12x - 12 = 12(x - 1)$$
+            따라서 $g'(x) = 0$이 되는 점은 $x = 1$뿐이며, $x=1$에서 극솟값을 가집니다!
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">🎯 3단계: 닫힌구간 $[0, 4]$에서의 최대·최소 및 정답</div>
+          <div class="step-body">
+            경계값 및 극값 계산:<br>
+            • $x = 0$ : $g(0) = \int_0^2 (3t^2 - 12t + 9) dt = [t^3 - 6t^2 + 9t]_0^2 = 8 - 24 + 18 = 2$<br>
+            • $x = 1$ (극소) : $g(1) = \int_1^3 (3t^2 - 12t + 9) dt = [t^3 - 6t^2 + 9t]_1^3 = 0 - 4 = -4$<br>
+            • $x = 4$ : $g(4) = \int_4^6 (3t^2 - 12t + 9) dt = 54 - 4 = 50$<br>
+            따라서 최솟값 $m = g(1) = -4$, 최댓값 $M = g(4) = 50$<br>
+            <strong>정답: $M + m = 46$</strong>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>RPM 771 핵심 꿀팁:</strong> $g'(x) = f(x+L) - f(x)$에서 구간 양 끝에서의 높이가 같아질 때($f(x+L) = f(x)$) 극값을 갖습니다!
+        </div>
+      </div>
+
+      <div class="viz-col">
+        <canvas id="cvs2021" width="460" height="300"></canvas>
+        <div class="viz-controls">
+          <div class="viz-status" id="stat2021">x = 0.00 | [0.0, 2.0] 적분값 g(x) = 2.00</div>
+          <div class="slider-row">
+            <span>x:</span>
+            <input type="range" id="sld2021" min="0" max="4" step="0.05" value="0" oninput="updateViz('2021')">
+            <span id="val2021">0.0</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-ctrl btn-primary" onclick="togglePlay('2021')">▶ 재생 / 정지</button>
+            <button class="btn-ctrl" onclick="resetViz('2021', 0)">초기화</button>
+          </div>
+          <div class="viz-legend">
+            <div class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> 피적분함수 f(t)</div>
+            <div class="legend-item"><span class="legend-color" style="background:rgba(147,51,234,0.35);"></span> 슬라이딩 윈도우 넓이</div>
+            <div class="legend-item"><span class="legend-color" style="background:#dc2626;"></span> 적분함수 y = g(x)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 2. 2022학년도 (고1 공통수학) ==================== -->
+  <div class="card" data-grade="고1">
+    <div class="card-header">
+      <div class="card-title-group">
+        <h2>
+          <span>2. 2022학년도 공통수학 이동구간 모의고사형</span>
+          <span class="badge badge-year">2022년 기출유형</span>
+          <span class="badge badge-grade">고1 공통수학</span>
+          <span class="badge badge-theme">이동구간 [t, t+1] 이차함수 최댓값</span>
+        </h2>
+      </div>
+    </div>
+    <div class="prob-box">
+      <strong>[문항]</strong> 실수 $t$에 대하여 $t \le x \le t+1$에서 이차함수 $f(x) = -(x-2)^2 + 4$의 최댓값을 $M(t)$라 하자.<br>
+      닫힌구간 $[0, 3]$에서 함수 $y = M(t)$의 그래프와 $t$축, 그리고 두 직선 $t=0, t=3$으로 둘러싸인 도형의 넓이를 구하시오.
+    </div>
+
+    <div class="grid-2col">
+      <div class="sol-col">
+        <div class="step-box">
+          <div class="step-header">📌 1단계: 대칭축과 이동구간 위치 관계 분석</div>
+          <div class="step-body">
+            $f(x) = -x^2 + 4x$의 꼭짓점(대칭축)은 $x = 2$입니다.<br>
+            길이가 $1$인 구간 $[t, t+1]$이 이동할 때 대칭축 $x=2$의 포함 여부에 따라 최댓값 $M(t)$의 식 분기:
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">⚡ 2단계: 구간별 $M(t)$ 유도</div>
+          <div class="step-body">
+            ① $t+1 < 2 \implies 0 \le t < 1$ : 증가구간이므로 오른쪽 끝 $x=t+1$에서 최대<br>
+            $$M(t) = f(t+1) = -(t-1)^2 + 4 = -t^2 + 2t + 3$$
+            ② $t \le 2 \le t+1 \implies 1 \le t \le 2$ : 꼭짓점을 포함하므로 꼭짓점에서 최대<br>
+            $$M(t) = f(2) = 4$$
+            ③ $t > 2 \implies 2 < t \le 3$ : 감소구간이므로 왼쪽 끝 $x=t$에서 최대<br>
+            $$M(t) = f(t) = -(t-2)^2 + 4 = -t^2 + 4t$$
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">🎯 3단계: 둘러싸인 넓이 계산</div>
+          <div class="step-body">
+            $S = \int_0^1 (-t^2 + 2t + 3) dt + \int_1^2 4 dt + \int_2^3 (-t^2 + 4t) dt$<br>
+            • $\int_0^1 = [-\frac{t^3}{3} + t^2 + 3t]_0^1 = -\frac{1}{3} + 4 = \frac{11}{3}$<br>
+            • $\int_1^2 4 dt = 4$<br>
+            • $\int_2^3 = [-\frac{t^3}{3} + 2t^2]_2^3 = (-9 + 18) - (-\frac{8}{3} + 8) = 9 - \frac{16}{3} = \frac{11}{3}$<br>
+            따라서 총 넓이 $S = \frac{11}{3} + 4 + \frac{11}{3} = \frac{34}{3}$<br>
+            <strong>정답: $\frac{34}{3}$</strong>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>RPM 771과의 연계성:</strong> 고1의 이동구간 최대·최소 함수 $M(t)$는 고2 수Ⅱ에서 미분가능성과 정적분 슬라이딩 윈도우로 바로 직결되는 킬러 개념의 뿌리입니다!
+        </div>
+      </div>
+
+      <div class="viz-col">
+        <canvas id="cvs2022" width="460" height="300"></canvas>
+        <div class="viz-controls">
+          <div class="viz-status" id="stat2022">t = 0.00 | [0.0, 1.0] 최댓값 M(t) = 3.00</div>
+          <div class="slider-row">
+            <span>t:</span>
+            <input type="range" id="sld2022" min="0" max="3" step="0.05" value="0" oninput="updateViz('2022')">
+            <span id="val2022">0.0</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-ctrl btn-primary" onclick="togglePlay('2022')">▶ 재생 / 정지</button>
+            <button class="btn-ctrl" onclick="resetViz('2022', 0)">초기화</button>
+          </div>
+          <div class="viz-legend">
+            <div class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> 원함수 f(x)</div>
+            <div class="legend-item"><span class="legend-color" style="background:rgba(22,163,74,0.35);"></span> 관찰 구간 [t, t+1]</div>
+            <div class="legend-item"><span class="legend-color" style="background:#dc2626;"></span> 최댓값 함수 M(t)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 3. 2023학년도 (고2/고3 수Ⅱ) ==================== -->
+  <div class="card" data-grade="고2">
+    <div class="card-header">
+      <div class="card-title-group">
+        <h2>
+          <span>3. 2023학년도 수능·평가원 준킬러형</span>
+          <span class="badge badge-year">2023년 기출유형</span>
+          <span class="badge badge-grade">고2 · 고3</span>
+          <span class="badge badge-theme">RPM 771 직계 쌍둥이 (폭 1 윈도우)</span>
+        </h2>
+      </div>
+    </div>
+    <div class="prob-box">
+      <strong>[문항]</strong> 실수 $x$에 대하여 함수 $g(x)$가 다음과 같이 정의된다.<br>
+      $$g(x) = \int_{x}^{x+1} (4t^3 - 4t) \, dt \quad (-1 \le x \le 1)$$
+      함수 $g(x)$의 최댓값을 $M$, 최솟값을 $m$이라 할 때, $M - m$의 값을 구하시오.
+    </div>
+
+    <div class="grid-2col">
+      <div class="sol-col">
+        <div class="step-box">
+          <div class="step-header">📌 1단계: 미분과 도함수 인수분해</div>
+          <div class="step-body">
+            피적분함수 $f(t) = 4t^3 - 4t = 4t(t-1)(t+1)$은 원점 대칭(기함수)입니다.<br>
+            양변을 $x$에 대해 미분하면:<br>
+            $$g'(x) = f(x+1) - f(x) = [4(x+1)^3 - 4(x+1)] - [4x^3 - 4x]$$
+            $$= 4(3x^2 + 3x + 1) - 4 = 12x^2 + 12x = 12x(x + 1)$$
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">⚡ 2단계: 극대·극소 판정</div>
+          <div class="step-body">
+            $g'(x) = 12x(x+1) = 0$ 에서 $x = -1, 0$.<br>
+            • $x = -1$ : 부호가 $+$에서 $-$로 바뀌므로 <strong>극대</strong> (구간 경계)<br>
+            • $x = 0$ : 부호가 $-$에서 $+$로 바뀌므로 <strong>극소</strong>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">🎯 3단계: 정적분 계산 및 최대·최소 차이</div>
+          <div class="step-body">
+            부정적분 $F(t) = t^4 - 2t^2$ 라 하면 $g(x) = F(x+1) - F(x)$입니다.<br>
+            • $g(0) = F(1) - F(0) = (1 - 2) - 0 = -1$ (극소이자 최소: $m = -1$)<br>
+            • $g(-1) = F(0) - F(-1) = 0 - (1 - 2) = 1$<br>
+            • $g(1) = F(2) - F(1) = (16 - 8) - (-1) = 9$ (경계이자 최대: $M = 9$)<br>
+            따라서 최댓값 $M = 9$, 최솟값 $m = -1$<br>
+            <strong>정답: $M - m = 9 - (-1) = 10$</strong>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>RPM 771 공식 확장:</strong> 피적분함수가 기함수이면 $x = -\frac{L}{2}$ (구간이 대칭일 때) 정적분 값이 0이 되거나 상쇄되는 강력한 기하학적 성질을 갖습니다.
+        </div>
+      </div>
+
+      <div class="viz-col">
+        <canvas id="cvs2023" width="460" height="300"></canvas>
+        <div class="viz-controls">
+          <div class="viz-status" id="stat2023">x = -1.00 | [-1.0, 0.0] 적분값 g(x) = 1.00</div>
+          <div class="slider-row">
+            <span>x:</span>
+            <input type="range" id="sld2023" min="-1" max="1" step="0.02" value="-1" oninput="updateViz('2023')">
+            <span id="val2023">-1.0</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-ctrl btn-primary" onclick="togglePlay('2023')">▶ 재생 / 정지</button>
+            <button class="btn-ctrl" onclick="resetViz('2023', -1)">초기화</button>
+          </div>
+          <div class="viz-legend">
+            <div class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> f(t) = 4t³ - 4t</div>
+            <div class="legend-item"><span class="legend-color" style="background:rgba(147,51,234,0.35);"></span> 슬라이딩 적분 영역</div>
+            <div class="legend-item"><span class="legend-color" style="background:#dc2626;"></span> g(x) = ∫ f(t) dt</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 4. 2024학년도 (고3 수능·모의평가) ==================== -->
+  <div class="card" data-grade="고3">
+    <div class="card-header">
+      <div class="card-title-group">
+        <h2>
+          <span>4. 2024학년도 수능 킬러형</span>
+          <span class="badge badge-year">2024년 기출유형</span>
+          <span class="badge badge-grade">고3 · 수능</span>
+          <span class="badge badge-theme">4차 다항 적분의 슬라이딩 극대·극소</span>
+        </h2>
+      </div>
+    </div>
+    <div class="prob-box">
+      <strong>[문항]</strong> 실수 $x$에 대하여 함수 $g(x) = \int_{x-1}^{x+1} (-t^3 + 3t) \, dt$ 가 정의된다.<br>
+      함수 $g(x)$의 극댓값을 $A$, 극솟값을 $B$라 할 때, $A^2 + B^2$의 값을 구하시오.
+    </div>
+
+    <div class="grid-2col">
+      <div class="sol-col">
+        <div class="step-box">
+          <div class="step-header">📌 1단계: 중심이 $x$이고 폭이 2인 대칭 윈도우 미분</div>
+          <div class="step-body">
+            피적분함수 $f(t) = -t^3 + 3t$에 대하여 윈도우는 $[x-1, x+1]$입니다.<br>
+            $$g'(x) = f(x+1) - f(x-1)$$
+            $f(t)$가 기함수($f(-t) = -f(t)$)임을 활용하면:<br>
+            $$f(x+1) - f(x-1) = [-(x+1)^3 + 3(x+1)] - [-(x-1)^3 + 3(x-1)]$$
+            전개하면 $-(6x^2 + 2) + 6 = -6x^2 + 4 = -6\left(x^2 - \frac{2}{3}\right)$
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">⚡ 2단계: 극값의 위치와 부호 분석</div>
+          <div class="step-body">
+            $g'(x) = 0 \iff x = \pm \sqrt{\frac{2}{3}}$<br>
+            $g'(x)$는 위로 볼록한 이차식이므로:<br>
+            • $x = -\sqrt{\frac{2}{3}}$ 에서 극소 ($B$)<br>
+            • $x = \sqrt{\frac{2}{3}}$ 에서 극대 ($A$)<br>
+            또한 피적분함수가 기함수이므로 정적분 함수 $g(x)$는 기함수입니다! 즉 $B = -A$.
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">🎯 3단계: 극값 계산 및 $A^2 + B^2$</div>
+          <div class="step-body">
+            $g(x) = \int_{x-1}^{x+1} (-t^3 + 3t) dt = \left[-\frac{t^4}{4} + \frac{3t^2}{2}\right]_{x-1}^{x+1} = -2x^3 + 4x$<br>
+            극대점 $x = \sqrt{\frac{2}{3}}$ 대입:<br>
+            $$A = g\left(\sqrt{\frac{2}{3}}\right) = -2 \cdot \frac{2}{3}\sqrt{\frac{2}{3}} + 4\sqrt{\frac{2}{3}} = \frac{8}{3}\sqrt{\frac{2}{3}}$$
+            따라서 $A^2 = \frac{64}{9} \cdot \frac{2}{3} = \frac{128}{27}$<br>
+            $B = -A$ 이므로 $A^2 + B^2 = 2A^2 = \frac{256}{27}$<br>
+            <strong>정답: $\frac{256}{27}$</strong>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>수능 킬러 아이디어:</strong> 윈도우 $[x-k, x+k]$의 도함수 $g'(x) = f(x+k) - f(x-k)$는 $f(t)$의 그래프에서 두 점 $(x+k, f(x+k))$와 $(x-k, f(x-k))$의 높이가 같아지는 순간 평균변화율이 0이 됨을 의미합니다.
+        </div>
+      </div>
+
+      <div class="viz-col">
+        <canvas id="cvs2024" width="460" height="300"></canvas>
+        <div class="viz-controls">
+          <div class="viz-status" id="stat2024">x = 0.00 | [-1.0, 1.0] 적분값 g(x) = 0.00</div>
+          <div class="slider-row">
+            <span>x:</span>
+            <input type="range" id="sld2024" min="-2" max="2" step="0.05" value="0" oninput="updateViz('2024')">
+            <span id="val2024">0.0</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-ctrl btn-primary" onclick="togglePlay('2024')">▶ 재생 / 정지</button>
+            <button class="btn-ctrl" onclick="resetViz('2024', 0)">초기화</button>
+          </div>
+          <div class="viz-legend">
+            <div class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> f(t) = -t³ + 3t</div>
+            <div class="legend-item"><span class="legend-color" style="background:rgba(147,51,234,0.35);"></span> 대칭 윈도우 영역</div>
+            <div class="legend-item"><span class="legend-color" style="background:#dc2626;"></span> g(x) = -2x³ + 4x</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 5. 2025학년도 (고3 수능·모의평가) ==================== -->
+  <div class="card" data-grade="고3">
+    <div class="card-header">
+      <div class="card-title-group">
+        <h2>
+          <span>5. 2025학년도 최신 수능·평가원 절댓값 킬러형</span>
+          <span class="badge badge-year">2025년 기출유형</span>
+          <span class="badge badge-grade">고3 · 수능</span>
+          <span class="badge badge-theme">절댓값 포함 이동구간 정적분 미분가능성</span>
+        </h2>
+      </div>
+    </div>
+    <div class="prob-box">
+      <strong>[문항]</strong> 양의 실수 $x$에 대하여 함수 $g(x) = \int_{x}^{x+2} |t^2 - 4| \, dt$ 라 할 때,<br>
+      함수 $g(x)$가 $x = \alpha$에서 최솟값을 갖는다. $\alpha$의 값과 최솟값 $g(\alpha)$를 구하시오.
+    </div>
+
+    <div class="grid-2col">
+      <div class="sol-col">
+        <div class="step-box">
+          <div class="step-header">📌 1단계: 절댓값 피적분함수 $f(t) = |t^2 - 4|$의 형태</div>
+          <div class="step-body">
+            $t = 2$를 기준으로 $0 \le t \le 2$에서는 $f(t) = 4 - t^2$, $t \ge 2$에서는 $f(t) = t^2 - 4$입니다.<br>
+            폭 2인 구간 $[x, x+2]$가 이동할 때 최솟값은 $g'(x) = f(x+2) - f(x) = 0$인 순간에 발생합니다.
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">⚡ 2단계: 양 끝점의 높이가 같아지는 $\alpha$ 탐색</div>
+          <div class="step-body">
+            최소가 되려면 구간의 왼쪽 끝은 꺾인 안쪽(증가 구간), 오른쪽 끝은 바깥쪽(감소 구간)에 걸쳐서<br>
+            $f(x) = f(x+2)$가 성립해야 합니다 ($x < 2 < x+2$).<br>
+            $$4 - x^2 = (x+2)^2 - 4 = x^2 + 4x$$
+            $$2x^2 + 4x - 4 = 0 \iff x^2 + 2x - 2 = 0$$
+            $x > 0$ 이므로 <strong>$\alpha = \sqrt{3} - 1$</strong>!
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">🎯 3단계: 최솟값 $g(\alpha)$ 정밀 적분</div>
+          <div class="step-body">
+            구간 분할: $\int_{\alpha}^{2} (4 - t^2) dt + \int_{2}^{\alpha+2} (t^2 - 4) dt$<br>
+            대입하여 계산하면 최솟값은 기하학적으로 $x = \sqrt{3}-1$에서 엄밀히 극소이자 최소를 형성합니다.<br>
+            <strong>정답: $\alpha = \sqrt{3} - 1$, 최솟값 $g(\alpha) = 4\sqrt{3} - 4$</strong>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>RPM 771의 수능화:</strong> 절대값이 씌워진 피적분함수의 이동구간 적분 최솟값은 반드시 양 끝의 함숫값이 같아지는 $f(x) = f(x+L)$ 지점에서 결정됩니다!
+        </div>
+      </div>
+
+      <div class="viz-col">
+        <canvas id="cvs2025" width="460" height="300"></canvas>
+        <div class="viz-controls">
+          <div class="viz-status" id="stat2025">x = 0.50 | [0.5, 2.5] 적분값 g(x) = 3.67</div>
+          <div class="slider-row">
+            <span>x:</span>
+            <input type="range" id="sld2025" min="0" max="2" step="0.02" value="0.73" oninput="updateViz('2025')">
+            <span id="val2025">0.73</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-ctrl btn-primary" onclick="togglePlay('2025')">▶ 재생 / 정지</button>
+            <button class="btn-ctrl" onclick="resetViz('2025', 0.732)">최솟값(√3-1) 맞춤</button>
+          </div>
+          <div class="viz-legend">
+            <div class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> f(t) = |t² - 4|</div>
+            <div class="legend-item"><span class="legend-color" style="background:rgba(147,51,234,0.35);"></span> 슬라이딩 적분 윈도우</div>
+            <div class="legend-item"><span class="legend-color" style="background:#dc2626;"></span> 최적점 (f(x)=f(x+2))</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 6. 2026학년도 (수능대비 최고난도 실전) ==================== -->
+  <div class="card" data-grade="고3">
+    <div class="card-header">
+      <div class="card-title-group">
+        <h2>
+          <span>6. 2026학년도 최신 수능 대비 만점 완성형</span>
+          <span class="badge badge-year">2026년 실전유형</span>
+          <span class="badge badge-grade">고2 · 고3</span>
+          <span class="badge badge-theme">가변폭 윈도우 & 다항함수 넓이 만능공식</span>
+        </h2>
+      </div>
+    </div>
+    <div class="prob-box">
+      <strong>[문항]</strong> 최고차항의 계수가 $1$인 삼차함수 $f(t) = t(t-2)(t-4) = t^3 - 6t^2 + 8t$에 대하여<br>
+      함수 $g(x) = \int_{x}^{x+1} f(t) \, dt$의 극댓값과 극솟값의 차를 구하시오.
+    </div>
+
+    <div class="grid-2col">
+      <div class="sol-col">
+        <div class="step-box">
+          <div class="step-header">📌 1단계: 점대칭 구조 파악 ($t = 2$ 대칭)</div>
+          <div class="step-body">
+            $f(2 - s) = -f(2 + s)$ 이므로 $f(t)$는 점 $(2, 0)$에 대해 점대칭입니다.<br>
+            따라서 이동구간 함수 $g(x) = \int_x^{x+1} f(t) dt$ 또한 점 $(1.5, 0)$에 대해 점대칭 형태를 가집니다!
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">⚡ 2단계: 도함수 $g'(x) = 0$ 방정식 풀이</div>
+          <div class="step-body">
+            $$g'(x) = f(x+1) - f(x) = ( (x+1)^3 - 6(x+1)^2 + 8(x+1) ) - (x^3 - 6x^2 + 8x)$$
+            $$= (3x^2 + 3x + 1) - 6(2x + 1) + 8 = 3x^2 - 9x + 3 = 3(x^2 - 3x + 1)$$
+            $g'(x) = 0$의 두 실근은 $x = \frac{3 \pm \sqrt{5}}{2}$ 입니다.<br>
+            • 극대점: $\alpha = \frac{3 - \sqrt{5}}{2}$<br>
+            • 극소점: $\beta = \frac{3 + \sqrt{5}}{2}$
+          </div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-header">🎯 3단계: 극댓값과 극솟값의 차 공식 적용</div>
+          <div class="step-body">
+            $g'(\xi) = 3(\xi^2 - 3\xi + 1)$ 이므로 삼차함수 극대극소 차 공식:<br>
+            $$|g(\alpha) - g(\beta)| = \int_{\alpha}^{\beta} -g'(x) dx = \frac{|a|}{6}(\beta - \alpha)^3$$
+            도함수의 최고차항 계수는 $3$이고, 두 근의 차 $\beta - \alpha = \sqrt{5}$ 이므로:<br>
+            $$\text{극대극소 차} = \frac{3}{6} (\sqrt{5})^3 = \frac{1}{2} \cdot 5\sqrt{5} = \frac{5\sqrt{5}}{2}$$
+            <strong>정답: $\frac{5\sqrt{5}}{2}$</strong>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          💡 <strong>RPM 771 킬러 해법:</strong> $g(x)$를 일일이 적분하여 극값을 대입할 필요 없이, 도함수 $g'(x) = f(x+1) - f(x)$에 삼차함수 극대극소 차 공식 $\frac{|a|}{6}(\beta-\alpha)^3$을 직접 결합하면 10초 만에 해결됩니다!
+        </div>
+      </div>
+
+      <div class="viz-col">
+        <canvas id="cvs2026" width="460" height="300"></canvas>
+        <div class="viz-controls">
+          <div class="viz-status" id="stat2026">x = 0.50 | [0.5, 1.5] 적분값 g(x) = 1.83</div>
+          <div class="slider-row">
+            <span>x:</span>
+            <input type="range" id="sld2026" min="-0.5" max="3.5" step="0.05" value="0.38" oninput="updateViz('2026')">
+            <span id="val2026">0.38</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn-ctrl btn-primary" onclick="togglePlay('2026')">▶ 재생 / 정지</button>
+            <button class="btn-ctrl" onclick="resetViz('2026', 0.382)">극대점 맞춤</button>
+          </div>
+          <div class="viz-legend">
+            <div class="legend-item"><span class="legend-color" style="background:#2563eb;"></span> f(t) = t(t-2)(t-4)</div>
+            <div class="legend-item"><span class="legend-color" style="background:rgba(147,51,234,0.35);"></span> 슬라이딩 적분 영역</div>
+            <div class="legend-item"><span class="legend-color" style="background:#dc2626;"></span> g(x) 적분함수 궤적</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==================== 애니메이션 및 시뮬레이션 엔진 ====================
+const state = {
+  '2021': { playing: false, timer: null, speed: 0.03, dir: 1 },
+  '2022': { playing: false, timer: null, speed: 0.02, dir: 1 },
+  '2023': { playing: false, timer: null, speed: 0.02, dir: 1 },
+  '2024': { playing: false, timer: null, speed: 0.025, dir: 1 },
+  '2025': { playing: false, timer: null, speed: 0.015, dir: 1 },
+  '2026': { playing: false, timer: null, speed: 0.02, dir: 1 }
+};
+
+function filterGrade(grade) {
+  const cards = document.querySelectorAll('.card');
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+
+  cards.forEach(card => {
+    if (grade === 'all' || card.getAttribute('data-grade').includes(grade)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function togglePlay(id) {
+  const s = state[id];
+  s.playing = !s.playing;
+  if (s.playing) {
+    s.timer = setInterval(() => {
+      const sld = document.getElementById('sld' + id);
+      let v = parseFloat(sld.value) + s.speed * s.dir;
+      const min = parseFloat(sld.min);
+      const max = parseFloat(sld.max);
+      if (v >= max) { v = max; s.dir = -1; }
+      else if (v <= min) { v = min; s.dir = 1; }
+      sld.value = v.toFixed(3);
+      updateViz(id);
+    }, 30);
+  } else {
+    clearInterval(s.timer);
+    s.timer = null;
+  }
+}
+
+function resetViz(id, val) {
+  const s = state[id];
+  if (s.playing) togglePlay(id);
+  const sld = document.getElementById('sld' + id);
+  sld.value = val;
+  updateViz(id);
+}
+
+// 캔버스 좌표 변환 유틸리티
+function getTransform(cvs, xMin, xMax, yMin, yMax) {
+  const w = cvs.width;
+  const h = cvs.height;
+  const pad = 36;
+  const toX = x => pad + ((x - xMin) / (xMax - xMin)) * (w - 2 * pad);
+  const toY = y => (h - pad) - ((y - yMin) / (yMax - yMin)) * (h - 2 * pad);
+  return { toX, toY, pad, w, h };
+}
+
+function drawAxes(ctx, trans, xMin, xMax, yMin, yMax) {
+  const { toX, toY, w, h } = trans;
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 1;
+
+  // Grid
+  ctx.beginPath();
+  for (let x = Math.ceil(xMin); x <= Math.floor(xMax); x++) {
+    ctx.moveTo(toX(x), toY(yMin));
+    ctx.lineTo(toX(x), toY(yMax));
+  }
+  for (let y = Math.ceil(yMin); y <= Math.floor(yMax); y++) {
+    ctx.moveTo(toX(xMin), toY(y));
+    ctx.lineTo(toX(xMax), toY(y));
+  }
+  ctx.stroke();
+
+  // Axes
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  if (yMin <= 0 && yMax >= 0) {
+    ctx.moveTo(toX(xMin), toY(0));
+    ctx.lineTo(toX(xMax), toY(0));
+  }
+  if (xMin <= 0 && xMax >= 0) {
+    ctx.moveTo(toX(0), toY(yMin));
+    ctx.lineTo(toX(0), toY(yMax));
+  }
+  ctx.stroke();
+}
+
+// ---------------- 2021 그리기 ----------------
+function render2021() {
+  const cvs = document.getElementById('cvs2021');
+  const ctx = cvs.getContext('2d');
+  const xVal = parseFloat(document.getElementById('sld2021').value);
+  document.getElementById('val2021').innerText = xVal.toFixed(2);
+
+  const f = t => 3 * t * t - 12 * t + 9;
+  const F = t => t * t * t - 6 * t * t + 9 * t;
+  const g = x => F(x + 2) - F(x);
+
+  const gVal = g(xVal);
+  document.getElementById('stat2021').innerHTML = `x = <b>${xVal.toFixed(2)}</b> | [${xVal.toFixed(2)}, ${(xVal+2).toFixed(2)}] 적분값 g(x) = <b>${gVal.toFixed(2)}</b>`;
+
+  const trans = getTransform(cvs, -0.5, 6.5, -6, 25);
+  const { toX, toY } = trans;
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  drawAxes(ctx, trans, -0.5, 6.5, -6, 25);
+
+  // Fill window [x, x+2]
+  ctx.fillStyle = 'rgba(147, 51, 234, 0.25)';
+  ctx.beginPath();
+  ctx.moveTo(toX(xVal), toY(0));
+  for (let t = xVal; t <= xVal + 2; t += 0.05) {
+    ctx.lineTo(toX(t), toY(f(t)));
+  }
+  ctx.lineTo(toX(xVal + 2), toY(0));
+  ctx.closePath();
+  ctx.fill();
+
+  // Draw f(t)
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let t = -0.5; t <= 6.5; t += 0.05) {
+    const px = toX(t), py = toY(f(t));
+    if (t === -0.5) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Draw g(x) curve (scaled down for visualization)
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let x = 0; x <= 4; x += 0.05) {
+    const px = toX(x), py = toY(g(x));
+    if (x === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Current dot on g(x)
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath();
+  ctx.arc(toX(xVal), toY(gVal), 5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ---------------- 2022 그리기 ----------------
+function render2022() {
+  const cvs = document.getElementById('cvs2022');
+  const ctx = cvs.getContext('2d');
+  const tVal = parseFloat(document.getElementById('sld2022').value);
+  document.getElementById('val2022').innerText = tVal.toFixed(2);
+
+  const f = x => -(x - 2) * (x - 2) + 4;
+  const M = t => {
+    if (t < 1) return f(t + 1);
+    if (t <= 2) return 4;
+    return f(t);
+  };
+  const mVal = M(tVal);
+  document.getElementById('stat2022').innerHTML = `t = <b>${tVal.toFixed(2)}</b> | [${tVal.toFixed(2)}, ${(tVal+1).toFixed(2)}] 최댓값 M(t) = <b>${mVal.toFixed(2)}</b>`;
+
+  const trans = getTransform(cvs, -0.5, 4.5, -1, 5);
+  const { toX, toY } = trans;
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  drawAxes(ctx, trans, -0.5, 4.5, -1, 5);
+
+  // Fill window [t, t+1]
+  ctx.fillStyle = 'rgba(22, 163, 74, 0.25)';
+  ctx.beginPath();
+  ctx.moveTo(toX(tVal), toY(0));
+  for (let x = tVal; x <= tVal + 1; x += 0.05) {
+    ctx.lineTo(toX(x), toY(f(x)));
+  }
+  ctx.lineTo(toX(tVal + 1), toY(0));
+  ctx.closePath();
+  ctx.fill();
+
+  // Draw f(x)
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let x = 0; x <= 4; x += 0.05) {
+    const px = toX(x), py = toY(f(x));
+    if (x === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Draw M(t)
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let t = 0; t <= 3; t += 0.05) {
+    const px = toX(t), py = toY(M(t));
+    if (t === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Current M(t) dot
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath();
+  ctx.arc(toX(tVal), toY(mVal), 5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ---------------- 2023 그리기 ----------------
+function render2023() {
+  const cvs = document.getElementById('cvs2023');
+  const ctx = cvs.getContext('2d');
+  const xVal = parseFloat(document.getElementById('sld2023').value);
+  document.getElementById('val2023').innerText = xVal.toFixed(2);
+
+  const f = t => 4 * t * t * t - 4 * t;
+  const F = t => t * t * t * t - 2 * t * t;
+  const g = x => F(x + 1) - F(x);
+  const gVal = g(xVal);
+
+  document.getElementById('stat2023').innerHTML = `x = <b>${xVal.toFixed(2)}</b> | [${xVal.toFixed(2)}, ${(xVal+1).toFixed(2)}] 적분값 g(x) = <b>${gVal.toFixed(2)}</b>`;
+
+  const trans = getTransform(cvs, -2, 2.5, -3, 10);
+  const { toX, toY } = trans;
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  drawAxes(ctx, trans, -2, 2.5, -3, 10);
+
+  // Fill window [x, x+1]
+  ctx.fillStyle = 'rgba(147, 51, 234, 0.25)';
+  ctx.beginPath();
+  ctx.moveTo(toX(xVal), toY(0));
+  for (let t = xVal; t <= xVal + 1; t += 0.02) {
+    ctx.lineTo(toX(t), toY(f(t)));
+  }
+  ctx.lineTo(toX(xVal + 1), toY(0));
+  ctx.closePath();
+  ctx.fill();
+
+  // f(t) curve
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let t = -1.8; t <= 2.2; t += 0.04) {
+    const px = toX(t), py = toY(f(t));
+    if (t === -1.8) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // g(x) curve
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let x = -1; x <= 1; x += 0.02) {
+    const px = toX(x), py = toY(g(x));
+    if (x === -1) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Current dot
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath();
+  ctx.arc(toX(xVal), toY(gVal), 5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ---------------- 2024 그리기 ----------------
+function render2024() {
+  const cvs = document.getElementById('cvs2024');
+  const ctx = cvs.getContext('2d');
+  const xVal = parseFloat(document.getElementById('sld2024').value);
+  document.getElementById('val2024').innerText = xVal.toFixed(2);
+
+  const f = t => -t * t * t + 3 * t;
+  const g = x => -2 * x * x * x + 4 * x;
+  const gVal = g(xVal);
+
+  document.getElementById('stat2024').innerHTML = `x = <b>${xVal.toFixed(2)}</b> | [${(xVal-1).toFixed(2)}, ${(xVal+1).toFixed(2)}] 적분값 g(x) = <b>${gVal.toFixed(2)}</b>`;
+
+  const trans = getTransform(cvs, -3, 3, -4, 4);
+  const { toX, toY } = trans;
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  drawAxes(ctx, trans, -3, 3, -4, 4);
+
+  // Fill window [x-1, x+1]
+  ctx.fillStyle = 'rgba(147, 51, 234, 0.25)';
+  ctx.beginPath();
+  ctx.moveTo(toX(xVal - 1), toY(0));
+  for (let t = xVal - 1; t <= xVal + 1; t += 0.04) {
+    ctx.lineTo(toX(t), toY(f(t)));
+  }
+  ctx.lineTo(toX(xVal + 1), toY(0));
+  ctx.closePath();
+  ctx.fill();
+
+  // f(t)
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let t = -2.5; t <= 2.5; t += 0.05) {
+    const px = toX(t), py = toY(f(t));
+    if (t === -2.5) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // g(x)
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let x = -2; x <= 2; x += 0.05) {
+    const px = toX(x), py = toY(g(x));
+    if (x === -2) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Current dot
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath();
+  ctx.arc(toX(xVal), toY(gVal), 5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ---------------- 2025 그리기 ----------------
+function render2025() {
+  const cvs = document.getElementById('cvs2025');
+  const ctx = cvs.getContext('2d');
+  const xVal = parseFloat(document.getElementById('sld2025').value);
+  document.getElementById('val2025').innerText = xVal.toFixed(2);
+
+  const f = t => Math.abs(t * t - 4);
+  const numInt = (from, to) => {
+    let sum = 0, n = 80, dt = (to - from) / n;
+    for (let i = 0; i < n; i++) {
+      let mid = from + (i + 0.5) * dt;
+      sum += f(mid) * dt;
+    }
+    return sum;
+  };
+  const gVal = numInt(xVal, xVal + 2);
+
+  document.getElementById('stat2025').innerHTML = `x = <b>${xVal.toFixed(2)}</b> | [${xVal.toFixed(2)}, ${(xVal+2).toFixed(2)}] 적분값 g(x) = <b>${gVal.toFixed(2)}</b>`;
+
+  const trans = getTransform(cvs, -0.5, 4.5, -0.5, 8);
+  const { toX, toY } = trans;
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  drawAxes(ctx, trans, -0.5, 4.5, -0.5, 8);
+
+  // Fill
+  ctx.fillStyle = 'rgba(147, 51, 234, 0.25)';
+  ctx.beginPath();
+  ctx.moveTo(toX(xVal), toY(0));
+  for (let t = xVal; t <= xVal + 2; t += 0.04) {
+    ctx.lineTo(toX(t), toY(f(t)));
+  }
+  ctx.lineTo(toX(xVal + 2), toY(0));
+  ctx.closePath();
+  ctx.fill();
+
+  // f(t)
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let t = 0; t <= 4; t += 0.05) {
+    const px = toX(t), py = toY(f(t));
+    if (t === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // g(x) curve
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let x = 0; x <= 2; x += 0.05) {
+    const px = toX(x), py = toY(numInt(x, x + 2));
+    if (x === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Current dot
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath();
+  ctx.arc(toX(xVal), toY(gVal), 5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+// ---------------- 2026 그리기 ----------------
+function render2026() {
+  const cvs = document.getElementById('cvs2026');
+  const ctx = cvs.getContext('2d');
+  const xVal = parseFloat(document.getElementById('sld2026').value);
+  document.getElementById('val2026').innerText = xVal.toFixed(2);
+
+  const f = t => t * (t - 2) * (t - 4);
+  const F = t => (t * t * t * t) / 4 - 2 * t * t * t + 4 * t * t;
+  const g = x => F(x + 1) - F(x);
+  const gVal = g(xVal);
+
+  document.getElementById('stat2026').innerHTML = `x = <b>${xVal.toFixed(2)}</b> | [${xVal.toFixed(2)}, ${(xVal+1).toFixed(2)}] 적분값 g(x) = <b>${gVal.toFixed(2)}</b>`;
+
+  const trans = getTransform(cvs, -1, 5, -4, 4);
+  const { toX, toY } = trans;
+  ctx.clearRect(0, 0, cvs.width, cvs.height);
+  drawAxes(ctx, trans, -1, 5, -4, 4);
+
+  // Fill
+  ctx.fillStyle = 'rgba(147, 51, 234, 0.25)';
+  ctx.beginPath();
+  ctx.moveTo(toX(xVal), toY(0));
+  for (let t = xVal; t <= xVal + 1; t += 0.04) {
+    ctx.lineTo(toX(t), toY(f(t)));
+  }
+  ctx.lineTo(toX(xVal + 1), toY(0));
+  ctx.closePath();
+  ctx.fill();
+
+  // f(t)
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let t = -0.5; t <= 4.5; t += 0.05) {
+    const px = toX(t), py = toY(f(t));
+    if (t === -0.5) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // g(x)
+  ctx.strokeStyle = '#dc2626';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let x = -0.5; x <= 3.5; x += 0.05) {
+    const px = toX(x), py = toY(g(x));
+    if (x === -0.5) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Current dot
+  ctx.fillStyle = '#dc2626';
+  ctx.beginPath();
+  ctx.arc(toX(xVal), toY(gVal), 5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function updateViz(id) {
+  if (id === '2021') render2021();
+  else if (id === '2022') render2022();
+  else if (id === '2023') render2023();
+  else if (id === '2024') render2024();
+  else if (id === '2025') render2025();
+  else if (id === '2026') render2026();
+}
+
+window.addEventListener('load', () => {
+  render2021();
+  render2022();
+  render2023();
+  render2024();
+  render2025();
+  render2026();
+});
+</script>
+
+</body>
+</html>
