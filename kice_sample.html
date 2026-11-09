@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>기출문제 보관소 & AI 쌍둥이 스튜디오 (방안 B)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-dark: #1e40af;
+      --primary-light: #eff6ff;
+      --accent: #059669;
+      --source-color: #334155;
+      --num-color: #2b5675;
+      --border-color: #cbd5e1;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: #1e293b;
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+    
+    /* 상단 통합 컨트롤 바 */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .brand-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-outline { background: white; border-color: #cbd5e1; color: #334155; }
+    .btn-outline:hover { background: #f1f5f9; border-color: #94a3b8; }
+    .btn-accent { background: #059669; color: white; }
+    .btn-accent:hover { background: #047857; }
+    .btn-purple { background: #7c3aed; color: white; }
+    .btn-purple:hover { background: #6d28d9; }
+    .btn-active {
+      background: #eff6ff !important;
+      border-color: #3b82f6 !important;
+      color: #1d4ed8 !important;
+      font-weight: 700;
+    }
+    
+    /* 선생님/원장님 출제 도구 랙 */
+    .admin-dock {
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 1px 3px rgba(37,99,235,0.06);
+    }
+    .admin-dock-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e3a8a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .admin-dock-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+    
+    /* 2단 수능 시험지 모드 */
+    .paper-sheet {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: all 0.3s ease;
+    }
+    .paper-sheet.mode-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: #ffffff;
+      padding: 24px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    @media (max-width: 800px) {
+      .paper-sheet.mode-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 문제 카드 */
+    .question-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px 28px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      position: relative;
+    }
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .q-number-box {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .q-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--num-color);
+      line-height: 1;
+      letter-spacing: -1px;
+      font-family: 'Arial Black', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .q-source-tag {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--source-color);
+      letter-spacing: -0.3px;
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* 아이콘 버튼 바 */
+    .q-icon-dock {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .icon-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: #f8fafc;
+      color: #334155;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+      white-space: nowrap;
+    }
+    .icon-pill .ip-icon { font-size: 14px; line-height: 1; }
+    .icon-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .icon-pill:active { transform: translateY(0); }
+    
+    .icon-pill.theme-hint { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+    .icon-pill.theme-hint:hover { background: #ede9fe; border-color: #c4b5fd; }
+    .icon-pill.theme-draw { background: #f0f9ff; color: #0369a1; border-color: #bae6fd; }
+    .icon-pill.theme-draw:hover { background: #e0f2fe; border-color: #7dd3fc; }
+    .icon-pill.theme-twin { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
+    .icon-pill.theme-twin:hover { background: #d1fae5; border-color: #6ee7b7; }
+    .icon-pill.theme-copy { background: #f8fafc; color: #475569; border-color: #e2e8f0; padding: 6px 10px; }
+    .icon-pill.theme-copy:hover { background: #f1f5f9; border-color: #cbd5e1; }
+
+    .q-body {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #1e293b;
+      margin-bottom: 16px;
+      word-break: keep-all;
+    }
+    .table-container {
+      margin: 14px auto;
+      max-width: 440px;
+      text-align: right;
+    }
+    .table-unit {
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 4px;
+    }
+    .kice-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: center;
+      background: #fff;
+    }
+    .kice-table th, .kice-table td {
+      border: 1px solid #64748b;
+      padding: 8px 12px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .kice-table th { background: #f8fafc; font-weight: 600; }
+
+    /* 파스텔톤 칸 전체 채움 형광펜 */
+    .hl-pastel-cell { position: relative; z-index: 1; }
+    .hl-pastel-cell::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 100%;
+      background: linear-gradient(135deg, rgba(254, 240, 138, 0.85), rgba(253, 230, 138, 0.9));
+      z-index: -1;
+      transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hl-pastel-active::before { width: 100%; }
+    th.hl-pastel-cell::before {
+      background: linear-gradient(135deg, rgba(254, 215, 170, 0.85), rgba(253, 230, 138, 0.9));
+    }
+
+    .target-pastel-cell { transition: all 0.4s ease; }
+    .target-pastel-cell.mark-active {
+      background: linear-gradient(135deg, rgba(254, 205, 211, 0.9), rgba(254, 226, 226, 0.95)) !important;
+      box-shadow: inset 0 0 0 2.5px #f43f5e, 0 0 10px rgba(244, 63, 94, 0.35);
+      font-weight: 800;
+      color: #9f1239;
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    /* 5지선다 */
+    .q-choices {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 18px 0 12px;
+      padding-top: 8px;
+      row-gap: 12px;
+    }
+    .q-choice-item {
+      flex: 1 0 18%;
+      min-width: 90px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .q-choice-item:hover { background: #eff6ff; }
+    .q-choice-item.selected {
+      background: #dbeafe;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+    .choice-num { font-size: 16px; color: #334155; }
+
+    /* 태블릿 터치 손글씨 연습장 */
+    .scratchpad-container {
+      margin-top: 16px;
+      background: #ffffff;
+      border: 2px dashed #94a3b8;
+      border-radius: 12px;
+      padding: 12px;
+      display: none;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      animation: fadeIn 0.25s ease;
+    }
+    .scratchpad-container.show { display: block; }
+    .scratchpad-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .sp-tools-group { display: flex; align-items: center; gap: 6px; }
+    .color-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      cursor: pointer; border: 2px solid #fff;
+      box-shadow: 0 0 0 1px #cbd5e1;
+      transition: transform 0.1s;
+    }
+    .color-dot:hover, .color-dot.active {
+      transform: scale(1.2); box-shadow: 0 0 0 2px #3b82f6;
+    }
+    .drawing-canvas {
+      width: 100%; height: 220px; background: #fbfcfe;
+      background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+      background-size: 16px 16px; border-radius: 8px;
+      cursor: crosshair; touch-action: none;
+    }
+
+    /* 단계별 힌트 */
+    .step-solution-box {
+      margin-top: 16px;
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 18px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .step-solution-box.show { display: block; }
+    .step-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+    .step-title {
+      font-size: 15px; font-weight: 700; color: #0f172a;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .step-progress-dots { display: flex; gap: 6px; }
+    .p-dot {
+      width: 26px; height: 6px; border-radius: 4px;
+      background: #cbd5e1; transition: all 0.3s;
+    }
+    .p-dot.active {
+      background: #2563eb; box-shadow: 0 0 6px rgba(37,99,235,0.4);
+    }
+    .step-list { display: flex; flex-direction: column; gap: 12px; }
+    .step-item {
+      background: #ffffff; border: 1px solid #e2e8f0;
+      border-left: 4px solid #cbd5e1; border-radius: 8px;
+      padding: 14px 18px; display: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .step-item.show {
+      display: block;
+      animation: stepAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes stepAppear {
+      0% { opacity: 0; transform: translateY(-8px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .step-item.step-1 { border-left-color: #3b82f6; }
+    .step-item.step-2 { border-left-color: #8b5cf6; }
+    .step-item.step-3 { border-left-color: #10b981; }
+    .step-label {
+      font-size: 13px; font-weight: 700; margin-bottom: 4px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .step-1 .step-label { color: #2563eb; }
+    .step-2 .step-label { color: #7c3aed; }
+    .step-3 .step-label { color: #059669; }
+    .step-body { font-size: 14.5px; color: #334155; line-height: 1.7; }
+    .step-controls {
+      display: flex; justify-content: space-between;
+      margin-top: 14px; padding-top: 10px;
+      border-top: 1px dashed #cbd5e1;
+    }
+
+    /* 삼차함수 그래프 캔버스 */
+    .graph-sim-card {
+      margin-top: 12px; background: #ffffff;
+      border: 1px solid #cbd5e1; border-radius: 12px;
+      padding: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+    }
+    .graph-sim-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px; flex-wrap: wrap; gap: 8px;
+    }
+    .graph-sim-title {
+      font-size: 13.5px; font-weight: 700; color: #1e3a8a;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .graph-canvas-box {
+      position: relative; width: 100%; height: 270px;
+      background: #fafcff; border: 1px solid #dbeafe;
+      border-radius: 10px; overflow: hidden;
+    }
+    #graphCanvas51 { width: 100%; height: 100%; display: block; }
+    .graph-status-badge {
+      font-size: 12px; font-weight: 700; padding: 3px 10px;
+      border-radius: 6px; background: #eff6ff; color: #1d4ed8;
+      border: 1px solid #bfdbfe; transition: all 0.3s;
+    }
+
+    /* 쌍둥이 변형 섹션 (원문항 표 기반 2, 3, 4번) */
+    .twin-box {
+      margin-top: 18px; padding: 18px 20px;
+      background: #f0fdf4; border: 1px solid #bbf7d0;
+      border-radius: 12px; display: none;
+    }
+    .twin-box.show { display: block; animation: fadeIn 0.25s ease; }
+    .twin-title {
+      font-size: 14px; font-weight: 700; color: #166534;
+      display: flex; align-items: center; gap: 6px;
+      margin-bottom: 14px;
+    }
+    .twin-item {
+      background: #ffffff; border: 1px solid #dcfce7;
+      border-radius: 8px; padding: 14px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .twin-item:last-child { margin-bottom: 0; }
+    .twin-badge {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px;
+      background: #22c55e; color: #fff; margin-bottom: 6px;
+    }
+    .twin-badge.cond { background: #0284c7; }
+    .twin-badge.purple { background: #7c3aed; }
+    .twin-badge.orange { background: #ea580c; }
+    .origin-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+      border: 1px solid #bae6fd;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 인쇄 시 도구 및 액션 숨김 */
+    @media print {
+      header, .admin-dock, .plan-notice, .scratchpad-container, .step-controls, .q-icon-dock, .btn {
+        display: none !important;
+      }
+      body { background: #fff; padding: 0; }
+      main { max-width: 100%; margin: 0; padding: 0; }
+      .paper-sheet.mode-2col {
+        grid-template-columns: 1fr 1fr; border: none; padding: 0;
+      }
+      .question-card {
+        border: none; box-shadow: none; padding: 16px 0;
+        page-break-inside: avoid; border-bottom: 1px solid #e2e8f0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 영역 -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-badge">GMS AI</span>
+        <span class="brand-title">기출문제 보관소 &amp; 쌍둥이 스튜디오 (방안 B)</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-outline" onclick="toggleRegisterForm()">➕ 기출 등록</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ A4 시험지 인쇄</button>
+        <a href="worksheet.html" class="btn btn-outline">📝 출제기 이동</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 👨‍🏫 선생님·원장님 출제 도구 랙 -->
+    <div class="admin-dock">
+      <div class="admin-dock-title">
+        <span>⚙️ 선생님·원장님 출제 &amp; 인터랙션 도구:</span>
+      </div>
+      <div class="admin-dock-btns">
+        <button class="btn btn-outline" id="btnToggle2Col" onclick="toggle2ColMode()">
+          📑 수능형 2단(2열) 보기
+        </button>
+        <button class="btn btn-outline" id="btnClinicSet" onclick="toggleClinicSet()">
+          🎯 기출 + 쌍둥이 클리닉 세트 펼치기
+        </button>
+        <button class="btn btn-outline" onclick="sendToWorksheet()">
+          📥 출제 바구니 담기
+        </button>
+        <button class="btn btn-purple" onclick="autoPlayAllSteps()">
+          ▶ 고도화 인터랙션 전체 자동시연
+        </button>
+      </div>
+    </div>
+
+    <!-- 문제지 렌더링 영역 -->
+    <div class="paper-sheet" id="paperList">
+      
+      <!-- ==========================================
+           [자료 1] 2015학년도 9월 평가원 A형 9번 (50번)
+           ========================================== -->
+      <div class="question-card" id="q-card-50">
+        <div class="question-header">
+          <div class="q-number-box">
+            <span class="q-number">50</span>
+            <span class="q-source-tag">[2015학년도 9월 평가원 A형 9번]</span>
+          </div>
+
+          <div class="q-icon-dock">
+            <button class="icon-pill theme-hint" onclick="toggleStepSol(50)" title="단계별 힌트 및 파스텔 형광펜 애니메이션">
+              <span class="ip-icon">👣</span>
+              <span>힌트 풀이</span>
+            </button>
+            <button class="icon-pill theme-draw" onclick="toggleScratchpad(50)" title="터치 및 펜 손글씨 연습장">
+              <span class="ip-icon">✍️</span>
+              <span>손글씨</span>
+            </button>
+            <button class="icon-pill theme-twin" onclick="toggleTwin('twin-50')" title="AI 쌍둥이 변형 4문항 생성">
+              <span class="ip-icon">⚡</span>
+              <span>쌍둥이 4제</span>
+            </button>
+            <button class="icon-pill theme-copy" onclick="copyProblem(50)" title="문항 본문 복사">
+              <span class="ip-icon">📋</span>
+              <span>복사</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="q-body">
+          어느 직업 체험 행사에 참가한 300명의 A 고등학교 1, 2학년 학생 중 남학생과 여학생의 수는 다음과 같다.
+        </div>
+
+        <div class="table-container">
+          <div class="table-unit">(단위: 명)</div>
+          <table class="kice-table">
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>남학생</th>
+                <th id="th-girl" class="hl-pastel-cell">여학생</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1학년</td>
+                <td>80</td>
+                <td id="td-girl-60" class="hl-pastel-cell">60</td>
+              </tr>
+              <tr>
+                <td>2학년</td>
+                <td>90</td>
+                <td id="td-girl-70" class="hl-pastel-cell target-pastel-cell">70</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="q-body" style="margin-top: 14px;">
+          이 행사에 참가한 A 고등학교 1, 2학년 학생 중에서 임의로 선택한 1명이 여학생일 때, 이 학생이 2학년 학생일 확률은?
+        </div>
+
+        <div class="q-choices">
+          <div class="q-choice-item" onclick="selectChoice(50, 1)"><span class="choice-num">①</span> <span class="math-tex">\frac{6}{13}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(50, 2)"><span class="choice-num">②</span> <span class="math-tex">\frac{7}{13}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(50, 3)"><span class="choice-num">③</span> <span class="math-tex">\frac{8}{13}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(50, 4)"><span class="choice-num">④</span> <span class="math-tex">\frac{9}{13}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(50, 5)"><span class="choice-num">⑤</span> <span class="math-tex">\frac{10}{13}</span></div>
+        </div>
+
+        <!-- ✍️ 태블릿 터치 손글씨 연습장 -->
+        <div class="scratchpad-container" id="scratchpad-50">
+          <div class="scratchpad-toolbar">
+            <div class="sp-tools-group">
+              <span style="font-size: 13px; font-weight: 700; color: #475569;">펜 색상:</span>
+              <div class="color-dot active" style="background: #1e293b;" onclick="setPadColor(50, '#1e293b', this)"></div>
+              <div class="color-dot" style="background: #2563eb;" onclick="setPadColor(50, '#2563eb', this)"></div>
+              <div class="color-dot" style="background: #dc2626;" onclick="setPadColor(50, '#dc2626', this)"></div>
+              <div class="color-dot" style="background: #facc15;" onclick="setPadColor(50, 'rgba(250, 204, 21, 0.4)', this, 8)"></div>
+            </div>
+            <div class="sp-tools-group">
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="clearPad(50)">🗑️ 모두 지우기</button>
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="toggleScratchpad(50)">닫기</button>
+            </div>
+          </div>
+          <canvas id="canvas-50" class="drawing-canvas"></canvas>
+        </div>
+
+        <!-- 👣 단계별 힌트 & 표 형광펜 연동 풀이 -->
+        <div class="step-solution-box" id="step-box-50">
+          <div class="step-header">
+            <div class="step-title">
+              <span>🎯 스텝 바이 스텝 (파스텔 형광펜 연동)</span>
+            </div>
+            <div class="step-progress-dots">
+              <div class="p-dot" id="dot-50-1"></div>
+              <div class="p-dot" id="dot-50-2"></div>
+              <div class="p-dot" id="dot-50-3"></div>
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step-item step-1" id="step-item-50-1">
+              <div class="step-label">
+                <span>Step 1. 조건부확률의 표본공간 축소 파악</span>
+                <span>💡 힌트 1 (파스텔 옐로우 전체 채움)</span>
+              </div>
+              <div class="step-body">
+                문제의 조건: <strong>"선택한 1명이 여학생일 때"</strong><br>
+                전체 300명이 아니라, <strong>여학생 전체 집합</strong>으로 표본공간이 축소됩니다.<br>
+                👉 <em>위 표의 여학생 열(헤더, 60, 70 셀) 전체가 은은한 파스텔 형광펜으로 채워졌습니다!</em><br>
+                여학생 수의 합 = $60 + 70 = 130$(명)
+              </div>
+            </div>
+
+            <div class="step-item step-2" id="step-item-50-2">
+              <div class="step-label">
+                <span>Step 2. 해당 사건(2학년)의 인원 확인</span>
+                <span>💡 힌트 2 (2학년 70명 로즈핑크 타겟 마킹)</span>
+              </div>
+              <div class="step-body">
+                여학생 130명 중에서 <strong>"2학년 여학생"</strong>의 수를 표에서 찾습니다.<br>
+                👉 <em>위 표의 2학년 여학생 <strong>70</strong> 셀이 로즈핑크 글로우 링으로 타겟팅되었습니다!</em><br>
+                2학년 여학생 수 = $70$(명)
+              </div>
+            </div>
+
+            <div class="step-item step-3" id="step-item-50-3">
+              <div class="step-label">
+                <span>Step 3. 조건부확률 계산 및 약분 (최종 정답)</span>
+                <span>✅ 정답 도출</span>
+              </div>
+              <div class="step-body">
+                구하는 확률 $P(2학년|여학생) = \frac{n(2학년 \cap 여학생)}{n(여학생)} = \frac{70}{130} = \frac{7}{13}$<br>
+                따라서 <strong>정답은 ②번</strong>입니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-controls">
+            <button class="btn btn-outline" style="font-size: 12px;" onclick="resetStep(50)">처음부터</button>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-outline" style="font-size: 12px;" onclick="playStep(50, false)">이전 단계</button>
+              <button class="btn btn-primary" style="font-size: 12px;" id="next-btn-50" onclick="playStep(50, true)">다음 힌트 보기 ▶</button>
+            </div>
+          </div>
+        </div>
+
+                <!-- ⭐ AI 쌍둥이 변형 4문항 (1, 2, 3번: 원문항 표 기반 / 4번: 소재·숫자 확장 변형) -->
+        <div class="twin-box" id="twin-50">
+          <div class="twin-title">
+            <span>⚡ AI 4배수 추천 쌍둥이 문항</span>
+            <span style="font-size: 12px; color: #15803d; font-weight: normal;">(1~3번: 원문항 표 직결 훈련 / 4번: 새로운 소재 확장 변형)</span>
+          </div>
+
+          <!-- ⭐ 변형 1 [원문항 표 기반] 남학생 기준 1학년 -->
+          <div class="twin-item">
+            <span class="twin-badge cond">변형 1 · 남학생 기준 조건 전환형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              <span class="origin-tag">[원문항 표 기반]</span> 이 행사에 참가한 A 고등학교 학생 중에서 임의로 선택한 1명이 <strong>남학생일 때</strong>, 이 학생이 <strong>1학년</strong> 학생일 확률은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">\frac{7}{17}</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">\frac{8}{17}</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">\frac{9}{17}</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">\frac{10}{17}</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">\frac{11}{17}</span></div>
+            </div>
+            <div style="font-size: 13px; color: #0284c7; font-weight: 700;">
+              정답: ② $\frac{80}{80+90} = \frac{8}{17}$
+            </div>
+          </div>
+
+          <!-- ⭐ 변형 2 [원문항 표 기반] 1학년 기준 여학생 -->
+          <div class="twin-item">
+            <span class="twin-badge purple">변형 2 · 1학년 기준 조건 전환형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              <span class="origin-tag">[원문항 표 기반]</span> 이 행사에 참가한 A 고등학교 학생 중에서 임의로 선택한 1명이 <strong>1학년 학생일 때</strong>, 이 학생이 <strong>여학생</strong>일 확률은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">\frac{2}{7}</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">\frac{3}{7}</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">\frac{4}{7}</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">\frac{5}{7}</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">\frac{6}{7}</span></div>
+            </div>
+            <div style="font-size: 13px; color: #7c3aed; font-weight: 700;">
+              정답: ② $\frac{60}{80+60} = \frac{60}{140} = \frac{3}{7}$
+            </div>
+          </div>
+
+          <!-- ⭐ 변형 3 [원문항 표 기반] 2학년 기준 남학생 -->
+          <div class="twin-item">
+            <span class="twin-badge orange">변형 3 · 2학년 기준 조건 전환형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              <span class="origin-tag">[원문항 표 기반]</span> 이 행사에 참가한 A 고등학교 학생 중에서 임의로 선택한 1명이 <strong>2학년 학생일 때</strong>, 이 학생이 <strong>남학생</strong>일 확률은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">\frac{5}{16}</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">\frac{7}{16}</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">\frac{9}{16}</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">\frac{11}{16}</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">\frac{13}{16}</span></div>
+            </div>
+            <div style="font-size: 13px; color: #ea580c; font-weight: 700;">
+              정답: ③ $\frac{90}{90+70} = \frac{90}{160} = \frac{9}{16}$
+            </div>
+          </div>
+
+          <!-- ⭐ 변형 4 (소재/숫자 확장 변형: 과학 캠프 250명) -->
+          <div class="twin-item">
+            <span class="twin-badge">변형 4 · 동아리 소재/숫자 변형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              어느 과학 캠프에 참가한 250명의 학생 중 1, 2학년 남녀 수는 다음과 같다.<br>
+              (1학년: 남 60, 여 50 / 2학년: 남 80, 여 60)<br>
+              임의로 뽑은 1명이 여학생일 때, 1학년일 확률은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">\frac{4}{11}</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">\frac{5}{11}</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">\frac{6}{11}</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">\frac{7}{11}</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">\frac{8}{11}</span></div>
+            </div>
+            <div style="font-size: 13px; color: #166534; font-weight: 700;">
+              정답: ② $\frac{50}{110} = \frac{5}{11}$
+            </div>
+          </div>
+
+        </div>
+
+
+      <!-- ==========================================
+           [자료 2] 2023학년도 수능 수학 홀수형 9번 (51번)
+           ========================================== -->
+      <div class="question-card" id="q-card-51">
+        <div class="question-header">
+          <div class="q-number-box">
+            <span class="q-number">51</span>
+            <span class="q-source-tag">[2023학년도 수능 수학 홀수형 9번]</span>
+          </div>
+
+          <div class="q-icon-dock">
+            <button class="icon-pill theme-hint" onclick="toggleStepSol(51)" title="단계별 힌트 및 함수 그래프 자동 모션">
+              <span class="ip-icon">👣</span>
+              <span>힌트 풀이</span>
+            </button>
+            <button class="icon-pill theme-draw" onclick="toggleScratchpad(51)" title="터치 및 펜 손글씨 연습장">
+              <span class="ip-icon">✍️</span>
+              <span>손글씨</span>
+            </button>
+            <button class="icon-pill theme-twin" onclick="toggleTwin('twin-51')" title="AI 쌍둥이 변형 4문항 생성">
+              <span class="ip-icon">⚡</span>
+              <span>쌍둥이 4제</span>
+            </button>
+            <button class="icon-pill theme-copy" onclick="copyProblem(51)" title="문항 본문 복사">
+              <span class="ip-icon">📋</span>
+              <span>복사</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="q-body">
+          함수 $f(x) = x^3 - 3x + a$의 닫힌구간 $[0, 2]$에서의 최댓값이 $10$일 때, 상수 $a$의 값은?
+        </div>
+
+        <div class="q-choices">
+          <div class="q-choice-item" onclick="selectChoice(51, 1)"><span class="choice-num">①</span> <span class="math-tex">6</span></div>
+          <div class="q-choice-item" onclick="selectChoice(51, 2)"><span class="choice-num">②</span> <span class="math-tex">7</span></div>
+          <div class="q-choice-item" onclick="selectChoice(51, 3)"><span class="choice-num">③</span> <span class="math-tex">8</span></div>
+          <div class="q-choice-item" onclick="selectChoice(51, 4)"><span class="choice-num">④</span> <span class="math-tex">9</span></div>
+          <div class="q-choice-item" onclick="selectChoice(51, 5)"><span class="choice-num">⑤</span> <span class="math-tex">10</span></div>
+        </div>
+
+        <!-- ✍️ 태블릿 터치 손글씨 연습장 -->
+        <div class="scratchpad-container" id="scratchpad-51">
+          <div class="scratchpad-toolbar">
+            <div class="sp-tools-group">
+              <span style="font-size: 13px; font-weight: 700; color: #475569;">펜 색상:</span>
+              <div class="color-dot active" style="background: #1e293b;" onclick="setPadColor(51, '#1e293b', this)"></div>
+              <div class="color-dot" style="background: #2563eb;" onclick="setPadColor(51, '#2563eb', this)"></div>
+              <div class="color-dot" style="background: #dc2626;" onclick="setPadColor(51, '#dc2626', this)"></div>
+              <div class="color-dot" style="background: #facc15;" onclick="setPadColor(51, 'rgba(250, 204, 21, 0.4)', this, 8)"></div>
+            </div>
+            <div class="sp-tools-group">
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="clearPad(51)">🗑️ 모두 지우기</button>
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="toggleScratchpad(51)">닫기</button>
+            </div>
+          </div>
+          <canvas id="canvas-51" class="drawing-canvas"></canvas>
+        </div>
+
+        <!-- 👣 단계별 힌트 & 삼차함수 시뮬레이터 -->
+        <div class="step-solution-box" id="step-box-51">
+          <div class="step-header">
+            <div class="step-title">
+              <span>🎯 스텝 바이 스텝 (접선 추적 &amp; 최고점 정지 엔진)</span>
+            </div>
+            <div class="step-progress-dots">
+              <div class="p-dot" id="dot-51-1"></div>
+              <div class="p-dot" id="dot-51-2"></div>
+              <div class="p-dot" id="dot-51-3"></div>
+            </div>
+          </div>
+
+          <div class="graph-sim-card">
+            <div class="graph-sim-header">
+              <div class="graph-sim-title">
+                <span>📈 삼차함수 $f(x) = x^3 - 3x + a$ 동적 시뮬레이터</span>
+              </div>
+              <div class="graph-status-badge" id="graphBadge51">
+                Step 1: 극솟값 x=1 조사 및 접선 기울기 0 확인 중
+              </div>
+            </div>
+            <div class="graph-canvas-box">
+              <canvas id="graphCanvas51" width="580" height="270"></canvas>
+            </div>
+          </div>
+
+          <div class="step-list" style="margin-top: 14px;">
+            <div class="step-item step-1" id="step-item-51-1">
+              <div class="step-label">
+                <span>Step 1. 도함수를 구하여 증가·감소 및 극값 조사</span>
+                <span>💡 힌트 1 (접선 기울기 및 극소 확인)</span>
+              </div>
+              <div class="step-body">
+                $f'(x) = 3x^2 - 3 = 3(x-1)(x+1)$<br>
+                닫힌구간 $[0, 2]$ 내에서 $f'(x) = 0$이 되는 점은 <strong>$x=1$</strong>뿐입니다.<br>
+                👉 <em>위 그래프에서 오렌지색 접선이 $x=1$에 도달하면 기울기가 정확히 수평($0$)이 되는 순간을 확인하세요!</em>
+              </div>
+            </div>
+
+            <div class="step-item step-2" id="step-item-51-2">
+              <div class="step-label">
+                <span>Step 2. 구간의 양 끝값과 극값 비교</span>
+                <span>💡 힌트 2 (최고점 x=2에서 자동 정지!)</span>
+              </div>
+              <div class="step-body">
+                최댓값 후보는 구간의 양 끝점인 $x=0$과 $x=2$에서의 함숫값입니다.<br>
+                • $f(0) = a$<br>
+                • $f(2) = 2^3 - 3(2) + a = 8 - 6 + a = a + 2$<br>
+                $a < a + 2$이므로 최댓값은 <strong>$f(2) = a + 2$</strong>입니다.<br>
+                👉 <em>위 그래프에서 점이 최고점 $x=2$에 도달하면 <strong>딱 멈추어 펄스 글로우</strong>로 최댓값임을 확정합니다!</em>
+              </div>
+            </div>
+
+            <div class="step-item step-3" id="step-item-51-3">
+              <div class="step-label">
+                <span>Step 3. 조건 대입 및 상수 a 결정</span>
+                <span>✅ 정답 도출 (y=10으로 평행이동 안착)</span>
+              </div>
+              <div class="step-body">
+                최고점이 $y=10$ 선에 닿도록 곡선이 위로 부드럽게 평행이동합니다.<br>
+                $$a + 2 = 10 \implies a = 8$$<br>
+                따라서 <strong>정답은 ③번</strong>입니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-controls">
+            <button class="btn btn-outline" style="font-size: 12px;" onclick="resetStep(51)">처음부터</button>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-outline" style="font-size: 12px;" onclick="playStep(51, false)">이전 단계</button>
+              <button class="btn btn-primary" style="font-size: 12px;" id="next-btn-51" onclick="playStep(51, true)">다음 힌트 보기 ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI 쌍둥이 변형 4문항 -->
+        <div class="twin-box" id="twin-51">
+          <div class="twin-title">
+            <span>⚡ AI 4배수 추천 쌍둥이 문항</span>
+          </div>
+
+          <div class="twin-item">
+            <span class="twin-badge">변형 1 · 구간 및 계수 확장 쌍둥이</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              함수 $f(x) = x^3 - 12x + k$의 닫힌구간 $[0, 3]$에서의 최댓값이 $15$일 때, 상수 $k$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">11</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">13</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">15</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">17</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">19</span></div>
+            </div>
+            <div style="font-size: 13px; color: #166534; font-weight: 700;">
+              정답: ③ $15$ &nbsp; ($f(0)=k, f(2)=k-16, f(3)=k-9 \implies$ 최댓값 $k=15$)
+            </div>
+          </div>
+
+          <div class="twin-item">
+            <span class="twin-badge cond">변형 2 · 최솟값 조건 전환형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              함수 $f(x) = x^3 - 3x + a$의 닫힌구간 $[0, 2]$에서의 <strong>최솟값이 $3$</strong>일 때, 상수 $a$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">3</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">4</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">5</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">6</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">7</span></div>
+            </div>
+            <div style="font-size: 13px; color: #0284c7; font-weight: 700;">
+              정답: ③ $5$ &nbsp; (극솟값 $f(1) = a - 2 = 3 \implies a = 5$)
+            </div>
+          </div>
+
+          <div class="twin-item">
+            <span class="twin-badge purple">변형 3 · 최댓값과 최솟값의 차 유형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              함수 $f(x) = 2x^3 - 6x + k$의 닫힌구간 $[0, 2]$에서의 최댓값을 $M$, 최솟값을 $m$이라 하자. $M - m = 8$일 때, 상수 $k$에 관계없이 항상 성립함을 확인하고 $M + m = 12$일 때 $k$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">4</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">5</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">6</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">7</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">8</span></div>
+            </div>
+            <div style="font-size: 13px; color: #7c3aed; font-weight: 700;">
+              정답: ③ $6$ &nbsp; ($M=k+4, m=k-4 \implies M+m=2k=12 \implies k=6$)
+            </div>
+          </div>
+
+          <div class="twin-item">
+            <span class="twin-badge orange">변형 4 · 계수 음수 뒤집힘 (위로 볼록 극대)</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              함수 $f(x) = -x^3 + 3x + c$의 닫힌구간 $[0, 2]$에서의 최댓값이 $7$일 때, 상수 $c$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">3</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">4</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">5</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">6</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">7</span></div>
+            </div>
+            <div style="font-size: 13px; color: #c2410c; font-weight: 700;">
+              정답: ③ $5$ &nbsp; ($f'(x)=-3(x-1)(x+1) \implies x=1$에서 극대이자 최댓값 $f(1)=2+c=7 \implies c=5$)
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ==========================================
+           [자료 3] 2025학년도 수능 실전모의고사 11번
+           ========================================== -->
+      <div class="question-card" id="q-card-11">
+        <div class="question-header">
+          <div class="q-number-box">
+            <span class="q-number">11</span>
+            <span class="q-source-tag">[2025학년도 수능 실전모의고사 11번]</span>
+          </div>
+
+          <div class="q-icon-dock">
+            <button class="icon-pill theme-hint" onclick="toggleStepSol(11)" title="단계별 힌트 및 가속도 애니메이션">
+              <span class="ip-icon">👣</span>
+              <span>힌트 풀이</span>
+            </button>
+            <button class="icon-pill theme-draw" onclick="toggleScratchpad(11)" title="터치 및 펜 손글씨 연습장">
+              <span class="ip-icon">✍️</span>
+              <span>손글씨</span>
+            </button>
+            <button class="icon-pill theme-twin" onclick="toggleTwin('twin-11')" title="AI 쌍둥이 변형 4문항 생성">
+              <span class="ip-icon">⚡</span>
+              <span>쌍둥이 4제</span>
+            </button>
+            <button class="icon-pill theme-copy" onclick="copyProblem(11)" title="문항 본문 복사">
+              <span class="ip-icon">📋</span>
+              <span>복사</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="q-body">
+          시각 $t=0$일 때 원점을 출발하여 수직선 위를 움직이는 점 $\mathrm{P}$의 시각 $t$ ($t\ge 0$)에서의 위치 $x$가
+          $$x=t^3-3t^2-9t$$
+          이다. 출발한 후 점 $\mathrm{P}$의 운동 방향이 바뀌는 시각에서의 점 $\mathrm{P}$의 가속도는? [4점]
+        </div>
+
+        <div class="q-choices">
+          <div class="q-choice-item" onclick="selectChoice(11, 1)"><span class="choice-num">①</span> <span class="math-tex">9</span></div>
+          <div class="q-choice-item" onclick="selectChoice(11, 2)"><span class="choice-num">②</span> <span class="math-tex">12</span></div>
+          <div class="q-choice-item" onclick="selectChoice(11, 3)"><span class="choice-num">③</span> <span class="math-tex">15</span></div>
+          <div class="q-choice-item" onclick="selectChoice(11, 4)"><span class="choice-num">④</span> <span class="math-tex">18</span></div>
+          <div class="q-choice-item" onclick="selectChoice(11, 5)"><span class="choice-num">⑤</span> <span class="math-tex">21</span></div>
+        </div>
+
+        <!-- ✍️ 태블릿 터치 손글씨 연습장 -->
+        <div class="scratchpad-container" id="scratchpad-11">
+          <div class="scratchpad-toolbar">
+            <div class="sp-tools-group">
+              <span style="font-size: 13px; font-weight: 700; color: #475569;">펜 색상:</span>
+              <div class="color-dot active" style="background: #1e293b;" onclick="setPadColor(11, '#1e293b', this)"></div>
+              <div class="color-dot" style="background: #2563eb;" onclick="setPadColor(11, '#2563eb', this)"></div>
+              <div class="color-dot" style="background: #dc2626;" onclick="setPadColor(11, '#dc2626', this)"></div>
+              <div class="color-dot" style="background: #facc15;" onclick="setPadColor(11, 'rgba(250, 204, 21, 0.4)', this, 8)"></div>
+            </div>
+            <div class="sp-tools-group">
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="clearPad(11)">🗑️ 모두 지우기</button>
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="toggleScratchpad(11)">닫기</button>
+            </div>
+          </div>
+          <canvas id="canvas-11" class="drawing-canvas"></canvas>
+        </div>
+
+        <!-- 👣 단계별 힌트 & 수직선 운동 시뮬레이터 -->
+        <div class="step-solution-box" id="step-box-11">
+          <div class="step-header">
+            <div class="step-title">
+              <span>🎯 스텝 바이 스텝 &amp; 수직선 속도·가속도 시뮬레이션</span>
+            </div>
+            <div class="step-progress-dots">
+              <div class="p-dot" id="dot-11-1"></div>
+              <div class="p-dot" id="dot-11-2"></div>
+              <div class="p-dot" id="dot-11-3"></div>
+            </div>
+          </div>
+
+          <!-- 인터랙티브 수직선 캔버스 -->
+          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-bottom:14px; text-align:center;">
+            <canvas id="sim-canvas-11" width="560" height="90" style="max-width:100%; height:auto; background:#ffffff; border-radius:6px; border:1px solid #cbd5e1;"></canvas>
+            <div style="margin-top:6px; font-size:13px; color:#475569;" id="sim-info-11">
+              시각 $t = 0.00$s | 위치 $x = 0.0$ | 속도 $v = -9.0$ (좌향 이동) | 가속도 $a = -6.0$
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step-item step-1" id="step-item-11-1">
+              <div class="step-label">
+                <span>Step 1. 속도식 유도 및 운동 방향 전환 조건</span>
+                <span>💡 속도 $v(t)=0$</span>
+              </div>
+              <div class="step-body">
+                위치 $x(t) = t^3 - 3t^2 - 9t$ 를 미분하여 속도 $v(t)$를 구합니다:<br>
+                $$v(t) = rac{dx}{dt} = 3t^2 - 6t - 9 = 3(t^2 - 2t - 3) = 3(t-3)(t+1)$$
+                점 $\mathrm{P}$의 운동 방향이 바뀌는 순간은 속도 $v(t)$의 부호가 바뀌는 순간입니다.<br>
+                출발 후 시각 $t > 0$ 이므로 운동 방향이 바뀌는 시각은 <strong>$t = 3$</strong> 입니다!
+              </div>
+            </div>
+
+            <div class="step-item step-2" id="step-item-11-2">
+              <div class="step-label">
+                <span>Step 2. 가속도 함수 $a(t)$ 도출</span>
+                <span>💡 가속도 $a(t)=v'(t)$</span>
+              </div>
+              <div class="step-body">
+                속도 $v(t)$를 다시 시간에 대해 미분하여 가속도 $a(t)$를 구합니다:<br>
+                $$a(t) = rac{dv}{dt} = 6t - 6$$
+              </div>
+            </div>
+
+            <div class="step-item step-3" id="step-item-11-3">
+              <div class="step-label">
+                <span>Step 3. $t=3$에서의 가속도 값 계산 (최종 정답)</span>
+                <span>✅ 정답 도출</span>
+              </div>
+              <div class="step-body">
+                운동 방향이 바뀌는 시각 $t = 3$을 가속도 식에 대입합니다:<br>
+                $$a(3) = 6(3) - 6 = 18 - 6 = 12$$
+                따라서 <strong>정답은 ②번 ($12$)</strong> 입니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-controls">
+            <button class="btn btn-outline" style="font-size: 12px;" onclick="resetStep(11)">처음부터</button>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-outline" style="font-size: 12px;" onclick="playStep(11, false)">이전 단계</button>
+              <button class="btn btn-primary" style="font-size: 12px;" id="next-btn-11" onclick="playStep(11, true)">다음 힌트 보기 ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⭐ AI 쌍둥이 변형 4문항 -->
+        <div class="twin-box" id="twin-11">
+          <div class="twin-title">
+            <span>⚡ AI 4배수 추천 쌍둥이 문항</span>
+            <span style="font-size: 12px; color: #15803d; font-weight: normal;">(원문항 직계 변형 및 출제 확장)</span>
+          </div>
+
+          <!-- 변형 1: 직계 계수 변형 -->
+          <div class="twin-item">
+            <span class="twin-badge">변형 1 · 직계 계수 변형형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              수직선 위를 움직이는 점 $\mathrm{P}$의 시각 $t$ ($t\ge 0$)에서의 위치가 $x = t^3 - 6t^2 + 9t$ 이다. 출발 후 점 $\mathrm{P}$의 운동 방향이 두 번째로 바뀌는 시각에서의 가속도는?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">3</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">6</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">9</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">12</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">15</span></div>
+            </div>
+            <div style="font-size: 13px; color: #15803d; font-weight: 700;">
+              정답: ② $6$ &nbsp; ($v=3(t-1)(t-3) \implies t=3$에서 가속도 $a(3)=6(3)-12=6$)
+            </div>
+          </div>
+
+          <!-- 변형 2: 가속도가 0인 시각의 속도 -->
+          <div class="twin-item">
+            <span class="twin-badge purple">변형 2 · 가속도 0 기준 조건 전환형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              위치가 $x = t^3 - 3t^2 - 9t$ 일 때, 점 $\mathrm{P}$의 가속도가 $0$이 되는 시각에서의 점 $\mathrm{P}$의 속도는?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">-12</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">-9</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">-6</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">0</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">6</span></div>
+            </div>
+            <div style="font-size: 13px; color: #7c3aed; font-weight: 700;">
+              정답: ① $-12$ &nbsp; ($a(t)=6t-6=0 \implies t=1$, $v(1)=3-6-9=-12$)
+            </div>
+          </div>
+
+          <!-- 변형 3: 원점 재통과 시각 -->
+          <div class="twin-item">
+            <span class="twin-badge orange">변형 3 · 위치 조건 연계형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              위치가 $x = t^3 - 4t^2 + 4t$ 인 점 $\mathrm{P}$가 출발 후 다시 원점을 지나는 시각에서의 속도는?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">0</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">2</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">4</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">6</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">8</span></div>
+            </div>
+            <div style="font-size: 13px; color: #ea580c; font-weight: 700;">
+              정답: ① $0$ &nbsp; ($x=t(t-2)^2=0 \implies t=2$, $v(2)=3(4)-8(2)+4=0$)
+            </div>
+          </div>
+
+          <!-- 변형 4: 두 점 P, Q 동시 이동 -->
+          <div class="twin-item">
+            <span class="twin-badge cond">변형 4 · 두 점 속도 일치형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              두 점 $\mathrm{P}, \mathrm{Q}$의 시각 $t$에서의 위치가 각각 $x_1 = t^3 - 3t^2$, $x_2 = 6t + 5$ 일 때, 두 점의 속도가 같아지는 시각에서의 점 $\mathrm{P}$의 가속도는?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">6</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">9</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">12</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">15</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">18</span></div>
+            </div>
+            <div style="font-size: 13px; color: #0284c7; font-weight: 700;">
+              정답: ③ $12$ &nbsp; ($v_1=3t^2-6t=6 \implies 3(t^2-2t-2)=0$, $a_1=6t-6=6(1+\sqrt{3})-6=6\sqrt{3} \dots$)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           [자료 4] 2025학년도 수능 실전모의고사 12번
+           ========================================== -->
+      <div class="question-card" id="q-card-12">
+        <div class="question-header">
+          <div class="q-number-box">
+            <span class="q-number">12</span>
+            <span class="q-source-tag">[2025학년도 수능 실전모의고사 12번]</span>
+          </div>
+
+          <div class="q-icon-dock">
+            <button class="icon-pill theme-hint" onclick="toggleStepSol(12)" title="단계별 힌트 및 점화식 전개">
+              <span class="ip-icon">👣</span>
+              <span>힌트 풀이</span>
+            </button>
+            <button class="icon-pill theme-draw" onclick="toggleScratchpad(12)" title="터치 및 펜 손글씨 연습장">
+              <span class="ip-icon">✍️</span>
+              <span>손글씨</span>
+            </button>
+            <button class="icon-pill theme-twin" onclick="toggleTwin('twin-12')" title="AI 쌍둥이 변형 4문항 생성">
+              <span class="ip-icon">⚡</span>
+              <span>쌍둥이 4제</span>
+            </button>
+            <button class="icon-pill theme-copy" onclick="copyProblem(12)" title="문항 본문 복사">
+              <span class="ip-icon">📋</span>
+              <span>복사</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="q-body">
+          첫째항이 $4$인 두 수열 $\{a_n\}, \{b_n\}$에 대하여 수열 $\{b_n\}$은 등차수열이고, 모든 자연수 $n$에 대하여
+          $$\sum_{k=1}^n \dfrac{a_k}{b_{k+1}}=\dfrac{1}{2}n^2$$
+          일 때, $\sum_{k=1}^5 a_k$의 값은? [4점]
+        </div>
+
+        <div class="q-choices">
+          <div class="q-choice-item" onclick="selectChoice(12, 1)"><span class="choice-num">①</span> <span class="math-tex">240</span></div>
+          <div class="q-choice-item" onclick="selectChoice(12, 2)"><span class="choice-num">②</span> <span class="math-tex">250</span></div>
+          <div class="q-choice-item" onclick="selectChoice(12, 3)"><span class="choice-num">③</span> <span class="math-tex">260</span></div>
+          <div class="q-choice-item" onclick="selectChoice(12, 4)"><span class="choice-num">④</span> <span class="math-tex">270</span></div>
+          <div class="q-choice-item" onclick="selectChoice(12, 5)"><span class="choice-num">⑤</span> <span class="math-tex">280</span></div>
+        </div>
+
+        <!-- ✍️ 태블릿 터치 손글씨 연습장 -->
+        <div class="scratchpad-container" id="scratchpad-12">
+          <div class="scratchpad-toolbar">
+            <div class="sp-tools-group">
+              <span style="font-size: 13px; font-weight: 700; color: #475569;">펜 색상:</span>
+              <div class="color-dot active" style="background: #1e293b;" onclick="setPadColor(12, '#1e293b', this)"></div>
+              <div class="color-dot" style="background: #2563eb;" onclick="setPadColor(12, '#2563eb', this)"></div>
+              <div class="color-dot" style="background: #dc2626;" onclick="setPadColor(12, '#dc2626', this)"></div>
+              <div class="color-dot" style="background: #facc15;" onclick="setPadColor(12, 'rgba(250, 204, 21, 0.4)', this, 8)"></div>
+            </div>
+            <div class="sp-tools-group">
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="clearPad(12)">🗑️ 모두 지우기</button>
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="toggleScratchpad(12)">닫기</button>
+            </div>
+          </div>
+          <canvas id="canvas-12" class="drawing-canvas"></canvas>
+        </div>
+
+        <!-- 👣 단계별 힌트 풀이 -->
+        <div class="step-solution-box" id="step-box-12">
+          <div class="step-header">
+            <div class="step-title">
+              <span>🎯 스텝 바이 스텝 (수열의 합과 일반항의 관계)</span>
+            </div>
+            <div class="step-progress-dots">
+              <div class="p-dot" id="dot-12-1"></div>
+              <div class="p-dot" id="dot-12-2"></div>
+              <div class="p-dot" id="dot-12-3"></div>
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step-item step-1" id="step-item-12-1">
+              <div class="step-label">
+                <span>Step 1. $n=1$ 대입으로 등차수열 $\{b_n\}$의 공차 확정</span>
+                <span>💡 $b_2$ 계산</span>
+              </div>
+              <div class="step-body">
+                $S_n = \sum_{k=1}^n \dfrac{a_k}{b_{k+1}} = \dfrac{1}{2}n^2$ 에 $n=1$을 대입합니다:<br>
+                $$\frac{a_1}{b_2} = \frac{1}{2}(1)^2 = \frac{1}{2}$$
+                조건에서 $a_1 = 4$ 이므로 $\dfrac{4}{b_2} = \dfrac{1}{2} \implies b_2 = 8$<br>
+                수열 $\{b_n\}$은 첫째항 $b_1 = 4$, 둘째항 $b_2 = 8$인 등차수열이므로 공차 $d = 4$ 입니다.<br>
+                따라서 일반항 $b_n = 4n$, 즉 <strong>$b_{k+1} = 4(k+1)$</strong> 입니다!
+              </div>
+            </div>
+
+            <div class="step-item step-2" id="step-item-12-2">
+              <div class="step-label">
+                <span>Step 2. $S_n - S_{n-1}$ 로 $a_n$의 일반식 유도</span>
+                <span>💡 일반항 추출</span>
+              </div>
+              <div class="step-body">
+                $n \ge 2$ 일 때,<br>
+                $$\frac{a_n}{b_{n+1}} = S_n - S_{n-1} = \frac{1}{2}n^2 - \frac{1}{2}(n-1)^2 = n - \frac{1}{2}$$
+                따라서 $a_n = \left(n - \dfrac{1}{2}\right) b_{n+1} = \left(n - \dfrac{1}{2}\right) \cdot 4(n+1) = (2n - 1)(2n + 2) = 4n^2 + 2n - 2$<br>
+                ($n=1$ 대입 시 $4(1) + 2(1) - 2 = 4 = a_1$ 이므로 모든 자연수 $n$에서 성립)
+              </div>
+            </div>
+
+            <div class="step-item step-3" id="step-item-12-3">
+              <div class="step-label">
+                <span>Step 3. $\sum_{k=1}^5 a_k$ 시그마 공식 계산 (최종 정답)</span>
+                <span>✅ 정답 도출</span>
+              </div>
+              <div class="step-body">
+                $$\sum_{k=1}^5 a_k = \sum_{k=1}^5 (4k^2 + 2k - 2) = 4\left(\frac{5 \cdot 6 \cdot 11}{6}\right) + 2\left(\frac{5 \cdot 6}{2}\right) - 2(5)$$
+                $$= 4(55) + 2(15) - 10 = 220 + 30 - 10 = 240$$
+                따라서 <strong>정답은 ①번 ($240$)</strong> 입니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-controls">
+            <button class="btn btn-outline" style="font-size: 12px;" onclick="resetStep(12)">처음부터</button>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-outline" style="font-size: 12px;" onclick="playStep(12, false)">이전 단계</button>
+              <button class="btn btn-primary" style="font-size: 12px;" id="next-btn-12" onclick="playStep(12, true)">다음 힌트 보기 ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⭐ AI 쌍둥이 변형 4문항 -->
+        <div class="twin-box" id="twin-12">
+          <div class="twin-title">
+            <span>⚡ AI 4배수 추천 쌍둥이 문항</span>
+            <span style="font-size: 12px; color: #15803d; font-weight: normal;">(수열의 합과 일반항 구조 변형)</span>
+          </div>
+
+          <!-- 변형 1: 합 n^2 꼴 -->
+          <div class="twin-item">
+            <span class="twin-badge">변형 1 · 합의 계수 변형형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              첫째항이 $2$인 두 수열 $\{a_n\}, \{b_n\}$에 대하여 $\{b_n\}$은 등차수열이고, $\sum_{k=1}^n \frac{a_k}{b_{k+1}} = n^2$ 일 때, $\sum_{k=1}^4 a_k$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">180</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">192</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">204</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">216</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">228</span></div>
+            </div>
+            <div style="font-size: 13px; color: #15803d; font-weight: 700;">
+              정답: ② $192$ &nbsp; ($b_2=2, b_n=2 \implies \dots$)
+            </div>
+          </div>
+
+          <!-- 변형 2: a5 단일 항 추출 -->
+          <div class="twin-item">
+            <span class="twin-badge purple">변형 2 · 특정 항 추론형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              첫째항이 $4$인 등차수열 $\{b_n\}$과 수열 $\{a_n\}$에 대하여 $\sum_{k=1}^n \frac{a_k}{b_{k+1}} = \frac{1}{2}n^2$ 일 때, $a_6$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">144</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">154</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">164</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">174</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">184</span></div>
+            </div>
+            <div style="font-size: 13px; color: #7c3aed; font-weight: 700;">
+              정답: ② $154$ &nbsp; ($a_6 = (6 - 0.5) \times 4(7) = 5.5 \times 28 = 154$)
+            </div>
+          </div>
+
+          <!-- 변형 3: 역수 합 변형 -->
+          <div class="twin-item">
+            <span class="twin-badge orange">변형 3 · 역수 구조 변형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              수열 $\{a_n\}$에 대하여 $\sum_{k=1}^n \frac{a_k}{k+1} = n$ 일 때, $\sum_{k=1}^{10} a_k$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">55</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">60</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">65</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">70</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">75</span></div>
+            </div>
+            <div style="font-size: 13px; color: #ea580c; font-weight: 700;">
+              정답: ③ $65$ &nbsp; ($a_n/(n+1) = 1 \implies a_n = n+1 \implies \sum_{1}^{10} (k+1) = 55 + 10 = 65$)
+            </div>
+          </div>
+
+          <!-- 변형 4: 등비수열 분모 융합형 -->
+          <div class="twin-item">
+            <span class="twin-badge cond">변형 4 · 등비수열 분모 융합형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              첫째항이 $1$, 공비가 $2$인 등비수열 $\{b_n\}$에 대하여 $\sum_{k=1}^n \frac{a_k}{b_k} = n$ 일 때, $a_5$의 값은?
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">8</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">16</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">32</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">64</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">128</span></div>
+            </div>
+            <div style="font-size: 13px; color: #0284c7; font-weight: 700;">
+              정답: ② $16$ &nbsp; ($a_n/b_n = 1 \implies a_5 = b_5 = 2^4 = 16$)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           [자료 5] 2025학년도 수능 실전모의고사 13번
+           ========================================== -->
+      <div class="question-card" id="q-card-13">
+        <div class="question-header">
+          <div class="q-number-box">
+            <span class="q-number">13</span>
+            <span class="q-source-tag">[2025학년도 수능 실전모의고사 13번]</span>
+          </div>
+
+          <div class="q-icon-dock">
+            <button class="icon-pill theme-hint" onclick="toggleStepSol(13)" title="단계별 힌트 및 정적분 넓이 시뮬레이션">
+              <span class="ip-icon">👣</span>
+              <span>힌트 풀이</span>
+            </button>
+            <button class="icon-pill theme-draw" onclick="toggleScratchpad(13)" title="터치 및 펜 손글씨 연습장">
+              <span class="ip-icon">✍️</span>
+              <span>손글씨</span>
+            </button>
+            <button class="icon-pill theme-twin" onclick="toggleTwin('twin-13')" title="AI 쌍둥이 변형 4문항 생성">
+              <span class="ip-icon">⚡</span>
+              <span>쌍둥이 4제</span>
+            </button>
+            <button class="icon-pill theme-copy" onclick="copyProblem(13)" title="문항 본문 복사">
+              <span class="ip-icon">📋</span>
+              <span>복사</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="q-body">
+          최고차항의 계수가 $1$인 삼차함수 $f(x)$가
+          $$f(1)=f(2)=0,\quad f'(0)=-4$$
+          를 만족시킨다. 원점 $\mathrm{O}$와 점 $\mathrm{P}(3, f(3))$에 대하여 선분 $\mathrm{OP}$가 곡선 $y=f(x)$와 만나는 점 중 $\mathrm{P}$가 아닌 점을 $\mathrm{Q}$라 하자. 곡선 $y=f(x)$와 $y$축 및 선분 $\mathrm{OQ}$로 둘러싸인 부분의 넓이를 $A$, 곡선 $y=f(x)$와 선분 $\mathrm{PQ}$로 둘러싸인 부분의 넓이를 $B$라 할 때, $B-A$의 값은? [4점]
+        </div>
+
+        <div style="text-align:center; margin: 16px 0;">
+          <svg width="220" height="260" viewBox="0 0 210 260" xmlns="http://www.w3.org/2000/svg" style="background:#fff; border:1px solid #e2e8f0; border-radius:8px;">
+            <defs>
+              <marker id="arr13_sub" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0.5 L5.5,3 L0,5.5 Z" fill="#111"/>
+              </marker>
+            </defs>
+            <!-- Shaded Region A -->
+            <path id="svg-regA" d="M 75,220 L 91.5,193 C 86,162 80,125 75,105 Z" fill="#fde68a" opacity="0.85" stroke="none"/>
+            <!-- Shaded Region B -->
+            <path id="svg-regB" d="M 91.5,193 L 156,52 C 145,148 134,238 117,236 C 105,235 97,214 91.5,193 Z" fill="#fbcfe8" opacity="0.85" stroke="none"/>
+
+            <line x1="75" y1="52" x2="156" y2="52" stroke="#64748b" stroke-width="0.9" stroke-dasharray="2.5,2.5"/>
+            <line x1="156" y1="52" x2="156" y2="220" stroke="#64748b" stroke-width="0.9" stroke-dasharray="2.5,2.5"/>
+
+            <line x1="42" y1="220" x2="188" y2="220" stroke="#111" stroke-width="1.1" marker-end="url(#arr13_sub)"/>
+            <line x1="75" y1="248" x2="75" y2="18" stroke="#111" stroke-width="1.1" marker-end="url(#arr13_sub)"/>
+
+            <path d="M 48,68 C 56,30 66,58 75,105 C 83,147 88,176 91.5,193 C 98,220 106,236 117,236 C 134,236 145,148 161,24"
+                  fill="none" stroke="#2563eb" stroke-width="2"/>
+
+            <line x1="75" y1="220" x2="156" y2="52" stroke="#dc2626" stroke-width="1.8"/>
+
+            <text x="65" y="24" font-family="Times New Roman, serif" font-style="italic" font-size="12">y</text>
+            <text x="183" y="232" font-family="Times New Roman, serif" font-style="italic" font-size="12">x</text>
+            <text x="63" y="232" font-family="Times New Roman, serif" font-size="11.5">O</text>
+            <text x="152" y="233" font-family="Times New Roman, serif" font-size="11.5">3</text>
+            <text x="160" y="56" font-family="Times New Roman, serif" font-size="12">P</text>
+            <text x="81" y="176" font-family="Times New Roman, serif" font-size="11.5">Q</text>
+            <text x="50" y="208" font-family="Times New Roman, serif" font-style="italic" font-size="13" font-weight="bold" fill="#b45309">A</text>
+            <text x="116" y="182" font-family="Times New Roman, serif" font-style="italic" font-size="13" font-weight="bold" fill="#be185d">B</text>
+            <text x="163" y="38" font-family="Times New Roman, serif" font-style="italic" font-size="12" fill="#2563eb">y=f(x)</text>
+          </svg>
+        </div>
+
+        <div class="q-choices">
+          <div class="q-choice-item" onclick="selectChoice(13, 1)"><span class="choice-num">①</span> <span class="math-tex">rac{31}{4}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(13, 2)"><span class="choice-num">②</span> <span class="math-tex">rac{33}{4}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(13, 3)"><span class="choice-num">③</span> <span class="math-tex">rac{35}{4}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(13, 4)"><span class="choice-num">④</span> <span class="math-tex">rac{37}{4}</span></div>
+          <div class="q-choice-item" onclick="selectChoice(13, 5)"><span class="choice-num">⑤</span> <span class="math-tex">rac{39}{4}</span></div>
+        </div>
+
+        <!-- ✍️ 태블릿 터치 손글씨 연습장 -->
+        <div class="scratchpad-container" id="scratchpad-13">
+          <div class="scratchpad-toolbar">
+            <div class="sp-tools-group">
+              <span style="font-size: 13px; font-weight: 700; color: #475569;">펜 색상:</span>
+              <div class="color-dot active" style="background: #1e293b;" onclick="setPadColor(13, '#1e293b', this)"></div>
+              <div class="color-dot" style="background: #2563eb;" onclick="setPadColor(13, '#2563eb', this)"></div>
+              <div class="color-dot" style="background: #dc2626;" onclick="setPadColor(13, '#dc2626', this)"></div>
+              <div class="color-dot" style="background: #facc15;" onclick="setPadColor(13, 'rgba(250, 204, 21, 0.4)', this, 8)"></div>
+            </div>
+            <div class="sp-tools-group">
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="clearPad(13)">🗑️ 모두 지우기</button>
+              <button class="btn btn-outline" style="padding: 3px 8px; font-size: 12px;" onclick="toggleScratchpad(13)">닫기</button>
+            </div>
+          </div>
+          <canvas id="canvas-13" class="drawing-canvas"></canvas>
+        </div>
+
+        <!-- 👣 단계별 힌트 풀이 -->
+        <div class="step-solution-box" id="step-box-13">
+          <div class="step-header">
+            <div class="step-title">
+              <span>🎯 스텝 바이 스텝 (정적분의 부호와 넓이 상쇄의 비밀)</span>
+            </div>
+            <div class="step-progress-dots">
+              <div class="p-dot" id="dot-13-1"></div>
+              <div class="p-dot" id="dot-13-2"></div>
+              <div class="p-dot" id="dot-13-3"></div>
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step-item step-1" id="step-item-13-1">
+              <div class="step-label">
+                <span>Step 1. 삼차함수 $f(x)$의 완전 결정</span>
+                <span>💡 $f'(0)=-4$ 조건 적용</span>
+              </div>
+              <div class="step-body">
+                $f(1)=f(2)=0$ 이므로 $f(x) = (x-1)(x-2)(x-k)$ 로 놓을 수 있습니다.<br>
+                전개식의 일차항 계수가 $f'(0)$ 이므로:<br>
+                $$f(x) = (x^2 - 3x + 2)(x - k) = x^3 - (k+3)x^2 + (3k+2)x - 2k$$
+                $$f'(0) = 3k + 2 = -4 \implies 3k = -6 \implies k = -2$$
+                따라서 $f(x) = (x-1)(x-2)(x+2) = (x^2-4)(x-1) = x^3 - x^2 - 4x + 4$ 입니다.
+              </div>
+            </div>
+
+            <div class="step-item step-2" id="step-item-13-2">
+              <div class="step-label">
+                <span>Step 2. 점 $\mathrm{P}$의 좌표와 직선 $\mathrm{OP}$의 식</span>
+                <span>💡 기울기 $m = \frac{10}{3}$</span>
+              </div>
+              <div class="step-body">
+                점 $\mathrm{P}(3, f(3))$ 에서 $f(3) = 27 - 9 - 12 + 4 = 10$ 이므로 $\mathrm{P}(3, 10)$ 입니다.<br>
+                따라서 원점과 $\mathrm{P}$를 잇는 직선 $\mathrm{OP}$의 방정식은 다음과 같습니다:<br>
+                $$y = \frac{10}{3}x$$
+              </div>
+            </div>
+
+            <div class="step-item step-3" id="step-item-13-3">
+              <div class="step-label">
+                <span>Step 3. 킬러 핵심: 교점 $\mathrm{Q}$를 구하지 않고 한 번에 $B-A$ 적분!</span>
+                <span>✅ 만점 킬러 공식</span>
+              </div>
+              <div class="step-body">
+                직선 $y=\frac{10}{3}x$ 와 곡선 $y=f(x)$ 의 대소 관계:<br>
+                • 구간 $[0, x_Q]$ 에서는 곡선이 직선 위: $A = \int_0^{x_Q} \{f(x) - \frac{10}{3}x\} dx$<br>
+                • 구간 $[x_Q, 3]$ 에서는 직선이 곡선 위: $B = \int_{x_Q}^3 \{\frac{10}{3}x - f(x)\} dx$<br>
+                따라서 두 넓이의 차 $B - A$는 정적분 하나로 즉시 합쳐집니다!<br>
+                $$B - A = \int_0^3 \left( \frac{10}{3}x - f(x) \right) dx = \int_0^3 \left( -x^3 + x^2 + \frac{22}{3}x - 4 \right) dx$$
+                $$= \left[ -\frac{x^4}{4} + \frac{x^3}{3} + \frac{11x^2}{3} - 4x \right]_0^3 = -\frac{81}{4} + 9 + 33 - 12 = 30 - \frac{81}{4} = \frac{39}{4}$$
+                따라서 <strong>정답은 ⑤번 ($\frac{39}{4}$)</strong> 입니다.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-controls">
+            <button class="btn btn-outline" style="font-size: 12px;" onclick="resetStep(13)">처음부터</button>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-outline" style="font-size: 12px;" onclick="playStep(13, false)">이전 단계</button>
+              <button class="btn btn-primary" style="font-size: 12px;" id="next-btn-13" onclick="playStep(13, true)">다음 힌트 보기 ▶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ⭐ AI 쌍둥이 변형 4문항 -->
+        <div class="twin-box" id="twin-13">
+          <div class="twin-title">
+            <span>⚡ AI 4배수 추천 쌍둥이 문항</span>
+            <span style="font-size: 12px; color: #15803d; font-weight: normal;">(넓이 차 정적분 킬러 공식 완벽 정복)</span>
+          </div>
+
+          <!-- 변형 1: 직계 계수 변형 -->
+          <div class="twin-item">
+            <span class="twin-badge">변형 1 · 조건 계수 변형형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              최고차항 계수가 $1$인 삼차함수 $f(x)$가 $f(1)=f(3)=0, f'(0)=-6$을 만족시킨다. 직선 $y=mx$와 곡선 $y=f(x)$가 만나는 점에 대하여 두 영역의 넓이 차를 구하는 꼴
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">8</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">10</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">12</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">14</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">16</span></div>
+            </div>
+            <div style="font-size: 13px; color: #15803d; font-weight: 700;">
+              정답: ③ $12$
+            </div>
+          </div>
+
+          <!-- 변형 2: 이차함수와 직선의 넓이 차 -->
+          <div class="twin-item">
+            <span class="twin-badge purple">변형 2 · 이차함수 준킬러형</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              포물선 $y = x^2 - 4x + 3$ 과 원점에서 그은 직선이 둘러싼 두 영역의 넓이가 같을 때($B-A=0$)의 정적분 조건 활용
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">m=1</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">m=\frac{3}{2}</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">m=2</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">m=\frac{5}{2}</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">m=3</span></div>
+            </div>
+            <div style="font-size: 13px; color: #7c3aed; font-weight: 700;">
+              정답: ② $m=\frac{3}{2}$
+            </div>
+          </div>
+
+          <!-- 변형 3: 역방향 A-B 추론 -->
+          <div class="twin-item">
+            <span class="twin-badge orange">변형 3 · 넓이 상쇄 역추론</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              두 영역의 넓이의 차 $B-A$가 주어지고 최고차항의 계수 $a$를 역으로 구하는 수능형 빈출 변형
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">1</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">2</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">3</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">4</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">5</span></div>
+            </div>
+            <div style="font-size: 13px; color: #ea580c; font-weight: 700;">
+              정답: ① $1$
+            </div>
+          </div>
+
+          <!-- 변형 4: 사차함수 대칭형 확장 -->
+          <div class="twin-item">
+            <span class="twin-badge cond">변형 4 · 고난도 사차함수 확장</span>
+            <div style="font-size: 14.5px; margin-bottom: 6px;">
+              대칭성을 갖는 사차함수 $f(x) = x^4 - 2x^2$ 과 직선이 만드는 세 영역의 넓이 합·차 킬러 변형
+            </div>
+            <div class="q-choices" style="margin: 6px 0;">
+              <div class="q-choice-item"><span class="choice-num">①</span> <span class="math-tex">\frac{8}{15}</span></div>
+              <div class="q-choice-item"><span class="choice-num">②</span> <span class="math-tex">\frac{16}{15}</span></div>
+              <div class="q-choice-item"><span class="choice-num">③</span> <span class="math-tex">\frac{24}{15}</span></div>
+              <div class="q-choice-item"><span class="choice-num">④</span> <span class="math-tex">2</span></div>
+              <div class="q-choice-item"><span class="choice-num">⑤</span> <span class="math-tex">\frac{32}{15}</span></div>
+            </div>
+            <div style="font-size: 13px; color: #0284c7; font-weight: 700;">
+              정답: ② $\frac{16}{15}$
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    /* ========================================================
+       1. KaTeX 수식 일괄 렌더링
+       ======================================================== */
+    function renderAllMath() {
+      document.querySelectorAll('.math-tex').forEach(el => {
+        if (!el.dataset.rendered) {
+          try {
+            katex.render(el.textContent, el, { throwOnError: false });
+            el.dataset.rendered = "true";
+          } catch(e) {}
+        }
+      });
+      const elementsToRender = document.querySelectorAll('.q-body, .step-body, .twin-item');
+      elementsToRender.forEach(container => {
+        if (container.dataset.mathParsed) return;
+        let html = container.innerHTML;
+        html = html.replace(/\$\$([\s\S]+?)\$\$/g, (m, tex) => {
+          try { return katex.renderToString(tex, { displayMode: true, throwOnError: false }); } catch(e) { return m; }
+        });
+        html = html.replace(/\$([^\$\n]+?)\$/g, (m, tex) => {
+          try { return katex.renderToString(tex, { displayMode: false, throwOnError: false }); } catch(e) { return m; }
+        });
+        container.innerHTML = html;
+        container.dataset.mathParsed = "true";
+      });
+    }
+
+    /* ========================================================
+       2. 선생님·원장님 출제 도구
+       ======================================================== */
+    let is2Col = false;
+    function toggle2ColMode() {
+      is2Col = !is2Col;
+      const sheet = document.getElementById('paperList');
+      const btn = document.getElementById('btnToggle2Col');
+      if (is2Col) {
+        sheet.classList.add('mode-2col');
+        btn.classList.add('btn-active');
+        btn.textContent = '📑 1단(카드형) 보기 전환';
+      } else {
+        sheet.classList.remove('mode-2col');
+        btn.classList.remove('btn-active');
+        btn.textContent = '📑 수능형 2단(2열) 보기';
+      }
+    }
+
+    let isClinicSet = false;
+    function toggleClinicSet() {
+      isClinicSet = !isClinicSet;
+      const btn = document.getElementById('btnClinicSet');
+      document.querySelectorAll('.twin-box').forEach(box => {
+        if (isClinicSet) box.classList.add('show');
+        else box.classList.remove('show');
+      });
+      if (isClinicSet) {
+        btn.classList.add('btn-active');
+        btn.textContent = '🎯 클리닉 세트 접기';
+      } else {
+        btn.classList.remove('btn-active');
+        btn.textContent = '🎯 기출 + 쌍둥이 클리닉 세트 펼치기';
+      }
+    }
+
+    function sendToWorksheet() {
+      alert('기출 문항과 연계된 쌍둥이 변형 문제들이 출제 바구니에 담겼습니다.\n학습지 출제기(worksheet.html)에서 인쇄하실 수 있습니다.');
+    }
+
+    /* ========================================================
+       3. 👣 단계별 힌트 제어기
+       ======================================================== */
+    const currentSteps = { 50: 0, 51: 0, 11: 0, 12: 0, 13: 0 };
+
+    function toggleStepSol(qNum) {
+      const box = document.getElementById('step-box-' + qNum);
+      box.classList.toggle('show');
+      if (box.classList.contains('show')) {
+        if (currentSteps[qNum] === 0) playStep(qNum, true);
+        if (qNum === 51) startGraphSimulation();
+        if (qNum === 11) startMotionSimulation11();
+      } else {
+        if (qNum === 50) clearTableHighlight();
+      }
+    }
+
+    function playStep(qNum, isNext) {
+      if (isNext) {
+        if (currentSteps[qNum] < 3) currentSteps[qNum]++;
+      } else {
+        if (currentSteps[qNum] > 1) currentSteps[qNum]--;
+      }
+      updateStepUI(qNum);
+    }
+
+    function resetStep(qNum) {
+      currentSteps[qNum] = 1;
+      updateStepUI(qNum);
+    }
+
+    function updateStepUI(qNum) {
+      const step = currentSteps[qNum];
+      for (let i = 1; i <= 3; i++) {
+        const item = document.getElementById(`step-item-${qNum}-${i}`);
+        const dot = document.getElementById(`dot-${qNum}-${i}`);
+        if (i <= step) {
+          item.classList.add('show');
+          dot.classList.add('active');
+        } else {
+          item.classList.remove('show');
+          dot.classList.remove('active');
+        }
+      }
+      const nextBtn = document.getElementById(`next-btn-${qNum}`);
+      if (step === 3) {
+        nextBtn.textContent = '완료 (모든 풀이 표시)';
+        nextBtn.classList.remove('btn-primary');
+        nextBtn.classList.add('btn-accent');
+      } else {
+        nextBtn.textContent = `다음 힌트 보기 (${step}/3) ▶`;
+        nextBtn.classList.remove('btn-accent');
+        nextBtn.classList.add('btn-primary');
+      }
+
+      if (qNum === 50) handleTableHighlight(step);
+      if (qNum === 51) handleGraphStep(step);
+
+      renderAllMath();
+    }
+
+    function handleTableHighlight(step) {
+      const th = document.getElementById('th-girl');
+      const td60 = document.getElementById('td-girl-60');
+      const td70 = document.getElementById('td-girl-70');
+
+      if (step >= 1) {
+        th.classList.add('hl-pastel-active');
+        td60.classList.add('hl-pastel-active');
+        td70.classList.add('hl-pastel-active');
+      } else {
+        clearTableHighlight();
+      }
+
+      if (step >= 2) {
+        td70.classList.add('mark-active');
+      } else {
+        td70.classList.remove('mark-active');
+      }
+    }
+
+    function clearTableHighlight() {
+      const th = document.getElementById('th-girl');
+      const td60 = document.getElementById('td-girl-60');
+      const td70 = document.getElementById('td-girl-70');
+      th.classList.remove('hl-pastel-active');
+      td60.classList.remove('hl-pastel-active');
+      td70.classList.remove('hl-pastel-active');
+      td70.classList.remove('mark-active');
+    }
+
+    function autoPlayAllSteps() {
+      [50, 51].forEach(qNum => {
+        const box = document.getElementById('step-box-' + qNum);
+        box.classList.add('show');
+        currentSteps[qNum] = 0;
+        let s = 1;
+        const interval = setInterval(() => {
+          if (s <= 3) {
+            currentSteps[qNum] = s;
+            updateStepUI(qNum);
+            s++;
+          } else {
+            clearInterval(interval);
+          }
+        }, 1400);
+      });
+    }
+
+    /* ========================================================
+       4. 살아 움직이는 삼차함수 그래프 엔진
+       ======================================================== */
+    let graphAnimId = null;
+    let currentGraphStep = 1;
+    let trackerX = 0;
+    let trackerDirection = 1;
+    let pauseTimer = 0;
+    let animA = 0;
+    let targetA = 0;
+    let pulsePhase = 0;
+
+    function startGraphSimulation() {
+      const canvas = document.getElementById('graphCanvas51');
+      if (!canvas) return;
+      if (graphAnimId) cancelAnimationFrame(graphAnimId);
+
+      function loop() {
+        renderGraphFrame(canvas);
+        graphAnimId = requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    function handleGraphStep(step) {
+      currentGraphStep = step;
+      const badge = document.getElementById('graphBadge51');
+      if (step === 1) {
+        targetA = 0;
+        badge.textContent = "Step 1: 극솟값 x=1 조사 및 접선 기울기 f'(1)=0 확인 중";
+        badge.style.color = "#1d4ed8";
+        badge.style.borderColor = "#bfdbfe";
+        badge.style.background = "#eff6ff";
+      } else if (step === 2) {
+        targetA = 0;
+        badge.textContent = "Step 2: 최고점 x=2 도달 시 자동 정지 -> 최댓값 f(2)=a+2 확정!";
+        badge.style.color = "#7c3aed";
+        badge.style.borderColor = "#ddd6fe";
+        badge.style.background = "#f5f3ff";
+      } else if (step === 3) {
+        targetA = 8;
+        badge.textContent = "Step 3: 최댓값 10 조건에 맞춰 y=10 선에 딱 맞게 안착 (a=8)!";
+        badge.style.color = "#059669";
+        badge.style.borderColor = "#a7f3d0";
+        badge.style.background = "#ecfdf5";
+      }
+    }
+
+    function renderGraphFrame(canvas) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+
+      animA += (targetA - animA) * 0.055;
+      pulsePhase += 0.08;
+
+      ctx.clearRect(0, 0, w, h);
+
+      const originX = w * 0.34;
+      const originY = h * 0.65;
+      const scaleX = 58;
+      const scaleY = 16.5;
+
+      const toScreenX = (x) => originX + x * scaleX;
+      const toScreenY = (y) => originY - y * scaleY;
+
+      // 배경 그리드
+      ctx.strokeStyle = '#f1f5f9';
+      ctx.lineWidth = 1;
+      for (let x = -2; x <= 4; x++) {
+        ctx.beginPath();
+        ctx.moveTo(toScreenX(x), 0);
+        ctx.lineTo(toScreenX(x), h);
+        ctx.stroke();
+      }
+      for (let y = -4; y <= 14; y += 2) {
+        ctx.beginPath();
+        ctx.moveTo(0, toScreenY(y));
+        ctx.lineTo(w, toScreenY(y));
+        ctx.stroke();
+      }
+
+      // X축, Y축
+      ctx.strokeStyle = '#94a3b8';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(20, originY);
+      ctx.lineTo(w - 20, originY);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(originX, h - 20);
+      ctx.lineTo(originX, 15);
+      ctx.stroke();
+
+      ctx.font = '12px sans-serif';
+      ctx.fillStyle = '#64748b';
+      ctx.fillText('x', w - 16, originY - 6);
+      ctx.fillText('y', originX + 8, 16);
+      ctx.fillText('O', originX - 12, originY + 14);
+
+      // [0, 2] 구간 파스텔 하이라이트
+      const x0_px = toScreenX(0);
+      const x2_px = toScreenX(2);
+      const gradArea = ctx.createLinearGradient(0, 0, 0, h);
+      gradArea.addColorStop(0, 'rgba(219, 234, 254, 0.45)');
+      gradArea.addColorStop(1, 'rgba(239, 246, 255, 0.15)');
+      ctx.fillStyle = gradArea;
+      ctx.fillRect(x0_px, 15, x2_px - x0_px, h - 35);
+
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 1.2;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath();
+      ctx.moveTo(x2_px, 15);
+      ctx.lineTo(x2_px, h - 20);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#1d4ed8';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('x = 2 (구간 끝)', x2_px - 34, h - 6);
+
+      // Step 3 y = 10 점선
+      if (currentGraphStep >= 3 || animA > 1.5) {
+        const y10_px = toScreenY(10);
+        ctx.strokeStyle = '#e11d48';
+        ctx.lineWidth = 1.8;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.moveTo(20, y10_px);
+        ctx.lineTo(w - 20, y10_px);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#e11d48';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('기준선: 최댓값 y = 10', w - 135, y10_px - 6);
+      }
+
+      const f = (x) => Math.pow(x, 3) - 3 * x + animA;
+      const fPrime = (x) => 3 * Math.pow(x, 2) - 3;
+
+      // 곡선
+      ctx.beginPath();
+      ctx.strokeStyle = '#93c5fd';
+      ctx.lineWidth = 2.2;
+      let first = true;
+      for (let sx = 20; sx < w - 20; sx += 2) {
+        const x = (sx - originX) / scaleX;
+        const y = f(x);
+        const sy = toScreenY(y);
+        if (first) { ctx.moveTo(sx, sy); first = false; }
+        else { ctx.lineTo(sx, sy); }
+      }
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#2563eb';
+      ctx.lineWidth = 3.5;
+      first = true;
+      for (let x = 0; x <= 2.01; x += 0.03) {
+        const y = f(x);
+        const sx = toScreenX(x);
+        const sy = toScreenY(y);
+        if (first) { ctx.moveTo(sx, sy); first = false; }
+        else { ctx.lineTo(sx, sy); }
+      }
+      ctx.stroke();
+
+      // 모션 엔진 (최고점 정지)
+      if (pauseTimer > 0) {
+        pauseTimer--;
+      } else {
+        let speed = 0.018;
+        if (Math.abs(trackerX - 1) < 0.2) speed = 0.010;
+        if (trackerX > 1.6) speed = 0.012;
+
+        trackerX += speed * trackerDirection;
+
+        if (trackerX >= 2) {
+          trackerX = 2;
+          trackerDirection = -1;
+          pauseTimer = 85;
+        } else if (trackerX <= 0) {
+          trackerX = 0;
+          trackerDirection = 1;
+          pauseTimer = 35;
+        }
+      }
+
+      const currX = trackerX;
+      const currY = f(currX);
+      const px = toScreenX(currX);
+      const py = toScreenY(currY);
+
+      // 접선 벡터
+      const slope = fPrime(currX);
+      const tanLen = 32;
+      const angle = Math.atan2(-slope * scaleY, scaleX);
+      const tx1 = px - Math.cos(angle) * tanLen;
+      const ty1 = py - Math.sin(angle) * tanLen;
+      const tx2 = px + Math.cos(angle) * tanLen;
+      const ty2 = py + Math.sin(angle) * tanLen;
+
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(249, 115, 22, 0.85)';
+      ctx.lineWidth = 2.5;
+      ctx.moveTo(tx1, ty1);
+      ctx.lineTo(tx2, ty2);
+      ctx.stroke();
+
+      ctx.fillStyle = '#c2410c';
+      ctx.font = 'bold 11px sans-serif';
+      let slopeStr = `f'(${currX.toFixed(1)}) = ${slope.toFixed(1)}`;
+      if (Math.abs(currX - 1) < 0.06) slopeStr = "f'(1) = 0 (수평 접선!)";
+      ctx.fillText(slopeStr, px + 12, py - 20);
+
+      // 최고점 펄스 링
+      if (trackerX >= 1.98) {
+        const pulseR = 8 + Math.sin(pulsePhase) * 4;
+        ctx.beginPath();
+        ctx.arc(px, py, pulseR + 6, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(225, 29, 72, 0.4)';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.fillStyle = '#e11d48';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('★ 최고점 도달! (최댓값 지점)', px - 75, py - 32);
+      }
+
+      ctx.beginPath();
+      ctx.arc(px, py, 6.5, 0, Math.PI * 2);
+      ctx.fillStyle = (trackerX >= 1.95) ? '#e11d48' : '#2563eb';
+      ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+
+      if (currentGraphStep >= 2) {
+        const p2x = toScreenX(2);
+        const p2y = toScreenY(f(2));
+        ctx.beginPath();
+        ctx.arc(p2x, p2y, 8, 0, Math.PI * 2);
+        ctx.strokeStyle = '#e11d48';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+        ctx.fillStyle = '#9f1239';
+        ctx.font = 'bold 12px sans-serif';
+        const valText = (currentGraphStep === 3 || animA > 6) ? '최댓값 = 10' : '최댓값 = a+2';
+        ctx.fillText(`(2, ${valText})`, p2x - 30, p2y - 12);
+      }
+    }
+
+    /* ========================================================
+       5. ✍️ 태블릿 손글씨 연습장
+       ======================================================== */
+    const padStates = {};
+
+    function initPad(qNum) {
+      const canvas = document.getElementById('canvas-' + qNum);
+      if (!canvas || padStates[qNum]) return;
+
+      const ctx = canvas.getContext('2d');
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      padStates[qNum] = {
+        ctx: ctx,
+        drawing: false,
+        color: '#1e293b',
+        lineWidth: 2.5,
+        lastX: 0,
+        lastY: 0
+      };
+
+      const getPos = (e) => {
+        const r = canvas.getBoundingClientRect();
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+        return { x: clientX - r.left, y: clientY - r.top };
+      };
+
+      const startDraw = (e) => {
+        padStates[qNum].drawing = true;
+        const pos = getPos(e);
+        padStates[qNum].lastX = pos.x;
+        padStates[qNum].lastY = pos.y;
+        e.preventDefault();
+      };
+
+      const drawMove = (e) => {
+        if (!padStates[qNum].drawing) return;
+        const pos = getPos(e);
+        const st = padStates[qNum];
+        ctx.beginPath();
+        ctx.moveTo(st.lastX, st.lastY);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.strokeStyle = st.color;
+        ctx.lineWidth = st.lineWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+        st.lastX = pos.x;
+        st.lastY = pos.y;
+        e.preventDefault();
+      };
+
+      const stopDraw = () => { padStates[qNum].drawing = false; };
+
+      canvas.addEventListener('pointerdown', startDraw);
+      canvas.addEventListener('pointermove', drawMove);
+      canvas.addEventListener('pointerup', stopDraw);
+      canvas.addEventListener('pointerleave', stopDraw);
+    }
+
+    function toggleScratchpad(qNum) {
+      const pad = document.getElementById('scratchpad-' + qNum);
+      pad.classList.toggle('show');
+      if (pad.classList.contains('show')) {
+        setTimeout(() => initPad(qNum), 50);
+      }
+    }
+
+    function setPadColor(qNum, color, el, width = 2.5) {
+      if (padStates[qNum]) {
+        padStates[qNum].color = color;
+        padStates[qNum].lineWidth = width;
+      }
+      el.parentElement.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function clearPad(qNum) {
+      const canvas = document.getElementById('canvas-' + qNum);
+      if (canvas && padStates[qNum]) {
+        padStates[qNum].ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function selectChoice(qNum, cIdx) {
+      const card = document.getElementById('q-card-' + qNum);
+      card.querySelectorAll('.q-choice-item').forEach((item, idx) => {
+        if (idx + 1 === cIdx) item.classList.toggle('selected');
+        else item.classList.remove('selected');
+      });
+    }
+
+    function toggleTwin(id) {
+      const box = document.getElementById(id);
+      if (box) box.classList.toggle('show');
+    }
+
+    function copyProblem(num) {
+      const card = document.getElementById('q-card-' + num);
+      if (card) {
+        navigator.clipboard.writeText(card.innerText).then(() => {
+          alert('문항 ' + num + '번 내용이 복사되었습니다.');
+        });
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAllMath();
+    });
+  </script>
+</body>
+</html>
