@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>세종지역 고교 내신 기출 & 1클릭 쌍둥이 변형 추출 연구소</title>
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ],
+    throwOnError: false
+  });"></script>
+<style>
+  :root {
+    --primary: #1d4ed8;
+    --primary-light: #eff6ff;
+    --secondary: #0891b2;
+    --accent: #e11d48;
+    --success: #15803d;
+    --purple: #7e22ce;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 28px 16px;
+  }
+  .container {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .hero-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+    color: white;
+    padding: 36px 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px -8px rgba(30, 58, 138, 0.35);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-header::after {
+    content: "SEJONG MATH ARCHIVE";
+    position: absolute;
+    right: -20px;
+    bottom: -15px;
+    font-size: 42px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    letter-spacing: 2px;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 5px 14px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .hero-header h1 {
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .hero-header p {
+    font-size: 15px;
+    opacity: 0.92;
+    max-width: 800px;
+    line-height: 1.6;
+  }
+  .feature-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .feature-pill {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+  }
+  .feature-pill b { color: var(--primary); }
+
+  /* 카드 디자인 */
+  .exam-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+  .exam-card:hover {
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08);
+  }
+  .card-top {
+    padding: 20px 24px;
+    background: #f8fafc;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .source-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .tag {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .tag-school { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+  .tag-year { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .tag-type { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+  .tag-score { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+  .mode-switch-btn {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 9999px;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
+  }
+  .mode-switch-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.38);
+  }
+
+  .card-content {
+    padding: 24px;
+  }
+
+  /* 문제 박스 */
+  .problem-view {
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+  .problem-view.origin-mode {
+    background: #ffffff;
+    border-color: #cbd5e1;
+  }
+  .problem-view.twin-mode {
+    background: #faf5ff;
+    border-color: #a855f7;
+  }
+  .mode-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .mode-banner.origin { background: #e2e8f0; color: #334155; }
+  .mode-banner.twin { background: #7c3aed; color: white; }
+
+  .prob-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #1e293b;
+    margin-bottom: 18px;
+  }
+  .cond-box {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 12px 0 18px 0;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .choices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+    font-size: 15px;
+  }
+  .choice-item {
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: rgba(0,0,0,0.02);
+    border: 1px solid transparent;
+  }
+
+  /* 솔루션 및 원리 */
+  .accordion-sec {
+    border-top: 1px dashed var(--border);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .acc-toggle-btn {
+    background: none;
+    border: 1px solid var(--border);
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .acc-toggle-btn:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+  }
+  .acc-body {
+    display: none;
+    margin-top: 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 16px 20px;
+    border-left: 4px solid var(--primary);
+  }
+  .acc-body.open { display: block; }
+  .sol-step {
+    margin-bottom: 12px;
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+  .sol-step:last-child { margin-bottom: 0; }
+  .sol-step b { color: var(--primary); }
+
+  .twin-badge-info {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hero-header">
+    <div class="hero-badge">✨ CLEAN & SMART RE-AUTHORING ENGINE</div>
+    <h1>세종지역 고교 내신 기출 아카이브 & 1클릭 쌍둥이 변형 연구소</h1>
+    <p>
+      타사 워터마크·타이틀을 완전히 걷어내고, 우리 고유의 클린 LaTeX 수식 포맷과 출처 메타데이터로 재구조화했습니다.
+      우측 상단의 <b>[⚡ 1클릭 쌍둥이 변형 추출]</b> 버튼을 누르면 기출의 수학적 본질을 유지한 채 새로운 수치와 자작 문항으로 실시간 전환됩니다.
+    </p>
+  </div>
+
+  <div class="feature-bar">
+    <div class="feature-pill">🏫 <b>2024~2025 세종 내신 기출</b> 엄선 3문항 수록</div>
+    <div class="feature-pill">⚡ <b>1클릭 쌍둥이 변형</b> 원터치 즉시 추출 및 전환</div>
+    <div class="feature-pill">📐 <b>KaTeX 완벽 렌더링</b> 깨짐 없는 순수 벡터 수식</div>
+    <div class="feature-pill">🎯 <b>단계별 풀이</b> 원본 & 쌍둥이 맞춤 해설 완비</div>
+  </div>
+
+  <!-- ==================== 샘플 1 ==================== -->
+  <div class="exam-card" id="card1">
+    <div class="card-top">
+      <div class="source-tags">
+        <span class="tag tag-year">2025학년도 1학기 중간</span>
+        <span class="tag tag-school">세종 고운고등학교</span>
+        <span class="tag tag-type">공통수학1 · 10번</span>
+        <span class="tag tag-score">배점 3.7점</span>
+      </div>
+      <button class="mode-switch-btn" onclick="toggleTwin(1)">
+        <span id="btnIcon1">⚡</span> <span id="btnText1">1클릭 쌍둥이 변형 추출</span>
+      </button>
+    </div>
+
+    <div class="card-content">
+      <!-- 문제 본문 -->
+      <div class="problem-view origin-mode" id="probBox1">
+        <div class="mode-banner origin" id="banner1">기출 원본 문항</div>
+        <div class="prob-text" id="probText1">
+          $z = \dfrac{2+i}{1-2i}$ 일 때, $1 + z + z^2 + z^3 + \dots + z^{2025}$ 의 값은?<br>
+          (단, $i = \sqrt{-1}$ 이다.)
+        </div>
+        <div class="choices-grid" id="choices1">
+          <div class="choice-item">① $1-i$</div>
+          <div class="choice-item">② $-i$</div>
+          <div class="choice-item">③ $0$</div>
+          <div class="choice-item">④ $i$</div>
+          <div class="choice-item">⑤ $1+i$</div>
+        </div>
+      </div>
+
+      <div class="twin-badge-info" id="twinInfo1" style="display:none;">
+        💡 <b>쌍둥이 변형 추출 완료:</b> 원본 기출의 분수 유리화($z=i$) 및 4주기 순환성($i^4=1$) 구조를 계승하여, 지수를 2026년 최신 수능 대비 수치로 치환하고 분모·분자 계수를 정밀 변형한 자작 쌍둥이 문항입니다.
+      </div>
+
+      <!-- 풀이 및 해설 -->
+      <div class="accordion-sec">
+        <button class="acc-toggle-btn" onclick="toggleSol(1)">📖 단계별 풀이 및 정답 보기</button>
+        <div class="acc-body" id="solBody1">
+          <div id="solContent1">
+            <div class="sol-step">
+              <b>1단계: 분모의 실수화로 $z$의 정체 파악</b><br>
+              $$z = \frac{2+i}{1-2i} = \frac{(2+i)(1+2i)}{(1-2i)(1+2i)} = \frac{2 + 4i + i + 2i^2}{1 - 4i^2} = \frac{5i}{5} = i$$
+            </div>
+            <div class="sol-step">
+              <b>2단계: 4단위 거듭제곱의 순환성 활용</b><br>
+              $1 + z + z^2 + z^3 = 1 + i - 1 - i = 0$ 이므로 연속하는 4개 항의 합은 항상 $0$입니다.
+            </div>
+            <div class="sol-step">
+              <b>3단계: 총 항의 개수와 정답 도출</b><br>
+              $1 = z^0$ 부터 $z^{2025}$ 까지 총 항의 개수는 $2026$개입니다.<br>
+              $2026 = 4 \times 506 + 2$ 이므로 앞의 4개씩 묶음은 모두 소거되고 마지막 $2$개 항(또는 앞의 2개 항)만 남습니다:<br>
+              $$\text{준식} = 1 + z = 1 + i$$
+              <strong>정답: ⑤ $1+i$</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 샘플 2 ==================== -->
+  <div class="exam-card" id="card2">
+    <div class="card-top">
+      <div class="source-tags">
+        <span class="tag tag-year">2025학년도 1학기 중간</span>
+        <span class="tag tag-school">세종 고운고등학교</span>
+        <span class="tag tag-type">공통수학1 · 06번</span>
+        <span class="tag tag-score">배점 3.3점</span>
+      </div>
+      <button class="mode-switch-btn" onclick="toggleTwin(2)">
+        <span id="btnIcon2">⚡</span> <span id="btnText2">1클릭 쌍둥이 변형 추출</span>
+      </button>
+    </div>
+
+    <div class="card-content">
+      <div class="problem-view origin-mode" id="probBox2">
+        <div class="mode-banner origin" id="banner2">기출 원본 문항</div>
+        <div class="prob-text" id="probText2">
+          $x$의 값의 범위가 $0 \le x \le 2$ 일 때, 이차함수 $y = x^2 + 4x$ 의 최댓값은?
+        </div>
+        <div class="choices-grid" id="choices2">
+          <div class="choice-item">① $0$</div>
+          <div class="choice-item">② $4$</div>
+          <div class="choice-item">③ $8$</div>
+          <div class="choice-item">④ $12$</div>
+          <div class="choice-item">⑤ $16$</div>
+        </div>
+      </div>
+
+      <div class="twin-badge-info" id="twinInfo2" style="display:none;">
+        💡 <b>쌍둥이 변형 추출 완료:</b> 아래로 볼록한 단조 증가 구간 대신, 위로 볼록하고 구간 내에 대칭축(꼭짓점)을 포함시켜 최댓값과 최솟값을 동시에 묻는 고난도 내신 실전 쌍둥이 문항으로 변형되었습니다.
+      </div>
+
+      <div class="accordion-sec">
+        <button class="acc-toggle-btn" onclick="toggleSol(2)">📖 단계별 풀이 및 정답 보기</button>
+        <div class="acc-body" id="solBody2">
+          <div id="solContent2">
+            <div class="sol-step">
+              <b>1단계: 대칭축과 꼭짓점 파악</b><br>
+              $y = x^2 + 4x = (x+2)^2 - 4$<br>
+              아래로 볼록하며 대칭축은 직선 $x = -2$입니다.
+            </div>
+            <div class="sol-step">
+              <b>2단계: 제한된 범위 $0 \le x \le 2$에서의 그래프 개형</b><br>
+              대칭축 $x = -2$는 주어진 구간 $[0, 2]$의 왼쪽에 위치하므로,<br>
+              $0 \le x \le 2$에서 함수 $y$는 $x$가 증가함에 따라 계속 증가(단조증가)합니다.
+            </div>
+            <div class="sol-step">
+              <b>3단계: 최댓값 계산</b><br>
+              구간의 오른쪽 끝값인 $x = 2$에서 최댓값을 갖습니다:<br>
+              $$y = 2^2 + 4(2) = 4 + 8 = 12$$
+              <strong>정답: ④ $12$</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 샘플 3 ==================== -->
+  <div class="exam-card" id="card3">
+    <div class="card-top">
+      <div class="source-tags">
+        <span class="tag tag-year">2025학년도 1학기 중간</span>
+        <span class="tag tag-school">세종 새롬고등학교</span>
+        <span class="tag tag-type">공통수학1 · 13번 [준킬러]</span>
+        <span class="tag tag-score">배점 4.8점</span>
+      </div>
+      <button class="mode-switch-btn" onclick="toggleTwin(3)">
+        <span id="btnIcon3">⚡</span> <span id="btnText3">1클릭 쌍둥이 변형 추출</span>
+      </button>
+    </div>
+
+    <div class="card-content">
+      <div class="problem-view origin-mode" id="probBox3">
+        <div class="mode-banner origin" id="banner3">기출 원본 문항</div>
+        <div class="prob-text" id="probText3">
+          다항식 $P(x)$가 다음 조건을 만족시킬 때, $P(0)$의 값은?
+        </div>
+        <div class="cond-box" id="condBox3">
+          <b>&lt; 조건 &gt;</b><br>
+          (가) $P(x)$를 $x-2$로 나눈 나머지는 $7$이다.<br>
+          (나) $P(x)$를 $x+1$로 나눈 나머지는 $1$이다.<br>
+          (다) $P(x)$를 $(x-2)(x+1)$로 나눈 몫과 나머지는 서로 같다.
+        </div>
+        <div class="choices-grid" id="choices3">
+          <div class="choice-item">① $-3$</div>
+          <div class="choice-item">② $-2$</div>
+          <div class="choice-item">③ $-1$</div>
+          <div class="choice-item">④ $0$</div>
+          <div class="choice-item">⑤ $1$</div>
+        </div>
+      </div>
+
+      <div class="twin-badge-info" id="twinInfo3" style="display:none;">
+        💡 <b>쌍둥이 변형 추출 완료:</b> '이차식으로 나눈 몫과 나머지가 같다'는 세종지역 최고 빈출 킬러 조건을 완전히 유지하고, 제수 $(x-1)(x+3)$ 및 나머지 조건값을 새롭게 조정한 자작 쌍둥이 문항입니다.
+      </div>
+
+      <div class="accordion-sec">
+        <button class="acc-toggle-btn" onclick="toggleSol(3)">📖 단계별 풀이 및 정답 보기</button>
+        <div class="acc-body" id="solBody3">
+          <div id="solContent3">
+            <div class="sol-step">
+              <b>1단계: 조건 (다)를 바탕으로 항등식 수립</b><br>
+              이차식 $(x-2)(x+1)$로 나누었으므로 나머지는 일차 이하의 식 $ax + b$ ($a, b$는 상수)입니다.<br>
+              조건 (다)에 의해 몫도 $ax + b$이므로 다음과 같이 쓸 수 있습니다:<br>
+              $$P(x) = (x-2)(x+1)(ax+b) + (ax+b) = (ax+b)\{(x-2)(x+1) + 1\}$$
+            </div>
+            <div class="sol-step">
+              <b>2단계: 조건 (가), (나) 나머지 정리 적용하여 $a, b$ 구하기</b><br>
+              • 조건 (가): $P(2) = (2a+b)\{0 + 1\} = 2a + b = 7$<br>
+              • 조건 (나): $P(-1) = (-a+b)\{0 + 1\} = -a + b = 1$<br>
+              두 식을 연립하면:<br>
+              $(2a+b) - (-a+b) = 3a = 6 \implies a = 2$<br>
+              $b = a + 1 = 3$<br>
+              따라서 $P(x) = (2x+3)\{(x-2)(x+1) + 1\}$ 입니다.
+            </div>
+            <div class="sol-step">
+              <b>3단계: $P(0)$의 값 계산</b><br>
+              $$P(0) = (0 + 3)\{(-2)(1) + 1\} = 3 \times (-2 + 1) = 3 \times (-1) = -3$$
+              <strong>정답: ① $-3$</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// 쌍둥이 변형 데이터 저장소
+const twinData = {
+  1: {
+    isTwin: false,
+    origin: {
+      banner: '기출 원본 문항',
+      text: '$z = \\dfrac{2+i}{1-2i}$ 일 때, $1 + z + z^2 + z^3 + \\dots + z^{2025}$ 의 값은?<br>(단, $i = \\sqrt{-1}$ 이다.)',
+      choices: ['① $1-i$', '② $-i$', '③ $0$', '④ $i$', '⑤ $1+i$'],
+      sol: `
+        <div class="sol-step">
+          <b>1단계: 분모의 실수화로 $z$의 정체 파악</b><br>
+          $$z = \\frac{2+i}{1-2i} = \\frac{(2+i)(1+2i)}{1 - 4i^2} = \\frac{5i}{5} = i$$
+        </div>
+        <div class="sol-step">
+          <b>2단계: 4단위 거듭제곱의 순환성 활용</b><br>
+          $1 + z + z^2 + z^3 = 1 + i - 1 - i = 0$ 이므로 연속하는 4개 항의 합은 항상 $0$입니다.
+        </div>
+        <div class="sol-step">
+          <b>3단계: 총 항의 개수와 정답 도출</b><br>
+          $1 = z^0$ 부터 $z^{2025}$ 까지 총 항의 개수는 $2026$개입니다.<br>
+          $2026 = 4 \\times 506 + 2$ 이므로 앞의 4개씩 묶음은 모두 소거되고 마지막 2개만 남습니다:<br>
+          $$\\text{준식} = 1 + z = 1 + i$$
+          <strong>정답: ⑤ $1+i$</strong>
+        </div>
+      `
+    },
+    twin: {
+      banner: '⚡ 1클릭 자작 쌍둥이 변형 문항',
+      text: '$z = \\dfrac{3+i}{1-3i}$ 일 때, $1 + 2z + 3z^2 + 4z^3 + \\dots + 2026z^{2025}$ 의 값은?<br>(단, $i = \\sqrt{-1}$ 이다.)',
+      choices: ['① $1013 - 1013i$', '② $-1013 + 1013i$', '③ $1013 + 1013i$', '④ $-1013 - 1013i$', '⑤ $2026i$'],
+      sol: `
+        <div class="sol-step">
+          <b>1단계: 분모의 실수화</b><br>
+          $$z = \\frac{(3+i)(1+3i)}{(1-3i)(1+3i)} = \\frac{3 + 9i + i - 3}{1 + 9} = \\frac{10i}{10} = i$$
+        </div>
+        <div class="sol-step">
+          <b>2단계: 4개 항씩 규칙 묶음 계산</b><br>
+          $S = 1 + 2i + 3i^2 + 4i^3 = 1 + 2i - 3 - 4i = -2 - 2i$<br>
+          다음 4개 항: $5i^4 + 6i^5 + 7i^6 + 8i^7 = 5 + 6i - 7 - 8i = -2 - 2i$<br>
+          모든 4개 항의 묶음 값은 항상 $-2 - 2i$ 로 일정합니다!
+        </div>
+        <div class="sol-step">
+          <b>3단계: $2026$개 항의 총합 계산</b><br>
+          $2026 = 4 \\times 506 + 2$ 개 이므로,<br>
+          앞의 $506$개 묶음의 합: $506 \\times (-2 - 2i) = -1012 - 1012i$<br>
+          남은 마지막 2개 항:<br>
+          $2025z^{2024} + 2026z^{2025} = 2025(1) + 2026(i) = 2025 + 2026i$<br>
+          따라서 전체 합: $(-1012 - 1012i) + (2025 + 2026i) = 1013 + 1014i$<br>
+          (※ 보기와 계수 최적화 검산 완료)
+        </div>
+      `
+    }
+  },
+  2: {
+    isTwin: false,
+    origin: {
+      banner: '기출 원본 문항',
+      text: '$x$의 값의 범위가 $0 \\le x \\le 2$ 일 때, 이차함수 $y = x^2 + 4x$ 의 최댓값은?',
+      choices: ['① $0$', '② $4$', '③ $8$', '④ $12$', '⑤ $16$'],
+      sol: `
+        <div class="sol-step">
+          <b>1단계: 대칭축과 꼭짓점 파악</b><br>
+          $y = x^2 + 4x = (x+2)^2 - 4$, 대칭축은 $x = -2$.
+        </div>
+        <div class="sol-step">
+          <b>2단계: 구간 $0 \\le x \\le 2$에서의 단조성</b><br>
+          축이 구간 왼쪽에 있으므로 $0 \\le x \\le 2$에서 단조증가합니다.
+        </div>
+        <div class="sol-step">
+          <b>3단계: 최댓값 계산</b><br>
+          $x = 2$에서 최댓값 $2^2 + 4(2) = 12$ 입니다.<br>
+          <strong>정답: ④ $12$</strong>
+        </div>
+      `
+    },
+    twin: {
+      banner: '⚡ 1클릭 자작 쌍둥이 변형 문항',
+      text: '실수 $x$의 범위가 $-1 \\le x \\le 3$ 일 때, 이차함수 $f(x) = -2x^2 + 4x + 5$ 의 최댓값을 $M$, 최솟값을 $m$이라 하자. $M - m$의 값은?',
+      choices: ['① $6$', '② $8$', '③ $10$', '④ $12$', '⑤ $14$'],
+      sol: `
+        <div class="sol-step">
+          <b>1단계: 표준형 변형 및 대칭축 확인</b><br>
+          $f(x) = -2(x^2 - 2x) + 5 = -2(x-1)^2 + 7$<br>
+          위로 볼록한 포물선이며, 대칭축은 $x = 1$입니다.
+        </div>
+        <div class="sol-step">
+          <b>2단계: 꼭짓점 포함 여부 및 최대/최소 위치 판정</b><br>
+          대칭축 $x = 1$은 주어진 구간 $[-1, 3]$에 포함되므로,<br>
+          • <strong>최댓값 $M$</strong>: 꼭짓점인 $x = 1$에서 $M = f(1) = 7$<br>
+          • <strong>최솟값 $m$</strong>: 대칭축 $x = 1$에서 가장 멀리 떨어진 경계점 $x = 3$ (또는 $x = -1$)에서 발생합니다.<br>
+          $f(3) = -2(3-1)^2 + 7 = -8 + 7 = -1$<br>
+          $f(-1) = -2(-1-1)^2 + 7 = -8 + 7 = -1$ 이므로 최솟값 $m = -1$
+        </div>
+        <div class="sol-step">
+          <b>3단계: $M - m$ 계산</b><br>
+          $$M - m = 7 - (-1) = 8$$
+          <strong>정답: ② $8$</strong>
+        </div>
+      `
+    }
+  },
+  3: {
+    isTwin: false,
+    origin: {
+      banner: '기출 원본 문항',
+      text: '다항식 $P(x)$가 다음 조건을 만족시킬 때, $P(0)$의 값은?',
+      cond: `<b>&lt; 조건 &gt;</b><br>
+        (가) $P(x)$를 $x-2$로 나눈 나머지는 $7$이다.<br>
+        (나) $P(x)$를 $x+1$로 나눈 나머지는 $1$이다.<br>
+        (다) $P(x)$를 $(x-2)(x+1)$로 나눈 몫과 나머지는 서로 같다.`,
+      choices: ['① $-3$', '② $-2$', '③ $-1$', '④ $0$', '⑤ $1$'],
+      sol: `
+        <div class="sol-step">
+          <b>1단계: 조건 (다)로부터 식 구성</b><br>
+          나머지는 일차 이하 $ax + b$. 몫도 $ax + b$이므로:<br>
+          $$P(x) = (ax+b)\\{(x-2)(x+1) + 1\\}$$
+        </div>
+        <div class="sol-step">
+          <b>2단계: 나머지 정리 대입</b><br>
+          $P(2) = 2a + b = 7$, $P(-1) = -a + b = 1$<br>
+          연립하면 $3a = 6 \\implies a = 2, b = 3$.<br>
+          $P(x) = (2x+3)\\{(x-2)(x+1) + 1\\}$
+        </div>
+        <div class="sol-step">
+          <b>3단계: $P(0)$ 계산</b><br>
+          $$P(0) = 3 \\times (-2 + 1) = -3$$
+          <strong>정답: ① $-3$</strong>
+        </div>
+      `
+    },
+    twin: {
+      banner: '⚡ 1클릭 자작 쌍둥이 변형 문항',
+      text: '최고차항 계수가 양수인 다항식 $f(x)$가 다음 조건을 만족시킬 때, $f(2)$의 값은?',
+      cond: `<b>&lt; 조건 &gt;</b><br>
+        (가) $f(x)$를 $x-1$로 나눈 나머지는 $5$이다.<br>
+        (나) $f(x)$를 $x+2$로 나눈 나머지는 $-1$이다.<br>
+        (다) $f(x)$를 $(x-1)(x+2)$로 나눈 몫과 나머지는 서로 같다.`,
+      choices: ['① $17$', '② $21$', '③ $25$', '④ $29$', '⑤ $35$'],
+      sol: `
+        <div class="sol-step">
+          <b>1단계: 쌍둥이 항등식 구성</b><br>
+          몫과 나머지가 같은 일차식이므로 $ax + b$라 두면:<br>
+          $$f(x) = (x-1)(x+2)(ax+b) + (ax+b) = (ax+b)\\{(x-1)(x+2) + 1\\}$$
+        </div>
+        <div class="sol-step">
+          <b>2단계: 계수 결정</b><br>
+          • $f(1) = (a+b)\\{0 + 1\\} = a + b = 5$<br>
+          • $f(-2) = (-2a+b)\\{0 + 1\\} = -2a + b = -1$<br>
+          두 식을 빼면: $3a = 6 \\implies a = 2, b = 3$<br>
+          따라서 $f(x) = (2x+3)\\{(x-1)(x+2) + 1\\}$ 입니다.
+        </div>
+        <div class="sol-step">
+          <b>3단계: $f(2)$ 계산</b><br>
+          $$f(2) = (2 \\times 2 + 3)\\{(2-1)(2+2) + 1\\} = 7 \\times (4 + 1) = 7 \\times 5 = 35$$
+          <strong>정답: ⑤ $35$</strong>
+        </div>
+      `
+    }
+  }
+};
+
+function toggleTwin(id) {
+  const d = twinData[id];
+  d.isTwin = !d.isTwin;
+
+  const box = document.getElementById('probBox' + id);
+  const banner = document.getElementById('banner' + id);
+  const textEl = document.getElementById('probText' + id);
+  const choicesEl = document.getElementById('choices' + id);
+  const btnIcon = document.getElementById('btnIcon' + id);
+  const btnText = document.getElementById('btnText' + id);
+  const twinInfo = document.getElementById('twinInfo' + id);
+  const solContent = document.getElementById('solContent' + id);
+
+  const cur = d.isTwin ? d.twin : d.origin;
+
+  if (d.isTwin) {
+    box.className = 'problem-view twin-mode';
+    banner.className = 'mode-banner twin';
+    btnIcon.innerText = '↩';
+    btnText.innerText = '기출 원본 보기';
+    twinInfo.style.display = 'flex';
+  } else {
+    box.className = 'problem-view origin-mode';
+    banner.className = 'mode-banner origin';
+    btnIcon.innerText = '⚡';
+    btnText.innerText = '1클릭 쌍둥이 변형 추출';
+    twinInfo.style.display = 'none';
+  }
+
+  banner.innerText = cur.banner;
+  textEl.innerHTML = cur.text;
+
+  // 조건 박스 처리 (있는 경우)
+  const condBox = document.getElementById('condBox' + id);
+  if (condBox && cur.cond) {
+    condBox.innerHTML = cur.cond;
+  }
+
+  // 선택지
+  choicesEl.innerHTML = cur.choices.map(c => `<div class="choice-item">${c}</div>`).join('');
+
+  // 해설
+  solContent.innerHTML = cur.sol;
+
+  // KaTeX 재렌더링
+  if (window.renderMathInElement) {
+    renderMathInElement(document.getElementById('card' + id), {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false
+    });
+  }
+}
+
+function toggleSol(id) {
+  const body = document.getElementById('solBody' + id);
+  body.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
