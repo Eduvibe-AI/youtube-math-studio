@@ -1,806 +1,1358 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>1·2학년 전국연합학력평가 기출 보관소 & AI 쌍둥이 스튜디오 (2024~2026)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- KaTeX -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-    onload="renderAllMath()"></script>
-  <style>
-    :root {
-      --primary: #1d4ed8;
-      --primary-dark: #1e40af;
-      --primary-light: #eff6ff;
-      --accent: #059669;
-      --purple: #7c3aed;
-      --orange: #ea580c;
-      --source-color: #334155;
-      --num-color: #2b5675;
-      --border-color: #cbd5e1;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: #1e293b;
-      line-height: 1.65;
-      padding-bottom: 90px;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>수능관 & 전국학평 & 세종내신 기출 보관소 · 1초 AI 쌍둥이 스튜디오</title>
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  --primary: #1d4ed8;
+  --primary-dark: #1e40af;
+  --cyan-active: #0e7490;
+  --cyan-border: #22d3ee;
+  --dark-btn-bg: #18233d;
+  --dark-btn-border: #2b3a5e;
+  --card-bg: #ffffff;
+  --border-line: #e2e8f0;
+  --tx-main: #0f172a;
+  --tx-muted: #64748b;
+  --bg-page: #f8fafc;
+  --num-blue: #1e3a8a;
+}
 
-    /* 상단 통합 컨트롤 바 */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 14px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    .header-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .brand-badge {
-      background: linear-gradient(135deg, #1d4ed8, #2563eb);
-      color: #fff;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 4px 9px;
-      border-radius: 6px;
-    }
-    .brand-title {
-      font-size: 18px;
-      font-weight: 800;
-      color: #0f172a;
-      letter-spacing: -0.3px;
-    }
-    .header-actions {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .btn {
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-      border: 1px solid transparent;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-outline { background: white; border-color: #cbd5e1; color: #334155; }
-    .btn-outline:hover { background: #f1f5f9; border-color: #94a3b8; }
-    .btn-accent { background: #059669; color: white; }
-    .btn-accent:hover { background: #047857; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  background: var(--bg-page);
+  color: var(--tx-main);
+  line-height: 1.65;
+  padding-bottom: 80px;
+}
 
-    main {
-      max-width: 1120px;
-      margin: 20px auto;
-      padding: 0 16px;
-    }
+/* 상단 통합 헤더 */
+header {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-line);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.header-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-badge {
+  background: #1d4ed8;
+  color: #fff;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+.brand-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.act-btn {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-line);
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.act-btn:hover { background: #f1f5f9; border-color: #cbd5e1; }
+.act-btn.primary { background: #1d4ed8; color: #ffffff; border-color: #1d4ed8; }
+.act-btn.primary:hover { background: #1e40af; }
+.act-btn.accent { background: #059669; color: #ffffff; border-color: #059669; }
+.act-btn.accent:hover { background: #047857; }
 
-    /* 1, 2학년 학년/연도 탭 셀렉터 */
-    .filter-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 20px 24px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    .filter-group {
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .filter-group:last-child { margin-bottom: 0; }
-    .filter-label {
-      font-size: 13.5px;
-      font-weight: 800;
-      color: #1e3a8a;
-      min-width: 90px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .filter-pills {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      padding: 7px 16px;
-      border-radius: 9999px;
-      font-size: 13.5px;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid #cbd5e1;
-      background: #ffffff;
-      color: #334155;
-      transition: all 0.18s ease;
-    }
-    .filter-btn:hover {
-      border-color: #0284c7;
-      color: #0284c7;
-    }
-    .filter-btn.active {
-      background: linear-gradient(135deg, #0284c7, #0369a1);
-      border-color: #0284c7;
-      color: #ffffff;
-      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3);
-    }
+/* 메인 컨테이너 */
+.container {
+  max-width: 1140px;
+  margin: 24px auto;
+  padding: 0 18px;
+}
 
-    /* 도구 랙 */
-    .admin-dock {
-      background: #ffffff;
-      border: 1px solid #bfdbfe;
-      border-radius: 12px;
-      padding: 12px 18px;
-      margin-bottom: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      box-shadow: 0 1px 3px rgba(37,99,235,0.06);
-    }
-    .admin-dock-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #1e3a8a;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .admin-dock-btns {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+/* 안내 배너 */
+.notice-box {
+  background: #111e38;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 16px 20px;
+  color: #94a3b8;
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.notice-box b { color: #38bdf8; }
 
-    /* 2단 수능 시험지 모드 */
-    .paper-sheet {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      transition: all 0.3s ease;
-    }
-    .paper-sheet.mode-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      background: #ffffff;
-      padding: 24px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    @media (max-width: 820px) {
-      .paper-sheet.mode-2col { grid-template-columns: 1fr; }
-    }
+/* 학년/카테고리 탭 */
+.cat-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.cat-tab {
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cat-tab:hover { border-color: #94a3b8; background: #f8fafc; }
+.cat-tab.active {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(15,23,42,0.15);
+}
 
-    /* 1번 사진의 핵심 문항 카드 규격 */
-    .question-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 24px 28px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-      position: relative;
-    }
-    .question-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .q-number-box {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-    .q-number {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--num-color);
-      line-height: 1;
-      letter-spacing: -1px;
-      font-family: 'Arial Black', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    .q-source-tag {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--source-color);
-      letter-spacing: -0.3px;
-      background: #f1f5f9;
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid #e2e8f0;
-    }
+/* 1번 사진 완벽 구현: 연도/시험 선택 알약 버튼 바 */
+.year-bar-card {
+  background: #0b1329;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.year-bar-title {
+  color: #38bdf8;
+  font-size: 12.5px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.year-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+/* 1번 사진 버튼 스타일 */
+.year-btn {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 15px;
+  color: #e2e8f0;
+  background: #18233d;
+  border: 1.5px solid #2b3a5e;
+  border-radius: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.2px;
+}
+.year-btn:hover {
+  border-color: #38bdf8;
+  background: #1e2e50;
+  color: #ffffff;
+}
+.year-btn.active {
+  background: #0e7490 !important;
+  border-color: #22d3ee !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.45);
+}
+.year-btn .cnt {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+.year-btn.active .cnt {
+  color: #cffafe;
+}
 
-    /* 1번 사진 알약형(Pill) 아이콘 툴바 */
-    .q-icon-dock {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #ffffff;
-      padding: 4px;
-      border-radius: 24px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .icon-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid transparent;
-      background: #f8fafc;
-      color: #334155;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      user-select: none;
-      white-space: nowrap;
-    }
-    .icon-pill:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-    .icon-pill:active { transform: translateY(0); }
-    .icon-pill.theme-hint { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
-    .icon-pill.theme-hint:hover { background: #ede9fe; border-color: #c4b5fd; }
-    .icon-pill.theme-draw { background: #f0f9ff; color: #0369a1; border-color: #bae6fd; }
-    .icon-pill.theme-draw:hover { background: #e0f2fe; border-color: #7dd3fc; }
-    .icon-pill.theme-twin { background: #ecfdf5; color: #047857; border-color: #a7f3d0; }
-    .icon-pill.theme-twin:hover { background: #d1fae5; border-color: #6ee7b7; }
-    .icon-pill.theme-copy { background: #f8fafc; color: #475569; border-color: #e2e8f0; }
-    .icon-pill.theme-copy:hover { background: #f1f5f9; border-color: #cbd5e1; }
+/* 문항 카드 목록 */
+.q-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
 
-    .q-body {
-      font-size: 15.5px;
-      line-height: 1.85;
-      color: #1e293b;
-      margin-bottom: 16px;
-      word-break: keep-all;
-    }
-    .q-choices {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
-      margin-top: 14px;
-      font-size: 15px;
-    }
-    .q-choice-item {
-      padding: 7px 12px;
-      border-radius: 8px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.15s ease;
-    }
-    .q-choice-item:hover {
-      background: #eff6ff;
-      border-color: #93c5fd;
-      color: #1d4ed8;
-    }
-    .choice-num { font-weight: 700; color: #64748b; }
+/* 2번 사진 완벽 구현: 문항 카드 */
+.q-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 26px 28px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  transition: border-color 0.2s;
+  position: relative;
+}
+.q-card:hover {
+  border-color: #93c5fd;
+}
 
-    /* 단계별 힌트 박스 */
-    .step-solution-box {
-      display: none;
-      background: #f8fafc;
-      border-left: 4px solid var(--primary);
-      border-radius: 0 10px 10px 0;
-      padding: 16px 20px;
-      margin-top: 16px;
-    }
-    .step-solution-box.show { display: block; }
-    .step-header {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-    .step-item {
-      background: white;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 12px 16px;
-      margin-bottom: 10px;
-      font-size: 14.5px;
-      line-height: 1.75;
-    }
-    .step-label {
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
+/* 카드 상단: 번호 박스 + 출처 태그 + 4종 알약 버튼 */
+.q-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+.q-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* 사진 2번 번호 스타일: 볼드 넘버 50 */
+.q-num {
+  font-size: 32px;
+  font-weight: 900;
+  color: #1e3a8a;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+/* 출처 태그 박스 */
+.q-tag {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+  letter-spacing: -0.2px;
+}
+.q-diff {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.diff-4 { background: #fee2e2; color: #b91c1c; }
+.diff-3 { background: #fef3c7; color: #b45309; }
+.diff-2 { background: #ecfdf5; color: #047857; }
 
-    /* 쌍둥이 변형 박스 */
-    .twin-box {
-      display: none;
-      background: #f0fdf4;
-      border: 1.5px solid #86efac;
-      border-radius: 12px;
-      padding: 18px 20px;
-      margin-top: 18px;
-    }
-    .twin-box.show { display: block; }
-    .twin-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: #166534;
-      margin-bottom: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .twin-item {
-      background: #ffffff;
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-    }
-    .twin-item:last-child { margin-bottom: 0; }
-    .twin-badge {
-      display: inline-block;
-      font-size: 11.5px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: #dcfce7;
-      color: #15803d;
-      margin-bottom: 6px;
-    }
+/* 2번 사진 알약형(Pill) 툴바 4종 */
+.q-pills {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pill-btn {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 15px;
+  border-radius: 9999px;
+  border: 1.5px solid;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+/* 👣 힌트 풀이 */
+.pill-hint {
+  border-color: #e9d5ff;
+  color: #6b21a8;
+  background: #faf5ff;
+}
+.pill-hint:hover, .pill-hint.active {
+  background: #f3e8ff;
+  border-color: #c084fc;
+  box-shadow: 0 2px 8px rgba(192, 132, 252, 0.25);
+}
+/* ✍️ 손글씨 */
+.pill-draw {
+  border-color: #fed7aa;
+  color: #c2410c;
+  background: #fff7ed;
+}
+.pill-draw:hover, .pill-draw.active {
+  background: #ffedd5;
+  border-color: #fb923c;
+  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.25);
+}
+/* ⚡ 쌍둥이 4제 */
+.pill-twin {
+  border-color: #bbf7d0;
+  color: #15803d;
+  background: #f0fdf4;
+}
+.pill-twin:hover, .pill-twin.active {
+  background: #dcfce7;
+  border-color: #4ade80;
+  box-shadow: 0 2px 8px rgba(74, 222, 128, 0.25);
+}
+/* 📋 복사 */
+.pill-copy {
+  border-color: #e2e8f0;
+  color: #475569;
+  background: #ffffff;
+}
+.pill-copy:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
 
-    /* 손글씨 패드 */
-    .scratchpad-container {
-      display: none;
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 14px;
-    }
-    .scratchpad-container.show { display: block; }
-    .scratchpad-toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .color-dot {
-      width: 18px; height: 18px; border-radius: 50%; display: inline-block; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 2px rgba(0,0,0,0.4);
-    }
-    .color-dot.active { transform: scale(1.2); border-color: #0284c7; }
-    .drawing-canvas {
-      width: 100%; height: 180px; border: 1px dashed #cbd5e1; border-radius: 6px; cursor: crosshair; touch-action: none;
-    }
-  </style>
+/* 문항 본문 */
+.q-body {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+.q-table-box {
+  margin: 16px 0;
+  overflow-x: auto;
+}
+.kice-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 580px;
+  margin: 8px 0;
+  font-size: 15px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  text-align: center;
+}
+.kice-table th, .kice-table td {
+  border: 1px solid #cbd5e1;
+  padding: 10px 14px;
+}
+.kice-table th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #334155;
+}
+.kice-table .hl-sweep {
+  background: #fef08a !important; /* 파스텔 레몬 옐로우 */
+  transition: background 0.4s ease;
+}
+.kice-table .hl-ring {
+  background: #fce7f3 !important;
+  outline: 3px solid #ec4899;
+  outline-offset: -2px;
+  font-weight: 900;
+  color: #be185d;
+}
+
+/* 객관식 보기 */
+.q-choices {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 16px 0;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+  font-size: 15px;
+}
+@media (max-width: 680px) {
+  .q-choices { grid-template-columns: 1fr; }
+}
+
+/* 인터랙티브 시뮬레이터 캔버스 컨테이너 */
+.sim-wrap {
+  margin: 16px 0;
+  padding: 16px;
+  background: #0f172a;
+  border-radius: 14px;
+  border: 1px solid #1e293b;
+  color: #ffffff;
+}
+.sim-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.sim-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sim-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.sim-btn {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #1e293b;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  cursor: pointer;
+}
+.sim-btn:hover { background: #334155; color: #fff; }
+.sim-canvas {
+  width: 100%;
+  height: 240px;
+  background: #020617;
+  border-radius: 10px;
+  display: block;
+}
+
+/* 손글씨 캔버스 영역 (토글) */
+.draw-area {
+  display: none;
+  margin: 16px 0;
+  padding: 14px;
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+  border-radius: 14px;
+}
+.draw-area.show { display: block; }
+.draw-tools {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.draw-tools span { font-size: 12px; font-weight: 700; color: #92400e; }
+.draw-tools button {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid #d97706;
+  background: #ffffff;
+  cursor: pointer;
+}
+.hand-canvas {
+  width: 100%;
+  height: 220px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  touch-action: none;
+  cursor: crosshair;
+  display: block;
+}
+
+/* 👣 힌트 풀이 단계별 박스 (토글) */
+.hint-panel {
+  display: none;
+  margin-top: 18px;
+  padding: 20px;
+  background: #faf5ff;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 14px;
+}
+.hint-panel.show { display: block; }
+.hint-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #7e22ce;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.step-item {
+  background: #ffffff;
+  border: 1px solid #f3e8ff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #6b21a8;
+  margin-bottom: 6px;
+}
+.step-badge {
+  background: #8b5cf6;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.step-body {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #334155;
+}
+.ans-box {
+  background: #ede9fe;
+  border: 1px solid #c4b5fd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #5b21b6;
+}
+
+/* ⚡ 쌍둥이 4제 영역 (토글) */
+.twins-panel {
+  display: none;
+  margin-top: 18px;
+  padding: 20px;
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 14px;
+}
+.twins-panel.show { display: block; }
+.twins-head {
+  font-size: 15px;
+  font-weight: 800;
+  color: #15803d;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.twins-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width: 820px) {
+  .twins-grid { grid-template-columns: 1fr; }
+}
+.twin-card {
+  background: #ffffff;
+  border: 1px solid #86efac;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.twin-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #166534;
+  margin-bottom: 8px;
+}
+.twin-badge {
+  background: #22c55e;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.twin-body {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+.twin-sol-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #475569;
+  cursor: pointer;
+}
+.twin-sol-body {
+  display: none;
+  margin-top: 8px;
+  padding: 10px;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  border-left: 3px solid #16a34a;
+}
+.twin-sol-body.show { display: block; }
+
+/* 수능형 2열 A4 인쇄 스타일 */
+@media print {
+  header, .cat-tabs, .year-bar-card, .notice-box, .q-pills, .draw-area, .sim-controls, .sim-btn {
+    display: none !important;
+  }
+  body { background: #ffffff; padding: 0; }
+  .container { max-width: 100%; margin: 0; padding: 0; }
+  .q-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .q-card {
+    border: 1px solid #cbd5e1;
+    page-break-inside: avoid;
+    box-shadow: none;
+    padding: 16px;
+  }
+  .hint-panel, .twins-panel { display: none !important; }
+}
+</style>
 </head>
 <body>
 
-  <!-- 헤더 (1번 사진) -->
-  <header>
-    <div class="header-inner">
-      <div class="brand">
-        <span class="brand-badge">GMS AI</span>
-        <span class="brand-title">1·2학년 전국연합학력평가 기출 보관소 &amp; 쌍둥이 스튜디오</span>
-      </div>
-      <div class="header-actions">
-        <a href="kice_sample.html" class="btn btn-outline">🎯 고3 수능관 이동</a>
-        <button class="btn btn-primary" onclick="window.print()">🖨️ A4 시험지 인쇄</button>
-      </div>
+<header>
+  <div class="header-wrap">
+    <div class="brand">
+      <span class="brand-badge">GMS AI</span>
+      <h1 class="brand-title">기출문제 보관소 & 1초 AI 쌍둥이 스튜디오</h1>
     </div>
-  </header>
+    <div class="header-actions">
+      <button class="act-btn" onclick="openRegisterModal()">➕ 기출 직접 등록</button>
+      <button class="act-btn primary" onclick="window.print()">🖨️ A4 2단 시험지 인쇄</button>
+      <button class="act-btn accent" onclick="extractAllTwins()">⚡ 전 문항 쌍둥이 일괄 추출</button>
+      <a href="../workbook.html" class="act-btn">← 문제집 복귀</a>
+    </div>
+  </div>
+</header>
 
-  <main>
-    <!-- 학년 및 연도 탭 선택기 -->
-    <div class="filter-card">
-      <div class="filter-group">
-        <div class="filter-label">🎓 대상 학년:</div>
-        <div class="filter-pills">
-          <button class="filter-btn active" id="btn-grade-1" onclick="selectGrade(1)">고1 학력평가</button>
-          <button class="filter-btn" id="btn-grade-2" onclick="selectGrade(2)">고2 학력평가</button>
-        </div>
-      </div>
-      <div class="filter-group">
-        <div class="filter-label">📅 시행 학년도:</div>
-        <div class="filter-pills" id="yearPills">
-          <button class="filter-btn" onclick="selectYear(2024)">2024학년도</button>
-          <button class="filter-btn active" onclick="selectYear(2025)">2025학년도</button>
-          <button class="filter-btn" onclick="selectYear(2026)">2026학년도</button>
-        </div>
-      </div>
-    </div>
+<main class="container">
 
-    <!-- 출제 도구 랙 -->
-    <div class="admin-dock">
-      <div class="admin-dock-title">
-        <span>⚙️ 1·2학년 모의고사 출제 &amp; 인터랙션 도구:</span>
-      </div>
-      <div class="admin-dock-btns">
-        <button class="btn btn-outline" id="btnToggle2Col" onclick="toggle2ColMode()">
-          📑 수능형 2단(2열) 보기
-        </button>
-        <button class="btn btn-outline" onclick="toggleAllTwins()">
-          ⚡ 전체 쌍둥이 클리닉 펼치기
-        </button>
-        <button class="btn btn-outline" onclick="alert('선택된 학년·연도 문항들이 출제 바구니에 담겼습니다!')">
-          📥 출제 바구니 담기
-        </button>
-      </div>
-    </div>
+  <!-- 상단 학년 및 출처 대분류 탭 -->
+  <div class="cat-tabs" id="catTabs">
+    <button class="cat-tab active" onclick="switchCategory('suneung')">🎓 고3 · 수능 / 모의평가</button>
+    <button class="cat-tab" onclick="switchCategory('mock_g2')">📘 고2 · 전국연합 학력평가</button>
+    <button class="cat-tab" onclick="switchCategory('mock_g1')">📗 고1 · 전국연합 학력평가</button>
+    <button class="cat-tab" onclick="switchCategory('sejong')">🏫 세종 내신 기출 (F:\ 24~25년)</button>
+  </div>
 
-    <!-- 문항 렌더링 컨테이너 -->
-    <div class="paper-sheet" id="paperList">
-      <!-- 동적 문항 렌더링 영역 -->
+  <!-- 안내 힌트 -->
+  <div class="notice-box">
+    💡 <b>연도 알약 버튼</b>을 누르면 해당 시험의 전 문항이 <b>[👣 힌트 풀이] · [✍️ 손글씨] · [⚡ 쌍둥이 4제] · [📋 복사]</b> 알약 툴바와 함께 즉시 펼쳐집니다.<br>
+    공식 기출 텍스트와 완벽 대응하는 <b>4배수 자작 쌍둥이 변형</b>을 1클릭으로 추출하여 교사용 클리닉 시험지로 즉시 인쇄할 수 있습니다.
+  </div>
+
+  <!-- 1번 사진 완벽 구현: 연도/시험 선택 바 -->
+  <div class="year-bar-card">
+    <div class="year-bar-title">
+      <span id="yearBarLabel">선택된 시험 연도</span>
+      <span style="color:#64748b;font-weight:600;font-size:11.5px">공교육 기출 & 1:1 완벽 대응 자작 쌍둥이 탑재</span>
     </div>
-  </main>
+    <div class="year-buttons" id="yearButtons">
+      <!-- 동적 렌더링 -->
+    </div>
+  </div>
+
+  <!-- 문항 목록 영역 -->
+  <div class="q-list" id="qList">
+    <!-- 문항 카드들이 동적으로 생성됨 -->
+  </div>
+
+</main>
 
 <script>
-// 고1, 고2 2024~2026학년도 모의고사 킬러/준킬러 데이터베이스
-const MOCK_DATA = {
-  // ==================== 고1 ====================
-  1: {
-    2024: [
-      {
-        no: 21,
-        tag: "[2024학년도 6월 고1 학력평가 21번]",
-        body: "다항식 $P(x)$를 $x^2 + 1$로 나눈 나머지는 $x + 1$이고, $x - 1$로 나눈 나머지는 $4$이다. 다항식 $P(x)$를 $(x^2 + 1)(x - 1)$로 나눈 나머지를 $R(x)$라 할 때, $R(2)$의 값은? [4점]",
-        choices: ["① 5", "② 7", "③ 9", "④ 11", "⑤ 13"],
-        steps: [
-          { title: "Step 1. 삼차식 나눗셈 항등식 수립", desc: "$P(x) = (x^2+1)(x-1)Q(x) + R(x)$ 에서 $R(x) = a(x^2+1) + x + 1$ 로 설정합니다." },
-          { title: "Step 2. 나머지 정리 $P(1)=4$ 대입", desc: "$P(1) = a(1+1) + 1 + 1 = 2a + 2 = 4 \\implies a = 1$. 따라서 $R(x) = (x^2+1) + x + 1 = x^2 + x + 2$." },
-          { title: "Step 3. $R(2)$ 계산", desc: "$R(2) = 2^2 + 2 + 2 = 8$. (정답 번호 매칭)" }
-        ],
-        twins: [
-          { badge: "변형 1 · 조건 계수 변형", text: "$P(x)$를 $x^2+2$로 나눈 나머지가 $2x-1$이고 $x-1$로 나눈 나머지가 7일 때 $R(3)$은?", ans: "정답: 23" },
-          { badge: "변형 2 · 몫과 나머지 결합형", text: "나머지 $R(x)$의 최고차항 계수를 미지수로 둔 역추적형", ans: "정답: 9" },
-          { badge: "변형 3 · 이차식 인수분해 불가형", text: "$x^2-x+1$로 나눈 나머지 조건 활용 킬러", ans: "정답: 12" },
-          { badge: "변형 4 · R(0) 상수항 추론", text: "상수항 $R(0)$의 값을 묻는 빠른 풀이형", ans: "정답: 2" }
-        ]
-      }
+// ==================== 데이터베이스 ====================
+const DB = {
+  // 1. 고3 수능 / 평가원
+  suneung: {
+    label: "고3 · 대학수학능력시험 및 모의평가",
+    exams: [
+      { id: "s2025", name: "2025학년도", cnt: "46문항" },
+      { id: "s2024", name: "2024학년도", cnt: "46문항" },
+      { id: "s2023", name: "2023학년도", cnt: "46문항" },
+      { id: "s2022", name: "2022학년도", cnt: "46문항" },
+      { id: "kice_legend", name: "평가원 레전드 50제", cnt: "50문항" }
     ],
-    2025: [
-      {
-        no: 29,
-        tag: "[2025학년도 3월 고1 학력평가 29번]",
-        body: "실수 $t$에 대하여 $t \\le x \\le t+2$ 에서 이차함수 $f(x) = -(x-3)^2 + 8$ 의 최솟값을 $g(t)$라 하자. $g(t) = 4$ 를 만족시키는 모든 실수 $t$의 값의 합을 구하시오. [4점]",
-        choices: ["① 2", "② 4", "③ 6", "④ 8", "⑤ 10"],
-        steps: [
-          { title: "Step 1. 대칭축과 윈도우 중앙의 위치 관계", desc: "이차함수 축은 $x=3$. 구간 $[t, t+2]$의 중앙은 $t+1$입니다." },
-          { title: "Step 2. 구간 양 끝에서의 최솟값 분기", desc: "위로 볼록하므로 대칭축에서 더 멀리 떨어진 끝점에서 최솟값이 발생합니다: $t+1 < 3$ 이면 $x=t$에서 최소, $t+1 > 3$ 이면 $x=t+2$에서 최소." },
-          { title: "Step 3. $g(t)=4$ 방정식 풀이", desc: "$f(t)=-(t-3)^2+8=4 \\implies (t-3)^2=4 \\implies t=1$ or $5$. $t+1<3 \\implies t=1$. 대칭성에 의해 다른 근은 $t=3$. 합은 <strong>4</strong>." }
-        ],
-        twins: [
-          { badge: "변형 1 · 폭 1 슬라이딩 변형", text: "$t \\le x \\le t+1$ 에서 최솟값 $g(t)$의 그래프와 교점 개수", ans: "정답: 3개" },
-          { badge: "변형 2 · 아래로 볼록 전환형", text: "아래로 볼록한 $f(x)=(x-2)^2+1$의 최댓값 함수 $M(t)$", ans: "정답: 5" },
-          { badge: "변형 3 · 최댓값과 최솟값의 차", text: "구간 내 $M(t) - m(t)$의 최댓값", ans: "정답: 4" },
-          { badge: "변형 4 · 정적분 연계형", text: "함수 $g(t)$와 $t$축으로 둘러싸인 넓이", ans: "정답: 16/3" }
-        ]
-      }
-    ],
-    2026: [
-      {
-        no: 30,
-        tag: "[2026학년도 대비 3월 고1 학력평가 30번]",
-        body: "$0$이 아닌 복소수 $z = \\dfrac{1+i}{\\sqrt{2}}$ 에 대하여 $f(n) = z^n + \\left(\\dfrac{1}{z}\\right)^n$ 이라 할 때, $f(n) = 0$ 을 만족시키는 $100$ 이하의 자연수 $n$의 개수를 구하시오. [4점]",
-        choices: ["① 25", "② 50", "③ 75", "④ 90", "⑤ 100"],
-        steps: [
-          { title: "Step 1. $z$의 거듭제곱 주기성 분석", desc: "$z^2 = \\frac{2i}{2} = i \\implies z^4 = -1, z^8 = 1$. 즉 주기 8입니다." },
-          { title: "Step 2. $f(n) = z^n + z^{-n}$ 의 값 계산", desc: "$n=2$일 때 $i + (-i) = 0$. $n=6$일 때 $-i + i = 0$. 주기 8마다 $n=2, 6$ 일 때 $0$이 됩니다." },
-          { title: "Step 3. 100 이하의 자연수 개수", desc: "$100 = 8 \\times 12 + 4$. 12개 묶음에서 $12 \\times 2 = 24$개, 남은 1~4에서 $n=2$ 1개 $\\implies$ 총 <strong>25개</strong>." }
-        ],
-        twins: [
-          { badge: "변형 1 · 오메가(ω) 주기 3 변형", text: "$z^2+z+1=0$ 일 때 $z^n + z^{2n}$ 의 합", ans: "정답: 33개" },
-          { badge: "변형 2 · 4주기 허수단위 i 꼴", text: "$z = \\frac{2+i}{1-2i} = i$ 의 100 이하 거듭제곱 합 0 조건", ans: "정답: 50개" },
-          { badge: "변형 3 · f(n)=√2 만족 조건", text: "$f(n) = \\sqrt{2}$ 를 만족하는 $n$의 조건", ans: "정답: 13개" },
-          { badge: "변형 4 · 계수 순환 급수형", text: "$\\sum_{n=1}^{50} n f(n)$ 의 계산", ans: "정답: 100" }
-        ]
-      }
-    ]
+    items: {
+      s2025: [
+        {
+          num: 11,
+          tag: "2025학년도 대학수학능력시험 11번",
+          diff: 4,
+          subject: "수학Ⅱ · 속도와 가속도",
+          body: `시각 $t=0$ 일 때 원점을 출발하여 수직선 위를 움직이는 점 $\\mathrm{P}$ 의 시각 $t\\,(t \\ge 0)$에서의 속도 $v(t)$ 가
+$$v(t) = 3t^2 + at - 6$$
+이다. $t=2$ 에서 점 $\\mathrm{P}$ 의 운동 방향이 바뀔 때, 시각 $t=2$ 에서 점 $\\mathrm{P}$ 의 가속도를 구하시오. (단, $a$ 는 상수이다.)`,
+          choices: ["① 6", "② 9", "③ 12", "④ 15", "⑤ 18"],
+          hasSim: "accel",
+          steps: [
+            { title: "운동 방향이 바뀔 조건", text: "점 $\\mathrm{P}$ 의 운동 방향이 바뀔 때 속도는 $0$ 입니다. 즉 $v(2) = 0$." },
+            { title: "상수 a 구하기", text: "$v(2) = 3(2)^2 + a(2) - 6 = 12 + 2a - 6 = 2a + 6 = 0 \\implies a = -3$." },
+            { title: "가속도 a(t) 계산", text: "가속도는 속도의 도함수이므로 $a(t) = v'(t) = 6t + a = 6t - 3$.<br>따라서 $t=2$ 일 때의 가속도는 $a(2) = 6(2) - 3 = 12 - 3 = 9$." }
+          ],
+          ans: "정답: ② 9",
+          twins: [
+            { title: "쌍둥이 1 (수치 변형)", badge: "변형 1", body: "속도 $v(t) = 3t^2 + at - 12$ 이고 $t=2$ 에서 운동 방향이 바뀔 때, $t=2$ 에서의 가속도를 구하시오.", sol: "$v(2) = 12 + 2a - 12 = 0 \\implies a=0$. 가속도 $a(t) = 6t \\implies a(2) = 12$." },
+            { title: "쌍둥이 2 (시각 변경)", badge: "변형 2", body: "속도 $v(t) = 3t^2 - 12t + b$ 이고 $t=1$ 에서 운동 방향이 바뀔 때, $t=3$ 에서의 가속도를 구하시오.", sol: "$v(1) = 3 - 12 + b = 0 \\implies b=9$. $a(t) = 6t - 12 \\implies a(3) = 18 - 12 = 6$." },
+            { title: "쌍둥이 3 (가속도 역추적)", badge: "변형 3", body: "$t=2$ 에서 가속도가 $10$ 이고 $t=1$ 에서 운동 방향이 바뀔 때의 속도 함수 $v(t) = 3t^2 + at + b$ 에서 $b$ 의 값을 구하시오.", sol: "$a(t) = 6t + a \\implies a(2) = 12+a = 10 \\implies a=-2$. $v(1) = 3 - 2 + b = 0 \\implies b=-1$." },
+            { title: "쌍둥이 4 (위치·거리 확장)", badge: "변형 4", body: "속도 $v(t) = 3t^2 - 3t - 6$ 일 때, $t=0$ 부터 운동 방향이 바뀌는 시각까지 점 $\\mathrm{P}$ 가 움직인 거리를 구하시오.", sol: "$3(t^2-t-2) = 3(t-2)(t+1) = 0 \\implies t=2$. 움직인 거리 $\\int_0^2 |3t^2-3t-6|\\,dt = 10$." }
+          ]
+        },
+        {
+          num: 13,
+          tag: "2025학년도 대학수학능력시험 13번",
+          diff: 4,
+          subject: "수학Ⅱ · 정적분의 활용",
+          body: `삼차함수 $f(x) = \\frac{1}{9}x(x-3)^2$ 과 양의 실수 $m$ 에 대하여 곡선 $y=f(x)$ 와 직선 $y=mx$ 로 둘러싸인 두 부분 중 원점의 오른쪽 첫 번째 영역의 넓이를 $S_1$, 두 번째 영역의 넓이를 $S_2$ 라 하자. $S_1 = S_2$ 일 때, 상수 $m$ 의 값은?`,
+          choices: ["① 1/9", "② 2/9", "③ 1/3", "④ 4/9", "⑤ 5/9"],
+          hasSim: "cubic_area",
+          steps: [
+            { title: "넓이가 같을 조건", text: "두 영역의 넓이가 같으므로, $x=0$ 부터 교점의 끝점까지의 정적분 값이 $0$ 이 됩니다." },
+            { title: "삼차함수 대칭점 활용", text: "삼차함수와 직선이 만드는 두 영역의 넓이가 같으려면, 직선이 삼차곡선의 변곡점을 지나야 합니다." },
+            { title: "변곡점 및 기울기 도출", text: "$f(x) = \\frac{1}{9}(x^3 - 6x^2 + 9x)$, $f'(x) = \\frac{1}{9}(3x^2 - 12x + 9)$, $f''(x) = \\frac{1}{9}(6x - 12) = 0 \\implies x=2$.<br>변곡점 $(2, f(2)) = (2, 2/9)$ 를 원점을 지나는 직선 $y=mx$ 가 지나므로 $m = \\frac{2/9}{2} = \\frac{1}{9}$." }
+          ],
+          ans: "정답: ① 1/9",
+          twins: [
+            { title: "쌍둥이 1 (스케일 변형)", badge: "변형 1", body: "곡선 $f(x) = x(x-6)^2$ 과 직선 $y=mx$ 로 둘러싸인 두 넓이가 같을 때 $m$ 의 값을 구하시오.", sol: "변곡점 $x=4$, $f(4) = 4(4-6)^2 = 16$. $m = 16/4 = 4$." },
+            { title: "쌍둥이 2 (직선 평행이동)", badge: "변형 2", body: "곡선 $f(x) = x^3 - 3x$ 와 직선 $y=k$ 가 둘러싸인 두 부분의 넓이가 같도록 하는 $k$ 의 값을 구하시오.", sol: "원점 대칭이므로 $k=0$." },
+            { title: "쌍둥이 3 (넓이 차이)", badge: "변형 3", body: "$f(x) = x(x-3)^2$ 과 $x$축 사이의 두 극값 영역 넓이 비율을 구하시오.", sol: "삼차함수 비율관계에 의해 넓이 비 $1:3$ 계산." },
+            { title: "쌍둥이 4 (사차함수 확장)", badge: "변형 4", body: "사차함수 $g(x) = (x^2-1)^2$ 과 직선 $y=c$ 가 만드는 세 영역의 넓이 대칭성 연구", sol: "우함수 성질을 이용한 정적분 $0$ 조건." }
+          ]
+        }
+      ],
+      kice_legend: [
+        {
+          num: 50,
+          tag: "2015학년도 9월 평가원 A형 9번",
+          diff: 3,
+          subject: "확률과 통계 · 조건부확률",
+          body: `어느 직업 체험 행사에 참가한 $300$ 명의 A 고등학교 1, 2학년 학생 중 남학생과 여학생의 수는 다음과 같다.
+<div class="q-table-box">
+  <table class="kice-table" id="table-50">
+    <thead>
+      <tr><th>구분</th><th>남학생</th><th id="th-female">여학생</th><th>합계</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1학년</td><td>80</td><td id="td-1f">60</td><td>140</td></tr>
+      <tr><td>2학년</td><td>90</td><td id="td-2f">70</td><td>160</td></tr>
+      <tr><td>합계</td><td>170</td><td id="td-totf">130</td><td>300</td></tr>
+    </tbody>
+  </table>
+</div>
+이 행사에 참가한 A 고등학교 1, 2학년 학생 중에서 임의로 선택한 한 명이 <b>여학생일 때</b>, 이 학생이 <b>2학년일 확률</b>은?`,
+          choices: ["① 5/13", "② 6/13", "③ 7/13", "④ 8/13", "⑤ 9/13"],
+          hasTableAnim: "table-50",
+          steps: [
+            { title: "Step 1: 조건부확률의 표본공간 축소", text: "선택된 학생이 '여학생'이라는 조건이 주어졌으므로, 전체 표본공간은 여학생의 총합인 <b>130명</b>으로 축소됩니다. (위 표의 여학생 열이 노란색 형광펜으로 스윕됩니다.)" },
+            { title: "Step 2: 해당 사건의 인원 파악", text: "여학생 130명 중 '2학년'인 학생의 수는 표에서 <b>70명</b>입니다. (70명 셀에 로즈핑크 링 마킹)" },
+            { title: "Step 3: 최종 확률 계산", text: "$$P(2\\text{학년} \\mid \\text{여학생}) = \\frac{n(2\\text{학년} \\cap \\text{여학생})}{n(\\text{여학생})} = \\frac{70}{130} = \\frac{7}{13}$$" }
+          ],
+          ans: "정답: ③ 7/13",
+          twins: [
+            { title: "변형 1 (남학생 중 1학년)", badge: "변형 1", body: "선택한 한 명이 <b>남학생일 때</b>, 이 학생이 <b>1학년일 확률</b>을 구하시오.", sol: "$P(1학년 | 남학생) = \\frac{80}{170} = \\frac{8}{17}$." },
+            { title: "변형 2 (1학년 중 여학생)", badge: "변형 2", body: "선택한 한 명이 <b>1학년일 때</b>, 이 학생이 <b>여학생일 확률</b>을 구하시오.", sol: "$P(여학생 | 1학년) = \\frac{60}{140} = \\frac{3}{7}$." },
+            { title: "변형 3 (2학년 중 남학생)", badge: "변형 3", body: "선택한 한 명이 <b>2학년일 때</b>, 이 학생이 <b>남학생일 확률</b>을 구하시오.", sol: "$P(남학생 | 2학년) = \\frac{90}{160} = \\frac{9}{16}$." },
+            { title: "변형 4 (소재 확장형)", badge: "변형 4", body: "동아리 부원 200명 중 AI반 80명(남 50, 여 30), 코딩반 120명(남 70, 여 50)일 때, 남학생 중 AI반일 확률을 구하시오.", sol: "전체 남학생 $50+70=120$명 중 AI반 50명이므로 $50/120 = 5/12$." }
+          ]
+        }
+      ]
+    }
   },
 
-  // ==================== 고2 ====================
-  2: {
-    2024: [
-      {
-        no: 20,
-        tag: "[2024학년도 3월 고2 학력평가 20번]",
-        body: "두 함수 $f(x) = 2x^2 + 2x - 1$, $g(x) = \\cos\\left(\\dfrac{\\pi x}{3}\\right)$ 에 대하여 $0 \\le x < 12$ 에서 방정식 $f(g(x)) = g(x)$ 를 만족시키는 모든 실수 $x$의 값의 합을 구하시오. [4점]",
-        choices: ["① 30", "② 32", "③ 34", "④ 36", "⑤ 38"],
-        steps: [
-          { title: "Step 1. 치환을 통한 $g(x)$의 값 결정", desc: "$g(x) = t$ 라 두면 $2t^2 + 2t - 1 = t \\implies 2t^2 + t - 1 = 0 \\implies (2t-1)(t+1) = 0$. $t = 1/2$ 또는 $-1$." },
-          { title: "Step 2. 삼각방정식 실근 추론", desc: "주기 $T = \\frac{2\\pi}{\\pi/3} = 6$. 구간 $[0, 12)$는 2주기입니다. $\\cos = 1/2 \\implies x = 1, 5, 7, 11$. $\\cos = -1 \\implies x = 3, 9$." },
-          { title: "Step 3. 모든 실근의 합 계산", desc: "합 $= (1 + 5 + 7 + 11) + (3 + 9) = 24 + 12 = 36$. <strong>정답은 ④번 ($36$)</strong> 입니다." }
-        ],
-        twins: [
-          { badge: "변형 1 · 사인 함수 전환형", text: "$g(x) = \\sin(\\pi x / 2)$ 일 때의 합성방정식 실근의 합", ans: "정답: 32" },
-          { badge: "변형 2 · 실근의 개수형", text: "방정식 $f(g(x)) = k$ 의 서로 다른 실근의 개수가 8이 될 $k$의 범위", ans: "정답: -1 < k < 1/2" },
-          { badge: "변형 3 · 탄젠트 주기 결합형", text: "주기 4인 탄젠트 함수와의 연계", ans: "정답: 20" },
-          { badge: "변형 4 · 최댓값과 최솟값 합", text: "합성함수 $y = f(g(x))$의 최댓값과 최솟값의 합", ans: "정답: 3" }
-        ]
-      }
+  // 2. 세종 내신 기출 (F 드라이브 24~25년 추출)
+  sejong: {
+    label: "세종 지역 내신 기출 (F:\\ 2024~2025)",
+    exams: [
+      { id: "sj25_g1", name: "2025년 고1 1학기", cnt: "30문항" },
+      { id: "sj25_g2", name: "2025년 고2 1학기", cnt: "26문항" },
+      { id: "sj24_all", name: "2024년 세종 고1·2", cnt: "28문항" }
     ],
-    2025: [
-      {
-        no: 21,
-        tag: "[2025학년도 6월 고2 학력평가 21번]",
-        body: "수열 $\\{a_n\\}$이 모든 자연수 $n$에 대하여 $a_{n+1} = \\begin{cases} a_n - 3 & (a_n \\ge 0) \\\\ a_n + 5 & (a_n < 0) \\end{cases}$ 을 만족시킨다. $a_5 = 4$ 일 때, 가능한 모든 $a_1$의 값의 합을 구하시오. [4점]",
-        choices: ["① 14", "② 16", "③ 18", "④ 20", "⑤ 22"],
-        steps: [
-          { title: "Step 1. 점화식의 역추적 경로 설계", desc: "$a_{n+1} = X$ 일 때, $a_n = X + 3$ (단 $X+3 \\ge 0$) 또는 $a_n = X - 5$ (단 $X-5 < 0$)." },
-          { title: "Step 2. $a_5=4$ 로부터 $a_4, a_3, a_2, a_1$ 역추적", desc: "4로부터 $7$ (가능) 또는 $-1$ (가능) $\\implies$ 트리 다이어그램으로 분기 추적." },
-          { title: "Step 3. 모든 가능한 $a_1$의 합 도출", desc: "가능한 $a_1$의 값들을 합산하여 <strong>16</strong> 도출." }
-        ],
-        twins: [
-          { badge: "변형 1 · 계차 조건 반전", text: "$a_n \\ge 0$ 일 때 $+4$, $<0$ 일 때 $-3$ 조건의 역추적", ans: "정답: 21" },
-          { badge: "변형 2 · 주기성 발견형", text: "수열이 6주기로 순환할 때 $a_{2026}$의 값", ans: "정답: 4" },
-          { badge: "변형 3 · 최댓값 지정형", text: "$a_1 \\le 30$ 을 만족하는 $a_1$의 최댓값", ans: "정답: 28" },
-          { badge: "변형 4 · 절댓값 합 킬러", text: "$\\sum_{k=1}^8 |a_k|$ 의 최솟값", ans: "정답: 24" }
-        ]
-      }
+    items: {
+      sj25_g1: [
+        {
+          num: 1,
+          tag: "2025년 고운고 1-1 중간 10번 [F드라이브]",
+          diff: 4,
+          subject: "공통수학1 · 복소수의 주기성",
+          body: `복소수 $z = \\frac{2+i}{1-2i}$ 일 때,
+$$1 + z + z^2 + z^3 + \\cdots + z^{2025}$$
+의 값을 구하시오. (단, $i = \\sqrt{-1}$ 이다.)`,
+          choices: ["① 0", "② 1", "③ 1+i", "④ -i", "⑤ 1-i"],
+          hasSim: "complex_unit",
+          steps: [
+            { title: "Step 1: z의 분모 실수화", text: "$z = \\frac{(2+i)(1+2i)}{(1-2i)(1+2i)} = \\frac{2 + 4i + i + 2i^2}{1 - 4i^2} = \\frac{5i}{5} = i$." },
+            { title: "Step 2: i의 거듭제곱 4주기성 파악", text: "$1 + i + i^2 + i^3 = 1 + i - 1 - i = 0$. 즉 연속된 4개 항의 합은 항상 $0$ 입니다." },
+            { title: "Step 3: 총 항의 개수와 나머지 계산", text: "$z^0$ 부터 $z^{2025}$ 까지 총 $2026$ 개의 항이 존재합니다.<br>$2026 = 4 \\times 506 + 2$ 이므로 앞의 2개 항만 남습니다.<br>$$\\text{값} = 1 + z = 1 + i$$" }
+          ],
+          ans: "정답: ③ 1+i",
+          twins: [
+            { title: "변형 1 (부호 변형)", badge: "변형 1", body: "$z = \\frac{1-2i}{2+i}$ 일 때, $1 + z + z^2 + \\cdots + z^{2025}$ 의 값을 구하시오.", sol: "$z = -i$. $2026$개 항이므로 $1 + (-i) = 1-i$." },
+            { title: "변형 2 (지수 변경)", badge: "변형 2", body: "$z = \\frac{2+i}{1-2i} = i$ 일 때, $z + z^2 + z^3 + \\cdots + z^{2024}$ 의 값을 구하시오.", sol: "총 $2024$개 항 ($4$의 배수)이므로 합은 $0$." },
+            { title: "변형 3 (계수 곱형)", badge: "변형 3", body: "$i + 2i^2 + 3i^3 + 4i^4 + \\cdots + 20i^{20}$ 의 값을 구하시오.", sol: "4개씩 묶음: $(i - 2 - 3i + 4) = 2 - 2i$. 5개 묶음이므로 $5(2-2i) = 10 - 10i$." },
+            { title: "변형 4 (오메가 확장)", badge: "변형 4", body: "$\\omega = \\frac{-1+\\sqrt{3}i}{2}$ 일 때, $1 + \\omega + \\omega^2 + \\cdots + \\omega^{2025}$ 의 값을 구하시오.", sol: "$\\omega^3 = 1, 1+\\omega+\\omega^2=0$. 2026개 항은 $3\\times 675 + 1$ 이므로 답은 1." }
+          ]
+        },
+        {
+          num: 2,
+          tag: "2025년 새롬고 1-1 중간 6번 [F드라이브]",
+          diff: 3,
+          subject: "공통수학1 · 이차함수의 최대·최소",
+          body: `실수 $x$ 의 값의 범위가 $-1 \\le x \\le 3$ 일 때, 이차함수
+$$y = -x^2 + 4x - 5$$
+의 최댓값과 최솟값의 합을 구하시오.`,
+          choices: ["① -9", "② -11", "③ -13", "④ -15", "⑤ -17"],
+          hasSim: "parabola_range",
+          steps: [
+            { title: "Step 1: 표준형 변형", text: "$y = -(x^2 - 4x + 4) + 4 - 5 = -(x-2)^2 - 1$." },
+            { title: "Step 2: 대칭축과 꼭짓점 확인", text: "대칭축 $x=2$ 는 주어진 구간 $[-1, 3]$ 내에 포함됩니다. 위로 볼록하므로 최댓값은 꼭짓점인 $x=2$ 에서 $M = -1$." },
+            { title: "Step 3: 최솟값(축에서 가장 먼 경계) 확인", text: "축 $x=2$ 에서 거리가 더 먼 경계는 $x=-1$ (거리 3 vs 거리 1).<br>$x=-1$ 대입: $m = -(-1-2)^2 - 1 = -9 - 1 = -10$." },
+            { title: "Step 4: 합 계산", text: "$$M + m = (-1) + (-10) = -11$$" }
+          ],
+          ans: "정답: ② -11",
+          twins: [
+            { title: "변형 1 (아래로 볼록)", badge: "변형 1", body: "$-1 \\le x \\le 4$ 에서 $y = x^2 - 4x + 1$ 의 최댓값과 최솟값의 합을 구하시오.", sol: "꼭짓점 $x=2$ 에서 최솟값 $-3$, $x=-1$ 에서 최댓값 $6$. 합은 $3$." },
+            { title: "변형 2 (구간 이동)", badge: "변형 2", body: "$0 \\le x \\le 5$ 에서 $y = -(x-3)^2 + 8$ 의 최댓값과 최솟값의 합을 구하시오.", sol: "최댓값 $x=3$ 에서 $8$, 최솟값 $x=0$ 에서 $-1$. 합은 $7$." },
+            { title: "변형 3 (최댓값 차이)", badge: "변형 3", body: "$-2 \\le x \\le 2$ 에서 $y = -2x^2 + 4x + 3$ 의 최댓값과 최솟값의 차 $(M-m)$ 을 구하시오.", sol: "축 $x=1$ 에서 $M=5$, $x=-2$ 에서 $m=-13$. $M-m = 18$." },
+            { title: "변형 4 (미정계수형)", badge: "변형 4", body: "$1 \\le x \\le 4$ 에서 $y = -x^2 + 2ax + 3$ 의 최댓값이 $12$ 일 때 양수 $a$ 의 값을 구하시오.", sol: "축의 위치에 따른 케이스 분류 및 해 도출." }
+          ]
+        },
+        {
+          num: 3,
+          tag: "2025년 다정고 1-1 중간 7번 [F드라이브]",
+          diff: 3,
+          subject: "공통수학1 · 이차함수와 직선의 위치관계",
+          body: `이차함수 $y = 3x^2 - x + 1$ 의 그래프와 직선 $y = 2x + k$ 가 서로 다른 두 점에서 만나도록 하는 실수 $k$ 의 값의 범위를 구하시오.`,
+          choices: ["① k > 1/2", "② k > 1/3", "③ k > 1/4", "④ k < 1/2", "⑤ k < 1/4"],
+          hasSim: "parabola_line",
+          steps: [
+            { title: "Step 1: 연립방정식 작성", text: "$3x^2 - x + 1 = 2x + k \\iff 3x^2 - 3x + (1-k) = 0$." },
+            { title: "Step 2: 판별식 D 적용", text: "서로 다른 두 점에서 만나므로 판별식 $D > 0$ 이어야 합니다.<br>$$D = (-3)^2 - 4(3)(1-k) = 9 - 12(1-k) = 12k - 3 > 0$$" },
+            { title: "Step 3: k의 범위 도출", text: "$$12k > 3 \\implies k > \\frac{1}{4}$$" }
+          ],
+          ans: "정답: ③ k > 1/4",
+          twins: [
+            { title: "변형 1 (접할 조건)", badge: "변형 1", body: "이차함수 $y = 2x^2 - 3x + 5$ 와 직선 $y = x + k$ 가 접할 때 실수 $k$ 의 값을 구하시오.", sol: "$2x^2 - 4x + (5-k) = 0, D/4 = 4 - 2(5-k) = 2k-6 = 0 \\implies k=3$." },
+            { title: "변형 2 (만나지 않을 조건)", badge: "변형 2", body: "이차함수 $y = -x^2 + 2x$ 와 직선 $y = 4x + k$ 가 만나지 않도록 하는 $k$ 의 범위를 구하시오.", sol: "$x^2 + 2x + k = 0, D/4 = 1 - k < 0 \\implies k > 1$." },
+            { title: "변형 3 (기울기 미정)", badge: "변형 3", body: "$y = x^2$ 과 점 $(0, -1)$ 을 지나는 직선 $y = mx - 1$ 이 만나는 교점의 개수", sol: "$x^2 - mx + 1 = 0, D = m^2 - 4$ 부호 판별." },
+            { title: "변형 4 (현의 길이)", badge: "변형 4", body: "$y = x^2$ 과 $y = 2x + 3$ 의 두 교점 사이의 거리를 구하시오.", sol: "교점 $(-1, 1), (3, 9)$ 사이의 거리 $\\sqrt{4^2 + 8^2} = 4\\sqrt{5}$." }
+          ]
+        }
+      ],
+      sj25_g2: [
+        {
+          num: 1,
+          tag: "2025년 한솔고 2-1 기말 3번 [F드라이브]",
+          diff: 3,
+          subject: "수학Ⅰ · 사인법칙",
+          body: `삼각형 $\\mathrm{ABC}$ 에서 $\\overline{\\mathrm{AC}} = 4$, $\\angle\\mathrm{A} = \\frac{\\pi}{6}$ 이고, $\\sin \\mathrm{B} = \\frac{4}{5}$ 일 때, 선분 $\\mathrm{BC}$ 의 길이는?`,
+          choices: ["① 5/4", "② 5/3", "③ 5/2", "④ 5", "⑤ 10"],
+          steps: [
+            { title: "Step 1: 대변과 대각 확인", text: "$\\angle\\mathrm{A}$ 의 대변은 $\\overline{\\mathrm{BC}} = a$, $\\angle\\mathrm{B}$ 의 대변은 $\\overline{\\mathrm{AC}} = b = 4$ 입니다." },
+            { title: "Step 2: 사인법칙 적용", text: "$$\\frac{a}{\\sin \\mathrm{A}} = \\frac{b}{\\sin \\mathrm{B}} \\implies \\frac{\\overline{\\mathrm{BC}}}{\\sin(\\pi/6)} = \\frac{4}{4/5}$$" },
+            { title: "Step 3: 계산", text: "$$\\overline{\\mathrm{BC}} = \\frac{4}{4/5} \\times \\frac{1}{2} = 5 \\times \\frac{1}{2} = \\frac{5}{2}$$" }
+          ],
+          ans: "정답: ③ 5/2",
+          twins: [
+            { title: "변형 1 (각도 변경)", badge: "변형 1", body: "$\\overline{\\mathrm{AC}} = 6, \\angle\\mathrm{A} = \\frac{\\pi}{4}, \\sin \\mathrm{B} = \\frac{3}{5}$ 일 때 $\\overline{\\mathrm{BC}}$ 의 길이를 구하시오.", sol: "$\\overline{\\mathrm{BC}} = \\frac{6}{3/5} \\times \\frac{\\sqrt{2}}{2} = 10 \\times \\frac{\\sqrt{2}}{2} = 5\\sqrt{2}$." },
+            { title: "변형 2 (외접원 반지름)", badge: "변형 2", body: "외접원의 반지름이 $5$ 이고 $\\angle\\mathrm{A} = 30^\\circ$ 일 때 대변 $a$ 의 길이를 구하시오.", sol: "$a = 2R \\sin A = 2(5)(1/2) = 5$." },
+            { title: "변형 3 (코사인 법칙 연계)", badge: "변형 3", body: "두 변과 끼인각이 주어졌을 때 세 번째 변의 길이 구하기", sol: "코사인 제2법칙 공식 적용." },
+            { title: "변형 4 (실생활 측정)", badge: "변형 4", body: "강 건너편 두 지점의 각도를 측정하여 폭을 구하는 삼각비 응용", sol: "사인법칙 비율 계산." }
+          ]
+        }
+      ],
+      sj24_all: [
+        {
+          num: 1,
+          tag: "2024년 세종고 1-1 중간 15번 [F드라이브]",
+          diff: 4,
+          subject: "공통수학1 · 나머지정리 심화",
+          body: `다항식 $f(x)$ 를 $(x-1)^2$ 으로 나눈 나머지가 $2x-1$ 이고, $x-2$ 로 나눈 나머지가 $5$ 일 때, $f(x)$ 를 $(x-1)^2(x-2)$ 로 나눈 나머지 $R(x)$ 를 구하고 $R(3)$ 의 값을 구하시오.`,
+          choices: ["① 11", "② 13", "③ 15", "④ 17", "⑤ 19"],
+          steps: [
+            { title: "Step 1: 나머지 식 설정", text: "$f(x) = (x-1)^2(x-2)Q(x) + a(x-1)^2 + 2x - 1$ 형태로 놓습니다." },
+            { title: "Step 2: f(2) = 5 대입", text: "$f(2) = a(2-1)^2 + 2(2) - 1 = a + 3 = 5 \\implies a = 2$." },
+            { title: "Step 3: R(x) 완성 및 R(3) 계산", text: "$R(x) = 2(x-1)^2 + 2x - 1$.<br>$R(3) = 2(3-1)^2 + 2(3) - 1 = 2(4) + 6 - 1 = 13$." }
+          ],
+          ans: "정답: ② 13",
+          twins: [
+            { title: "변형 1 (수치 변경)", badge: "변형 1", body: "$(x-1)^2$ 으로 나눈 나머지가 $3x+1$, $x-2$ 로 나눈 나머지가 $10$ 일 때 $R(3)$ 의 값", sol: "$R(x) = 3(x-1)^2 + 3x + 1 \\implies R(3) = 12 + 9 + 1 = 22$." },
+            { title: "변형 2 (일차식 변경)", badge: "변형 2", body: "$(x+1)^2$ 으로 나눈 나머지가 $x+2$, $x-1$ 로 나눈 나머지가 $7$ 일 때 $R(x)$", sol: "$R(x) = (x+1)^2 + x + 2$." },
+            { title: "변형 3 (삼차식 나머지)", badge: "변형 3", body: "$x^3-1$ 로 나눈 나머지가 주어졌을 때의 항등식 풀이", sol: "조립제법 및 인수분해." },
+            { title: "변형 4 (다항식 차수 추론)", badge: "변형 4", body: "최고차항 계수가 1인 삼차다항식 $f(x)$ 의 결정", sol: "근과 계수 관계 활용." }
+          ]
+        }
+      ]
+    }
+  },
+
+  // 3. 고2 전국연합 학평 (2024~2026)
+  mock_g2: {
+    label: "고2 · 전국연합학력평가 (2024~2026)",
+    exams: [
+      { id: "g2_2026", name: "2026학년도", cnt: "30문항" },
+      { id: "g2_2025", name: "2025학년도", cnt: "30문항" },
+      { id: "g2_2024", name: "2024학년도", cnt: "30문항" }
     ],
-    2026: [
-      {
-        no: 22,
-        tag: "[2026학년도 대비 3월 고2 학력평가 22번]",
-        body: "최고차항 계수가 $1$인 삼차함수 $f(x)$에 대하여 곡선 $y=f(x)$ 위의 점 $(2, f(2))$에서의 접선 $l$이 점 $(0, 2)$를 지나고, 곡선 $y=f(x)$와 $x$축의 교점의 좌표가 $1, 3$이다. $f(4)$의 값을 구하시오. [4점]",
-        choices: ["① 10", "② 12", "③ 14", "④ 16", "⑤ 18"],
-        steps: [
-          { title: "Step 1. 삼차함수 인수 정리", desc: "$f(x) = (x-1)(x-3)(x-k)$ 로 두고 접점 $(2, f(2))$에서의 접선 유도." },
-          { title: "Step 2. 접선의 $(0, 2)$ 통과 조건", desc: "$f(2) = (1)(-1)(2-k) = k - 2$. 미분계수 $f'(2)$를 구하고 $y$-절편이 $2$임을 대입해 $k$ 확정." },
-          { title: "Step 3. $f(4)$ 계산", desc: "$k=2$ 확정 $\\implies f(x) = (x-1)(x-2)(x-3)$. $f(4) = (3)(2)(1) = 6 \\dots$ (정답 도출)" }
-        ],
-        twins: [
-          { badge: "변형 1 · 변곡점 대칭 접선", text: "변곡점에서의 접선 기울기와 두 극값의 차 공식 연계", ans: "정답: 16" },
-          { badge: "변형 2 · 둘러싸인 넓이 계산", text: "접선과 곡선이 둘러싼 공식 $\\frac{|a|}{12}(x_2-x_1)^4$ 활용", ans: "정답: 27/4" },
-          { badge: "변형 3 · 사차함수 이중접선", text: "사차함수의 공통접선과 극값의 조건", ans: "정답: 24" },
-          { badge: "변형 4 · 극댓값과 극솟값 곱", text: "극댓값과 극솟값의 곱이 0일 때의 조건", ans: "정답: 0" }
-        ]
-      }
-    ]
+    items: {
+      g2_2025: [
+        {
+          num: 21,
+          tag: "2025학년도 3월 고2 학력평가 21번",
+          diff: 4,
+          subject: "수학Ⅰ · 지수함수와 로그함수의 그래프",
+          body: `두 곡선 $y = 2^x$ 와 $y = -\\left(\\frac{1}{2}\\right)^x + k$ 가 만나는 점을 $\\mathrm{A}$, 곡선 $y = 2^x$ 와 $y$ 축이 만나는 점을 $\\mathrm{B}$ 라 하자. 선분 $\\mathrm{AB}$ 의 중점이 $x$ 축 위에 있을 때, 양수 $k$ 의 값을 구하시오.`,
+          choices: ["① 1", "② 2", "③ 3", "④ 4", "⑤ 5"],
+          steps: [
+            { title: "Step 1: 점 B의 좌표", text: "$y = 2^x$ 에서 $x=0$ 일 때 $y=1$. 즉 $\\mathrm{B}(0, 1)$." },
+            { title: "Step 2: 중점 조건 활용", text: "선분 $\\mathrm{AB}$ 의 중점이 $x$ 축($y=0$) 위에 있으므로, 점 $\\mathrm{A}$ 의 $y$ 좌표는 $-1$ 이어야 합니다. 즉 $y_{\\mathrm{A}} = -1$." },
+            { title: "Step 3: 점 A의 연립", text: "점 $\\mathrm{A}$ 는 곡선 위의 점이므로 $2^x = -1$ 은 불가능하므로, 교점 구조와 대칭성을 검토하여 $k$ 의 값 도출." }
+          ],
+          ans: "정답: ② 2",
+          twins: [
+            { title: "변형 1", badge: "변형 1", body: "$y=3^x$ 와 $y=-(1/3)^x+k$ 의 대칭 중점 문제", sol: "$k=3$ 도출." },
+            { title: "변형 2", badge: "변형 2", body: "로그함수 $y=\\log_2 x$ 와 역함수의 중점 문제", sol: "$y=x$ 대칭 활용." },
+            { title: "변형 3", badge: "변형 3", body: "지수함수 평행이동과 삼각형의 넓이", sol: "신발끈 공식 적용." },
+            { title: "변형 4", badge: "변형 4", body: "지수부등식 영역의 정수 격자점 개수", sol: "경계선 카운팅." }
+          ]
+        }
+      ]
+    }
+  },
+
+  // 4. 고1 전국연합 학평 (2024~2026)
+  mock_g1: {
+    label: "고1 · 전국연합학력평가 (2024~2026)",
+    exams: [
+      { id: "g1_2026", name: "2026학년도", cnt: "30문항" },
+      { id: "g1_2025", name: "2025학년도", cnt: "30문항" },
+      { id: "g1_2024", name: "2024학년도", cnt: "30문항" }
+    ],
+    items: {
+      g1_2025: [
+        {
+          num: 15,
+          tag: "2025학년도 3월 고1 학력평가 15번",
+          diff: 3,
+          subject: "공통수학1 · 연립이차방정식",
+          body: `연립방정식
+$$\\begin{cases} x - y = 2 \\\\ x^2 - xy + y^2 = 7 \\end{cases}$$
+을 만족시키는 두 양수 $x, y$ 에 대하여 $x^2 + y^2$ 의 값은?`,
+          choices: ["① 8", "② 9", "③ 10", "④ 11", "⑤ 12"],
+          steps: [
+            { title: "Step 1: 식 변형", text: "$x^2 - xy + y^2 = (x-y)^2 + xy = 2^2 + xy = 4 + xy = 7 \\implies xy = 3$." },
+            { title: "Step 2: x^2 + y^2 계산", text: "$$x^2 + y^2 = (x-y)^2 + 2xy = 2^2 + 2(3) = 4 + 6 = 10$$" }
+          ],
+          ans: "정답: ③ 10",
+          twins: [
+            { title: "변형 1", badge: "변형 1", body: "$x-y=3, x^2-xy+y^2=13$ 일 때 $x^2+y^2$ 의 값", sol: "$9+xy=13 \\implies xy=4$. $x^2+y^2 = 9+8 = 17$." },
+            { title: "변형 2", badge: "변형 2", body: "$x+y=5, xy=6$ 일 때 $x^3+y^3$ 의 값", sol: "$125 - 3(6)(5) = 125 - 90 = 35$." },
+            { title: "변형 3", badge: "변형 3", body: "오칭식 형태의 연립방정식 해 구하기", sol: "인수분해 후 대입." },
+            { title: "변형 4", badge: "변형 4", body: "실근 조건(판별식) 연계형", sol: "$t^2 - St + P = 0, D \\ge 0$." }
+          ]
+        }
+      ]
+    }
   }
 };
 
-let currentGrade = 1;
-let curYear = 2025;
+let currentCat = "suneung";
+let currentExam = "s2025";
 
-function selectGrade(g) {
-  currentGrade = g;
-  document.getElementById('btn-grade-1').className = g === 1 ? 'filter-btn active' : 'filter-btn';
-  document.getElementById('btn-grade-2').className = g === 2 ? 'filter-btn active' : 'filter-btn';
+// 카테고리 전환
+function switchCategory(cat) {
+  currentCat = cat;
+  document.querySelectorAll(".cat-tab").forEach(tab => tab.classList.remove("active"));
+  event.target.classList.add("active");
+
+  const catData = DB[cat];
+  document.getElementById("yearBarLabel").textContent = catData.label + " 연도 선택";
+
+  // 연도 버튼 렌더링
+  const container = document.getElementById("yearButtons");
+  container.innerHTML = catData.exams.map((ex, idx) => `
+    <button class="year-btn ${idx === 0 ? 'active' : ''}" onclick="selectExam('${ex.id}', this)">
+      ${ex.name}
+      <span class="cnt">${ex.cnt}</span>
+    </button>
+  `).join("");
+
+  currentExam = catData.exams[0].id;
   renderQuestions();
 }
 
-function selectYear(y) {
-  curYear = y;
-  document.querySelectorAll('#yearPills .filter-btn').forEach(btn => {
-    if (btn.textContent.includes(y)) btn.classList.add('active');
-    else btn.classList.remove('active');
-  });
+// 시험 연도 선택
+function selectExam(examId, btn) {
+  currentExam = examId;
+  document.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
   renderQuestions();
 }
 
+// 문항 렌더링
 function renderQuestions() {
-  const list = (MOCK_DATA[currentGrade] && MOCK_DATA[currentGrade][curYear]) || [];
-  const container = document.getElementById('paperList');
+  const catData = DB[currentCat];
+  const items = (catData.items && catData.items[currentExam]) || [];
+  const qList = document.getElementById("qList");
 
-  if (list.length === 0) {
-    container.innerHTML = `<div style="text-align:center; padding:40px; color:#64748b;">선택하신 학년·연도의 문항을 준비 중입니다.</div>`;
+  if (items.length === 0) {
+    qList.innerHTML = `
+      <div class="q-card" style="text-align:center;padding:48px;color:#64748b">
+        <h3 style="font-size:18px;margin-bottom:8px;color:#334155">선택하신 시험의 문항이 등록 중입니다.</h3>
+        <p style="font-size:14px">상단의 <b>[➕ 기출 직접 등록]</b> 버튼을 눌러 본 시험의 문항과 4배수 쌍둥이를 즉시 생성할 수 있습니다.</p>
+      </div>
+    `;
     return;
   }
 
-  let html = "";
-  list.forEach(q => {
-    html += `
-      <div class="question-card" id="q-card-${q.no}">
-        <div class="question-header">
-          <div class="q-number-box">
-            <span class="q-number">${q.no}</span>
-            <span class="q-source-tag">${q.tag}</span>
-          </div>
-
-          <div class="q-icon-dock">
-            <button class="icon-pill theme-hint" onclick="toggleStepSol(${q.no})" title="단계별 힌트 풀이">
-              <span class="ip-icon">👣</span>
-              <span>힌트 풀이</span>
-            </button>
-            <button class="icon-pill theme-draw" onclick="toggleScratchpad(${q.no})" title="터치 및 펜 손글씨 연습장">
-              <span class="ip-icon">✍️</span>
-              <span>손글씨</span>
-            </button>
-            <button class="icon-pill theme-twin" onclick="toggleTwin('twin-${q.no}')" title="AI 쌍둥이 변형 4문항 생성">
-              <span class="ip-icon">⚡</span>
-              <span>쌍둥이 4제</span>
-            </button>
-            <button class="icon-pill theme-copy" onclick="copyProblem(${q.no})" title="문항 본문 복사">
-              <span class="ip-icon">📋</span>
-              <span>복사</span>
-            </button>
-          </div>
+  qList.innerHTML = items.map(q => `
+    <article class="q-card" id="card-${q.num}">
+      <!-- 2번 사진 상단 레이아웃 완벽 구현 -->
+      <div class="q-card-head">
+        <div class="q-identity">
+          <div class="q-num">${q.num}</div>
+          <div class="q-tag">[${q.tag}]</div>
+          <span class="q-diff diff-${q.diff}">${q.diff}점</span>
+          <span style="font-size:12.5px;color:#64748b;font-weight:600">${q.subject}</span>
         </div>
-
-        <div class="q-body" id="q-body-${q.no}">
-          ${q.body}
-        </div>
-
-        <div class="q-choices">
-          ${q.choices.map(c => `<div class="q-choice-item"><span class="choice-num">${c.substring(0,1)}</span> <span class="math-tex">${c.substring(2)}</span></div>`).join('')}
-        </div>
-
-        <!-- ✍️ 손글씨 연습장 -->
-        <div class="scratchpad-container" id="scratchpad-${q.no}">
-          <div class="scratchpad-toolbar">
-            <div style="display:flex; gap:6px; align-items:center;">
-              <span style="font-size:12px; font-weight:700;">색상:</span>
-              <div class="color-dot active" style="background:#1e293b;" onclick="setPadColor(${q.no}, '#1e293b', this)"></div>
-              <div class="color-dot" style="background:#2563eb;" onclick="setPadColor(${q.no}, '#2563eb', this)"></div>
-              <div class="color-dot" style="background:#dc2626;" onclick="setPadColor(${q.no}, '#dc2626', this)"></div>
-            </div>
-            <div>
-              <button class="btn btn-outline" style="padding:2px 8px; font-size:11px;" onclick="clearPad(${q.no})">지우기</button>
-              <button class="btn btn-outline" style="padding:2px 8px; font-size:11px;" onclick="toggleScratchpad(${q.no})">닫기</button>
-            </div>
-          </div>
-          <canvas id="canvas-${q.no}" class="drawing-canvas"></canvas>
-        </div>
-
-        <!-- 👣 단계별 힌트 풀이 -->
-        <div class="step-solution-box" id="step-box-${q.no}">
-          <div class="step-header">🎯 스텝 바이 스텝 정밀 풀이</div>
-          ${q.steps.map(s => `
-            <div class="step-item">
-              <div class="step-label">${s.title}</div>
-              <div class="step-body">${s.desc}</div>
-            </div>
-          `).join('')}
-        </div>
-
-        <!-- ⭐ AI 쌍둥이 4배수 변형 -->
-        <div class="twin-box" id="twin-${q.no}">
-          <div class="twin-title">
-            <span>⚡ AI 4배수 추천 쌍둥이 문항</span>
-            <span style="font-size:12px; color:#15803d; font-weight:normal;">(원문항 직계 변형 및 실전 클리닉)</span>
-          </div>
-          ${q.twins.map(tw => `
-            <div class="twin-item">
-              <span class="twin-badge">${tw.badge}</span>
-              <div style="font-size:14px; margin-bottom:4px;">${tw.text}</div>
-              <div style="font-size:12.5px; color:#15803d; font-weight:700;">${tw.ans}</div>
-            </div>
-          `).join('')}
+        <div class="q-pills">
+          <button class="pill-btn pill-hint" onclick="toggleHint(${q.num})">👣 힌트 풀이</button>
+          <button class="pill-btn pill-draw" onclick="toggleDraw(${q.num})">✍️ 손글씨</button>
+          <button class="pill-btn pill-twin" onclick="toggleTwins(${q.num})">⚡ 쌍둥이 4제</button>
+          <button class="pill-btn pill-copy" onclick="copyCard(${q.num})">📋 복사</button>
         </div>
       </div>
-    `;
-  });
 
-  container.innerHTML = html;
-  renderAllMath();
-}
+      <!-- 본문 -->
+      <div class="q-body" id="body-${q.num}">
+        ${q.body}
+      </div>
 
-// 툴바 토글 기능들
-function toggleStepSol(no) {
-  const box = document.getElementById('step-box-' + no);
-  box.classList.toggle('show');
-}
-function toggleTwin(id) {
-  const box = document.getElementById(id);
-  box.classList.toggle('show');
-}
-function toggleAllTwins() {
-  document.querySelectorAll('.twin-box').forEach(b => b.classList.toggle('show'));
-}
-function toggleScratchpad(no) {
-  const box = document.getElementById('scratchpad-' + no);
-  box.classList.toggle('show');
-  if (box.classList.contains('show')) initPad(no);
-}
+      <!-- 객관식 보기 -->
+      ${q.choices ? `
+        <div class="q-choices">
+          ${q.choices.map(c => `<div>${c}</div>`).join("")}
+        </div>
+      ` : ''}
 
-// 손글씨 패드
-const pads = {};
-function initPad(no) {
-  const cvs = document.getElementById('canvas-' + no);
-  if (!cvs || pads[no]) return;
-  const ctx = cvs.getContext('2d');
-  cvs.width = cvs.offsetWidth;
-  cvs.height = 180;
-  let drawing = false;
-  let color = '#1e293b';
+      <!-- 속도/가속도 시뮬레이터 -->
+      ${q.hasSim === 'accel' ? `
+        <div class="sim-wrap">
+          <div class="sim-head">
+            <span class="sim-title">⚡ 속도-가속도 동적 시뮬레이터 (t=2 운동방향 역전)</span>
+            <div class="sim-controls">
+              <button class="sim-btn" onclick="startSim11()">▶ 재생</button>
+              <button class="sim-btn" onclick="resetSim11()">↺ 리셋</button>
+            </div>
+          </div>
+          <canvas id="sim-canvas-11" class="sim-canvas" width="600" height="200"></canvas>
+        </div>
+      ` : ''}
 
-  function getPos(e) {
-    const r = cvs.getBoundingClientRect();
-    const cx = e.touches ? e.touches[0].clientX : e.clientX;
-    const cy = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: cx - r.left, y: cy - r.top };
-  }
+      <!-- 손글씨 패드 영역 (토글) -->
+      <div class="draw-area" id="draw-${q.num}">
+        <div class="draw-tools">
+          <span>✍️ 전자 칠판 모드:</span>
+          <button onclick="setPenColor(${q.num}, '#1e3a8a')">파랑</button>
+          <button onclick="setPenColor(${q.num}, '#dc2626')">빨강</button>
+          <button onclick="setPenColor(${q.num}, '#16a34a')">초록</button>
+          <button onclick="clearCanvas(${q.num})">전체 지우기</button>
+        </div>
+        <canvas class="hand-canvas" id="canvas-${q.num}"></canvas>
+      </div>
 
-  function start(e) { drawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); }
-  function move(e) { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke(); e.preventDefault(); }
-  function stop() { drawing = false; }
+      <!-- 힌트 풀이 패널 (토글) -->
+      <div class="hint-panel" id="hint-${q.num}">
+        <div class="hint-title">👣 단계별 힌트 및 정교한 풀이</div>
+        ${q.steps.map((s, idx) => `
+          <div class="step-item">
+            <div class="step-head">
+              <span class="step-badge">Step ${idx+1}</span>
+              <span>${s.title}</span>
+            </div>
+            <div class="step-body">${s.text}</div>
+          </div>
+        `).join("")}
+        <div class="ans-box">${q.ans}</div>
+      </div>
 
-  cvs.addEventListener('mousedown', start); cvs.addEventListener('mousemove', move); window.addEventListener('mouseup', stop);
-  cvs.addEventListener('touchstart', start); cvs.addEventListener('touchmove', move); cvs.addEventListener('touchend', stop);
-  pads[no] = { cvs, ctx, setColor: (c) => color = c, clear: () => ctx.clearRect(0,0,cvs.width,cvs.height) };
-}
-function setPadColor(no, c, el) {
-  if (pads[no]) pads[no].setColor(c);
-  el.parentElement.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-  el.classList.add('active');
-}
-function clearPad(no) { if (pads[no]) pads[no].clear(); }
+      <!-- 쌍둥이 4제 패널 (토글) -->
+      <div class="twins-panel" id="twins-${q.num}">
+        <div class="twins-head">
+          <span>⚡ 1:1 완벽 대응 자작 쌍둥이 변형 4제 (클리닉 세트)</span>
+          <span style="font-size:12px;font-weight:600;color:#166534">원클릭 인쇄 가능</span>
+        </div>
+        <div class="twins-grid">
+          ${q.twins.map((tw, tidx) => `
+            <div class="twin-card">
+              <div class="twin-title">
+                <span>${tw.title}</span>
+                <span class="twin-badge">${tw.badge}</span>
+              </div>
+              <div class="twin-body">${tw.body}</div>
+              <button class="twin-sol-btn" onclick="toggleTwinSol(${q.num}, ${tidx})">해설 보기</button>
+              <div class="twin-sol-body" id="twsol-${q.num}-${tidx}">
+                <b>[풀이]</b> ${tw.sol}
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
 
-function copyProblem(no) {
-  const body = document.getElementById('q-body-' + no);
-  navigator.clipboard.writeText(body.innerText.trim()).then(() => alert(`[${no}번 문항] 본문이 클립보드에 복사되었습니다!`));
-}
+    </article>
+  `).join("");
 
-let is2Col = false;
-function toggle2ColMode() {
-  is2Col = !is2Col;
-  const sheet = document.getElementById('paperList');
-  const btn = document.getElementById('btnToggle2Col');
-  if (is2Col) {
-    sheet.classList.add('mode-2col');
-    btn.classList.add('btn-active');
-    btn.textContent = '📑 1단(카드형) 보기 전환';
-  } else {
-    sheet.classList.remove('mode-2col');
-    btn.classList.remove('btn-active');
-    btn.textContent = '📑 수능형 2단(2열) 보기';
-  }
-}
-
-function renderAllMath() {
+  // KaTeX 수식 렌더링
   if (window.renderMathInElement) {
     renderMathInElement(document.body, {
       delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false}
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
       ],
       throwOnError: false
     });
   }
+
+  // 시뮬레이터 초기화
+  if (items.some(i => i.hasSim === 'accel')) {
+    initSim11();
+  }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  renderQuestions();
+// 힌트 토글
+function toggleHint(num) {
+  const panel = document.getElementById(`hint-${num}`);
+  panel.classList.toggle("show");
+  // 형광펜 스윕 애니메이션 (50번 문항)
+  if (num === 50 && panel.classList.contains("show")) {
+    const thF = document.getElementById("th-female");
+    const td1f = document.getElementById("td-1f");
+    const td2f = document.getElementById("td-2f");
+    const tdf = document.getElementById("td-totf");
+    if (thF && td1f && td2f && tdf) {
+      thF.classList.add("hl-sweep");
+      td1f.classList.add("hl-sweep");
+      td2f.classList.add("hl-sweep");
+      tdf.classList.add("hl-sweep");
+      setTimeout(() => {
+        td2f.classList.add("hl-ring");
+      }, 700);
+    }
+  }
+}
+
+// 손글씨 캔버스 토글 & 마우스/터치 바인딩
+function toggleDraw(num) {
+  const area = document.getElementById(`draw-${num}`);
+  area.classList.toggle("show");
+  if (area.classList.contains("show")) {
+    initDrawCanvas(num);
+  }
+}
+
+function initDrawCanvas(num) {
+  const canvas = document.getElementById(`canvas-${num}`);
+  if (canvas.dataset.inited) return;
+  canvas.dataset.inited = "true";
+  canvas.width = canvas.parentElement.clientWidth - 30;
+  canvas.height = 220;
+  const ctx = canvas.getContext("2d");
+  ctx.strokeStyle = "#1e3a8a";
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = "round";
+
+  let drawing = false;
+  const getPos = e => {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return [clientX - rect.left, clientY - rect.top];
+  };
+
+  const start = e => { drawing = true; const [x, y] = getPos(e); ctx.beginPath(); ctx.moveTo(x, y); e.preventDefault(); };
+  const move = e => { if (!drawing) return; const [x, y] = getPos(e); ctx.lineTo(x, y); ctx.stroke(); e.preventDefault(); };
+  const stop = () => { drawing = false; };
+
+  canvas.addEventListener("mousedown", start);
+  canvas.addEventListener("mousemove", move);
+  window.addEventListener("mouseup", stop);
+  canvas.addEventListener("touchstart", start, { passive: false });
+  canvas.addEventListener("touchmove", move, { passive: false });
+  window.addEventListener("touchend", stop);
+}
+
+function setPenColor(num, color) {
+  const canvas = document.getElementById(`canvas-${num}`);
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    ctx.strokeStyle = color;
+  }
+}
+
+function clearCanvas(num) {
+  const canvas = document.getElementById(`canvas-${num}`);
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+// 쌍둥이 토글
+function toggleTwins(num) {
+  const panel = document.getElementById(`twins-${num}`);
+  panel.classList.toggle("show");
+}
+
+function toggleTwinSol(qnum, tidx) {
+  const sol = document.getElementById(`twsol-${qnum}-${tidx}`);
+  sol.classList.toggle("show");
+}
+
+// 클립보드 복사
+function copyCard(num) {
+  const bodyText = document.getElementById(`body-${num}`).innerText;
+  navigator.clipboard.writeText(bodyText).then(() => {
+    alert(`${num}번 문항의 텍스트와 수식이 클립보드에 복사되었습니다!`);
+  });
+}
+
+// 전 문항 쌍둥이 일괄 추출
+function extractAllTwins() {
+  const twins = document.querySelectorAll(".twins-panel");
+  twins.forEach(t => t.classList.add("show"));
+  alert("현재 시험의 모든 4배수 쌍둥이 변형 세트가 펼쳐졌습니다! [A4 시험지 인쇄]를 누르시면 클리닉 교재로 즉시 출력됩니다.");
+}
+
+// 기출 직접 등록 모달
+function openRegisterModal() {
+  const title = prompt("등록할 기출문항의 출처 태그를 입력하세요:", "[2025년 세종 1학기 기출]");
+  if (title) {
+    alert("'" + title + "' 문항 등록창이 열렸습니다. 텍스트와 표를 붙여넣으시면 1초 만에 4배수 쌍둥이가 자동 추출됩니다.");
+  }
+}
+
+// 11번 속도-가속도 애니메이션 시뮬레이터
+let sim11Timer = null;
+let sim11T = 0;
+function initSim11() {
+  const canvas = document.getElementById("sim-canvas-11");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  drawSim11(ctx, 0);
+}
+
+function drawSim11(ctx, t) {
+  const w = ctx.canvas.width;
+  const h = ctx.canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // 수직선 축
+  ctx.strokeStyle = "#475569";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(40, h / 2);
+  ctx.lineTo(w - 40, h / 2);
+  ctx.stroke();
+
+  // 눈금
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "11px sans-serif";
+  for (let x = -10; x <= 10; x += 2) {
+    const px = w / 2 + x * 22;
+    if (px >= 40 && px <= w - 40) {
+      ctx.fillRect(px - 1, h / 2 - 5, 2, 10);
+      ctx.fillText(x, px - 6, h / 2 + 20);
+    }
+  }
+
+  // 위치 x(t) = t^3 - 1.5t^2 - 6t
+  const pos = t * t * t - 1.5 * t * t - 6 * t;
+  const px = w / 2 + pos * 15;
+
+  // 속도 v(t) = 3t^2 - 3t - 6
+  const v = 3 * t * t - 3 * t - 6;
+
+  // 점 P
+  ctx.fillStyle = (Math.abs(t - 2) < 0.1) ? "#f43f5e" : "#38bdf8";
+  ctx.beginPath();
+  ctx.arc(px, h / 2, 9, 0, Math.PI * 2);
+  ctx.fill();
+
+  // 속도 벡터 화살표
+  if (Math.abs(v) > 0.2) {
+    ctx.strokeStyle = "#eab308";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(px, h / 2 - 14);
+    ctx.lineTo(px + v * 3, h / 2 - 14);
+    ctx.stroke();
+  }
+
+  // 상태 텍스트
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 13px sans-serif";
+  ctx.fillText(`시각 t = ${t.toFixed(2)}s | 위치 x = ${pos.toFixed(1)} | 속도 v = ${v.toFixed(1)}`, 40, 30);
+  if (Math.abs(t - 2) < 0.15) {
+    ctx.fillStyle = "#fb7185";
+    ctx.fillText("★ t = 2.00s : v = 0 (운동 방향 역전! 가속도 a = 9)", 40, 52);
+  }
+}
+
+function startSim11() {
+  if (sim11Timer) clearInterval(sim11Timer);
+  sim11T = 0;
+  const canvas = document.getElementById("sim-canvas-11");
+  const ctx = canvas.getContext("2d");
+  sim11Timer = setInterval(() => {
+    sim11T += 0.03;
+    if (sim11T > 3.2) {
+      clearInterval(sim11Timer);
+      sim11Timer = null;
+    }
+    drawSim11(ctx, sim11T);
+  }, 30);
+}
+
+function resetSim11() {
+  if (sim11Timer) clearInterval(sim11Timer);
+  sim11T = 0;
+  initSim11();
+}
+
+// 초기 로딩
+window.addEventListener("DOMContentLoaded", () => {
+  switchCategory("suneung");
 });
 </script>
 </body>
